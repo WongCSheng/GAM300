@@ -140,7 +140,7 @@ namespace TDS
             /**
              * Checks through all channel if any sound is playing.
              */
-            DLL_API  bool soundIsPlaying();
+            DLL_API  bool AnysoundPlaying();
 
             /**
              * Checks if a sound has finished playing.
@@ -247,7 +247,12 @@ namespace TDS
             /**
              * Get container of event instances that's loaded
              */
-            DLL_API   std::map<std::string, FMOD::Studio::EventInstance*> getEventInstanceContainer();
+            DLL_API  std::map<std::string, FMOD::Studio::EventInstance*> getEventInstanceContainer();
+
+            /**
+            * Get the unique ID of the sound
+            */
+            DLL_API  unsigned int getSoundID(std::string _soundInfoName);
 
             // The audio sampling rate of the audio engine
             DLL_API  static const int AUDIO_SAMPLE_RATE = 44100;
@@ -327,6 +332,11 @@ namespace TDS
              * TODO Refactor to use numeric UID as key
              */
             std::map<unsigned int, FMOD::Sound*> sounds{};
+
+            /*
+            * Map which keeps tracks of which ID belongs to which sound.
+            */
+            std::map<unsigned int, std::string> sound_ids{};
 
             /*
              * Map which stores the current playback channels of any playing sound loop

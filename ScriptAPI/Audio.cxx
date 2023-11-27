@@ -2,7 +2,7 @@
 #include <ctime>
 #include <msclr\marshal_cppstd.h>
 
-using namespace TDS::AudioWerks;
+#define AW TDS::AudioWerks
 
 static int id_num{ 0 };
 
@@ -10,7 +10,7 @@ namespace ScriptAPI
 {
 	AudioSource::AudioSource()
 	{
-		audio_engine = AudioEngine::AudioEngine::get_audioengine_instance();
+		audio_engine = AW::AudioEngine::get_audioengine_instance();
 		deltatime = 0.f;
 		wait = 0;
 
@@ -24,29 +24,26 @@ namespace ScriptAPI
 	//		//deltatime = time(NULL);
 	//	}
 	//	else
-	//	{
-	//		msclr::interop::marshal_context context;
-	//		std::string str = context.marshal_as<std::string>(clip->clips[clip->sub]);
-	//		
-	//		TDS::SoundInfo temp(str);
+	//	{			
+	//		TDS::SoundInfo temp(toStdString(clips[]);
 	//		
 	//		audio_engine->playSound(temp);
 	//	}
 	//}
 
-	void AudioSource::Play(System::String^ pathing)
+	void AudioSource::Play(StringP pathing)
 	{
 		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
 		temp->play();
 	}
 
-	void AudioSource::Pause(System::String^ pathing)
+	void AudioSource::Pause(StringP pathing)
 	{
 		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
 		temp->pause();
 	}
 
-	void AudioSource::Stop(System::String^ pathing)
+	void AudioSource::Stop(StringP pathing)
 	{
 		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
 		temp->stop();
@@ -72,7 +69,7 @@ namespace ScriptAPI
 		audio_engine->stopSound(temp);
 	}*/
 
-	void AudioSource::Loop(System::String^ pathing, bool set)
+	void AudioSource::Loop(StringP pathing, bool set)
 	{
 		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
 		temp->setLoop(set);
@@ -88,24 +85,39 @@ namespace ScriptAPI
 		return true;
 	}*/
 
-	bool AudioSource::isPlaying()
+	bool AudioSource::isLooping(StringP pathing)
 	{
-		return audio_engine->soundIsPlaying();
+
 	}
 
-	bool AudioSource::isPlaying(System::String^ pathing)
+	bool AudioSource::isMute(StringP pathing)
+	{
+
+	}
+
+	bool AudioSource::is3D(StringP pathing)
+	{
+
+	}
+
+	bool AudioSource::isAnyPlaying()
+	{
+		return audio_engine->AnysoundPlaying();
+	}
+
+	bool AudioSource::isPlaying(StringP pathing)
 	{
 		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
 		return temp->isPlaying();
 	}
 
-	bool AudioSource::hasFinished(System::String^ pathing)
+	bool AudioSource::hasFinished(StringP pathing)
 	{
 		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
 		return temp->finished();
 	}
 
-	void AudioSource::add_clips(System::String^ pathing)
+	void AudioSource::add_clips(StringP pathing)
 	{
 		AudioComponent^ temp = gcnew AudioComponent(pathing, id_num++);
 		
@@ -116,13 +128,5 @@ namespace ScriptAPI
 	T& AudioSource::operator=(float val)
 	{
 		value = val;
-	}*/
-
-	/*void AudioClip::add_clips(std::filesystem::path file)
-	{
-		System::String^ temp = gcnew System::String(file.string().c_str());
-		
-		clips.Add(temp);
-		++sub;
 	}*/
 }

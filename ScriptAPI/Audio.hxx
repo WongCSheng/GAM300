@@ -7,14 +7,7 @@
 
 namespace ScriptAPI
 {
-    /*public ref class AudioClip
-    {
-    public:        
-        void add_clips(std::filesystem::path file);
-        
-        System::Collections::Generic::List<System::String^> clips;
-        int sub;
-    };*/
+    #define StringP System::String^
     
     public ref class AudioSource
     {
@@ -33,22 +26,24 @@ namespace ScriptAPI
         AudioSource();
         
         //void Play(unsigned long delay);
-        void Play(System::String^ pathing);
-        //void Pause();
-        void Pause(System::String^ pathing);
-        //void Stop();
-        void Stop(System::String^ pathing);
+        void Play(StringP pathing);
+        void Pause(StringP pathing);
+        void Stop(StringP pathing);
 
-        void Loop(System::String^ pathing, bool set);
+        void Loop(StringP pathing, bool set);
         //bool enabled();
 
         /*template<typename T>
         T& operator=(float val);*/
 
-        bool isPlaying();
-        bool isPlaying(System::String^ pathing);
-        bool hasFinished(System::String^ pathing);
-        void add_clips(System::String^ pathing);
+        bool isLooping(StringP pathing);
+        bool isMute(StringP pathing);
+        bool is3D(StringP pathing);
+
+        bool isAnyPlaying();
+        bool isPlaying(StringP pathing);
+        bool hasFinished(StringP pathing);
+        void add_clips(StringP pathing);
 
         System::Collections::Hashtable^ clips; //AudioClips are attached to AudioSource
         TDS::AudioWerks::AudioEngine* audio_engine;

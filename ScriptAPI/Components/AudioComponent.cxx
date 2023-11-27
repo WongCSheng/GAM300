@@ -245,6 +245,11 @@ namespace ScriptAPI
 		entityID = id;
 	}
 
+	void AudioComponent::SetSoundInfoObject(SI* _soundInfo)
+	{
+		soundInfo = _soundInfo;
+	}
+
 	//unique ID
 	unsigned int AudioComponent::uniqueID::get()
 	{
@@ -340,6 +345,4 @@ namespace ScriptAPI
 	{
 		TDS::GetSoundInfo(entityID)->setReverbAmount(value);
 	}
-
-	
 }

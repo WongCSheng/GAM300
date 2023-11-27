@@ -81,6 +81,8 @@ namespace TDS
                 ERRCHECK(sound->setMode(soundInfo.isLoop() ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF));
                 ERRCHECK(sound->set3DMinMaxDistance(0.5f * DISTANCEFACTOR, 5000.0f * DISTANCEFACTOR));
                 sounds.insert({ soundInfo.getUniqueID(), sound });
+                std::string store_name = strstr(soundInfo.getFilePath(), )
+                sound_ids.insert({ soundInfo.getUniqueID(), soundInfo.getFilePath()});
                 unsigned int msLength = 0;
                 ERRCHECK(sounds[soundInfo.getUniqueID()]->getLength(&msLength, FMOD_TIMEUNIT_MS));
                 //soundInfo.setMSLength(msLength);
@@ -251,7 +253,7 @@ namespace TDS
             //return (soundInfo.isLoop() || soundInfo.isPlaying()) && soundInfo.isLoaded() && loopsPlaying.count(soundInfo.getUniqueID());
         }
 
-        bool AudioEngine::soundIsPlaying()
+        bool AudioEngine::AnysoundPlaying()
         {
             int channelnum{ 0 };
 
@@ -441,6 +443,16 @@ namespace TDS
         std::map<std::string, FMOD::Studio::EventInstance*> AudioEngine::getEventInstanceContainer()
         {
             return eventInstances;
+        }
+
+        unsigned int AudioEngine::getSoundID(std::string _soundInfoName)
+        {
+            char* ch{ nullptr };
+            
+            for (auto& temp : sounds)
+            {
+                if(temp.second->getName(ch, ))
+            }
         }
 
         //// Private definitions 

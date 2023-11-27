@@ -186,6 +186,11 @@ namespace TDS
         ReverbAmount = reverb;
     }
 
+    void SoundInfo::setSamepleRate(unsigned int _samplerate)
+    {
+        sampleRate = _samplerate;
+    }
+
     void SoundInfo::play()
     {
         AudioWerks::AudioEngine* audeng = AudioWerks::AudioEngine::get_audioengine_instance();
@@ -210,6 +215,7 @@ namespace TDS
         position.z = _z;
         position_events.clear();
         MSLength = 0;
+        sampleRate = 0;
         uniqueID = ID_Count++; //Change UID to include time when added
     }
     

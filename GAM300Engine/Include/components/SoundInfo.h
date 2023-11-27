@@ -37,7 +37,7 @@ namespace TDS
 
     DLL_API struct SoundInfo : public IComponent
     {
-        unsigned int uniqueID, MSLength;
+        unsigned int uniqueID, MSLength, sampleRate;
         std::string filePath;
         bool isitLoop, isit3D, isitmuted;
         SOUND_STATE whatState;
@@ -76,23 +76,15 @@ namespace TDS
 
         // convenience method to set the 3D coordinates of the sound.
         DLL_API  void set3DCoords(float x, float y, float z);
-
         DLL_API  void set3DCoords(Vec3 set_this);
-
         DLL_API  void setFilePath(std::string _path);
-
         DLL_API  void setEvents(Vec3* place, SOUND_STATE& type);
 
         DLL_API  bool isLoaded();
-
         DLL_API  bool is3D();
-
         DLL_API  bool isLoop();
-
         DLL_API  bool isMuted();
-
         DLL_API  bool isPlaying();
-
         DLL_API  bool isPaused();
 
         /*bool isPlaying()
@@ -111,34 +103,22 @@ namespace TDS
         }*/
 
         DLL_API  Vec3 get3DCoords();
-
         DLL_API  std::map<Vec3*, SOUND_STATE*> getEvents();
-
         DLL_API  SOUND_STATE getState();
-
         DLL_API  unsigned int getUniqueID();
-
         DLL_API  unsigned int getMSLength();
-
         DLL_API  std::string getFilePath();
-
         DLL_API  const char* getFilePath_inChar();
-
         DLL_API  float getX();
-
         DLL_API  float getY();
-
         DLL_API  float getZ();
-
         DLL_API  float getReverbAmount();
-
         DLL_API  float getVolume();
 
         /**
         * Parameter takes in Volume values (0 - 100)
         */
         DLL_API  void setVolume(float vol);
-
         DLL_API  void setMSLength(unsigned int len);
 
         /*void setState(SOUND_STATE setting, bool set)
@@ -147,14 +127,11 @@ namespace TDS
         }*/
 
         DLL_API  void setState(SOUND_STATE setting);
-
         DLL_API  void setLoop(bool condition);
-
         DLL_API  void set3D(bool condition);
-
         DLL_API  void setMute(bool condition);
-
         DLL_API  void setReverbAmount(float reverb);
+        DLL_API  void setSamepleRate(unsigned int _samplerate);
 
         DLL_API  void play();
         DLL_API  void pause();

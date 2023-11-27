@@ -4,15 +4,13 @@
 #include "TransformComponent.hxx"
 #include "../TypeConversion.hxx"
 
-using si = TDS::SoundInfo;
-
 namespace ScriptAPI
 {
+	using SI = TDS::SoundInfo;
+	using snd = TDS::SOUND_STATE;
+	
 	public value class AudioComponent : ComponentBase
 	{
-	public:
-		using snd = TDS::SOUND_STATE;
-
 	public:
 		void set3DCoords(float x, float y, float z);
 		void set3DCoords(Vector3 in_pos);
@@ -71,11 +69,13 @@ namespace ScriptAPI
 		std::function<void(snd)>* pass_in_setState;
 
 		virtual void SetEntityID(TDS::EntityID ID);
+		void SetSoundInfoObject(SI* _si);
 
 		TransformComponent transform;
 
 	internal:
 		AudioComponent(System::String^ pathing, TDS::EntityID ID);
+		AudioComponent(SI* _soundInfo);
 		TDS::EntityID GetEntityID();
 
 	private:
@@ -130,5 +130,6 @@ namespace ScriptAPI
 		}
 
 		TDS::EntityID entityID;
+		SI* soundInfo;
 	};
 }
