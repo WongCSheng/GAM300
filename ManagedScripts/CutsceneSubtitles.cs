@@ -81,9 +81,6 @@ public class CutsceneSubtitle : Script
         }
         else
         {
-            UISpriteComponent Sprite = gameObject.GetComponent<UISpriteComponent>();
-            AudioComponent audio = gameObject.GetComponent<AudioComponent>();
-
             //audio.playQueue();
 
             if (counter > 16)//cutscene over
