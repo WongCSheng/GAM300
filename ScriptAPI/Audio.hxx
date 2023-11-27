@@ -1,24 +1,25 @@
 #pragma once
 #include "IncludeFromEngine.hxx"
+#include "Components/AudioComponent.hxx"
 #include <fmod_engine/AudioEngine.h>
 #include <components/SoundInfo.h>
 #include <filesystem>
 
 namespace ScriptAPI
 {
-    public ref class AudioClip
+    /*public ref class AudioClip
     {
     public:        
         void add_clips(std::filesystem::path file);
         
         System::Collections::Generic::List<System::String^> clips;
         int sub;
-    };
+    };*/
     
     public ref class AudioSource
     {
     public:
-        static ref struct volume
+        /*static ref struct volume
         {
             float value;
         };
@@ -26,28 +27,30 @@ namespace ScriptAPI
         static ref struct pitch
         {
             float value;
-        };
+        };*/
 
     public:
         AudioSource();
         
-        void Play(unsigned long delay);
-        void Pause();
-        void Stop();
+        //void Play(unsigned long delay);
+        void Play(System::String^ pathing);
+        //void Pause();
+        void Pause(System::String^ pathing);
+        //void Stop();
+        void Stop(System::String^ pathing);
 
-        /*float get_volume();
-        void set_volume(float vol);*/
-        void Loop(bool set);
-        bool enabled();
-        /*float get_pitch();
-        void set_pitch(float set);*/
+        void Loop(System::String^ pathing, bool set);
+        //bool enabled();
 
-        template<typename T>
-        T& operator=(float val);
+        /*template<typename T>
+        T& operator=(float val);*/
 
         bool isPlaying();
+        bool isPlaying(System::String^ pathing);
+        bool hasFinished(System::String^ pathing);
+        void add_clips(System::String^ pathing);
 
-        AudioClip^ clip; //AudioClips are attached to AudioSource
+        System::Collections::Hashtable^ clips; //AudioClips are attached to AudioSource
         TDS::AudioWerks::AudioEngine* audio_engine;
         unsigned long wait;
         float deltatime;

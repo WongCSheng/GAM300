@@ -138,6 +138,11 @@ namespace TDS
             DLL_API  bool soundIsPlaying(SoundInfo soundInfo);
 
             /**
+             * Checks through all channel if any sound is playing.
+             */
+            DLL_API  bool soundIsPlaying();
+
+            /**
              * Checks if a sound has finished playing.
              */
             DLL_API  void soundFinished(SoundInfo& soudnInfo);
@@ -367,9 +372,16 @@ namespace TDS
         static void load_all_audio_files();
         static std::vector<std::filesystem::path> go_deeper(std::filesystem::path f_path);
 
+        static void ScriptPlay(SoundInfo& soundInfo);
+        static void ScriptPause(SoundInfo& soundInfo);
+        static void ScriptStop(SoundInfo& soundInfo);
+
         static void ScriptPlay(std::string pathing);
         static void ScriptPause(std::string pathing);
         static void ScriptStop(std::string pathing);
+
+        static bool CheckPlaying(std::string pathing); //to be changed
+        static bool CheckPause(std::string pathing); //to be changed
 
         static SoundInfo* find_sound_info(std::string str);
         static void Add_to_Queue(std::string str = "");
@@ -377,7 +389,7 @@ namespace TDS
         static void Play_queue();
         static void Clear_queue();
 
-        static bool checkifdone(std::string str);
+        static bool checkifdone(SoundInfo& soundInfo);
 
     private:
         static AudioWerks::AudioEngine* aud_instance;

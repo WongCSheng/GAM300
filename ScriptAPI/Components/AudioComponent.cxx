@@ -3,9 +3,9 @@
 
 namespace ScriptAPI
 {
-	AudioComponent::AudioComponent(TDS::EntityID ID) : entityID(ID), transform(TransformComponent(ID))
+	AudioComponent::AudioComponent(System::String^ pathing, TDS::EntityID ID) : entityID(ID)
 	{
-
+		filePath = toStdString(pathing);
 	}
 
 	TDS::EntityID AudioComponent::GetEntityID()
@@ -53,9 +53,44 @@ namespace ScriptAPI
 		return (whatState == TDS::SOUND_PAUSE);
 	}
 
-	bool AudioComponent::finished(System::String^ str_path)
+	bool AudioComponent::finished()
 	{
-		return TDS::proxy_audio_system::checkifdone(toStdString(str_path));
+		TDS::SoundInfo temp(filePath);
+		temp.whatState = whatState;
+		
+		if (TDS::proxy_audio_system::checkifdone(temp))
+		{
+			whatState = temp.whatState;
+			return true;
+		}
+		else
+		{
+			whatState = temp.whatState;
+		}
+	}
+
+	bool AudioComponent::finished(System::String^ pathing)
+	{
+		TDS::SoundInfo temp(toStdString(pathing));
+		
+		if (TDS::proxy_audio_system::checkifdone(temp))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool AudioComponent::isPlaying(System::String^ pathing)
+	{
+		return (TDS::proxy_audio_system::CheckPlaying(toStdString(pathing)));
+	}
+
+	bool AudioComponent::isPaused(System::String^ pathing)
+	{
+		return (TDS::proxy_audio_system::CheckPause(toStdString(pathing)));
 	}
 
 	Vector3 AudioComponent::get3DCoords()
@@ -63,7 +98,7 @@ namespace ScriptAPI
 		return pos;
 	}
 
-	snd AudioComponent::getState()
+	AudioComponent::snd AudioComponent::getState()
 	{
 		return whatState;
 	}
@@ -148,14 +183,41 @@ namespace ScriptAPI
 		isitMuted = condition;
 	}
 
-	void AudioComponent::play(System::String^ pathing)
-	{
-		TDS::proxy_audio_system::ScriptPlay(toStdString(pathing));
+	void AudioComponent::play()
+	{		
+		TDS::SoundInfo temp(filePath);
+		temp.setState(whatState);
+		
+		TDS::proxy_audio_system::ScriptPlay(temp);
+		whatState = temp.getState();
 	}
 
 	void AudioComponent::playQueue()
 	{
 		TDS::proxy_audio_system::Play_queue();
+	}
+
+	void AudioComponent::pause()
+	{
+		TDS::SoundInfo temp(filePath);
+		temp.setState(whatState);
+
+		TDS::proxy_audio_system::ScriptPause(temp);
+		whatState = temp.getState();
+	}
+
+	void AudioComponent::stop()
+	{
+		TDS::SoundInfo temp(filePath);
+		temp.setState(whatState);
+
+		TDS::proxy_audio_system::ScriptStop(temp);
+		whatState = temp.getState();
+	}
+
+	void AudioComponent::play(System::String^ pathing)
+	{
+		TDS::proxy_audio_system::ScriptPlay(toStdString(pathing));
 	}
 
 	void AudioComponent::pause(System::String^ pathing)
@@ -206,7 +268,7 @@ namespace ScriptAPI
 	}
 	void AudioComponent::filePath::set(std::string value)
 	{
-		TDS::GetSoundInfo(entityID)->setFilePath(value);
+		TDS::GetSoundInfo(entityID)->filePath = value;
 	}
 
 	//loop
@@ -240,7 +302,7 @@ namespace ScriptAPI
 	}
 
 	//state of sound info
-	snd AudioComponent::whatState::get()
+	AudioComponent::snd AudioComponent::whatState::get()
 	{
 		return TDS::GetSoundInfo(entityID)->getState();
 	}

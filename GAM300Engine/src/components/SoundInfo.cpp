@@ -23,8 +23,7 @@ rttr::registration::class_<SoundInfo>("Audio")
 .method("is3D", &SoundInfo::is3D)
 .method("play", &SoundInfo::play)
 .method("pause", &SoundInfo::pause)
-.method("stop", &SoundInfo::stop)
-.method("setFilePath", &SoundInfo::setFilePath);
+.method("stop", &SoundInfo::stop);
 }
 
 namespace TDS
@@ -148,12 +147,13 @@ namespace TDS
     */
     void SoundInfo::setVolume(float vol)
     {
-        volume = 20.0f * log10f(vol);
+        /*volume = 20.0f * log10f(vol);
 
         if (volume > 1.f)
         {
             volume = 1.f;
-        }
+        }*/
+        volume = (vol > 1.f) ? 1.f : vol;
     }
 
     void SoundInfo::setMSLength(unsigned int len)

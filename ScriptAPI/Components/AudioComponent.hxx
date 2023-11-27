@@ -4,12 +4,15 @@
 #include "TransformComponent.hxx"
 #include "../TypeConversion.hxx"
 
+using si = TDS::SoundInfo;
+
 namespace ScriptAPI
 {
-	using snd = TDS::SOUND_STATE;
-
 	public value class AudioComponent : ComponentBase
 	{
+	public:
+		using snd = TDS::SOUND_STATE;
+
 	public:
 		void set3DCoords(float x, float y, float z);
 		void set3DCoords(Vector3 in_pos);
@@ -21,7 +24,11 @@ namespace ScriptAPI
 		bool isPlaying();
 		bool isPaused();
 		//Check if that sound file finished playing
-		bool finished(System::String^ str_path);
+		bool finished();
+		bool finished(System::String^ pathing);
+
+		bool isPlaying(System::String^ pathing); //to be changed
+		bool isPaused(System::String^ pathing); //to be changed
 
 		Vector3 get3DCoords();
 		snd getState();
@@ -46,23 +53,29 @@ namespace ScriptAPI
 		void setMute(bool condition);
 
 		//Pass in the audio file name without the extensions
+		void play();
+		void pause();
+		void stop();
+
 		void play(System::String^ pathing);
+		void pause(System::String^ pathing);
+		void stop(System::String^ pathing);
 
 		//play the queue of sound sequentially
 		void playQueue();
 		void clearQueue();
-		void pause(System::String^ pathing);
-		void stop(System::String^ pathing);
 
 		//Add to a queue of sound to be played sequentially
 		void Queue(System::String^ str);
+
+		std::function<void(snd)>* pass_in_setState;
 
 		virtual void SetEntityID(TDS::EntityID ID);
 
 		TransformComponent transform;
 
 	internal:
-		AudioComponent(TDS::EntityID ID);
+		AudioComponent(System::String^ pathing, TDS::EntityID ID);
 		TDS::EntityID GetEntityID();
 
 	private:

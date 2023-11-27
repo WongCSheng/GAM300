@@ -241,7 +241,7 @@ namespace TDS
 
             ERRCHECK(lowLevelSystem->getChannelsPlaying(&channelnum));
 
-            if (soundInfo.isPlaying() && channelnum <= MAX_AUDIO_CHANNELS)
+            if (soundInfo.isPlaying() && (channelnum > 0 && channelnum <= MAX_AUDIO_CHANNELS))
             {
                 return true;
             }
@@ -249,6 +249,20 @@ namespace TDS
             return false;
 
             //return (soundInfo.isLoop() || soundInfo.isPlaying()) && soundInfo.isLoaded() && loopsPlaying.count(soundInfo.getUniqueID());
+        }
+
+        bool AudioEngine::soundIsPlaying()
+        {
+            int channelnum{ 0 };
+
+            ERRCHECK(lowLevelSystem->getChannelsPlaying(&channelnum));
+
+            if (channelnum > 0 && channelnum <= MAX_AUDIO_CHANNELS)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         void AudioEngine::soundFinished(SoundInfo& soundInfo)
@@ -599,11 +613,125 @@ namespace TDS
         return files;
     }
 
+    void proxy_audio_system::ScriptPlay(SoundInfo& soundInfo)
+    {
+        for (auto& temp : background)
+        {
+            if(strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
+            {
+                aud_instance->playSound(temp.second);
+                goto DoNe;
+            }
+        }
+        for (auto& temp : music)
+        {
+            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
+            {
+                aud_instance->playSound(temp.second);
+                goto DoNe;
+            }
+        }
+        for (auto& temp : SFX)
+        {
+            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
+            {
+                aud_instance->playSound(temp.second);
+                goto DoNe;
+            }
+        }
+        for (auto& temp : VO)
+        {
+            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
+            {
+                aud_instance->playSound(temp.second);
+                goto DoNe;
+            }
+        }
+
+    DoNe:;
+    }
+
+    void proxy_audio_system::ScriptPause(SoundInfo& soundInfo)
+    {
+        for (auto& temp : background)
+        {
+            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
+            {
+                aud_instance->pauseSound(temp.second);
+                goto DoNe;
+            }
+        }
+        for (auto& temp : music)
+        {
+            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
+            {
+                aud_instance->pauseSound(temp.second);
+                goto DoNe;
+            }
+        }
+        for (auto& temp : SFX)
+        {
+            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
+            {
+                aud_instance->pauseSound(temp.second);
+                goto DoNe;
+            }
+        }
+        for (auto& temp : VO)
+        {
+            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
+            {
+                aud_instance->pauseSound(temp.second);
+                goto DoNe;
+            }
+        }
+
+    DoNe:;
+    }
+
+    void proxy_audio_system::ScriptStop(SoundInfo& soundInfo)
+    {
+        for (auto& temp : background)
+        {
+            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
+            {
+                aud_instance->stopSound(temp.second);
+                goto DoNe;
+            }
+        }
+        for (auto& temp : music)
+        {
+            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
+            {
+                aud_instance->stopSound(temp.second);
+                goto DoNe;
+            }
+        }
+        for (auto& temp : SFX)
+        {
+            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
+            {
+                aud_instance->stopSound(temp.second);
+                goto DoNe;
+            }
+        }
+        for (auto& temp : VO)
+        {
+            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
+            {
+                aud_instance->stopSound(temp.second);
+                goto DoNe;
+            }
+        }
+
+    DoNe:;
+    }
+
     void proxy_audio_system::ScriptPlay(std::string pathing)
     {
         for (auto& temp : background)
         {
-            if(strstr(temp.first.c_str(), pathing.c_str()))
+            if (strstr(temp.first.c_str(), pathing.c_str()))
             {
                 aud_instance->playSound(temp.second);
                 goto DoNe;
@@ -713,6 +841,98 @@ namespace TDS
     DoNe:;
     }
 
+    bool proxy_audio_system::CheckPlaying(std::string pathing)
+    {
+        bool check{ false };
+
+        for (auto& temp : background)
+        {
+            if (strstr(temp.first.c_str(), pathing.c_str()))
+            {
+                aud_instance->soundFinished(temp.second);
+                check = (temp.second.getState() == SOUND_PLAYING) ? true : false;
+                goto DoNe;
+            }
+        }
+        for (auto& temp : music)
+        {
+            if (strstr(temp.first.c_str(), pathing.c_str()))
+            {
+                aud_instance->soundFinished(temp.second);
+                check = (temp.second.getState() == SOUND_PLAYING) ? true : false;
+                goto DoNe;
+            }
+        }
+        for (auto& temp : SFX)
+        {
+            if (strstr(temp.first.c_str(), pathing.c_str()))
+            {
+                aud_instance->soundFinished(temp.second);
+                check = (temp.second.getState() == SOUND_PLAYING) ? true : false;
+                goto DoNe;
+            }
+        }
+        for (auto& temp : VO)
+        {
+            if (strstr(temp.first.c_str(), pathing.c_str()))
+            {
+                aud_instance->soundFinished(temp.second);
+                check = (temp.second.getState() == SOUND_PLAYING) ? true : false;
+                goto DoNe;
+            }
+        }
+
+    DoNe:
+
+        return check;
+    }
+
+    bool proxy_audio_system::CheckPause(std::string pathing)
+    {
+        bool check{ false };
+
+        for (auto& temp : background)
+        {
+            if (strstr(temp.first.c_str(), pathing.c_str()))
+            {
+                aud_instance->soundFinished(temp.second);
+                check = (temp.second.getState() == SOUND_PAUSE) ? true : false;
+                goto DoNe;
+            }
+        }
+        for (auto& temp : music)
+        {
+            if (strstr(temp.first.c_str(), pathing.c_str()))
+            {
+                aud_instance->soundFinished(temp.second);
+                check = (temp.second.getState() == SOUND_PAUSE) ? true : false;
+                goto DoNe;
+            }
+        }
+        for (auto& temp : SFX)
+        {
+            if (strstr(temp.first.c_str(), pathing.c_str()))
+            {
+                aud_instance->soundFinished(temp.second);
+                check = (temp.second.getState() == SOUND_PAUSE) ? true : false;
+                goto DoNe;
+            }
+        }
+        for (auto& temp : VO)
+        {
+            if (strstr(temp.first.c_str(), pathing.c_str()))
+            {
+                aud_instance->soundFinished(temp.second);
+                check = (temp.second.getState() == SOUND_PAUSE) ? true : false;
+                goto DoNe;
+            }
+        }
+
+    DoNe:
+
+        return check;
+    }
+
     SoundInfo* proxy_audio_system::find_sound_info(std::string str)
     {
         for (auto& temp : music)
@@ -788,13 +1008,13 @@ namespace TDS
         Queue.clear();
     }
 
-    bool proxy_audio_system::checkifdone(std::string str)
+    bool proxy_audio_system::checkifdone(SoundInfo& soundInfo)
     {
         bool check{ false };
 
         for (auto& temp : background)
         {
-            if (strstr(temp.first.c_str(), str.c_str()))
+            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
             {
                 aud_instance->soundFinished(temp.second);
                 check = (temp.second.getState() == SOUND_LOADED) ? true : false;
@@ -803,7 +1023,7 @@ namespace TDS
         }
         for (auto& temp : music)
         {
-            if (strstr(temp.first.c_str(), str.c_str()))
+            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
             {
                 aud_instance->soundFinished(temp.second);
                 check = (temp.second.getState() == SOUND_LOADED) ? true : false;
@@ -812,7 +1032,7 @@ namespace TDS
         }
         for (auto& temp : SFX)
         {
-            if (strstr(temp.first.c_str(), str.c_str()))
+            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
             {
                 aud_instance->soundFinished(temp.second);
                 check = (temp.second.getState() == SOUND_LOADED) ? true : false;
@@ -821,7 +1041,7 @@ namespace TDS
         }
         for (auto& temp : VO)
         {
-            if (strstr(temp.first.c_str(), str.c_str()))
+            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
             {
                 aud_instance->soundFinished(temp.second);
                 check = (temp.second.getState() == SOUND_LOADED) ? true : false;

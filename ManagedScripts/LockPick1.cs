@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Xml;
 using ScriptAPI;
 
 public class LockPick1 : Script
@@ -10,9 +11,10 @@ public class LockPick1 : Script
     public Text _Press2Continue;*/
     [SerializeField] int _TutorialStep;
 
-/*    public Text mySubtitles;
-    public Image mySubtitlesBG;
-    public AudioSource myVOSource;*/
+    //public Text mySubtitles;
+    //public Image mySubtitlesBG;
+    //public AudioSource myVOSource;
+    public AudioComponent audio;
     public bool _TutorialCompleted;
 
     [Header("Lockpick Variables")]
@@ -30,6 +32,8 @@ public class LockPick1 : Script
     public bool unlocked;
     //public AudioClip[] lockSoundEffects;
     //public AudioClip[] rattleSoundEffects;
+    String[] lockSoundEffects;
+    String[] rattleSoundEffects;
     float delay = 0.4f;
     public GameObject _NumOfTries;
     //public Text _AmtOfTries;
@@ -51,7 +55,36 @@ public class LockPick1 : Script
     // Start is called before the first frame update
     override public void Awake() 
     {
+        lockSoundEffects = new String[8];
+        rattleSoundEffects = new String[6];
+        
         newLock();
+        lockSoundEffects[0] = "Lock Turning Audio";
+        lockSoundEffects[1] = "temp_locksuccess";
+
+        lockSoundEffects[3] = "pc_lockpickfail";
+        lockSoundEffects[4] = "pc_lockpickstart";
+        lockSoundEffects[5] = "pc_lockpicksuccess1";
+        lockSoundEffects[6] = "pc_lockpicksuccess2";
+        lockSoundEffects[7] = "pc_tryfrontdoor1";
+        lockSoundEffects[8] = "pc_tryfrontdoor2";
+
+        for (int iterator = 0; iterator < 6; ++iterator)
+        {
+            rattleSoundEffects[iterator] = "temp_lockrattle" + (iterator + 1);
+        }
+
+        //foreach(String str in lockSoundEffects)
+        //{
+        //    myVOSource.add_clips(str);
+        //}
+
+        //foreach(String str in rattleSoundEffects)
+        //{
+        //    myVOSource.add_clips(str);
+        //}
+
+        audio = gameObject.GetComponent<AudioComponent>();
     }
 
     // Update is called once per frame
@@ -59,19 +92,19 @@ public class LockPick1 : Script
     {
         if (!_TutorialCompleted)
         {
-            //if (!myVOSource.isPlaying && !played)
+            //if (!audio.finished(myVOSource[1]) && !played)
             //{
-            //    myVOSource.Play();
+            //    audio.play(myVOSource[1]);
             //    mySubtitlesBG.enabled = true;
             //    mySubtitles.text = "Martin (Internal): Hopefully, I won’t forget how to do this.";
             //    played = true;
 
             //}
-            //else if (!myVOSource.isPlaying && played)
+            //else if (!audio.finished(myVOSource[1]) && played)
             //{
             //    mySubtitles.text = "";
             //    mySubtitlesBG.enabled = false;
-            //    _NumOfTries.SetActive(true);
+            //    _NumOfTries.SetActive(gameObject.GetEntityID(), true);
             //    movePick = true;
             //    _TutorialCompleted = true;
             //}
@@ -132,6 +165,8 @@ public class LockPick1 : Script
                 {
                     movePick = true;
                     keyPressTime = 0;
+                    //myVOSource.Play(lockSoundEffects[1]);
+                    audio.play(lockSoundEffects[1]);
                     /*GetComponent<AudioSource>().clip = lockSoundEffects[1];
                     GetComponent<AudioSource>().Play();*/
 
@@ -157,17 +192,18 @@ public class LockPick1 : Script
 
                     if (Input.GetKeyDown(Keycode.E) || Input.GetKey(Keycode.E))
                     {
-                        //if (!GetComponents<AudioSource>()[1].isPlaying)
-                        //{
-                        //    delay -= Time.deltaTime;
+                        if (!audio.isPlaying(lockSoundEffects[1]))
+                        {
+                            delay -= Time.deltaTime;
 
-                        //    if (delay <= 0)
-                        //    {
-                        //        GetComponents<AudioSource>()[1].clip = rattleSoundEffects[Random.Range(0, rattleSoundEffects.Length)];
-                        //        GetComponents<AudioSource>()[1].Play();
-                        //        delay = 0.2f;
-                        //    }
-                        //}
+                            if (delay <= 0)
+                            {
+                                //GetComponents<AudioSource>()[1].clip = rattleSoundEffects[Random.Range(0, rattleSoundEffects.Length)];
+                                //GetComponents<AudioSource>()[1].Play();
+                                audio.play(rattleSoundEffects[(int)ScriptAPI.Random.Range(0, 6)]);
+                                delay = 0.2f;
+                            }
+                        }
                     }
 
                     if (deduct == true)

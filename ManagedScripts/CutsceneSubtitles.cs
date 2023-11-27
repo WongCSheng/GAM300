@@ -5,6 +5,7 @@ public class CutsceneSubtitle : Script
 {
     String[] Audiofiles;
     String[] Subtitles;
+    //AudioSource audio;
     [SerializeField]
     public static int counter;
     public static bool next = true;
@@ -12,6 +13,7 @@ public class CutsceneSubtitle : Script
     {
         Audiofiles = new String[17];
         Subtitles = new String[17];
+        //audio = new AudioSource();
         GraphicsManagerWrapper.ToggleViewFrom2D(true);
         Subtitles[0] = "Father: My Son, if you are reading this, then I am dead,";
         Subtitles[1] = "Father: ...and I've left you with a terrible debt. But you don't have to be";
@@ -57,6 +59,11 @@ public class CutsceneSubtitle : Script
         Audiofiles[15] = "intro9_1";
         Audiofiles[16] = "intro9_2";
 
+        //foreach(String str in Audiofiles)
+        //{
+        //    audio.add_clips(str);
+        //}
+
         counter = 0;
         next = true;
 
@@ -81,7 +88,7 @@ public class CutsceneSubtitle : Script
             UISpriteComponent Sprite = gameObject.GetComponent<UISpriteComponent>();
             AudioComponent audio = gameObject.GetComponent<AudioComponent>();
 
-            audio.playQueue();
+            //audio.playQueue();
 
             Sprite.ColorAlphafade(0.5f);
             if (Sprite.getColourAlpha() < 0)
@@ -97,6 +104,7 @@ public class CutsceneSubtitle : Script
                     {
                         Sprite.setColourAlpha(1);
                         Sprite.SetFontMessage(Subtitles[counter]);
+                        //audio.Play(Audiofiles[counter]);
                         audio.play(Audiofiles[counter]);
                         next = false;
                     }
