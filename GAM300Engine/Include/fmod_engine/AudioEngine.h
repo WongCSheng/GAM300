@@ -336,7 +336,7 @@ namespace TDS
             /*
             * Map which keeps tracks of which ID belongs to which sound.
             */
-            std::map<unsigned int, std::string> sound_ids{};
+            std::map<std::string, unsigned int> sound_ids{};
 
             /*
              * Map which stores the current playback channels of any playing sound loop

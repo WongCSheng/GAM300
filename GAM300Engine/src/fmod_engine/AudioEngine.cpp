@@ -81,8 +81,12 @@ namespace TDS
                 ERRCHECK(sound->setMode(soundInfo.isLoop() ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF));
                 ERRCHECK(sound->set3DMinMaxDistance(0.5f * DISTANCEFACTOR, 5000.0f * DISTANCEFACTOR));
                 sounds.insert({ soundInfo.getUniqueID(), sound });
-                std::string store_name = strstr(soundInfo.getFilePath(), )
-                sound_ids.insert({ soundInfo.getUniqueID(), soundInfo.getFilePath()});
+
+                size_t first = soundInfo.getFilePath().find_last_of('\\') + 1,
+                    last = soundInfo.getFilePath().find_last_of('.') - first;
+                std::string sound_name = soundInfo.getFilePath().substr(first, last);
+                sound_ids.insert({ sound_name, soundInfo.getUniqueID()});
+
                 unsigned int msLength = 0;
                 ERRCHECK(sounds[soundInfo.getUniqueID()]->getLength(&msLength, FMOD_TIMEUNIT_MS));
                 //soundInfo.setMSLength(msLength);
@@ -447,12 +451,7 @@ namespace TDS
 
         unsigned int AudioEngine::getSoundID(std::string _soundInfoName)
         {
-            char* ch{ nullptr };
-            
-            for (auto& temp : sounds)
-            {
-                if(temp.second->getName(ch, ))
-            }
+            return sound_ids[_soundInfoName];
         }
 
         //// Private definitions 

@@ -98,7 +98,7 @@ namespace ScriptAPI
 		return pos;
 	}
 
-	AudioComponent::snd AudioComponent::getState()
+	snd AudioComponent::getState()
 	{
 		return whatState;
 	}
@@ -307,7 +307,7 @@ namespace ScriptAPI
 	}
 
 	//state of sound info
-	AudioComponent::snd AudioComponent::whatState::get()
+	snd AudioComponent::whatState::get()
 	{
 		return TDS::GetSoundInfo(entityID)->getState();
 	}
