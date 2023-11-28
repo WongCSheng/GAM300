@@ -42,6 +42,11 @@ namespace ScriptAPI
 	{
 		return AudioComponent(entityID);
 	}
+	
+	GraphicComponent GameObject::GetGraphicComponent()
+	{
+		return GraphicComponent(entityID);
+	}
 
 	bool GameObject::activeInHierarchy(TDS::EntityID entityID)
 	{
@@ -100,7 +105,10 @@ namespace ScriptAPI
 		{
 			return safe_cast<T>(GetAudioComponent());
 		}
-
+		else if (type == GraphicComponent::typeid)
+		{
+			return safe_cast<T>(GetGraphicComponent());
+		}
 		Object^ toReturn = EngineInterface::GetScriptByEntityID(entityID, type->FullName);
 		return (T)toReturn;
 	}

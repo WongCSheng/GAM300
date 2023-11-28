@@ -6,7 +6,7 @@ using ScriptAPI;
 public class LockPick1 : Script
 {
     [Header("Tutorial UI Variables")]
-/*    public Image _TutorialImage;
+/*  public Image _TutorialImage;
     public Sprite[] _TutorialImgSprites;
     public Text _Press2Continue;*/
     [SerializeField] int _TutorialStep;
@@ -14,7 +14,7 @@ public class LockPick1 : Script
     //public Text mySubtitles;
     //public Image mySubtitlesBG;
     //public AudioSource myVOSource;
-    public AudioComponent audio;
+    //public AudioComponent audio;
     public bool _TutorialCompleted;
 
     [Header("Lockpick Variables")]
@@ -47,13 +47,16 @@ public class LockPick1 : Script
     private float unlockAngle;
     private Vector3 unlockRange;
     private float keyPressTime;
-    private bool movePick;
+    public bool movePick;
     private bool deduct;
     private bool displayTutorial;
     [SerializeField] bool played;
 
     private Vector3 originalPosition;
     private int currentRattlePlaying = 0;
+    private float timer = 1.2f;
+    private bool passed = false;
+    private bool failed = false;
 
     // Start is called before the first frame update
     override public void Awake() 
@@ -86,13 +89,12 @@ public class LockPick1 : Script
         //}
 
         audio = gameObject.GetComponent<AudioComponent>();
+        passed = false;
     }
 
     // Update is called once per frame
     override public void Update()
     {
-        Console.WriteLine(gameObject.GetComponent<Test>().boolTest);
-
         if (!_TutorialCompleted)
         {
             //if (!audio.finished(myVOSource[1]) && !played)
@@ -168,11 +170,10 @@ public class LockPick1 : Script
                 {
                     movePick = true;
                     keyPressTime = 0;
-                    //myVOSource.Play(lockSoundEffects[1]);
-                    audio.play(lockSoundEffects[1]);
-                    /*GetComponent<AudioSource>().clip = lockSoundEffects[1];
-                    GetComponent<AudioSource>().Play();*/
-
+                    Console.WriteLine("passed");
+                    gameObject.GetComponent<AudioComponent>().stop(lockSoundEffects[0]);
+                    gameObject.GetComponent<AudioComponent>().play(lockSoundEffects[1]);
+                    passed = true;
                     //Coroutine(StartDelay());
                     //async Task<int> StartDelay()
                     //IEnumerator StartDelay()
@@ -193,21 +194,21 @@ public class LockPick1 : Script
                     float randomValue = ScriptAPI.Random.Range(-3.1415926535897931f * 100, 3.1415926535897931f * 100) / 20000;
                     transform.SetRotationZ(rotation.Z + randomValue);
 
-                    if (Input.GetKeyDown(Keycode.E) || Input.GetKey(Keycode.E))
-                    {
-                        if (!audio.isPlaying(lockSoundEffects[1]))
-                        {
-                            delay -= Time.deltaTime;
+                    //if (Input.GetKeyDown(Keycode.E) || Input.GetKey(Keycode.E))
+                    //{
+                        //if (!gameObject.GetComponent<AudioComponent>().isPlaying())
+                        //{
+                        //    delay -= Time.deltaTime;
 
-                            if (delay <= 0)
-                            {
-                                //GetComponents<AudioSource>()[1].clip = rattleSoundEffects[Random.Range(0, rattleSoundEffects.Length)];
-                                //GetComponents<AudioSource>()[1].Play();
-                                audio.play(rattleSoundEffects[(int)ScriptAPI.Random.Range(0, 6)]);
-                                delay = 0.2f;
-                            }
-                        }
-                    }
+                        //    if (delay <= 0)
+                        //    {
+                        //        gameObject.GetComponent<AudioComponent>().stop(rattleSoundEffects[currentRattlePlaying]);
+                        //        currentRattlePlaying = (int)ScriptAPI.Random.Range(0, 6);
+                        //        gameObject.GetComponent<AudioComponent>().play(rattleSoundEffects[currentRattlePlaying]);
+                        //        delay = 0.2f;
+                        //    }
+                        //}
+                    //}
 
                     if (deduct == true)
                     {
@@ -243,6 +244,43 @@ public class LockPick1 : Script
             if (numOfTries <= 1)
             {
                 //_AmtOfTries.color = Color.red;
+            }
+
+            if (passed)
+            {
+                if (timer <= 0)
+                {
+                    //playerController.enabled = true;
+                    //playerController.lockCursor = true;
+                    //playerCam.enabled = true;
+                    //Door_UI.SetActive(false);
+                    //unlocked = true;
+                    //_NumOfTries.SetActive(false);
+                    lockObject.SetActive(lockObject.GetEntityID(), false);
+                    GraphicsManagerWrapper.ToggleViewFrom2D(false);
+                }
+                else
+                {
+                    timer -= Time.deltaTime;
+                }
+            }
+
+            if (failed)
+            {
+                if (timer <= 0)
+                {
+                    //_NumOfTries.SetActive(false);
+                    //playerController.enabled = true;
+                    //playerController.lockCursor = true;
+                    //playerCam.enabled = true;
+                    //Door_UI.SetActive(false);
+                    lockObject.SetActive(lockObject.GetEntityID(), false);
+                    GraphicsManagerWrapper.ToggleViewFrom2D(false);
+                }
+                else
+                {
+                    timer -= Time.deltaTime;
+                }
             }
         }
     }
@@ -284,6 +322,7 @@ public class LockPick1 : Script
         {
             movePick = true;
         }
+        movePick = true;
     }
 
     float toDegree(float radians)
