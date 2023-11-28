@@ -3,9 +3,9 @@
 
 namespace ScriptAPI
 {
-	AudioComponent::AudioComponent(System::String^ pathing, TDS::EntityID ID) : entityID(ID)
+	AudioComponent::AudioComponent(TDS::EntityID ID) : entityID(ID)
 	{
-		filePath = toStdString(pathing);
+		//nothing
 	}
 
 	TDS::EntityID AudioComponent::GetEntityID()
@@ -128,6 +128,11 @@ namespace ScriptAPI
 		filePath = toStdString(str_path);
 	}
 
+	int AudioComponent::getLoopCount()
+	{
+		return loopCount;
+	}
+
 	float AudioComponent::getX()
 	{
 		return pos.X;
@@ -173,6 +178,11 @@ namespace ScriptAPI
 		isitLoop = condition;
 	}
 
+	void AudioComponent::setLoopCount(int count)
+	{
+		loopCount = count;
+	}
+
 	void AudioComponent::set3D(bool condition)
 	{
 		isit3D = condition;
@@ -182,6 +192,11 @@ namespace ScriptAPI
 	{
 		isitMuted = condition;
 	}
+
+	/*void AudioComponent::tieWithSoundInfo(SI* _soundInfo)
+	{
+		soundInfo = _soundInfo;
+	}*/
 
 	void AudioComponent::play()
 	{		
@@ -245,10 +260,10 @@ namespace ScriptAPI
 		entityID = id;
 	}
 
-	void AudioComponent::SetSoundInfoObject(SI* _soundInfo)
+	/*void AudioComponent::SetSoundInfoObject(SI* _soundInfo)
 	{
 		soundInfo = _soundInfo;
-	}
+	}*/
 
 	//unique ID
 	unsigned int AudioComponent::uniqueID::get()
@@ -274,6 +289,16 @@ namespace ScriptAPI
 	void AudioComponent::filePath::set(std::string value)
 	{
 		TDS::GetSoundInfo(entityID)->filePath = value;
+	}
+
+	//loop count
+	int AudioComponent::loopCount::get()
+	{
+		return loopCount;
+	}
+	void AudioComponent::loopCount::set(int value)
+	{
+		loopCount = value;
 	}
 
 	//loop
@@ -345,4 +370,14 @@ namespace ScriptAPI
 	{
 		TDS::GetSoundInfo(entityID)->setReverbAmount(value);
 	}
+
+	//soundInfo
+	/*SI* AudioComponent::soundInfo::get()
+	{
+		return TDS::GetSoundInfo(entityID);
+	}
+	void AudioComponent::soundInfo::set(SI* si)
+	{
+		*TDS::GetSoundInfo(entityID) = *si;
+	}*/
 }

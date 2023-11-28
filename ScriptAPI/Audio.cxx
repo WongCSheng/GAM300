@@ -87,17 +87,20 @@ namespace ScriptAPI
 
 	bool AudioSource::isLooping(StringP pathing)
 	{
-
+		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
+		return temp->isLoop();
 	}
 
 	bool AudioSource::isMute(StringP pathing)
 	{
-
+		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
+		return temp->isMuted();
 	}
 
 	bool AudioSource::is3D(StringP pathing)
 	{
-
+		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
+		return temp->is3D();
 	}
 
 	bool AudioSource::isAnyPlaying()
@@ -117,9 +120,9 @@ namespace ScriptAPI
 		return temp->finished();
 	}
 
-	void AudioSource::add_clips(StringP pathing)
+	void AudioSource::add_clips(StringP pathing, TDS::EntityID id)
 	{
-		AudioComponent^ temp = gcnew AudioComponent(pathing, id_num++);
+		AudioComponent^ temp = gcnew AudioComponent(id);
 		
 		clips->Add(pathing, temp);
 	}

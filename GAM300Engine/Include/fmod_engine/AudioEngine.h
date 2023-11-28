@@ -132,6 +132,8 @@ namespace TDS
             */
             DLL_API  void update3DSoundPosition(SoundInfo soundInfo);
 
+            DLL_API  void updateParameters();
+
             /**
              * Checks if a sound is playing.
              */
@@ -394,10 +396,14 @@ namespace TDS
         static bool CheckPause(std::string pathing); //to be changed
 
         static SoundInfo* find_sound_info(std::string str);
-        static void Add_to_Queue(std::string str = "");
+        static void Add_to_Queue(std::string str);
         static void Remove_from_Queue(std::string str);
         static void Play_queue();
         static void Clear_queue();
+
+        static void setMute(std::string str, bool set);
+        static void setLoop(std::string str, bool set, int count = 1);
+        static void set3D(std::string str, bool set);
 
         static bool checkifdone(SoundInfo& soundInfo);
 

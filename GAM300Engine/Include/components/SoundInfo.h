@@ -42,6 +42,7 @@ namespace TDS
         bool isitLoop, isit3D, isitmuted;
         SOUND_STATE whatState;
         Vec3 position;
+        int loopCount;
         float volume, ReverbAmount;
         std::map<Vec3*, SOUND_STATE*> position_events;
 
@@ -109,6 +110,7 @@ namespace TDS
         DLL_API  unsigned int getMSLength();
         DLL_API  std::string getFilePath();
         DLL_API  const char* getFilePath_inChar();
+        DLL_API  int getLoopCount();
         DLL_API  float getX();
         DLL_API  float getY();
         DLL_API  float getZ();
@@ -128,6 +130,7 @@ namespace TDS
 
         DLL_API  void setState(SOUND_STATE setting);
         DLL_API  void setLoop(bool condition);
+        DLL_API  void setLoopCount(int count);
         DLL_API  void set3D(bool condition);
         DLL_API  void setMute(bool condition);
         DLL_API  void setReverbAmount(float reverb);
@@ -137,7 +140,7 @@ namespace TDS
         DLL_API  void pause();
         DLL_API  void stop();
 
-        DLL_API  SoundInfo(std::string _filePath = "", bool _isLoop = false, bool _is3D = false, bool _muted = false, SOUND_STATE _theState = SOUND_ERR, float _x = 0.0f, float _y = 0.0f, float _z = 0.0f, float _volume = 1.f, float _reverbamount = 0.f);
+        DLL_API  SoundInfo(std::string _filePath = "", bool _isLoop = false, bool _is3D = false, bool _muted = false, SOUND_STATE _theState = SOUND_ERR, float _x = 0.0f, float _y = 0.0f, float _z = 0.0f, int _loopcount = 0, float _volume = 1.f, float _reverbamount = 0.f);
 
         // TODO  implement sound instancing
         // int instanceID = -1; 
@@ -145,15 +148,19 @@ namespace TDS
         {
             uniqueID = rhs.uniqueID;
             MSLength = rhs.MSLength;
+            sampleRate = rhs.sampleRate;
             filePath = rhs.filePath;
             isitLoop = rhs.isitLoop;
             isit3D = rhs.isit3D;
             isitmuted = rhs.isitmuted;
+            isitLoop = rhs.isitLoop;
+            loopCount = rhs.loopCount;
             whatState = rhs.whatState;
             position = rhs.position;
             volume = rhs.volume;
             ReverbAmount = rhs.ReverbAmount;
         }
+
         RTTR_ENABLE(IComponent);
         RTTR_REGISTRATION_FRIEND
 

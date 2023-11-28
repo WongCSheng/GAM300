@@ -117,6 +117,11 @@ namespace TDS
         return name;
     }
 
+    int SoundInfo::getLoopCount()
+    {
+        return loopCount;
+    }
+
     float SoundInfo::getX()
     {
         return position[0]; //!!!!!!!To be replaced when vec container is used
@@ -170,6 +175,11 @@ namespace TDS
     {
         isitLoop = condition;
     }
+    
+    void SoundInfo::setLoopCount(int count)
+    {
+        loopCount = count;
+    }
 
     void SoundInfo::set3D(bool condition)
     {
@@ -207,7 +217,7 @@ namespace TDS
         audeng->stopSound(*this);
     }
 
-    SoundInfo::SoundInfo(std::string _filePath, bool _isLoop, bool _is3D, bool _muted, SOUND_STATE _theState, float _x, float _y, float _z, float _volume, float _reverbamount)
+    SoundInfo::SoundInfo(std::string _filePath, bool _isLoop, bool _is3D, bool _muted, SOUND_STATE _theState, float _x, float _y, float _z, int _loopcount, float _volume, float _reverbamount)
         : filePath(_filePath), isitLoop(_isLoop), isit3D(_is3D), isitmuted(_muted), whatState(_theState), volume(_volume), ReverbAmount(_reverbamount)
     {
         position.x = _x;

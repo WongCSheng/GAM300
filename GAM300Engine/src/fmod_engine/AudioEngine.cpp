@@ -134,11 +134,13 @@ namespace TDS
                     {
                         if (soundInfo.isLoop())
                         {
+                            ERRCHECK(loopsPlaying[soundInfo.getUniqueID()]->setMode(FMOD_LOOP_NORMAL));
                             ERRCHECK(loopsPlaying[soundInfo.getUniqueID()]->setPaused(false));
                             soundInfo.setState(SOUND_PLAYING);
                         }
                         else
                         {
+                            ERRCHECK(loopsPlaying[soundInfo.getUniqueID()]->setMode(FMOD_LOOP_OFF));
                             ERRCHECK(normalPlaying[soundInfo.getUniqueID()]->setPaused(false));
                             soundInfo.setState(SOUND_PLAYING);
                         }
@@ -239,6 +241,16 @@ namespace TDS
             else
                 std::cout << "Audio Engine: Can't update sound position!\n";
 
+        }
+
+        void AudioEngine::updateParameters()
+        {
+            SoundInfo* temp_sound{ nullptr };
+            
+            for (auto& temp : sounds)
+            {
+                temp_sound = getSoundID
+            }
         }
 
         bool AudioEngine::soundIsPlaying(SoundInfo soundInfo)
@@ -624,324 +636,29 @@ namespace TDS
         return files;
     }
 
-    void proxy_audio_system::ScriptPlay(SoundInfo& soundInfo)
-    {
-        for (auto& temp : background)
-        {
-            if(strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
-            {
-                aud_instance->playSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : music)
-        {
-            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
-            {
-                aud_instance->playSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : SFX)
-        {
-            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
-            {
-                aud_instance->playSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : VO)
-        {
-            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
-            {
-                aud_instance->playSound(temp.second);
-                goto DoNe;
-            }
-        }
-
-    DoNe:;
-    }
-
-    void proxy_audio_system::ScriptPause(SoundInfo& soundInfo)
-    {
-        for (auto& temp : background)
-        {
-            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
-            {
-                aud_instance->pauseSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : music)
-        {
-            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
-            {
-                aud_instance->pauseSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : SFX)
-        {
-            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
-            {
-                aud_instance->pauseSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : VO)
-        {
-            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
-            {
-                aud_instance->pauseSound(temp.second);
-                goto DoNe;
-            }
-        }
-
-    DoNe:;
-    }
-
-    void proxy_audio_system::ScriptStop(SoundInfo& soundInfo)
-    {
-        for (auto& temp : background)
-        {
-            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
-            {
-                aud_instance->stopSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : music)
-        {
-            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
-            {
-                aud_instance->stopSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : SFX)
-        {
-            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
-            {
-                aud_instance->stopSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : VO)
-        {
-            if (strstr(temp.first.c_str(), soundInfo.getFilePath_inChar()))
-            {
-                aud_instance->stopSound(temp.second);
-                goto DoNe;
-            }
-        }
-
-    DoNe:;
-    }
-
     void proxy_audio_system::ScriptPlay(std::string pathing)
     {
-        for (auto& temp : background)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->playSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : music)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->playSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : SFX)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->playSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : VO)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->playSound(temp.second);
-                goto DoNe;
-            }
-        }
-
-    DoNe:;
+        aud_instance->playSound(*find_sound_info(pathing));
     }
 
     void proxy_audio_system::ScriptPause(std::string pathing)
     {
-        for (auto& temp : background)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->pauseSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : music)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->pauseSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : SFX)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->pauseSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : VO)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->pauseSound(temp.second);
-                goto DoNe;
-            }
-        }
-
-    DoNe:;
+        aud_instance->pauseSound(*find_sound_info(pathing));
     }
 
     void proxy_audio_system::ScriptStop(std::string pathing)
     {
-        for (auto& temp : background)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->stopSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : music)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->stopSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : SFX)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->stopSound(temp.second);
-                goto DoNe;
-            }
-        }
-        for (auto& temp : VO)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->stopSound(temp.second);
-                goto DoNe;
-            }
-        }
-
-    DoNe:;
+        aud_instance->stopSound(*find_sound_info(pathing));
     }
 
     bool proxy_audio_system::CheckPlaying(std::string pathing)
     {
-        bool check{ false };
-
-        for (auto& temp : background)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->soundFinished(temp.second);
-                check = (temp.second.getState() == SOUND_PLAYING) ? true : false;
-                goto DoNe;
-            }
-        }
-        for (auto& temp : music)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->soundFinished(temp.second);
-                check = (temp.second.getState() == SOUND_PLAYING) ? true : false;
-                goto DoNe;
-            }
-        }
-        for (auto& temp : SFX)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->soundFinished(temp.second);
-                check = (temp.second.getState() == SOUND_PLAYING) ? true : false;
-                goto DoNe;
-            }
-        }
-        for (auto& temp : VO)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->soundFinished(temp.second);
-                check = (temp.second.getState() == SOUND_PLAYING) ? true : false;
-                goto DoNe;
-            }
-        }
-
-    DoNe:
-
-        return check;
+        return ((find_sound_info(pathing)->getState() == SOUND_PLAYING) ? true : false);
     }
 
     bool proxy_audio_system::CheckPause(std::string pathing)
     {
-        bool check{ false };
-
-        for (auto& temp : background)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->soundFinished(temp.second);
-                check = (temp.second.getState() == SOUND_PAUSE) ? true : false;
-                goto DoNe;
-            }
-        }
-        for (auto& temp : music)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->soundFinished(temp.second);
-                check = (temp.second.getState() == SOUND_PAUSE) ? true : false;
-                goto DoNe;
-            }
-        }
-        for (auto& temp : SFX)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->soundFinished(temp.second);
-                check = (temp.second.getState() == SOUND_PAUSE) ? true : false;
-                goto DoNe;
-            }
-        }
-        for (auto& temp : VO)
-        {
-            if (strstr(temp.first.c_str(), pathing.c_str()))
-            {
-                aud_instance->soundFinished(temp.second);
-                check = (temp.second.getState() == SOUND_PAUSE) ? true : false;
-                goto DoNe;
-            }
-        }
-
-    DoNe:
-
-        return check;
+        return ((find_sound_info(pathing)->getState() == SOUND_PAUSE) ? true : false);
     }
 
     SoundInfo* proxy_audio_system::find_sound_info(std::string str)
@@ -1017,6 +734,22 @@ namespace TDS
     void proxy_audio_system::Clear_queue()
     {
         Queue.clear();
+    }
+
+    void proxy_audio_system::setMute(std::string str, bool set)
+    {
+        find_sound_info(str)->setMute(set);
+    }
+
+    void proxy_audio_system::set3D(std::string str, bool set)
+    {
+        find_sound_info(str)->set3D(set);
+    }
+
+    void proxy_audio_system::setLoop(std::string str, bool set, int count)
+    {
+        find_sound_info(str)->setLoop(set);
+        find_sound_info(str)->setLoopCount(count);
     }
 
     bool proxy_audio_system::checkifdone(SoundInfo& soundInfo)

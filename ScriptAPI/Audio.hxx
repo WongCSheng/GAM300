@@ -43,10 +43,11 @@ namespace ScriptAPI
         bool isAnyPlaying();
         bool isPlaying(StringP pathing);
         bool hasFinished(StringP pathing);
-        void add_clips(StringP pathing);
+        void add_clips(StringP pathing, TDS::EntityID id);
 
         System::Collections::Hashtable^ clips; //AudioClips are attached to AudioSource
         TDS::AudioWerks::AudioEngine* audio_engine;
+        TDS::proxy_audio_system* proxy_audio;
         unsigned long wait;
         float deltatime;
     };

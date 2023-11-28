@@ -37,6 +37,7 @@ namespace ScriptAPI
 
 		void setFilePath(System::String^ str_path);
 
+		int getLoopCount();
 		float getX();
 		float getY();
 		float getZ();
@@ -47,8 +48,10 @@ namespace ScriptAPI
 		void setMSLength(unsigned int len);
 		void setState(snd setting);
 		void setLoop(bool condition);
+		void setLoopCount(int count);
 		void set3D(bool condition);
 		void setMute(bool condition);
+		//void tieWithSoundInfo(SI* _soundInfo);
 
 		//Pass in the audio file name without the extensions
 		void play();
@@ -69,13 +72,12 @@ namespace ScriptAPI
 		std::function<void(snd)>* pass_in_setState;
 
 		virtual void SetEntityID(TDS::EntityID ID);
-		void SetSoundInfoObject(SI* _si);
+		//void SetSoundInfoObject(SI* _si);
 
 		TransformComponent transform;
 
 	internal:
-		AudioComponent(System::String^ pathing, TDS::EntityID ID);
-		AudioComponent(SI* _soundInfo);
+		AudioComponent(TDS::EntityID ID);
 		TDS::EntityID GetEntityID();
 
 	private:
@@ -92,6 +94,11 @@ namespace ScriptAPI
 		{
 			std::string get();
 			void set(std::string value);
+		}
+		property int loopCount
+		{
+			int get();
+			void set(int value);
 		}
 		property bool isitLoop
 		{
@@ -128,8 +135,12 @@ namespace ScriptAPI
 			float get();
 			void set(float value);
 		}
+		/*property SI* soundInfo
+		{
+			SI* get();
+			void set(SI* si);
+		}*/
 
 		TDS::EntityID entityID;
-		SI* soundInfo;
 	};
 }
