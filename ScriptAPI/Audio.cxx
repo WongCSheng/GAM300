@@ -10,97 +10,56 @@ namespace ScriptAPI
 {
 	AudioSource::AudioSource()
 	{
-		audio_engine = AW::AudioEngine::get_audioengine_instance();
+		//audio_engine = AW::AudioEngine::get_audioengine_instance();
 		deltatime = 0.f;
 		wait = 0;
 
 		clips = gcnew System::Collections::Hashtable();
 	}
 	
-	//void AudioSource::Play(unsigned long delay)
-	//{
-	//	if (delay > 0)
-	//	{
-	//		//deltatime = time(NULL);
-	//	}
-	//	else
-	//	{			
-	//		TDS::SoundInfo temp(toStdString(clips[]);
-	//		
-	//		audio_engine->playSound(temp);
-	//	}
-	//}
-
 	void AudioSource::Play(StringP pathing)
 	{
-		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
-		temp->play();
+		proxy_audio->ScriptPlay(toStdString(pathing));
 	}
 
 	void AudioSource::Pause(StringP pathing)
 	{
-		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
-		temp->pause();
+		proxy_audio->ScriptPause(toStdString(pathing));
 	}
 
 	void AudioSource::Stop(StringP pathing)
 	{
-		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
-		temp->stop();
+		proxy_audio->ScriptStop(toStdString(pathing));
 	}
 
-	/*void AudioSource::Pause()
+	void AudioSource::Load(AudioComponent^ pathing)
 	{
-		msclr::interop::marshal_context context;
-		std::string str = context.marshal_as<std::string>(clip->clips[clip->sub]);
-
-		TDS::SoundInfo temp(str);
-
-		audio_engine->pauseSound(temp);
+		proxy_audio->ScriptLoad(dynamic_cast<TDS::SoundInfo*>(pathing));
 	}
 
-	void AudioSource::Stop()
+	void AudioSource::Unload(StringP pathing)
 	{
-		msclr::interop::marshal_context context;
-		std::string str = context.marshal_as<std::string>(clip->clips[clip->sub]);
 
-		TDS::SoundInfo temp(str);
-
-		audio_engine->stopSound(temp);
-	}*/
+	}
 
 	void AudioSource::Loop(StringP pathing, bool set)
 	{
-		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
-		temp->setLoop(set);
+		return dynamic_cast<AudioComponent^>(clips[pathing])->setLoop(set);
 	}
-
-	/*bool AudioSource::enabled()
-	{
-		msclr::interop::marshal_context context;
-		std::string str = context.marshal_as<std::string>(clip->clips[clip->sub]);
-
-		TDS::SoundInfo temp(str);
-
-		return true;
-	}*/
 
 	bool AudioSource::isLooping(StringP pathing)
 	{
-		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
-		return temp->isLoop();
+		return dynamic_cast<AudioComponent^>(clips[pathing])>isLoop();
 	}
 
 	bool AudioSource::isMute(StringP pathing)
 	{
-		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
-		return temp->isMuted();
+		return dynamic_cast<AudioComponent^>(clips[pathing])->isMuted();
 	}
 
 	bool AudioSource::is3D(StringP pathing)
 	{
-		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
-		return temp->is3D();
+		return dynamic_cast<AudioComponent^>(clips[pathing])->is3D();
 	}
 
 	bool AudioSource::isAnyPlaying()
@@ -110,14 +69,17 @@ namespace ScriptAPI
 
 	bool AudioSource::isPlaying(StringP pathing)
 	{
-		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
-		return temp->isPlaying();
+		return dynamic_cast<AudioComponent^>(clips[pathing])->isPlaying();
 	}
 
 	bool AudioSource::hasFinished(StringP pathing)
 	{
-		AudioComponent^ temp = dynamic_cast<AudioComponent^>(clips[pathing]);
-		return temp->finished();
+		return dynamic_cast<AudioComponent^>(clips[pathing])->finished();
+	}
+
+	TDS::SoundInfo* convertAtS(AudioComponent^ clip)
+	{
+		return reinterpret_cast<TDS::SoundInfo*>(clip);
 	}
 
 	void AudioSource::add_clips(StringP pathing, TDS::EntityID id)

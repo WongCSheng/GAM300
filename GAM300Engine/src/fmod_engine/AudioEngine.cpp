@@ -96,6 +96,23 @@ namespace TDS
                 std::cout << "Audio Engine: Sound File was already loaded!\n";
         }
 
+        void AudioEngine::unloadSound(SoundInfo& soundInfo)
+        {
+            if (soundLoaded(soundInfo))
+            {
+                sounds.erase(soundInfo.getUniqueID());
+
+                size_t first = soundInfo.getFilePath().find_last_of('\\') + 1,
+                    last = soundInfo.getFilePath().find_last_of('.') - first;
+                std::string sound_name = soundInfo.getFilePath().substr(first, last);
+                sound_ids.erase(sound_name);
+            }
+            else
+            {
+                std::cout << "No such sound exists in the audio engine!\n";
+            }
+        }
+
         int AudioEngine::playSound(SoundInfo & soundInfo)
         {
             if (soundLoaded(soundInfo)) {
@@ -188,13 +205,11 @@ namespace TDS
                 if(soundInfo.isLoop())
                 {
                     ERRCHECK(loopsPlaying[soundInfo.getUniqueID()]->stop());
-                    loopsPlaying.erase(soundInfo.getUniqueID());
                     soundInfo.setState(SOUND_LOADED); //set the sound back to loaded state
                 }
                 else
                 {
                     ERRCHECK(normalPlaying[soundInfo.getUniqueID()]->stop());
-                    normalPlaying.erase(soundInfo.getUniqueID());
                     soundInfo.setState(SOUND_LOADED);
                 }
                 //std::cout << "Stopping sound" << std::endl;
@@ -241,16 +256,6 @@ namespace TDS
             else
                 std::cout << "Audio Engine: Can't update sound position!\n";
 
-        }
-
-        void AudioEngine::updateParameters()
-        {
-            SoundInfo* temp_sound{ nullptr };
-            
-            for (auto& temp : sounds)
-            {
-                temp_sound = getSoundID
-            }
         }
 
         bool AudioEngine::soundIsPlaying(SoundInfo soundInfo)
@@ -649,6 +654,13 @@ namespace TDS
     void proxy_audio_system::ScriptStop(std::string pathing)
     {
         aud_instance->stopSound(*find_sound_info(pathing));
+    }
+
+    void proxy_audio_system::ScriptLoad(std::string pathing)
+    {
+        
+        
+        aud_instance->loadSound()
     }
 
     bool proxy_audio_system::CheckPlaying(std::string pathing)

@@ -95,6 +95,11 @@ namespace TDS
             DLL_API  void loadSound(SoundInfo& soundInfo);
 
             /**
+             * Unloads a sound from the audio system
+             */
+            DLL_API  void unloadSound(SoundInfo& soundInfo);
+
+            /**
             * Plays a sound file using FMOD's low level audio system. If the sound file has not been
             * previously loaded using loadSoundFile(), a console message is displayed
             *
@@ -131,8 +136,6 @@ namespace TDS
             * SoundInfo::set3DCoords(x,y,z) should be called before this method to set the new desired location.
             */
             DLL_API  void update3DSoundPosition(SoundInfo soundInfo);
-
-            DLL_API  void updateParameters();
 
             /**
              * Checks if a sound is playing.
@@ -384,13 +387,11 @@ namespace TDS
         static void load_all_audio_files();
         static std::vector<std::filesystem::path> go_deeper(std::filesystem::path f_path);
 
-        static void ScriptPlay(SoundInfo& soundInfo);
-        static void ScriptPause(SoundInfo& soundInfo);
-        static void ScriptStop(SoundInfo& soundInfo);
-
         static void ScriptPlay(std::string pathing);
         static void ScriptPause(std::string pathing);
         static void ScriptStop(std::string pathing);
+        static void ScriptLoad(std::string pathing);
+        static void ScriptUnload(std::string pathing);
 
         static bool CheckPlaying(std::string pathing); //to be changed
         static bool CheckPause(std::string pathing); //to be changed

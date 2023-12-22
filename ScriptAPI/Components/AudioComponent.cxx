@@ -69,28 +69,14 @@ namespace ScriptAPI
 		}
 	}
 
-	bool AudioComponent::finished(System::String^ pathing)
+	bool AudioComponent::isPlaying()
 	{
-		TDS::SoundInfo temp(toStdString(pathing));
-		
-		if (TDS::proxy_audio_system::checkifdone(temp))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return (whatState == snd::SOUND_PLAYING);
 	}
 
-	bool AudioComponent::isPlaying(System::String^ pathing)
+	bool AudioComponent::isPaused()
 	{
-		return (TDS::proxy_audio_system::CheckPlaying(toStdString(pathing)));
-	}
-
-	bool AudioComponent::isPaused(System::String^ pathing)
-	{
-		return (TDS::proxy_audio_system::CheckPause(toStdString(pathing)));
+		return (whatState == snd::SOUND_PAUSE);
 	}
 
 	Vector3 AudioComponent::get3DCoords()
@@ -198,61 +184,9 @@ namespace ScriptAPI
 		soundInfo = _soundInfo;
 	}*/
 
-	void AudioComponent::play()
-	{		
-		TDS::SoundInfo temp(filePath);
-		temp.setState(whatState);
-		
-		TDS::proxy_audio_system::ScriptPlay(temp);
-		whatState = temp.getState();
-	}
-
-	void AudioComponent::playQueue()
-	{
-		TDS::proxy_audio_system::Play_queue();
-	}
-
-	void AudioComponent::pause()
-	{
-		TDS::SoundInfo temp(filePath);
-		temp.setState(whatState);
-
-		TDS::proxy_audio_system::ScriptPause(temp);
-		whatState = temp.getState();
-	}
-
-	void AudioComponent::stop()
-	{
-		TDS::SoundInfo temp(filePath);
-		temp.setState(whatState);
-
-		TDS::proxy_audio_system::ScriptStop(temp);
-		whatState = temp.getState();
-	}
-
-	void AudioComponent::play(System::String^ pathing)
-	{
-		TDS::proxy_audio_system::ScriptPlay(toStdString(pathing));
-	}
-
-	void AudioComponent::pause(System::String^ pathing)
-	{
-		TDS::proxy_audio_system::ScriptPause(toStdString(pathing));
-	}
-
-	void AudioComponent::stop(System::String^ pathing)
-	{
-		TDS::proxy_audio_system::ScriptStop(toStdString(pathing));
-	}
-
 	void AudioComponent::Queue(System::String^ str)
 	{
 		TDS::proxy_audio_system::Add_to_Queue(toStdString(str));
-	}
-
-	void AudioComponent::clearQueue()
-	{
-		TDS::proxy_audio_system::Clear_queue();
 	}
 
 	void AudioComponent::SetEntityID(TDS::EntityID id)

@@ -25,13 +25,13 @@ namespace ScriptAPI
     public:
         AudioSource();
         
-        //void Play(unsigned long delay);
         void Play(StringP pathing);
         void Pause(StringP pathing);
         void Stop(StringP pathing);
+        void Load(AudioComponent^ pathing);
+        void Unload(StringP pathing);
 
         void Loop(StringP pathing, bool set);
-        //bool enabled();
 
         /*template<typename T>
         T& operator=(float val);*/
@@ -43,10 +43,14 @@ namespace ScriptAPI
         bool isAnyPlaying();
         bool isPlaying(StringP pathing);
         bool hasFinished(StringP pathing);
+
+        //Convert from AudioComponent to SoundInfo
+        TDS::SoundInfo* convertAtS(AudioComponent^ clip);
+
         void add_clips(StringP pathing, TDS::EntityID id);
 
         System::Collections::Hashtable^ clips; //AudioClips are attached to AudioSource
-        TDS::AudioWerks::AudioEngine* audio_engine;
+        //TDS::AudioWerks::AudioEngine* audio_engine;
         TDS::proxy_audio_system* proxy_audio;
         unsigned long wait;
         float deltatime;

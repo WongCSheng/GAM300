@@ -23,10 +23,9 @@ namespace ScriptAPI
 		bool isPaused();
 		//Check if that sound file finished playing
 		bool finished();
-		bool finished(System::String^ pathing);
 
-		bool isPlaying(System::String^ pathing); //to be changed
-		bool isPaused(System::String^ pathing); //to be changed
+		bool isPlaying();
+		bool isPaused();
 
 		Vector3 get3DCoords();
 		snd getState();
@@ -52,19 +51,6 @@ namespace ScriptAPI
 		void set3D(bool condition);
 		void setMute(bool condition);
 		//void tieWithSoundInfo(SI* _soundInfo);
-
-		//Pass in the audio file name without the extensions
-		void play();
-		void pause();
-		void stop();
-
-		void play(System::String^ pathing);
-		void pause(System::String^ pathing);
-		void stop(System::String^ pathing);
-
-		//play the queue of sound sequentially
-		void playQueue();
-		void clearQueue();
 
 		//Add to a queue of sound to be played sequentially
 		void Queue(System::String^ str);
