@@ -97,7 +97,7 @@ namespace TDS
             /**
              * Unloads a sound from the audio system
              */
-            DLL_API  void unloadSound(SoundInfo& soundInfo);
+            DLL_API  void unloadSound(std::string pathing);
 
             /**
             * Plays a sound file using FMOD's low level audio system. If the sound file has not been
@@ -255,9 +255,9 @@ namespace TDS
             DLL_API  std::map<std::string, FMOD::Studio::EventInstance*> getEventInstanceContainer();
 
             /**
-            * Get the unique ID of the sound
+            * Find the sound inside the engine
             */
-            DLL_API  unsigned int getSoundID(std::string _soundInfoName);
+            DLL_API  SoundInfo* findSound(std::string name);
 
             // The audio sampling rate of the audio engine
             DLL_API  static const int AUDIO_SAMPLE_RATE = 44100;
@@ -339,9 +339,9 @@ namespace TDS
             std::map<unsigned int, FMOD::Sound*> sounds{};
 
             /*
-            * Map which keeps tracks of which ID belongs to which sound.
+            * Map which keeps track of SoundInfo and their names
             */
-            std::map<std::string, unsigned int> sound_ids{};
+            std::map<std::string, SoundInfo*> SoundInfo_Container;
 
             /*
              * Map which stores the current playback channels of any playing sound loop
@@ -392,6 +392,7 @@ namespace TDS
         static void ScriptStop(std::string pathing);
         static void ScriptLoad(std::string pathing);
         static void ScriptUnload(std::string pathing);
+        static SoundInfo* ScriptGetSound(std::string pathing);
 
         static bool CheckPlaying(std::string pathing); //to be changed
         static bool CheckPause(std::string pathing); //to be changed
@@ -406,7 +407,8 @@ namespace TDS
         static void setLoop(std::string str, bool set, int count = 1);
         static void set3D(std::string str, bool set);
 
-        static bool checkifdone(SoundInfo& soundInfo);
+        static bool checkifdone(SoundInfo& soundInfo); //Need to rework to use callback to check if sound is finished playing
+        static bool ScriptCheckAnyPlaying();
 
     private:
         static AudioWerks::AudioEngine* aud_instance;

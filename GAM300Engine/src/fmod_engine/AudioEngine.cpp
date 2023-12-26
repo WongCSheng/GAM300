@@ -85,7 +85,7 @@ namespace TDS
                 size_t first = soundInfo.getFilePath().find_last_of('\\') + 1,
                     last = soundInfo.getFilePath().find_last_of('.') - first;
                 std::string sound_name = soundInfo.getFilePath().substr(first, last);
-                sound_ids.insert({ sound_name, soundInfo.getUniqueID()});
+                SoundInfo_Container.insert({ sound_name, &soundInfo});
 
                 unsigned int msLength = 0;
                 ERRCHECK(sounds[soundInfo.getUniqueID()]->getLength(&msLength, FMOD_TIMEUNIT_MS));
@@ -96,16 +96,18 @@ namespace TDS
                 std::cout << "Audio Engine: Sound File was already loaded!\n";
         }
 
-        void AudioEngine::unloadSound(SoundInfo& soundInfo)
+        void AudioEngine::unloadSound(std::string pathing)
         {
-            if (soundLoaded(soundInfo))
+            SoundInfo* temp = findSound(pathing);
+            
+            if (soundLoaded(*temp))
             {
-                sounds.erase(soundInfo.getUniqueID());
+                sounds.erase(temp->getUniqueID());
 
-                size_t first = soundInfo.getFilePath().find_last_of('\\') + 1,
-                    last = soundInfo.getFilePath().find_last_of('.') - first;
-                std::string sound_name = soundInfo.getFilePath().substr(first, last);
-                sound_ids.erase(sound_name);
+                size_t first = temp->getFilePath().find_last_of('\\') + 1,
+                    last = temp->getFilePath().find_last_of('.') - first;
+                std::string sound_name = temp->getFilePath().substr(first, last);
+                SoundInfo_Container.erase(sound_name);
             }
             else
             {
@@ -466,9 +468,9 @@ namespace TDS
             return eventInstances;
         }
 
-        unsigned int AudioEngine::getSoundID(std::string _soundInfoName)
+        SoundInfo* AudioEngine::findSound(std::string name)
         {
-            return sound_ids[_soundInfoName];
+            return SoundInfo_Container.find(name)->second;
         }
 
         //// Private definitions 
@@ -658,9 +660,19 @@ namespace TDS
 
     void proxy_audio_system::ScriptLoad(std::string pathing)
     {
+        SoundInfo temp(pathing);
         
-        
-        aud_instance->loadSound()
+        aud_instance->loadSound(temp);
+    }
+
+    void proxy_audio_system::ScriptUnload(std::string pathing)
+    {
+        aud_instance->unloadSound(pathing);
+    }
+
+    SoundInfo* proxy_audio_system::ScriptGetSound(std::string pathing)
+    {
+        return aud_instance->findSound(pathing);
     }
 
     bool proxy_audio_system::CheckPlaying(std::string pathing)
@@ -808,6 +820,11 @@ namespace TDS
         DoNe:
 
         return check;
+    }
+
+    bool proxy_audio_system::ScriptCheckAnyPlaying()
+    {
+        return aud_instance->AnysoundPlaying();
     }
     
     /*void proxy_audio_system::audio_event_play(SoundInfo& soundInfo)

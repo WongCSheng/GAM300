@@ -14,7 +14,7 @@ namespace ScriptAPI
 		deltatime = 0.f;
 		wait = 0;
 
-		clips = gcnew System::Collections::Hashtable();
+		clips = gcnew System::Collections::Hashtable(StringP, AudioComponent^);
 	}
 	
 	void AudioSource::Play(StringP pathing)
@@ -34,12 +34,22 @@ namespace ScriptAPI
 
 	void AudioSource::Load(AudioComponent^ pathing)
 	{
-		proxy_audio->ScriptLoad(dynamic_cast<TDS::SoundInfo*>(pathing));
+		proxy_audio->ScriptLoad(pathing->getFilePath());
 	}
 
 	void AudioSource::Unload(StringP pathing)
 	{
+		proxy_audio->ScriptUnload(toStdString(pathing));
+	}
 
+	TDS::SoundInfo* AudioSource::getSound(StringP pathing)
+	{
+		return proxy_audio->ScriptGetSound(toStdString(pathing));
+	}
+
+	AudioComponent^ AudioSource::getAudio(StringP pathing)
+	{
+		return msclr::interop::marshal_as<AudioComponent^>(proxy_audio->ScriptGetSound(toStdString(pathing)));
 	}
 
 	void AudioSource::Loop(StringP pathing, bool set)
@@ -64,7 +74,7 @@ namespace ScriptAPI
 
 	bool AudioSource::isAnyPlaying()
 	{
-		return audio_engine->AnysoundPlaying();
+		return proxy_audio->ScriptCheckAnyPlaying();
 	}
 
 	bool AudioSource::isPlaying(StringP pathing)
@@ -79,7 +89,7 @@ namespace ScriptAPI
 
 	TDS::SoundInfo* convertAtS(AudioComponent^ clip)
 	{
-		return reinterpret_cast<TDS::SoundInfo*>(clip);
+		return msclr::interop::marshal_as<TDS::SoundInfo*>(clip);
 	}
 
 	void AudioSource::add_clips(StringP pathing, TDS::EntityID id)

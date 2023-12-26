@@ -217,16 +217,23 @@ namespace TDS
         audeng->stopSound(*this);
     }
 
-    SoundInfo::SoundInfo(std::string _filePath, bool _isLoop, bool _is3D, bool _muted, SOUND_STATE _theState, float _x, float _y, float _z, int _loopcount, float _volume, float _reverbamount)
+    SoundInfo::SoundInfo(std::string _filePath, bool _isLoop, bool _is3D, bool _muted, SOUND_STATE _theState, float _x, float _y, float _z, int _loopcount, float _volume, float _reverbamount, unsigned int _MSLength, unsigned int _sampleRate)
         : filePath(_filePath), isitLoop(_isLoop), isit3D(_is3D), isitmuted(_muted), whatState(_theState), volume(_volume), ReverbAmount(_reverbamount)
     {
         position.x = _x;
         position.y = _y;
         position.z = _z;
         position_events.clear();
-        MSLength = 0;
-        sampleRate = 0;
-        uniqueID = ID_Count++; //Change UID to include time when added
+        MSLength = _MSLength;
+        sampleRate = _sampleRate;
+
+        size_t first = filePath.find_last_of('\\') + 1,
+            last = filePath.find_last_of('.') - first;
+        std::string sound_name = filePath.substr(first, last);
+        for (unsigned int ch : sound_name)
+        {
+            uniqueID += ch; //Change UID to include time when added
+        }
     }
     
     SoundInfo* GetSoundInfo(EntityID ID)

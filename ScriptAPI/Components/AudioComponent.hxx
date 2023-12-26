@@ -24,9 +24,6 @@ namespace ScriptAPI
 		//Check if that sound file finished playing
 		bool finished();
 
-		bool isPlaying();
-		bool isPaused();
-
 		Vector3 get3DCoords();
 		snd getState();
 		unsigned int getUniqueID();

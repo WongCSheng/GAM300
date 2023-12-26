@@ -12,7 +12,7 @@
 namespace TDS
 {
 
-    static unsigned int ID_Count{ 0 };
+    static unsigned int ID_Count{ 1 };
 
     /*enum SOUND_STATE : uint16_t
     {
@@ -30,14 +30,14 @@ namespace TDS
         SOUND_PAUSE
     };
 
-    namespace AudioWerls
+    /*namespace AudioWerks
     {
         class AudioEngine;
-    }
+    }*/
 
     DLL_API struct SoundInfo : public IComponent
     {
-        unsigned int uniqueID, MSLength, sampleRate;
+        unsigned int uniqueID = 0, MSLength, sampleRate;
         std::string filePath;
         bool isitLoop, isit3D, isitmuted;
         SOUND_STATE whatState;
@@ -140,7 +140,9 @@ namespace TDS
         DLL_API  void pause();
         DLL_API  void stop();
 
-        DLL_API  SoundInfo(std::string _filePath = "", bool _isLoop = false, bool _is3D = false, bool _muted = false, SOUND_STATE _theState = SOUND_ERR, float _x = 0.0f, float _y = 0.0f, float _z = 0.0f, int _loopcount = 0, float _volume = 1.f, float _reverbamount = 0.f);
+        DLL_API  SoundInfo(std::string _filePath = "", bool _isLoop = false, bool _is3D = false, bool _muted = false,SOUND_STATE _theState = SOUND_ERR,
+            float _x = 0.0f, float _y = 0.0f, float _z = 0.0f, int _loopcount = 0, float _volume = 1.f, float _reverbamount = 0.f,
+            unsigned int _MSLength = 0, unsigned int _sampleRate = 0);
 
         // TODO  implement sound instancing
         // int instanceID = -1; 

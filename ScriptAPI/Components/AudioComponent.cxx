@@ -69,16 +69,6 @@ namespace ScriptAPI
 		}
 	}
 
-	bool AudioComponent::isPlaying()
-	{
-		return (whatState == snd::SOUND_PLAYING);
-	}
-
-	bool AudioComponent::isPaused()
-	{
-		return (whatState == snd::SOUND_PAUSE);
-	}
-
 	Vector3 AudioComponent::get3DCoords()
 	{
 		return pos;
