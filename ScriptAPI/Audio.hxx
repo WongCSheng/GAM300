@@ -32,6 +32,7 @@ namespace ScriptAPI
         void Unload(StringP pathing);
         TDS::SoundInfo* getSound(StringP pathing);
         AudioComponent^ getAudio(StringP pathing);
+        unsigned int getID(StringP pathing);
 
         void Loop(StringP pathing, bool set);
 
