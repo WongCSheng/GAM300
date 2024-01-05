@@ -51,7 +51,7 @@ namespace ScriptAPI
 
 	AudioComponent^ AudioSource::getAudio(StringP pathing)
 	{
-		return proxy_audio->ScriptGetSound(toStdString(pathing));
+		return reinterpret_cast<AudioComponent^>(proxy_audio->ScriptGetSound(toStdString(pathing)));
 	}
 
 	unsigned int AudioSource::getUniqueID(StringP pathing)

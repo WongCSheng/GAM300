@@ -75,22 +75,22 @@ namespace TDS
         void AudioEngine::loadSound(SoundInfo & soundInfo)
         {
             if (!soundLoaded(soundInfo)) {
-                std::cout << "Audio Engine: Loading Sound from file " << soundInfo.getFilePath() << '\n';
+                std::cout << "Audio Engine: Loading Sound from file " << soundInfo.filePath << '\n';
                 FMOD::Sound* sound;
                 ERRCHECK(lowLevelSystem->createSound(soundInfo.getFilePath_inChar(), soundInfo.is3D() ? FMOD_3D : FMOD_2D, 0, &sound));
                 ERRCHECK(sound->setMode(soundInfo.isLoop() ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF));
                 ERRCHECK(sound->set3DMinMaxDistance(0.5f * DISTANCEFACTOR, 5000.0f * DISTANCEFACTOR));
-                sounds.insert({ soundInfo.getUniqueID(), sound });
+                sounds.insert({ soundInfo.uniqueID, sound });
 
-                size_t first = soundInfo.getFilePath().find_last_of('\\') + 1,
-                    last = soundInfo.getFilePath().find_last_of('.') - first;
-                std::string sound_name = soundInfo.getFilePath().substr(first, last);
+                size_t first = soundInfo.filePath.find_last_of('\\') + 1,
+                    last = soundInfo.filePath.find_last_of('.') - first;
+                std::string sound_name = soundInfo.filePath.substr(first, last);
                 SoundInfo_Container.insert({ sound_name, &soundInfo});
 
                 unsigned int msLength = 0;
-                ERRCHECK(sounds[soundInfo.getUniqueID()]->getLength(&msLength, FMOD_TIMEUNIT_MS));
+                ERRCHECK(sounds[soundInfo.uniqueID]->getLength(&msLength, FMOD_TIMEUNIT_MS));
                 //soundInfo.setMSLength(msLength);
-                soundInfo.setState(SOUND_LOADED);
+                soundInfo.whatState = SOUND_LOADED;
             }
             else
                 std::cout << "Audio Engine: Sound File was already loaded!\n";

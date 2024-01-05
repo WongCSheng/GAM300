@@ -8,6 +8,12 @@ namespace ScriptAPI
 		//nothing
 	}
 
+	AudioComponent::AudioComponent(SI soundInfo)
+	{
+		entityID = uniqueID;
+
+	}
+
 	TDS::EntityID AudioComponent::GetEntityID()
 	{
 		return entityID;
@@ -192,23 +198,27 @@ namespace ScriptAPI
 	//unique ID
 	unsigned int AudioComponent::uniqueID::get()
 	{
-		return TDS::GetSoundInfo(entityID)->getUniqueID();
+		return TDS::GetSoundInfo(entityID)->uniqueID;
+	}
+	void AudioComponent::uniqueID::set(unsigned int value)
+	{
+		TDS::GetSoundInfo(entityID)->uniqueID = value;
 	}
 
 	//MS Length
 	unsigned int AudioComponent::MSLength::get()
 	{
-		return TDS::GetSoundInfo(entityID)->getMSLength();
+		return TDS::GetSoundInfo(entityID)->MSLength;
 	}
 	void AudioComponent::MSLength::set(unsigned int value)
 	{
-		TDS::GetSoundInfo(entityID)->setMSLength(value);
+		TDS::GetSoundInfo(entityID)->MSLength = value;
 	}
 
 	//file path
 	std::string AudioComponent::filePath::get()
 	{
-		return TDS::GetSoundInfo(entityID)->getFilePath();
+		return TDS::GetSoundInfo(entityID)->filePath;
 	}
 	void AudioComponent::filePath::set(std::string value)
 	{
@@ -232,7 +242,7 @@ namespace ScriptAPI
 	}
 	void AudioComponent::isitLoop::set(bool value)
 	{
-		TDS::GetSoundInfo(entityID)->setLoop(value);
+		TDS::GetSoundInfo(entityID)->isitLoop = value;
 	}
 
 	//3D boolean
@@ -242,7 +252,7 @@ namespace ScriptAPI
 	}
 	void AudioComponent::isit3D::set(bool value)
 	{
-		TDS::GetSoundInfo(entityID)->set3D(value);
+		TDS::GetSoundInfo(entityID)->isit3D = value;
 	}
 
 	//muted
@@ -252,23 +262,23 @@ namespace ScriptAPI
 	}
 	void AudioComponent::isitMuted::set(bool value)
 	{
-		TDS::GetSoundInfo(entityID)->setMute(value);
+		TDS::GetSoundInfo(entityID)->isitmuted = value;
 	}
 
 	//state of sound info
 	snd AudioComponent::whatState::get()
 	{
-		return TDS::GetSoundInfo(entityID)->getState();
+		return TDS::GetSoundInfo(entityID)->whatState;
 	}
 	void AudioComponent::whatState::set(snd value)
 	{
-		TDS::GetSoundInfo(entityID)->setState(value);
+		TDS::GetSoundInfo(entityID)->whatState = value;
 	}
 
 	//3D position
 	Vector3 AudioComponent::pos::get()
 	{
-		return Vector3(TDS::GetSoundInfo(entityID)->get3DCoords());
+		return Vector3(TDS::GetSoundInfo(entityID)->position);
 	}
 	void AudioComponent::pos::set(Vector3 value)
 	{
@@ -278,21 +288,21 @@ namespace ScriptAPI
 	//volume
 	float AudioComponent::volume::get()
 	{
-		return TDS::GetSoundInfo(entityID)->getVolume();
+		return TDS::GetSoundInfo(entityID)->volume;
 	}
 	void AudioComponent::volume::set(float value)
 	{
-		TDS::GetSoundInfo(entityID)->setVolume(value);
+		TDS::GetSoundInfo(entityID)->volume = value;
 	}
 
 	//Reverb
 	float AudioComponent::ReverbAmount::get()
 	{
-		return TDS::GetSoundInfo(entityID)->getReverbAmount();
+		return TDS::GetSoundInfo(entityID)->ReverbAmount;
 	}
 	void AudioComponent::ReverbAmount::set(float value)
 	{
-		TDS::GetSoundInfo(entityID)->setReverbAmount(value);
+		TDS::GetSoundInfo(entityID)->ReverbAmount = value;
 	}
 
 	//soundInfo

@@ -103,42 +103,43 @@ namespace TDS
             return (bool)(whatState & (1 << SOUND_MUTED));
         }*/
 
-        DLL_API  Vec3 get3DCoords();
+        //DLL_API  Vec3 get3DCoords();
         DLL_API  std::map<Vec3*, SOUND_STATE*> getEvents();
-        DLL_API  SOUND_STATE getState();
-        DLL_API  unsigned int getUniqueID();
-        DLL_API  unsigned int getMSLength();
-        DLL_API  std::string getFilePath();
+        //DLL_API  SOUND_STATE getState();
+        //DLL_API  unsigned int getUniqueID();
+        //DLL_API  unsigned int getMSLength();
+        //DLL_API  std::string getFilePath();
         DLL_API  const char* getFilePath_inChar();
-        DLL_API  int getLoopCount();
+        //DLL_API  int getLoopCount();
         DLL_API  float getX();
         DLL_API  float getY();
         DLL_API  float getZ();
-        DLL_API  float getReverbAmount();
-        DLL_API  float getVolume();
+        //DLL_API  float getReverbAmount();
+        //DLL_API  float getVolume();
 
         /**
         * Parameter takes in Volume values (0 - 100)
         */
-        DLL_API  void setVolume(float vol);
-        DLL_API  void setMSLength(unsigned int len);
+        //DLL_API  void setVolume(float vol);
+        //DLL_API  void setMSLength(unsigned int len);
 
         /*void setState(SOUND_STATE setting, bool set)
         {
             whatState |= (set << setting);
         }*/
 
-        DLL_API  void setState(SOUND_STATE setting);
-        DLL_API  void setLoop(bool condition);
-        DLL_API  void setLoopCount(int count);
-        DLL_API  void set3D(bool condition);
-        DLL_API  void setMute(bool condition);
-        DLL_API  void setReverbAmount(float reverb);
-        DLL_API  void setSamepleRate(unsigned int _samplerate);
+        //DLL_API  void setState(SOUND_STATE setting);
+        //DLL_API  void setUniqueID(unsigned int value);
+        //DLL_API  void setLoop(bool condition);
+        //DLL_API  void setLoopCount(int count);
+        //DLL_API  void set3D(bool condition);
+        //DLL_API  void setMute(bool condition);
+        //DLL_API  void setReverbAmount(float reverb);
+        //DLL_API  void setSamepleRate(unsigned int _samplerate);
 
-        DLL_API  void play();
-        DLL_API  void pause();
-        DLL_API  void stop();
+        //DLL_API  void play();
+        //DLL_API  void pause();
+        //DLL_API  void stop();
 
         DLL_API  SoundInfo(std::string _filePath = "", bool _isLoop = false, bool _is3D = false, bool _muted = false,SOUND_STATE _theState = SOUND_ERR,
             float _x = 0.0f, float _y = 0.0f, float _z = 0.0f, int _loopcount = 0, float _volume = 1.f, float _reverbamount = 0.f,

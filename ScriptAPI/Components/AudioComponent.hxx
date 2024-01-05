@@ -61,12 +61,14 @@ namespace ScriptAPI
 
 	internal:
 		AudioComponent(TDS::EntityID ID);
+		AudioComponent(SI soundInfo);
 		TDS::EntityID GetEntityID();
 
 	private:
 		property unsigned int uniqueID
 		{
 			unsigned int get();
+			void set(unsigned int value);
 		}
 		property unsigned int MSLength
 		{
