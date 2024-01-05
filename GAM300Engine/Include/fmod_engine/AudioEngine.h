@@ -393,6 +393,7 @@ namespace TDS
         static void ScriptLoad(std::string pathing);
         static void ScriptUnload(std::string pathing);
         static SoundInfo* ScriptGetSound(std::string pathing);
+        static unsigned int ScriptGetID(std::string pathing);
 
         static bool CheckPlaying(std::string pathing); //to be changed
         static bool CheckPause(std::string pathing); //to be changed

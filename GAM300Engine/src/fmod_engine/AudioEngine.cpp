@@ -675,6 +675,11 @@ namespace TDS
         return aud_instance->findSound(pathing);
     }
 
+    unsigned int proxy_audio_system::ScriptGetID(std::string pathing)
+    {
+        return aud_instance->findSound(pathing)->getUniqueID();
+    }
+
     bool proxy_audio_system::CheckPlaying(std::string pathing)
     {
         return ((find_sound_info(pathing)->getState() == SOUND_PLAYING) ? true : false);

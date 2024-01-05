@@ -51,12 +51,12 @@ namespace ScriptAPI
 
 	AudioComponent^ AudioSource::getAudio(StringP pathing)
 	{
-		return msclr::interop::marshal_as<AudioComponent^>(proxy_audio->ScriptGetSound(toStdString(pathing)));
+		return proxy_audio->ScriptGetSound(toStdString(pathing));
 	}
 
-	unsigned int AudioSource::getID(StringP pathing)
+	unsigned int AudioSource::getUniqueID(StringP pathing)
 	{
-		return 
+		return proxy_audio->ScriptGetID(toStdString(pathing));
 	}
 
 	void AudioSource::Loop(StringP pathing, bool set)
@@ -66,7 +66,7 @@ namespace ScriptAPI
 
 	bool AudioSource::isLooping(StringP pathing)
 	{
-		return dynamic_cast<AudioComponent^>(clips[pathing])>isLoop();
+		return dynamic_cast<AudioComponent^>(clips[pathing])->isLoop();
 	}
 
 	bool AudioSource::isMute(StringP pathing)

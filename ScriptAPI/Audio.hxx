@@ -32,7 +32,7 @@ namespace ScriptAPI
         void Unload(StringP pathing);
         TDS::SoundInfo* getSound(StringP pathing);
         AudioComponent^ getAudio(StringP pathing);
-        unsigned int getID(StringP pathing);
+        unsigned int getUniqueID(StringP pathing);
 
         void Loop(StringP pathing, bool set);
 
@@ -52,7 +52,7 @@ namespace ScriptAPI
 
         void add_clips(StringP pathing, TDS::EntityID id);
 
-        System::Collections::Hashtable^ clips; //AudioClips are attached to AudioSource
+        System::Collections::Hashtable^ clips; //Equivalent of std::map<EntityID, AudioComponent^>
         //TDS::AudioWerks::AudioEngine* audio_engine;
         TDS::proxy_audio_system* proxy_audio;
         unsigned long wait;
