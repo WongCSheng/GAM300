@@ -54,6 +54,7 @@ namespace ScriptAPI
 
 		std::function<void(snd)>* pass_in_setState;
 
+		virtual TDS::EntityID GetEntityID();
 		virtual void SetEntityID(TDS::EntityID ID);
 		//void SetSoundInfoObject(SI* _si);
 
@@ -62,7 +63,6 @@ namespace ScriptAPI
 	internal:
 		AudioComponent(TDS::EntityID ID);
 		AudioComponent(SI *soundInfo);
-		TDS::EntityID GetEntityID();
 
 	private:
 		property unsigned int uniqueID

@@ -10,7 +10,6 @@
 
 namespace ScriptAPI
 {
-
 	/*enum class Keycode : uint32_t
 	{
 		A = TDS_A,
@@ -162,14 +161,17 @@ namespace ScriptAPI
         static float GetAxis(System::String^ code);
         static bool GetKey(uint32_t keycode);
         static bool GetKeyDown(uint32_t keycode);
+		static bool GetKeyHeld(uint32_t keycode);
         static bool GetKeyUp(uint32_t keycode);
         static bool GetMouseButton(uint32_t button);
         static bool GetMouseButtonUp(uint32_t button);
         static bool GetMouseButtonDown(uint32_t button);
+		static bool GetMouseButtonHeld(uint32_t button);
 		static float GetLocalMousePosX();
 		static float GetLocalMousePoxY();
 		static float GetMousePositionDifferenceX();
 		static float GetMousePositionDifferenceY();
+		static void KeyRelease(uint32_t keycode);
 
 		//static float Get2DMousePosX();
 		//static float Get2DMousePosY();
