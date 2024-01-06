@@ -1,6 +1,5 @@
 #include "Audio.hxx"
 #include <ctime>
-#include <msclr\marshal_cppstd.h>
 
 #define AW TDS::AudioWerks
 
@@ -51,7 +50,7 @@ namespace ScriptAPI
 
 	AudioComponent^ AudioSource::getAudio(StringP pathing)
 	{
-		return reinterpret_cast<AudioComponent^>(proxy_audio->ScriptGetSound(toStdString(pathing)));
+		return AudioComponent(proxy_audio->ScriptGetSound(toStdString(pathing)));
 	}
 
 	unsigned int AudioSource::getUniqueID(StringP pathing)
@@ -94,10 +93,10 @@ namespace ScriptAPI
 		return dynamic_cast<AudioComponent^>(clips[pathing])->finished();
 	}
 
-	TDS::SoundInfo* convertAtS(AudioComponent^ clip)
+	/*TDS::SoundInfo* convertAtS(AudioComponent^ clip)
 	{
-		return msclr::interop::marshal_as<TDS::SoundInfo*>(clip);
-	}
+		return (TDS::SoundInfo*)(clip);
+	}*/
 
 	void AudioSource::add_clips(StringP pathing, TDS::EntityID id)
 	{

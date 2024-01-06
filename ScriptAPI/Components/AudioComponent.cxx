@@ -8,9 +8,9 @@ namespace ScriptAPI
 		//nothing
 	}
 
-	AudioComponent::AudioComponent(SI soundInfo)
+	AudioComponent::AudioComponent(SI *soundInfo)
 	{
-		entityID = uniqueID;
+		entityID = soundInfo->uniqueID;
 
 	}
 

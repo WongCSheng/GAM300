@@ -61,7 +61,7 @@ namespace ScriptAPI
 
 	internal:
 		AudioComponent(TDS::EntityID ID);
-		AudioComponent(SI soundInfo);
+		AudioComponent(SI *soundInfo);
 		TDS::EntityID GetEntityID();
 
 	private:

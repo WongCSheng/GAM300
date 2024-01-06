@@ -48,7 +48,7 @@ namespace ScriptAPI
         bool hasFinished(StringP pathing);
 
         //Convert from AudioComponent to SoundInfo
-        TDS::SoundInfo* convertAtS(AudioComponent^ clip);
+        //TDS::SoundInfo* convertAtS(AudioComponent^ clip);
 
         void add_clips(StringP pathing, TDS::EntityID id);
 
