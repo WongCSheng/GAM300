@@ -13,8 +13,8 @@ public class LockPick1 : Script
 
     //public Text mySubtitles;
     //public Image mySubtitlesBG;
-    //public AudioSource myVOSource;
-    //public AudioComponent audio;
+    public AudioSource AudioPlayer;
+    public AudioComponent [] rattleSoundEffects, []lockSoundEffects, successVOclip;
     public bool _TutorialCompleted;
 
     [Header("Lockpick Variables")]
@@ -32,9 +32,9 @@ public class LockPick1 : Script
     public float maxAngle = 90;
     public float lockSpeed = 10;
     public bool unlocked;
-    public string[] lockSoundEffects;
-    public string[] rattleSoundEffects;
-    public string successVOclip;
+    //public string[] lockSoundEffects;
+    //public string[] rattleSoundEffects;
+    //public string successVOclip;
     float delay = 0.4f;
     //public GameObject _NumOfTries;
     //public Text _AmtOfTries;
@@ -68,13 +68,18 @@ public class LockPick1 : Script
         //lockSoundEffects[1] = "lockpick success";
         //lockSoundEffects[2] = "lockpick_failtryl";
 
-        rattleSoundEffects = new string[6];
+        rattleSoundEffects = new AudioComponent[6];
         rattleSoundEffects[0] = "temp_lockrattle1";
         rattleSoundEffects[1] = "temp_lockrattle2";
         rattleSoundEffects[2] = "temp_lockrattle3";
         rattleSoundEffects[3] = "temp_lockrattle4";
         rattleSoundEffects[4] = "temp_lockrattle5";
         rattleSoundEffects[5] = "temp_lockrattle6";
+        
+        lockSoundEffects = new AudioComponent[3];
+        lockSoundEffects[0] = "Lock Turning Audio";
+        lockSoundEffects[1] = "lockpick success";
+        lockSoundEffects[2] = "lockpick_failtryl";
 
         currentRattlePlaying = 0;
 
@@ -84,41 +89,36 @@ public class LockPick1 : Script
 
         //foreach(String str in lockSoundEffects)
         //{
-        //    myVOSource.add_clips(str);
+        //    AudioPlayer.add_clips(str);
         //}
 
         //foreach(String str in rattleSoundEffects)
         //{
-        //    myVOSource.add_clips(str);
+        //    AudioPlayer.add_clips(str);
         //}
 
-        audio = gameObject.GetComponent<AudioComponent>();
+        AudioPlayer = gameObject.GetComponent<AudioSource>();
+        AudioClip1
         passed = false;
     }
 
     // Update is called once per frame
     override public void Update()
     {
-        lockSoundEffects = new string[3];
-        lockSoundEffects[0] = "Lock Turning Audio";
-        lockSoundEffects[1] = "lockpick success";
-        lockSoundEffects[2] = "lockpick_failtryl";
-
         numOfTries = 5;
         eulerAngleDegree = toDegree(eulerAngle);
-        AudioComponent audio = gameObject.GetComponent<AudioComponent>();
 
         if (!_TutorialCompleted)
         {
-            //if (!audio.finished(myVOSource[1]) && !played)
+            if (!AudioPlayer.finished(lockSoundEffects[1]) && !played)
             //{
-            //    audio.play(myVOSource[1]);
+            //    audio.play(AudioPlayer[1]);
             //    mySubtitlesBG.enabled = true;
             //    mySubtitles.text = "Martin (Internal): Hopefully, I won’t forget how to do this.";
             //    played = true;
 
             //}
-            //else if (!audio.finished(myVOSource[1]) && played)
+            //else if (!audio.finished(AudioPlayer[1]) && played)
             //{
             //    mySubtitles.text = "";
             //    mySubtitlesBG.enabled = false;
@@ -152,14 +152,14 @@ public class LockPick1 : Script
             {
                 movePick = false;
                 keyPressTime = 1;
-                audio.play(lockSoundEffects[0]);
+                AudioPlayer.play(lockSoundEffects[0]);
             }
             if (Input.GetKeyUp(Keycode.E))
             {
                 movePick = true;
                 keyPressTime = 0;
                 deduct = true;
-                audio.stop(lockSoundEffects[0]);
+                AudioPlayer.stop(lockSoundEffects[0]);
             }
             #endregion
 
@@ -185,8 +185,8 @@ public class LockPick1 : Script
                     movePick = true;
                     keyPressTime = 0;
                     Console.WriteLine("passed");
-                    audio.stop(lockSoundEffects[0]);
-                    audio.play(lockSoundEffects[1]);
+                    AudioPlayer.stop(lockSoundEffects[0]);
+                    AudioPlayer.play(lockSoundEffects[1]);
 
                     passed = true;
                     //Coroutine(StartDelay());

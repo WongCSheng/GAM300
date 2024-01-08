@@ -12,7 +12,7 @@ public class PaintingTrigger_Script : Script
 
     [Header("AudioStuff")]
     public AudioSource playerVOSource;
-    public AudioClip voClip;
+    //public AudioClip voClip;
     //public Text subtitles;
     //public Image subtitlesBG;
     bool playedAudio;

@@ -13,34 +13,34 @@ namespace ScriptAPI
 		deltatime = 0.f;
 		wait = 0;
 
-		clips = gcnew System::Collections::Hashtable();
+		//clips = gcnew System::Collections::Hashtable();
 	}
 	
-	void AudioSource::Play(StringP pathing)
+	void AudioSource::Play(AudioComponent^ clip)
 	{
-		proxy_audio->ScriptPlay(toStdString(pathing));
+		proxy_audio->ScriptPlay(clip->getFilePath());
 	}
 
-	void AudioSource::Pause(StringP pathing)
+	void AudioSource::Pause(AudioComponent^ clip)
 	{
-		proxy_audio->ScriptPause(toStdString(pathing));
+		proxy_audio->ScriptPause(clip->getFilePath());
 	}
 
-	void AudioSource::Stop(StringP pathing)
+	void AudioSource::Stop(AudioComponent^ clip)
 	{
-		proxy_audio->ScriptStop(toStdString(pathing));
+		proxy_audio->ScriptStop(clip->getFilePath());
 	}
 
 	void AudioSource::Load(AudioComponent^ pathing)
 	{
 		proxy_audio->ScriptLoad(pathing->getFilePath());
-		clips->Add(pathing->GetEntityID(), pathing);
+		//clips->Add(pathing->GetEntityID(), pathing);
 	}
 
-	void AudioSource::Unload(StringP pathing)
+	void AudioSource::Unload(AudioComponent^ clip)
 	{
-		proxy_audio->ScriptUnload(toStdString(pathing));
-		clips->Remove(getAudio(pathing)->GetEntityID());
+		proxy_audio->ScriptUnload(clip->getFilePath());
+		//clips->Remove(getAudio(pathing)->GetEntityID());
 	}
 
 	TDS::SoundInfo* AudioSource::getSound(StringP pathing)
@@ -58,24 +58,24 @@ namespace ScriptAPI
 		return proxy_audio->ScriptGetID(toStdString(pathing));
 	}
 
-	void AudioSource::Loop(StringP pathing, bool set)
+	void AudioSource::Loop(AudioComponent^ clip, bool set)
 	{
-		return dynamic_cast<AudioComponent^>(clips[pathing])->setLoop(set);
+		return clip->setLoop(set);
 	}
 
-	bool AudioSource::isLooping(StringP pathing)
+	bool AudioSource::isLooping(AudioComponent^ clip)
 	{
-		return dynamic_cast<AudioComponent^>(clips[pathing])->isLoop();
+		return clip->isLoop();
 	}
 
-	bool AudioSource::isMute(StringP pathing)
+	bool AudioSource::isMute(AudioComponent^ clip)
 	{
-		return dynamic_cast<AudioComponent^>(clips[pathing])->isMuted();
+		return clip->isMuted();
 	}
 
-	bool AudioSource::is3D(StringP pathing)
+	bool AudioSource::is3D(AudioComponent^ clip)
 	{
-		return dynamic_cast<AudioComponent^>(clips[pathing])->is3D();
+		return clip->is3D();
 	}
 
 	bool AudioSource::isAnyPlaying()
@@ -83,27 +83,20 @@ namespace ScriptAPI
 		return proxy_audio->ScriptCheckAnyPlaying();
 	}
 
-	bool AudioSource::isPlaying(StringP pathing)
+	bool AudioSource::isPlaying(AudioComponent^ clip)
 	{
-		return dynamic_cast<AudioComponent^>(clips[pathing])->isPlaying();
+		return clip->isPlaying();
 	}
 
-	bool AudioSource::hasFinished(StringP pathing)
+	bool AudioSource::hasFinished(AudioComponent^ clip)
 	{
-		return dynamic_cast<AudioComponent^>(clips[pathing])->finished();
+		return clip->finished();
 	}
 
 	/*TDS::SoundInfo* convertAtS(AudioComponent^ clip)
 	{
 		return (TDS::SoundInfo*)(clip);
 	}*/
-
-	void AudioSource::add_clips(StringP pathing, TDS::EntityID id)
-	{
-		AudioComponent^ temp = gcnew AudioComponent(id);
-		
-		clips->Add(pathing, temp);
-	}
 
 	/*template<typename T>
 	T& AudioSource::operator=(float val)

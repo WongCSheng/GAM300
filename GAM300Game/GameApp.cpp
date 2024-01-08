@@ -72,7 +72,7 @@ namespace TDS
         }break;
         case WM_XBUTTONUP:
         {
-            bool isPressed  = 0;
+            bool isPressed = 0;
             bool isReleased = 1;
             Input::processMouseInput(wParam, lParam, isPressed, isReleased);
         }break;
@@ -132,9 +132,9 @@ namespace TDS
 
     void GamApp::Initialize()
     {
-       GraphicsManager::getInstance().Init(&m_window);
-       AssetManager::GetInstance()->PreloadAssets();
-       skyboxrender.Init();
+        GraphicsManager::getInstance().Init(&m_window);
+        AssetManager::GetInstance()->PreloadAssets();
+        skyboxrender.Init();
     }
 
     void GamApp::FixedUpdate()
@@ -161,22 +161,22 @@ namespace TDS
         {
             TimeStep::CalculateDeltaTime();
             float DeltaTime = TimeStep::GetDeltaTime();
-          
+
             GraphicsManager::getInstance().setCamera(m_GameCamera);
             GraphicsManager::getInstance().GetCamera().setEditorCamera(false);
 
-           GraphicsManager::getInstance().GetCamera().UpdateCamera(DeltaTime, true);
+            GraphicsManager::getInstance().GetCamera().UpdateCamera(DeltaTime, true);
 
             Vec3 m_windowdimension{ static_cast<float>(m_window.getWidth()), static_cast<float>(m_window.getHeight()), 1.f };
             if (GraphicsManager::getInstance().getFrameBuffer().getDimensions() != m_windowdimension && m_windowdimension.x > 0 && m_windowdimension.y > 0)
             {
                 GraphicsManager::getInstance().getFrameBuffer().resize(m_windowdimension, GraphicsManager::getInstance().getRenderPass().getRenderPass());
- 
+
             }
             GraphicsManager::getInstance().StartFrame();
             VkCommandBuffer commandBuffer = GraphicsManager::getInstance().getCommandBuffer();
             std::uint32_t frame = GraphicsManager::getInstance().GetSwapchainRenderer().getFrameIndex();
-            
+
 
             GraphicsManager::getInstance().getRenderPass().beginRenderPass(commandBuffer, &GraphicsManager::getInstance().getFrameBuffer());
 
@@ -189,12 +189,12 @@ namespace TDS
             ecs.runSystems(2, DeltaTime); // Event handler
             ecs.runSystems(3, DeltaTime); // Graphics
 
-          
+
             //// event handling systems 
             GraphicsManager::getInstance().getRenderPass().endRenderPass(commandBuffer);
 
             //GraphicsManager::getInstance().getObjectPicker().Update(commandBuffer, frame, Vec2(Input::getMousePosition().x, Input::getMousePosition().y));
-           
+
 
             GraphicsManager::getInstance().GetSwapchainRenderer().BeginSwapChainRenderPass(commandBuffer);
             GraphicsManager::getInstance().RenderFullScreen();
@@ -454,7 +454,7 @@ namespace TDS
 
     void GamApp::startScriptEngine()
     {
-         //Get the .NET Runtime's path first
+        //Get the .NET Runtime's path first
         const auto DOT_NET_PATH = getDotNetRuntimePath();
         if (DOT_NET_PATH.empty())
             throw std::runtime_error("Failed to find .NET Runtime.");

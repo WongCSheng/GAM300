@@ -31,7 +31,7 @@ namespace ScriptAPI
 		std::string getFilePath();
 		const char* getFilePath_inChar();
 
-		void setFilePath(System::String^ str_path);
+		void setFilePath(System::String str_path);
 
 		int getLoopCount();
 		float getX();
@@ -62,6 +62,7 @@ namespace ScriptAPI
 
 	internal:
 		AudioComponent(TDS::EntityID ID);
+		AudioComponent(System::String pathing);
 		AudioComponent(SI *soundInfo);
 
 	private:

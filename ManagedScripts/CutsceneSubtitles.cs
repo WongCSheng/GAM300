@@ -3,7 +3,8 @@ using System;
 
 public class CutsceneSubtitle : Script
 {
-    String[] Audiofiles;
+    AudioComponent[] AudioClips;
+    AudioSource AudioPlayer;
     String[] Subtitles;
     //AudioSource audio;
     [SerializeField]
@@ -11,9 +12,9 @@ public class CutsceneSubtitle : Script
     public static bool next = true;
     public override void Awake()
     {
-        Audiofiles = new String[17];
+        Audiofiles = new AudioComponent[17];
+        AudioPlayer = gameObject.GetComponent<AudioSource>();
         Subtitles = new String[17];
-        //audio = new AudioSource();
         GraphicsManagerWrapper.ToggleViewFrom2D(true);
         Subtitles[0] = "Father: My Son, if you are reading this, then I am dead,";
         Subtitles[1] = "Father: ...and I've left you with a terrible debt. But you don't have to be";
@@ -41,23 +42,23 @@ public class CutsceneSubtitle : Script
 
         Subtitles[16] = "Father: You'll always be part of the family";
 
-        Audiofiles[0] = "intro1_1";
-        Audiofiles[1] = "intro1_2";
-        Audiofiles[2] = "intro2_1";
-        Audiofiles[3] = "intro2_2";
-        Audiofiles[4] = "intro2_3";
-        Audiofiles[5] = "intro3_1";
-        Audiofiles[6] = "intro4_1";
-        Audiofiles[7] = "intro4_2";
-        Audiofiles[8] = "intro5_1";
-        Audiofiles[9] = "intro5_2";
-        Audiofiles[10] = "intro6_1";
-        Audiofiles[11] = "intro6_2";
-        Audiofiles[12] = "intro7_1";
-        Audiofiles[13] = "intro8_1";
-        Audiofiles[14] = "intro8_2";
-        Audiofiles[15] = "intro9_1";
-        Audiofiles[16] = "intro9_2";
+        AudioClips[0] = "intro1_1";
+        AudioClips[1] = "intro1_2";
+        AudioClips[2] = "intro2_1";
+        AudioClips[3] = "intro2_2";
+        AudioClips[4] = "intro2_3";
+        AudioClips[5] = "intro3_1";
+        AudioClips[6] = "intro4_1";
+        AudioClips[7] = "intro4_2";
+        AudioClips[8] = "intro5_1";
+        AudioClips[9] = "intro5_2";
+        AudioClips[10] = "intro6_1";
+        AudioClips[11] = "intro6_2";
+        AudioClips[12] = "intro7_1";
+        AudioClips[13] = "intro8_1";
+        AudioClips[14] = "intro8_2";
+        AudioClips[15] = "intro9_1";
+        AudioClips[16] = "intro9_2";
 
         //foreach(String str in Audiofiles)
         //{
@@ -72,10 +73,9 @@ public class CutsceneSubtitle : Script
     public override void Update()
     {
         UISpriteComponent Sprite = gameObject.GetComponent<UISpriteComponent>();
-        AudioComponent audio = gameObject.GetComponent<AudioComponent>();
         if (Input.GetKeyDown(Keycode.SPACE))
         {
-            audio.stop(Audiofiles[counter]);
+            AudioPlayer.stop(AudioClips[counter]);
             GraphicsManagerWrapper.ToggleViewFrom2D(false);
             SceneLoader.LoadMainGame();
         }
@@ -93,20 +93,20 @@ public class CutsceneSubtitle : Script
                 if (next)
                 {
                     Sprite.SetFontMessage(Subtitles[counter]);
-                    audio.play(Audiofiles[counter]);
+                    AudioPlayer.play(AudioClips[counter]);
                     next = false;
                 }
-                else if (audio.finished(Audiofiles[counter]))
+                else if (AudioPlayer.finished(AudioClips[counter]))
                 {
                     if (next)
                     {
                         Sprite.setColourAlpha(1);
                         Sprite.SetFontMessage(Subtitles[counter]);
                         //audio.Play(Audiofiles[counter]);
-                        audio.play(Audiofiles[counter]);
+                        AudioPlayer.play(AudioClips[counter]);
                         next = false;
                     }
-                    else if (audio.finished(Audiofiles[counter]))
+                    else if (AudioPlayer.finished(AudioClips[counter]))
                     {
                         next = true;
                         ++counter;

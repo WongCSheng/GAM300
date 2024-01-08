@@ -8,6 +8,11 @@ namespace ScriptAPI
 		//nothing
 	}
 
+	AudioComponent::AudioComponent(System::String pathing)
+	{
+		filePath = toStdString(%pathing);
+	}
+
 	AudioComponent::AudioComponent(SI *soundInfo)
 	{
 		entityID = soundInfo->uniqueID;
@@ -105,9 +110,9 @@ namespace ScriptAPI
 		return filePath.c_str();
 	}
 
-	void AudioComponent::setFilePath(System::String^ str_path)
+	void AudioComponent::setFilePath(System::String str_path)
 	{
-		filePath = toStdString(str_path);
+		filePath = toStdString(%str_path);
 	}
 
 	int AudioComponent::getLoopCount()

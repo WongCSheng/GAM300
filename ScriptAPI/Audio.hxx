@@ -25,34 +25,32 @@ namespace ScriptAPI
     public:
         AudioSource();
         
-        void Play(StringP pathing);
-        void Pause(StringP pathing);
-        void Stop(StringP pathing);
+        void Play(AudioComponent^ clip);
+        void Pause(AudioComponent^ clip);
+        void Stop(AudioComponent^ clip);
         void Load(AudioComponent^ pathing);
-        void Unload(StringP pathing);
+        void Unload(AudioComponent^ clip);
         TDS::SoundInfo* getSound(StringP pathing);
         AudioComponent^ getAudio(StringP pathing);
         unsigned int getUniqueID(StringP pathing);
 
-        void Loop(StringP pathing, bool set);
+        void Loop(AudioComponent^ clip, bool set);
 
         /*template<typename T>
         T& operator=(float val);*/
 
-        bool isLooping(StringP pathing);
-        bool isMute(StringP pathing);
-        bool is3D(StringP pathing);
+        bool isLooping(AudioComponent^ clip);
+        bool isMute(AudioComponent^ clip);
+        bool is3D(AudioComponent^ clip);
 
         bool isAnyPlaying();
-        bool isPlaying(StringP pathing);
-        bool hasFinished(StringP pathing);
+        bool isPlaying(AudioComponent^ clip);
+        bool hasFinished(AudioComponent^ clip);
 
         //Convert from AudioComponent to SoundInfo
         //TDS::SoundInfo* convertAtS(AudioComponent^ clip);
 
-        void add_clips(StringP pathing, TDS::EntityID id);
-
-        System::Collections::Hashtable^ clips; //Equivalent of std::map<EntityID, AudioComponent^>
+        //System::Collections::Hashtable^ clips; //Equivalent of std::map<EntityID, AudioComponent^>
         //TDS::AudioWerks::AudioEngine* audio_engine;
         TDS::proxy_audio_system* proxy_audio;
         unsigned long wait;
