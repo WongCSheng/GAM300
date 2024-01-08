@@ -14,7 +14,7 @@ public class ViewObject : Script
     TransformComponent[] viewableObjTransforms;    //public Transform[] viewableObjTransforms;
     TransformComponent target;                     //transform
     InventoryScript _Inventory;
-    
+
     public string examineObject;
     float root_y;
     float rotateValue;
@@ -32,7 +32,7 @@ public class ViewObject : Script
         var mainCamID = mainCam.GetEntityID();
         var examineCamID = examineCam.GetEntityID();
         var examineUIID = examineUI.GetEntityID();
-        
+
         if (isExaming)
         {
             mainCam.SetActive(mainCamID, false);
@@ -53,13 +53,13 @@ public class ViewObject : Script
                 if (Input.GetKey(Keycode.A))
                 {
                     rotateValue += 1;
-                    
-                   if(target.gameObject.GetComponent<NameTagComponent>().GetTag() == "Painting")
+
+                    if (target.gameObject.GetComponent<NameTagComponent>().GetTag() == "Painting")
                     {
                         //eulerAngles
                         target.SetRotation(new Vector3(0, rotateValue, 0));
                     }
-                    
+
                     else
                     {
                         target.SetRotation(new Vector3(90, 180, rotateValue));
@@ -82,7 +82,7 @@ public class ViewObject : Script
 
                 if (Input.GetKey(Keycode.S))
                 {
-                    if(target.GetPosition().Y > 0.4)
+                    if (target.GetPosition().Y > 0.4)
                     {
                         root_y -= 0.01f;
                         target.SetPosition(new Vector3(target.GetPosition().X, root_y, target.GetPosition().Z));
@@ -91,7 +91,7 @@ public class ViewObject : Script
 
                 if (Input.GetKey(Keycode.W))
                 {
-                    if(target.GetPosition().Y < 3.7)
+                    if (target.GetPosition().Y < 3.7)
                     {
                         root_y += 0.01f;
                         target.SetPosition(new Vector3(target.GetPosition().X, root_y, target.GetPosition().Z));
@@ -128,7 +128,7 @@ public class ViewObject : Script
 
         if (exiting)
         {
-            if(target.gameObject.GetComponent<NameTagComponent>().GetTag() == "Note")
+            if (target.gameObject.GetComponent<NameTagComponent>().GetTag() == "Note")
             {
                 NoteInventoryCheck();
             }
@@ -146,7 +146,7 @@ public class ViewObject : Script
     {
         for (int x = 0; x < viewableObjTransforms.Length; x++)
         {
-            if(examineObject == viewableObjTransforms[x].gameObject.GetComponent<NameTagComponent>().GetName())
+            if ( false/* examineObject == viewableObjTransforms[x].gameObject.GetNameTagComponent().GetName() */)
             {
                 target = viewableObjTransforms[x];
                 target.gameObject.SetActive(target.gameObject.GetEntityID(), true);
@@ -159,7 +159,7 @@ public class ViewObject : Script
     {
         for (int x = 0; x < _Inventory.noteObjsInInventory.Count; x++)
         {
-            if(_Inventory.noteObjsInInventory[x] == target.gameObject.GetComponent<NameTagComponent>().GetName())
+            if (false /* _Inventory.noteObjsInInventory[x] == target.gameObject.GetNameTagComponent().GetName() */)
             {
                 gameObject.GetComponent<FPS_Controller_Script>().playerCanMove = true;
                 gameObject.GetComponent<FPS_Controller_Script>().cameraCanMove = true;
@@ -174,46 +174,46 @@ public class ViewObject : Script
                 break;
             }
 
-            else if(_Inventory.noteObjsInInventory[x] == "")
+            else if (_Inventory.noteObjsInInventory[x] == "")
             {
-                if(target.gameObject.GetComponent<NameTagComponent>().GetName() == "Reciept")
+                if (false /* target.gameObject.GetNameTagComponent().GetName() == "Reciept" */)
                 {
-            //        if (!playedAudio)
-            //        {
-            //            playerVOSource.clip = voClip;
-            //            playerVOSource.Play();
-            //            subtitles.enabled = true;
-            //            subtitles.text = "Martin (Internal): \"According to this, there’s a painting somewhere in here. But where?\"";
-            //            playedAudio = true;
-            //            isExaming = false;
-            //            examineUI.SetActive(false);
-            //        }
+                    //        if (!playedAudio)
+                    //        {
+                    //            playerVOSource.clip = voClip;
+                    //            playerVOSource.Play();
+                    //            subtitles.enabled = true;
+                    //            subtitles.text = "Martin (Internal): \"According to this, there’s a painting somewhere in here. But where?\"";
+                    //            playedAudio = true;
+                    //            isExaming = false;
+                    //            examineUI.SetActive(false);
+                    //        }
 
-            //        if (!playerVOSource.isPlaying && playedAudio)
-            //        {
-            //            subtitles.enabled = false;
-            //            added.enabled = true;
-            //            _Inventory.noteObjsInInventory[x] = target.name.ToString();
-            //            GetComponent<FPS_Controller_Script>().playerCanMove = true;
-            //            GetComponent<FPS_Controller_Script>().cameraCanMove = true;
-            //            examineCam.SetActive(false);
-            //            examineCam.SetActive(false);
-            //            mainCam.SetActive(true);
-            //            isExaming = false;
-            //            foundObj = false;
-            //            examineUI.SetActive(false);
-            //            target.gameObject.SetActive(false);
-            //            Cursor.visible = false;
-            //            Cursor.lockState = CursorLockMode.Locked;
-            //            exiting = false;
-            //            break;
-            //        }
+                    //        if (!playerVOSource.isPlaying && playedAudio)
+                    //        {
+                    //            subtitles.enabled = false;
+                    //            added.enabled = true;
+                    //            _Inventory.noteObjsInInventory[x] = target.name.ToString();
+                    //            GetComponent<FPS_Controller_Script>().playerCanMove = true;
+                    //            GetComponent<FPS_Controller_Script>().cameraCanMove = true;
+                    //            examineCam.SetActive(false);
+                    //            examineCam.SetActive(false);
+                    //            mainCam.SetActive(true);
+                    //            isExaming = false;
+                    //            foundObj = false;
+                    //            examineUI.SetActive(false);
+                    //            target.gameObject.SetActive(false);
+                    //            Cursor.visible = false;
+                    //            Cursor.lockState = CursorLockMode.Locked;
+                    //            exiting = false;
+                    //            break;
+                    //        }
                 }
                 else
                 {
                     //subtitles.enabled = false;
                     //added.enabled = true;
-                    _Inventory.noteObjsInInventory[x] = target.gameObject.GetComponent<NameTagComponent>().GetName();
+                    //_Inventory.noteObjsInInventory[x] = target.gameObject.GetNameTagComponent().GetName();
                     gameObject.GetComponent<FPS_Controller_Script>().playerCanMove = true;
                     gameObject.GetComponent<FPS_Controller_Script>().cameraCanMove = true;
                     examineCam.SetActive(examineCam.GetEntityID(), false);
@@ -240,7 +240,7 @@ public class ViewObject : Script
     {
         for (int x = 0; x < _Inventory.itemObjsInInventory.Count; x++)
         {
-            if(_Inventory.itemObjsInInventory[x] == target.gameObject.GetComponent<NameTagComponent>().GetName())
+            if (false /* _Inventory.itemObjsInInventory[x] == target.gameObject.GetNameTagComponent().GetName() */)
             {
                 gameObject.GetComponent<FPS_Controller_Script>().playerCanMove = true;
                 gameObject.GetComponent<FPS_Controller_Script>().cameraCanMove = true;
@@ -258,7 +258,7 @@ public class ViewObject : Script
             else if (_Inventory.itemObjsInInventory[x] == "")
             {
                 //added.enabled = true;
-                _Inventory.itemObjsInInventory[x] = target.gameObject.GetComponent<NameTagComponent>().GetName();
+                //_Inventory.itemObjsInInventory[x] = target.gameObject.GetNameTagComponent().GetName();
                 gameObject.GetComponent<FPS_Controller_Script>().playerCanMove = true;
                 gameObject.GetComponent<FPS_Controller_Script>().cameraCanMove = true;
                 examineCam.SetActive(examineCam.GetEntityID(), false);
@@ -283,7 +283,7 @@ public class ViewObject : Script
     {
         for (int x = 0; x < _Inventory.paintingObjsInInventory.Count; x++)
         {
-            if(_Inventory.paintingObjsInInventory[x] == target.gameObject.GetComponent<NameTagComponent>().GetName())
+            if (false /* _Inventory.paintingObjsInInventory[x] == target.gameObject.GetNameTagComponent().GetName() */)
             {
                 gameObject.GetComponent<FPS_Controller_Script>().playerCanMove = true;
                 gameObject.GetComponent<FPS_Controller_Script>().cameraCanMove = true;
@@ -295,7 +295,7 @@ public class ViewObject : Script
                 target.gameObject.SetActive(target.gameObject.GetEntityID(), false);
                 //Cursor.visible = false;
                 Cursor.LockState = CursorLockMode.Locked;
-                exiting= false;
+                exiting = false;
                 break;
 
             }
@@ -303,7 +303,7 @@ public class ViewObject : Script
             else if (_Inventory.paintingObjsInInventory[x] == "")
             {
                 //added.enabled = true;
-                _Inventory.paintingObjsInInventory[x] = target.gameObject.GetComponent<NameTagComponent>().GetName();
+                //_Inventory.paintingObjsInInventory[x] = target.gameObject.GetNameTagComponent().GetName();
                 gameObject.GetComponent<FPS_Controller_Script>().playerCanMove = true;
                 gameObject.GetComponent<FPS_Controller_Script>().cameraCanMove = true;
                 examineCam.SetActive(examineCam.GetEntityID(), false);

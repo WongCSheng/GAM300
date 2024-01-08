@@ -21,23 +21,22 @@ public class InventoryBox : Script
     {
         if (storedObjName != "")
         {
-            if(gameObject.GetComponent<NameTagComponent>().GetTag() == "Note" && notesGrp.activeInHierarchy(notesGrp.GetEntityID()))
+            if (/* gameObject.GetNameTagComponent().GetTag() == "Note" && */ notesGrp.activeInHierarchy(notesGrp.GetEntityID()))
             {
-                if(storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
+                if (storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
                 {
                     for (int i = 0; i < myInventoryScript.noteObjImg.Count; i++)
                     {
                         if (myInventoryScript.noteObjImg[i] == storedObjName)
                         {
                             gameObject.GetComponent<UISpriteComponent>().SetTextureName(myInventoryScript.noteObjImg[i]);
-                            gameObject.GetComponent<Button>().interactable = true;                           
-                            
+                            gameObject.SetActive(gameObject.GetEntityID(), true);
                         }
                     }
                 }
             }
 
-            else if (gameObject.GetComponent<NameTagComponent>().GetTag() == "Item" && itemsGrp.activeInHierarchy(itemsGrp.GetEntityID()))
+            else if (/* gameObject.GetNameTagComponent().GetTag() == "Item" && */ itemsGrp.activeInHierarchy(itemsGrp.GetEntityID()))
             {
                 if (storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
                 {
@@ -46,13 +45,13 @@ public class InventoryBox : Script
                         if (myInventoryScript.itemObjImg[i] == storedObjName)
                         {
                             gameObject.GetComponent<UISpriteComponent>().SetTextureName(myInventoryScript.itemObjImg[i]);
-                            gameObject.GetComponent<Button>().interactable = true;
+                            gameObject.SetActive(gameObject.GetEntityID(), true);
                         }
                     }
                 }
             }
 
-            else if (gameObject.GetComponent<NameTagComponent>().GetTag() == "Painting" && paintingsGrp.activeInHierarchy(paintingsGrp.GetEntityID()))
+            else if (/* gameObject.GetNameTagComponent().GetTag() == "Painting" && */ paintingsGrp.activeInHierarchy(paintingsGrp.GetEntityID()))
             {
                 if (storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
                 {
@@ -61,7 +60,7 @@ public class InventoryBox : Script
                         if (myInventoryScript.paintingsObjImg[i] == storedObjName)
                         {
                             gameObject.GetComponent<UISpriteComponent>().SetTextureName(myInventoryScript.paintingsObjImg[i]);
-                            gameObject.GetComponent<Button>().interactable = true;
+                            gameObject.SetActive(gameObject.GetEntityID(), true);
                         }
                     }
                 }
@@ -79,24 +78,20 @@ public class InventoryBox : Script
         myViewObjScript.examineObject = storedObjName;
     }
 
-    public void UseObject()
-    {
-        if (storedObjName == "Starting Battery" || storedObjName == "Toilet_Battery")
-        {
-            //myFlashlightScript.lightSource.intensity = 4;
-            //myInventoryScript.inventoryAudioSource.clip = myInventoryScript.inventorySounds[0];
-            //myInventoryScript.inventoryAudioSource.volume = 1;
-            //myInventoryScript.inventoryAudioSource.Play();
+    //public void UseObject()
+    //{
+    //    if (storedObjName == "Starting Battery" || storedObjName == "Toilet_Battery")
+    //    {
+    //        for (int i = 0; i < myInventoryScript.itemObjsInInventory.Count; i++)
+    //        {
+    //            if (myInventoryScript.itemObjsInInventory[i] == storedObjName)
+    //            {
+    //                myInventoryScript.itemObjsInInventory[i] = "";
+    //                storedObjName = "";
+                    
 
-            for (int i = 0; i < myInventoryScript.itemObjsInInventory.Count; i++)
-            {
-                if (myInventoryScript.itemObjsInInventory[i] == storedObjName)
-                {
-                    myInventoryScript.itemObjsInInventory[i] = "";
-                    storedObjName = "";
-                    //GetComponent<Button>().image.sprite = emptyBox;
-                }
-            }
-        }
-    }
+    //            }
+    //        }
+    //    }
+    //}
 }
