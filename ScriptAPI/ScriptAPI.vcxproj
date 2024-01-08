@@ -140,6 +140,7 @@
     <ClInclude Include="Components\ColliderComponent.hxx" />
     <ClInclude Include="Components\ComponentBase.hxx" />
     <ClInclude Include="Components\GraphicComponent.hxx" />
+    <ClInclude Include="Components\InventoryBox.hxx" />
     <ClInclude Include="Components\NameTagComponent.hxx" />
     <ClInclude Include="Components\RigidBodyComponent.hxx" />
     <ClInclude Include="Components\SphereColliderComponent.hxx" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Components\CapsuleColliderComponent.cxx" />
     <ClCompile Include="Components\ColliderComponent.cxx" />
     <ClCompile Include="Components\GraphicComponent.cxx" />
+    <ClCompile Include="Components\InventoryBox.cxx" />
     <ClCompile Include="Components\NameTagComponent.cxx" />
     <ClCompile Include="Components\RigidBodyComponent.cxx" />
     <ClCompile Include="Components\SphereColliderComponent.cxx" />
