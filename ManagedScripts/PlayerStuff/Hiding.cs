@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using ScriptAPI;
 
 public class Hiding : Script
@@ -14,20 +14,22 @@ public class Hiding : Script
     public GameObject _InteractUI;
     public CheckGameState myGameState;
     public GameObject closet;
-    /*[Header("AudioStuff")]
-    public AudioSource playerVOSource;
-    public AudioClip voClip;
-    public Text subtitles;*/
+    [Header("AudioStuff")]
+    public AudioSource AudioPlayer;
+    public AudioClip voClip = new AudioClip("pc_hideinclosetfirst");
+    public Text subtitles;
 
     bool playedAudio;
 
 
     public override void Awake()
     {
+        AudioPlayer = gameObject.GetComponent<AudioSource>();
     }
 
     public override void Start()
     {
+        
     }
 
     public override void Update()
@@ -55,22 +57,22 @@ public class Hiding : Script
                 _flashlight.is_Enabled = false;
 
 
-                /*if (gameObject.GetNameTagComponent().GetName() == "Bedroom_Body" && myGameState._CurrentState == GameState.Gameplay)
+                if (gameObject.GetNameTagComponent().GetName() == "Bedroom_Body" && myGameState._CurrentState == GameState.Gameplay)
                 {
                     if (!playedAudio)
                     {
-                        playerVOSource.clip = voClip;
-                        playerVOSource.Play();
+                        //voClip = ; //Sound Clip name for player
+                        AudioPlayer.Play(voClip);
                         subtitles.enabled = true;
                         subtitles.text = "Martin (Internal): \"Nothing inside, but I could hide in here in case someone shows up.\"";
                         playedAudio = true;
                     }
 
-                    if (!playerVOSource.isPlaying && playedAudio)
+                    if (!AudioPlayer.isPlaying() && playedAudio)
                     {
                         subtitles.enabled = false;
                     }
-                }*/
+                }
 
                 //Input.KeyRelease(Keycode.E);
             }
