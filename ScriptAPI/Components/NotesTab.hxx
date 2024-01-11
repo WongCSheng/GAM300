@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ComponentBase.hxx"
 #include "ColliderComponent.hxx"
 #include "UISpriteComponent.hxx"
 
@@ -8,12 +9,20 @@
  * Stores notes collected by the player throughout the game.
 */
 
-public value class NotesTab
+namespace ScriptAPI
 {
-public:
-	
-internal:
-	NotesTab(TDS::EntityID ID);
+	public value class NotesTab : ComponentBase
+	{
+	public:
 
-private:
-};
+		virtual TDS::EntityID GetEntityID();
+		virtual void SetEntityID(TDS::EntityID ID);
+
+	internal:
+		NotesTab(TDS::EntityID ID);
+
+	private:
+
+		TDS::EntityID id;
+	};
+}

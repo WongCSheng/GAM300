@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ComponentBase.hxx"
 #include "ColliderComponent.hxx"
 #include "UISpriteComponent.hxx"
 
@@ -8,14 +9,20 @@
  * Stores the paintings that the player collected throughout the game.
 */
 
-public value class PaintingTab
+namespace ScriptAPI
 {
-public:
+	public value class PaintingTab : ComponentBase
+	{
+	public:
 
-internal:
-	PaintingTab(TDS::EntityID ID);
+		virtual TDS::EntityID GetEntityID();
+		virtual void SetEntityID(TDS::EntityID id);
 
-private:
+	internal:
+		PaintingTab(TDS::EntityID ID);
 
+	private:
 
-};
+		TDS::EntityID id;
+	};
+}
