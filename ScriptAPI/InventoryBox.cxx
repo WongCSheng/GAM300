@@ -18,9 +18,5 @@ namespace ScriptAPI
 	{
 		show_mouse = true;
 		show_menu = false;
-		position = Vector3(TDS::GetCameraComponent(id)->getPosition());
-
-		float width, height;
-		width = TDS::GetCameraComponent(id)->getForwardVector().y * TDS::GetCameraComponent(id)->getFOV();
 	}
 }

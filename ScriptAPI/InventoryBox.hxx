@@ -31,8 +31,7 @@ namespace ScriptAPI
 
 	private:
 		bool show_mouse, show_menu;
-		Vector3 position;
-		//Quaternion matrix;
+		UISpriteComponent sprite;
 		float opacity;
 		Vector2 size;
 
