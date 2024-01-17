@@ -379,7 +379,6 @@ namespace TDS
 			if (ImGui::BeginDragDropSource())
 			{
 				ImGui::SetDragDropPayload("draggedEntity", &entityID, sizeof(int));
-				ImGui::SetDragDropPayload("draggedEntityProperty", &entityID, sizeof(int));
 				ImGui::EndDragDropSource();
 			}
 
@@ -453,7 +452,6 @@ namespace TDS
 		if (ImGui::BeginDragDropSource())
 		{
 			ImGui::SetDragDropPayload("draggedEntity", &entityID, sizeof(int));
-			ImGui::SetDragDropPayload("draggedEntityProperty", &entityID, sizeof(int));
 			ImGui::EndDragDropSource();
 		}
 
@@ -670,6 +668,12 @@ namespace TDS
 					// Entity will be a selectable as there are no children
 					bool currentItemHovered = false;
 					selected = ImGui::Selectable(nameTagComponent->GetName().c_str(), selectedEntity == entityID, ImGuiSelectableFlags_SpanAllColumns);
+
+					if (ImGui::BeginDragDropSource())
+					{
+						ImGui::SetDragDropPayload("draggedEntity", &entityID, sizeof(int));
+						ImGui::EndDragDropSource();
+					}
 
 					if (ImGui::IsItemHovered())
 					{
