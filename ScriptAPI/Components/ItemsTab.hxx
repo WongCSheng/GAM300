@@ -4,8 +4,6 @@
 #include "ColliderComponent.hxx"
 #include "UISpriteComponent.hxx"
 
-#include <map>
-
 /**
  * @brief This is a sub component of an inventory system.
  * Items are consumable, meaning is 1 time use and will disappear afterwards.
@@ -27,7 +25,7 @@ namespace ScriptAPI
 
 	private:
 		int rows, cols;
-		std::map<Vector2, System::String^> item; //Map of Vector2, System::String^
+		System::Collections::Hashtable^ item; //Map of Vector2, System::String^
 
 
 		TDS::EntityID id;

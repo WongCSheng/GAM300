@@ -4,7 +4,7 @@ namespace ScriptAPI
 {
 	ItemsTab::ItemsTab(TDS::EntityID ID) : id(ID)
 	{
-		//nothing
+		item = gcnew System::Collections::Hashtable();
 	}
 
 	bool ItemsTab::click()
