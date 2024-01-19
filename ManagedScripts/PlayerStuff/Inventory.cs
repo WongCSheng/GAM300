@@ -3,7 +3,7 @@
 public class InventoryScript : Script
 {
     public GameObject _InventoryObj;
-    public ViewObject _ViewObjectScript;
+    public View_Object _ViewObjectScript;
 
     public List<string> noteObjsInInventory;
     public List<string> itemObjsInInventory;
@@ -20,7 +20,7 @@ public class InventoryScript : Script
     public string storedObjName;
     //item images
     public GameObject Item1;
-    
+        
     //public GameObject Item2;
     //public GameObject Item3;
     //public GameObject Item4;
@@ -109,11 +109,9 @@ public class InventoryScript : Script
             }
         }
 
-
-
         if (storedObjName != "")
         {
-            if (gameObject.GetNameTagComponent().GetTag() == "Note" && NotesTab.activeInHierarchy(NotesTab.GetEntityID()))
+            if (gameObject.GetComponent<NameTagComponent>().GetTag() == "Note" && NotesTab.activeInHierarchy(NotesTab.GetEntityID()))
             {
                 if (storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
                 {
@@ -128,7 +126,7 @@ public class InventoryScript : Script
                 }
             }
 
-            else if (gameObject.GetNameTagComponent().GetTag() == "Item" && ItemTab.activeInHierarchy(ItemTab.GetEntityID()))
+            else if (gameObject.GetComponent<NameTagComponent>().GetTag() == "Item" && ItemTab.activeInHierarchy(ItemTab.GetEntityID()))
             {
                 if (storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
                 {
@@ -143,7 +141,7 @@ public class InventoryScript : Script
                 }
             }
 
-            else if (gameObject.GetNameTagComponent().GetTag() == "Painting" && PaintingsTab.activeInHierarchy(PaintingsTab.GetEntityID()))
+            else if (gameObject.GetComponent<NameTagComponent>().GetTag() == "Painting" && PaintingsTab.activeInHierarchy(PaintingsTab.GetEntityID()))
             {
                 if (storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
                 {
@@ -287,7 +285,7 @@ public class InventoryScript : Script
     {
         _InventoryObj.SetActive(_InventoryObj.GetEntityID(), !_InventoryObj.activeInHierarchy(_InventoryObj.GetEntityID()));
         Item1.SetActive(Item1.GetEntityID(), !_InventoryObj.activeInHierarchy(Item1.GetEntityID()));
-        
+            
         //Item2.SetActive(Item2.GetEntityID(), !_InventoryObj.activeInHierarchy(Item2.GetEntityID()));
         //Item3.SetActive(Item3.GetEntityID(), !_InventoryObj.activeInHierarchy(Item3.GetEntityID()));
         //Item4.SetActive(Item4.GetEntityID(), !_InventoryObj.activeInHierarchy(Item4.GetEntityID()));
@@ -328,9 +326,9 @@ public class InventoryScript : Script
     public void initObjects()
     {
         _InventoryObj = GameObjectScriptFind("Inventory");
-        
+            
         Item1 = GameObjectScriptFind("Item1");
-        Item1.GetNameTagComponent().SetTag("Item");
+        Item1.GetComponent<NameTagComponent>().SetTag("Item");
         //Item2 = GameObjectScriptFind("Item2");
         //Item3 = GameObjectScriptFind("Item3");
         //Item4 = GameObjectScriptFind("Item4");
@@ -369,5 +367,3 @@ public class InventoryScript : Script
         CloseText       = GameObjectScriptFind("Close Text");
     }
 }
-
-

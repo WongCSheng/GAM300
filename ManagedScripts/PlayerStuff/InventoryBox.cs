@@ -5,7 +5,7 @@ using static System.Net.Mime.MediaTypeNames;
 public class InventoryBox : Script
 {
     public string storedObjName;
-    public ViewObject myViewObjScript;
+    public View_Object myViewObjScript;
     public InventoryScript myInventoryScript;
     public GameObject notesGrp;
     public GameObject itemsGrp;
@@ -21,7 +21,7 @@ public class InventoryBox : Script
     {
         if (storedObjName != "")
         {
-            if (gameObject.GetNameTagComponent().GetTag() == "Note" && notesGrp.activeInHierarchy(notesGrp.GetEntityID()))
+            if (gameObject.GetComponent<NameTagComponent>().GetTag() == "Note" && notesGrp.activeInHierarchy(notesGrp.GetEntityID()))
             {
                 if (storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
                 {
@@ -36,7 +36,7 @@ public class InventoryBox : Script
                 }
             }
 
-            else if (gameObject.GetNameTagComponent().GetTag() == "Item" && itemsGrp.activeInHierarchy(itemsGrp.GetEntityID()))
+            else if (gameObject.GetComponent<NameTagComponent>().GetTag() == "Item" && itemsGrp.activeInHierarchy(itemsGrp.GetEntityID()))
             {
                 if (storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
                 {
@@ -51,7 +51,7 @@ public class InventoryBox : Script
                 }
             }
 
-            else if (gameObject.GetNameTagComponent().GetTag() == "Painting" && paintingsGrp.activeInHierarchy(paintingsGrp.GetEntityID()))
+            else if (gameObject.GetComponent<NameTagComponent>().GetTag() == "Painting" && paintingsGrp.activeInHierarchy(paintingsGrp.GetEntityID()))
             {
                 if (storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
                 {
@@ -88,7 +88,7 @@ public class InventoryBox : Script
     //            {
     //                myInventoryScript.itemObjsInInventory[i] = "";
     //                storedObjName = "";
-                    
+                        
 
     //            }
     //        }

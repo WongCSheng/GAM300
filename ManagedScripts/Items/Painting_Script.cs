@@ -5,7 +5,8 @@ public class Painting_Script : Script
 {
     //public Material _PaintingMaterial;
     //public GameObject _OpenPaintingTrigger;
-    public GameObject paintingParent;
+    public GameObject painting1, painting2, painting3, painting4,
+        painting5, painting6, painting7, painting8;
     //public Animator _PaintingAnimator;
     public bool opened;
     //public Flashlight_Script _FlashlightScript;
@@ -32,8 +33,39 @@ public class Painting_Script : Script
         voClip[1] = "pc_shinelightafterreceipt";
         //_color.a = 1;
         timer = 1.0f;
-        Console.WriteLine("what");
+        Console.WriteLine("Painting script");
         paintingTaken = false;
+
+        Console.WriteLine("Painting Script Awake");
+    }
+
+    public override void Start()
+    {
+        painting1.GetComponent<NameTagComponent>().SetTag("Painting");
+        painting1.GetComponent<NameTagComponent>().SetName("p01");
+        painting1.SetActive(painting1.GetEntityID(), true);
+        Console.WriteLine("Painting Script Start");
+
+        //painting2.GetComponent<NameTagComponent>().SetTag("Painting");
+        //painting2.GetComponent<NameTagComponent>().SetName("p02");
+
+        //painting3.GetComponent<NameTagComponent>().SetTag("Painting");
+        //painting3.GetComponent<NameTagComponent>().SetName("p03");
+
+        //painting4.GetComponent<NameTagComponent>().SetTag("Painting");
+        //painting4.GetComponent<NameTagComponent>().SetName("p04");
+
+        //painting5.GetComponent<NameTagComponent>().SetTag("Painting");
+        //painting5.GetComponent<NameTagComponent>().SetName("p05");
+
+        //painting6.GetComponent<NameTagComponent>().SetTag("Painting");
+        //painting6.GetComponent<NameTagComponent>().SetName("p06");
+
+        //painting7.GetComponent<NameTagComponent>().SetTag("Painting");
+        //painting7.GetComponent<NameTagComponent>().SetName("p07");
+
+        //painting8.GetComponent<NameTagComponent>().SetTag("Painting");
+        //painting8.GetComponent<NameTagComponent>().SetName("p08");
     }
 
     // Update is called once per frame
@@ -57,34 +89,34 @@ public class Painting_Script : Script
         //    collided = false;
         //}
 
-        if (gameObject.GetComponent<RigidBodyComponent>().IsSensorActivated()) // returns true if player is near it
-        {
-            if (timer <= 0.0f)
-            {
-                if (!receiptFound)
-                {
-                    //Audio.play(voClip[0]);
-                }
-                else
-                {
-                    //Audio.play(voClip[1]);
-                }
-            }
-            else
-            {
-                timer -= Time.deltaTime;
-            }
+        //if (gameObject.GetComponent<RigidBodyComponent>().IsSensorActivated()) // returns true if player is near it
+        //{
+        //    if (timer <= 0.0f)
+        //    {
+        //        if (!receiptFound)
+        //        {
+        //            //Audio.play(voClip[0]);
+        //        }
+        //        else
+        //        {
+        //            //Audio.play(voClip[1]);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        timer -= Time.deltaTime;
+        //    }
 
-            if (Input.GetKeyDown(Keycode.E) && !paintingTaken && paintingParent.GetEntityID() != 0)
-            {
-                paintingParent.SetActive(paintingParent.GetEntityID(), false);
-                paintingTaken = true;
-            }
-        }
-        else
-        {
-            timer = 1.0f;
-        }
+        //    if (Input.GetKeyDown(Keycode.E) && !paintingTaken && paintingParent.GetEntityID() != 0)
+        //    {
+        //        paintingParent.SetActive(paintingParent.GetEntityID(), false);
+        //        paintingTaken = true;
+        //    }
+        //}
+        //else
+        //{
+        //    timer = 1.0f;
+        //}
 
         //if (_color.getColourAlpha() <= 0.6f)
         //{

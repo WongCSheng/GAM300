@@ -3,9 +3,9 @@ using System;
 
 public class PaintingTrigger_Script : Script
 {
-    public GameObject _InteractUI;
-    public GameObject _EventThree;
-    public GameObject paintingRenderer;
+    //public GameObject _InteractUI;
+    //public GameObject _EventThree;
+    //public GameObject paintingRenderer;
     public Painting_Script _PaintingScript;
     public InventoryScript _InventoryScript;
     public bool collided;
