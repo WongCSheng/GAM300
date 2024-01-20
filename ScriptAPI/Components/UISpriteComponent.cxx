@@ -114,7 +114,6 @@ namespace ScriptAPI
 	}
 	void UISpriteComponent::SetEnableSprite(bool status)
 	{
-		Console.WriteLine("asdasdasd\n");
 		TDS::GetUISprite(entityID)->SetEnableSprite(status);
 	}
 	void UISpriteComponent::SetEntityID(TDS::EntityID ID)

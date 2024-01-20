@@ -19,58 +19,59 @@ public class InventoryBox : Script
 
     public override void Update()
     {
-        if (storedObjName != "")
-        {
-            if (gameObject.GetComponent<NameTagComponent>().GetTag() == "Note" && notesGrp.activeInHierarchy(notesGrp.GetEntityID()))
-            {
-                if (storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
-                {
-                    for (int i = 0; i < myInventoryScript.noteObjImg.Count; i++)
-                    {
-                        if (myInventoryScript.noteObjImg[i] == storedObjName)
-                        {
-                            gameObject.GetComponent<UISpriteComponent>().SetTextureName(myInventoryScript.noteObjImg[i]);
-                            gameObject.SetActive(gameObject.GetEntityID(), true);
-                        }
-                    }
-                }
-            }
+        
+        // if (storedObjName != "")
+        // {
+        //     if (gameObject.GetComponent<NameTagComponent>().GetTag() == "Note" && notesGrp.activeInHierarchy(notesGrp.GetEntityID()))
+        //     {
+        //         if (storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
+        //         {
+        //             for (int i = 0; i < myInventoryScript.noteObjImg.Count; i++)
+        //             {
+        //                 if (myInventoryScript.noteObjImg[i] == storedObjName)
+        //                 {
+        //                     gameObject.GetComponent<UISpriteComponent>().SetTextureName(myInventoryScript.noteObjImg[i]);
+        //                     gameObject.SetActive(gameObject.GetEntityID(), true);
+        //                 }
+        //             }
+        //         }
+        //     }
 
-            else if (gameObject.GetComponent<NameTagComponent>().GetTag() == "Item" && itemsGrp.activeInHierarchy(itemsGrp.GetEntityID()))
-            {
-                if (storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
-                {
-                    for (int i = 0; i < myInventoryScript.itemObjImg.Count; i++)
-                    {
-                        if (myInventoryScript.itemObjImg[i] == storedObjName)
-                        {
-                            gameObject.GetComponent<UISpriteComponent>().SetTextureName(myInventoryScript.itemObjImg[i]);
-                            gameObject.SetActive(gameObject.GetEntityID(), true);
-                        }
-                    }
-                }
-            }
+        //     else if (gameObject.GetComponent<NameTagComponent>().GetTag() == "Item" && itemsGrp.activeInHierarchy(itemsGrp.GetEntityID()))
+        //     {
+        //         if (storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
+        //         {
+        //             for (int i = 0; i < myInventoryScript.itemObjImg.Count; i++)
+        //             {
+        //                 if (myInventoryScript.itemObjImg[i] == storedObjName)
+        //                 {
+        //                     gameObject.GetComponent<UISpriteComponent>().SetTextureName(myInventoryScript.itemObjImg[i]);
+        //                     gameObject.SetActive(gameObject.GetEntityID(), true);
+        //                 }
+        //             }
+        //         }
+        //     }
 
-            else if (gameObject.GetComponent<NameTagComponent>().GetTag() == "Painting" && paintingsGrp.activeInHierarchy(paintingsGrp.GetEntityID()))
-            {
-                if (storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
-                {
-                    for (int i = 0; i < myInventoryScript.paintingsObjImg.Count; i++)
-                    {
-                        if (myInventoryScript.paintingsObjImg[i] == storedObjName)
-                        {
-                            gameObject.GetComponent<UISpriteComponent>().SetTextureName(myInventoryScript.paintingsObjImg[i]);
-                            gameObject.SetActive(gameObject.GetEntityID(), true);
-                        }
-                    }
-                }
-            }
-        }
+        //     else if (gameObject.GetComponent<NameTagComponent>().GetTag() == "Painting" && paintingsGrp.activeInHierarchy(paintingsGrp.GetEntityID()))
+        //     {
+        //         if (storedObjName != gameObject.GetComponent<UISpriteComponent>().GetTextureName())
+        //         {
+        //             for (int i = 0; i < myInventoryScript.paintingsObjImg.Count; i++)
+        //             {
+        //                 if (myInventoryScript.paintingsObjImg[i] == storedObjName)
+        //                 {
+        //                     gameObject.GetComponent<UISpriteComponent>().SetTextureName(myInventoryScript.paintingsObjImg[i]);
+        //                     gameObject.SetActive(gameObject.GetEntityID(), true);
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
-        else if (storedObjName == "")
-        {
-            gameObject.GetComponent<Button>().interactable = false;
-        }
+        // else if (storedObjName == "")
+        // {
+        //     gameObject.GetComponent<Button>().interactable = false;
+        // }
     }
 
     public void AssignViewObjectString()
