@@ -112,6 +112,11 @@ namespace ScriptAPI
 		}
 		TDS::GetUISprite(entityID)->SetFontBackgroundColourViaFloat(color.X, color.Y, color.Z, color.W);
 	}
+	void UISpriteComponent::SetEnableSprite(bool status)
+	{
+		Console.WriteLine("asdasdasd\n");
+		TDS::GetUISprite(entityID)->SetEnableSprite(status);
+	}
 	void UISpriteComponent::SetEntityID(TDS::EntityID ID)
 	{
 		entityID = ID;
