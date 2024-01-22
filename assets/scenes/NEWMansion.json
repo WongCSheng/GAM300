@@ -1,31 +1,31 @@
 {
     "Archetype Sizes": {
-        "11000010000000": {
+        "110000100000000": {
             "0": 50592,
             "1": 74400,
             "6": 98208
         },
-        "11010011000000": {
+        "110100110000000": {
             "0": 11424,
             "1": 16800,
             "3": 10752,
             "6": 22176,
             "7": 5376
         },
-        "11001010000000": {
+        "110010100000000": {
             "0": 136,
             "1": 200,
             "4": 56,
             "6": 264
         },
-        "11000011100000": {
+        "110000111000000": {
             "0": 136,
             "1": 200,
             "6": 264,
             "7": 64,
             "8": 32
         },
-        "11000000000000": {
+        "110000000000000": {
             "0": 816,
             "1": 1200
         },
@@ -37,7 +37,7 @@
     },
     "Entity Data": {
         "1": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Mansion Layout",
@@ -365,7 +365,7 @@
             }
         },
         "2": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "OUTDoub_Galley",
@@ -409,7 +409,7 @@
             }
         },
         "393": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Long_Table02",
@@ -456,7 +456,7 @@
             }
         },
         "3": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Plate__1",
@@ -500,7 +500,7 @@
             }
         },
         "4": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube",
@@ -544,7 +544,7 @@
             }
         },
         "387": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "RoundTable_S",
@@ -591,7 +591,7 @@
             }
         },
         "5": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Ceiling",
@@ -635,7 +635,7 @@
             }
         },
         "397": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Plate",
@@ -679,7 +679,7 @@
             }
         },
         "6": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Tube__3",
@@ -723,7 +723,7 @@
             }
         },
         "7": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "OUTSing_Study",
@@ -767,7 +767,7 @@
             }
         },
         "407": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "ROMAN",
@@ -811,7 +811,7 @@
             }
         },
         "8": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INSing_Study",
@@ -855,7 +855,7 @@
             }
         },
         "9": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Tube__2",
@@ -899,7 +899,7 @@
             }
         },
         "401": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Plate",
@@ -943,7 +943,7 @@
             }
         },
         "10": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INKicthen_Blue",
@@ -987,7 +987,7 @@
             }
         },
         "11": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "OUT_Study",
@@ -1031,7 +1031,7 @@
             }
         },
         "395": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Plate",
@@ -1075,7 +1075,7 @@
             }
         },
         "12": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "IN_Study",
@@ -1119,7 +1119,7 @@
             }
         },
         "13": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Extrude_13",
@@ -1163,7 +1163,7 @@
             }
         },
         "405": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Short_Hand",
@@ -1207,7 +1207,7 @@
             }
         },
         "14": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Plate",
@@ -1251,7 +1251,7 @@
             }
         },
         "15": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "ninja_star_0",
@@ -1344,7 +1344,7 @@
             }
         },
         "415": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "shelf_3",
@@ -1388,7 +1388,7 @@
             }
         },
         "16": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Main_entrance",
@@ -1432,7 +1432,7 @@
             }
         },
         "17": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Plate__11",
@@ -1476,7 +1476,7 @@
             }
         },
         "409": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Base",
@@ -1520,7 +1520,7 @@
             }
         },
         "18": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INDoub_Galley",
@@ -1564,7 +1564,7 @@
             }
         },
         "19": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Oil_Tank__1",
@@ -1608,7 +1608,7 @@
             }
         },
         "403": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Knob",
@@ -1652,7 +1652,7 @@
             }
         },
         "20": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "OUTDoub_Liv",
@@ -1696,7 +1696,7 @@
             }
         },
         "21": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INDinning_Wood",
@@ -1740,7 +1740,7 @@
             }
         },
         "413": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Beak",
@@ -1784,7 +1784,7 @@
             }
         },
         "22": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube__3",
@@ -1828,7 +1828,7 @@
             }
         },
         "23": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Kichthen_Wood",
@@ -1872,7 +1872,7 @@
             }
         },
         "24": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "ninja_star_3",
@@ -1965,7 +1965,7 @@
             }
         },
         "25": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door__10",
@@ -2009,7 +2009,7 @@
             }
         },
         "26": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "IN_Liv_1",
@@ -2116,7 +2116,7 @@
             }
         },
         "27": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Toilet_Right_Wall__1",
@@ -2209,7 +2209,7 @@
             }
         },
         "411": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Beak_3",
@@ -2253,7 +2253,7 @@
             }
         },
         "28": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Tube",
@@ -2297,7 +2297,7 @@
             }
         },
         "29": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "IN_Dinnin",
@@ -2341,7 +2341,7 @@
             }
         },
         "30": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INDoub_Liv",
@@ -2448,7 +2448,7 @@
             }
         },
         "31": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INstudy_DoorWall02",
@@ -2541,7 +2541,7 @@
             }
         },
         "431": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Cube",
@@ -2585,7 +2585,7 @@
             }
         },
         "32": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Small_Hall",
@@ -2629,7 +2629,7 @@
             }
         },
         "33": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INSing_Toilet",
@@ -2673,7 +2673,7 @@
             }
         },
         "425": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "something",
@@ -2717,7 +2717,7 @@
             }
         },
         "34": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "OUTSing_Toilet",
@@ -2761,7 +2761,7 @@
             }
         },
         "35": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube__2",
@@ -2805,7 +2805,7 @@
             }
         },
         "419": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Eye__1",
@@ -2849,7 +2849,7 @@
             }
         },
         "36": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Border_2__2",
@@ -2871,7 +2871,7 @@
                     "z": 1.100000023841858
                 },
                 "Rotation": {
-                    "x": -0.0,
+                    "x": 0.0,
                     "y": 1.570796251296997,
                     "z": 0.0
                 }
@@ -2893,7 +2893,7 @@
             }
         },
         "37": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Divider01__1",
@@ -2986,7 +2986,7 @@
             }
         },
         "429": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "RingRing",
@@ -3030,7 +3030,7 @@
             }
         },
         "38": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Sing_Bed",
@@ -3074,7 +3074,7 @@
             }
         },
         "39": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Back_L__3",
@@ -3118,7 +3118,7 @@
             }
         },
         "439": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Glass",
@@ -3162,7 +3162,7 @@
             }
         },
         "40": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle_13",
@@ -3206,7 +3206,7 @@
             }
         },
         "41": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Extrude__4",
@@ -3250,7 +3250,7 @@
             }
         },
         "433": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Glass",
@@ -3294,7 +3294,7 @@
             }
         },
         "42": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INDoub_Bed",
@@ -3338,7 +3338,7 @@
             }
         },
         "43": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "OUTDoub_Bed",
@@ -3381,8 +3381,52 @@
                 "Used In 2D": false
             }
         },
+        "427": {
+            "ArchetypeID": "110000100000000",
+            "Enabled": false,
+            "Name Tag": {
+                "Name": "circle_design",
+                "Tag": "",
+                "IsActive": true,
+                "HierarchyParent": 381,
+                "HierarchyIndex": 26,
+                "HierarchyChildren": []
+            },
+            "Transform": {
+                "Position": {
+                    "x": 398.8909912109375,
+                    "y": 184.82040405273438,
+                    "z": -885.2044677734375
+                },
+                "Scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": -0.0,
+                    "z": 0.0
+                }
+            },
+            "Graphics Component": {
+                "PointLight": false,
+                "TextureName": "",
+                "Mesh Renderer": true,
+                "Debug": false,
+                "ModelName": "Wall Slaves_Bin.bin",
+                "MeshName": "circle_design",
+                "Color": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0,
+                    "w": 1.0
+                },
+                "Used In 2D": false
+            }
+        },
         "44": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Oil_Tank__2",
@@ -3470,7 +3514,7 @@
             }
         },
         "45": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INDoub_Dining",
@@ -3514,7 +3558,7 @@
             }
         },
         "46": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Oil_Tank__5",
@@ -3558,7 +3602,7 @@
             }
         },
         "437": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Stand",
@@ -3602,7 +3646,7 @@
             }
         },
         "47": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INDoub_Dining__1",
@@ -3624,7 +3668,7 @@
                     "z": 1.0
                 },
                 "Rotation": {
-                    "x": -0.0,
+                    "x": 0.0,
                     "y": 1.570796251296997,
                     "z": 0.0
                 }
@@ -3646,7 +3690,7 @@
             }
         },
         "48": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Tube__1",
@@ -3690,7 +3734,7 @@
             }
         },
         "447": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "bottom",
@@ -3734,7 +3778,7 @@
             }
         },
         "49": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Engraving",
@@ -3778,7 +3822,7 @@
             }
         },
         "50": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_1",
@@ -3871,7 +3915,7 @@
             }
         },
         "441": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Bases",
@@ -3915,7 +3959,7 @@
             }
         },
         "51": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Engraving__6",
@@ -3959,7 +4003,7 @@
             }
         },
         "52": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "LW",
@@ -4003,7 +4047,7 @@
             }
         },
         "435": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Bases",
@@ -4047,7 +4091,7 @@
             }
         },
         "53": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Engraving__1",
@@ -4091,7 +4135,7 @@
             }
         },
         "54": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_26",
@@ -4184,7 +4228,7 @@
             }
         },
         "445": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "light_rings",
@@ -4228,7 +4272,7 @@
             }
         },
         "55": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_10_2",
@@ -4321,7 +4365,7 @@
             }
         },
         "56": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "LW__1",
@@ -4333,7 +4377,7 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 223.3363800048828,
+                    "x": 224.12332153320313,
                     "y": 427.71728515625,
                     "z": 174.97056579589844
                 },
@@ -4344,7 +4388,7 @@
                 },
                 "Rotation": {
                     "x": 0.0,
-                    "y": -0.0,
+                    "y": 0.0,
                     "z": 0.0
                 }
             },
@@ -4365,7 +4409,7 @@
             }
         },
         "391": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "CoffeeTable",
@@ -4413,7 +4457,7 @@
             }
         },
         "57": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "ninja_star_3__1",
@@ -4457,7 +4501,7 @@
             }
         },
         "58": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Border",
@@ -4501,7 +4545,7 @@
             }
         },
         "385": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Lamp_L",
@@ -4550,7 +4594,7 @@
             }
         },
         "59": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Border_2",
@@ -4594,7 +4638,7 @@
             }
         },
         "60": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door01",
@@ -4638,7 +4682,7 @@
             }
         },
         "443": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "metal_stand",
@@ -4682,7 +4726,7 @@
             }
         },
         "61": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Border_2__1",
@@ -4726,7 +4770,7 @@
             }
         },
         "62": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_28",
@@ -4770,7 +4814,7 @@
             }
         },
         "389": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Sofa",
@@ -4819,7 +4863,7 @@
             }
         },
         "63": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door01__1",
@@ -4863,7 +4907,7 @@
             }
         },
         "64": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INKitchen_02",
@@ -4956,7 +5000,7 @@
             }
         },
         "463": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "borders",
@@ -5000,7 +5044,7 @@
             }
         },
         "65": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door__4",
@@ -5044,7 +5088,7 @@
             }
         },
         "66": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door",
@@ -5088,7 +5132,7 @@
             }
         },
         "457": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "stand",
@@ -5132,7 +5176,7 @@
             }
         },
         "67": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle",
@@ -5176,7 +5220,7 @@
             }
         },
         "68": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Oil_Tank",
@@ -5220,7 +5264,7 @@
             }
         },
         "451": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "arm_inner",
@@ -5264,7 +5308,7 @@
             }
         },
         "69": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "LivKit_L__3",
@@ -5308,7 +5352,7 @@
             }
         },
         "70": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door__1",
@@ -5352,7 +5396,7 @@
             }
         },
         "461": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "golden",
@@ -5396,7 +5440,7 @@
             }
         },
         "71": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Extrude",
@@ -5503,7 +5547,7 @@
             }
         },
         "72": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle__1",
@@ -5547,7 +5591,7 @@
             }
         },
         "73": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube__1",
@@ -5591,7 +5635,7 @@
             }
         },
         "74": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Extrude__1",
@@ -5635,7 +5679,7 @@
             }
         },
         "465": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "top",
@@ -5679,7 +5723,7 @@
             }
         },
         "75": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door__2",
@@ -5723,7 +5767,7 @@
             }
         },
         "76": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Engraving__9",
@@ -5767,7 +5811,7 @@
             }
         },
         "459": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "pend_handle",
@@ -5811,7 +5855,7 @@
             }
         },
         "77": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle__2",
@@ -5855,7 +5899,7 @@
             }
         },
         "78": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Plate__2",
@@ -5899,7 +5943,7 @@
             }
         },
         "79": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle__9",
@@ -6006,7 +6050,7 @@
             }
         },
         "80": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Engraving__2",
@@ -6050,7 +6094,7 @@
             }
         },
         "81": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Extrude__2",
@@ -6157,7 +6201,7 @@
             }
         },
         "82": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "LivKit_L__1",
@@ -6250,7 +6294,7 @@
             }
         },
         "83": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door__3",
@@ -6294,7 +6338,7 @@
             }
         },
         "84": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Engraving__8",
@@ -6338,7 +6382,7 @@
             }
         },
         "467": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "top",
@@ -6382,7 +6426,7 @@
             }
         },
         "85": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle__3",
@@ -6489,7 +6533,7 @@
             }
         },
         "86": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Right_Wall_1",
@@ -6582,7 +6626,7 @@
             }
         },
         "87": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Plate__3",
@@ -6626,7 +6670,7 @@
             }
         },
         "88": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle__8",
@@ -6670,7 +6714,7 @@
             }
         },
         "89": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Engraving__3",
@@ -6714,7 +6758,7 @@
             }
         },
         "90": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Oil_Tank__3",
@@ -6758,7 +6802,7 @@
             }
         },
         "91": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Back_L__4",
@@ -6865,7 +6909,7 @@
             }
         },
         "92": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "DiDoorL_compOpp",
@@ -6958,7 +7002,7 @@
             }
         },
         "93": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Extrude__3",
@@ -7002,7 +7046,7 @@
             }
         },
         "94": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube__10",
@@ -7046,7 +7090,7 @@
             }
         },
         "95": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle__4",
@@ -7090,7 +7134,7 @@
             }
         },
         "96": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Plate__4",
@@ -7134,7 +7178,7 @@
             }
         },
         "97": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Oil_Tank_13__1",
@@ -7178,7 +7222,7 @@
             }
         },
         "98": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Engraving__4",
@@ -7222,7 +7266,7 @@
             }
         },
         "99": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Tube__4",
@@ -7329,7 +7373,7 @@
             }
         },
         "100": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube__4",
@@ -7373,7 +7417,7 @@
             }
         },
         "101": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Oil_Tank__4",
@@ -7417,7 +7461,7 @@
             }
         },
         "102": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INKitchen_03",
@@ -7510,7 +7554,7 @@
             }
         },
         "103": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door__5",
@@ -7554,7 +7598,7 @@
             }
         },
         "104": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube__11",
@@ -7598,7 +7642,7 @@
             }
         },
         "105": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle__5",
@@ -7642,7 +7686,7 @@
             }
         },
         "106": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Plate__5",
@@ -7686,7 +7730,7 @@
             }
         },
         "107": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Engraving__5",
@@ -7730,7 +7774,7 @@
             }
         },
         "108": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Tube__5",
@@ -7774,7 +7818,7 @@
             }
         },
         "109": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube__5",
@@ -7818,7 +7862,7 @@
             }
         },
         "110": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Back_L__2",
@@ -7862,7 +7906,7 @@
             }
         },
         "111": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Extrude__5",
@@ -7906,7 +7950,7 @@
             }
         },
         "112": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Border_2__3",
@@ -7950,7 +7994,7 @@
             }
         },
         "113": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "LivKit_L__4",
@@ -7994,7 +8038,7 @@
             }
         },
         "114": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door__6",
@@ -8038,7 +8082,7 @@
             }
         },
         "115": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle__6",
@@ -8082,7 +8126,7 @@
             }
         },
         "116": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Right_Wall_4",
@@ -8175,7 +8219,7 @@
             }
         },
         "117": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Plate__6",
@@ -8219,7 +8263,7 @@
             }
         },
         "118": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Tube__6",
@@ -8263,7 +8307,7 @@
             }
         },
         "119": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube__6",
@@ -8307,7 +8351,7 @@
             }
         },
         "120": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Tube__10",
@@ -8351,7 +8395,7 @@
             }
         },
         "455": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "arm_inner",
@@ -8395,7 +8439,7 @@
             }
         },
         "121": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Oil_Tank__6",
@@ -8439,7 +8483,7 @@
             }
         },
         "122": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Back_L__1",
@@ -8532,7 +8576,7 @@
             }
         },
         "449": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "RoundTable_S",
@@ -8576,7 +8620,7 @@
             }
         },
         "123": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Extrude__6",
@@ -8620,7 +8664,7 @@
             }
         },
         "124": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door__7",
@@ -8664,7 +8708,7 @@
             }
         },
         "125": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle__7",
@@ -8708,7 +8752,7 @@
             }
         },
         "126": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Right_Wall_5",
@@ -8801,7 +8845,7 @@
             }
         },
         "453": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "stand",
@@ -8845,7 +8889,7 @@
             }
         },
         "127": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Plate__7",
@@ -8889,7 +8933,7 @@
             }
         },
         "128": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Oil_Tank_13__2",
@@ -8933,7 +8977,7 @@
             }
         },
         "129": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Engraving__7",
@@ -8977,7 +9021,7 @@
             }
         },
         "314": {
-            "ArchetypeID": "11000000000000",
+            "ArchetypeID": "110000000000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Kitchen Objects",
@@ -9014,7 +9058,7 @@
             }
         },
         "130": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Tube__7",
@@ -9058,7 +9102,7 @@
             }
         },
         "131": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube__7",
@@ -9102,7 +9146,7 @@
             }
         },
         "260": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "OutsideToilet_02__2",
@@ -9146,7 +9190,7 @@
             }
         },
         "132": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Tube__11",
@@ -9190,7 +9234,7 @@
             }
         },
         "133": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Oil_Tank__7",
@@ -9234,7 +9278,7 @@
             }
         },
         "318": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "02WashMac",
@@ -9285,7 +9329,7 @@
             }
         },
         "134": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Extrude__7",
@@ -9329,7 +9373,7 @@
             }
         },
         "312": {
-            "ArchetypeID": "11000000000000",
+            "ArchetypeID": "110000000000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Main Hall Lights",
@@ -9360,7 +9404,7 @@
             }
         },
         "135": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Border_2__4",
@@ -9404,7 +9448,7 @@
             }
         },
         "136": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Dinning_4",
@@ -9497,7 +9541,7 @@
             }
         },
         "137": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door__8",
@@ -9541,7 +9585,7 @@
             }
         },
         "258": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "OutsideToilet_02",
@@ -9634,7 +9678,7 @@
             }
         },
         "138": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Plate__8",
@@ -9678,7 +9722,7 @@
             }
         },
         "139": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Tube__8",
@@ -9722,7 +9766,7 @@
             }
         },
         "268": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_2_3__2",
@@ -9815,7 +9859,7 @@
             }
         },
         "140": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube__8",
@@ -9859,7 +9903,7 @@
             }
         },
         "141": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Oil_Tank__8",
@@ -9903,7 +9947,7 @@
             }
         },
         "262": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INToilet_doorwall_1__1",
@@ -9996,7 +10040,7 @@
             }
         },
         "142": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Toilet_Back_Wall__1",
@@ -10089,7 +10133,7 @@
             }
         },
         "143": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Extrude__8",
@@ -10133,7 +10177,7 @@
             }
         },
         "256": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "OutsideToilet_01__1",
@@ -10177,7 +10221,7 @@
             }
         },
         "144": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door__9",
@@ -10221,7 +10265,7 @@
             }
         },
         "145": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Plate__9",
@@ -10265,7 +10309,7 @@
             }
         },
         "266": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_2_3",
@@ -10358,7 +10402,7 @@
             }
         },
         "146": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Tube__9",
@@ -10402,7 +10446,7 @@
             }
         },
         "147": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "ninja_star_1_2",
@@ -10495,7 +10539,7 @@
             }
         },
         "276": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Grating_Corri",
@@ -10539,7 +10583,7 @@
             }
         },
         "148": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube__9",
@@ -10583,7 +10627,7 @@
             }
         },
         "149": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Oil_Tank__9",
@@ -10627,7 +10671,7 @@
             }
         },
         "270": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Toilet_Right_Wall",
@@ -10720,7 +10764,7 @@
             }
         },
         "150": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Extrude__9",
@@ -10764,7 +10808,7 @@
             }
         },
         "151": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Back_Wall",
@@ -10857,7 +10901,7 @@
             }
         },
         "264": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INToilet_doorwall_2",
@@ -10950,7 +10994,7 @@
             }
         },
         "152": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Border_2__5",
@@ -10994,7 +11038,7 @@
             }
         },
         "153": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle__10",
@@ -11038,7 +11082,7 @@
             }
         },
         "274": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_5_4",
@@ -11131,7 +11175,7 @@
             }
         },
         "154": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_15__1",
@@ -11175,7 +11219,7 @@
             }
         },
         "155": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Plate__10",
@@ -11219,7 +11263,7 @@
             }
         },
         "284": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Right_Wall_2",
@@ -11312,7 +11356,7 @@
             }
         },
         "156": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Engraving__10",
@@ -11356,7 +11400,7 @@
             }
         },
         "157": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Oil_Tank__10",
@@ -11400,7 +11444,7 @@
             }
         },
         "278": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_25",
@@ -11444,7 +11488,7 @@
             }
         },
         "158": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Extrude__10",
@@ -11488,7 +11532,7 @@
             }
         },
         "159": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "ninja_star_2",
@@ -11581,7 +11625,7 @@
             }
         },
         "272": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Grate",
@@ -11625,7 +11669,7 @@
             }
         },
         "160": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door__11",
@@ -11669,7 +11713,7 @@
             }
         },
         "161": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle__11",
@@ -11713,7 +11757,7 @@
             }
         },
         "162": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Engraving__11",
@@ -11757,7 +11801,7 @@
             }
         },
         "292": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Toilet_F",
@@ -11801,7 +11845,7 @@
             }
         },
         "163": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Oil_Tank__11",
@@ -11845,7 +11889,7 @@
             }
         },
         "164": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Extrude__11",
@@ -11889,7 +11933,7 @@
             }
         },
         "165": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_13",
@@ -11933,7 +11977,7 @@
             }
         },
         "166": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_14",
@@ -11977,7 +12021,7 @@
             }
         },
         "167": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door_13",
@@ -12021,7 +12065,7 @@
             }
         },
         "168": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Plate_13",
@@ -12065,7 +12109,7 @@
             }
         },
         "169": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "LivKit_R",
@@ -12158,7 +12202,7 @@
             }
         },
         "170": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_15__2",
@@ -12202,7 +12246,7 @@
             }
         },
         "171": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Engraving_13",
@@ -12246,7 +12290,7 @@
             }
         },
         "300": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "belt",
@@ -12290,7 +12334,7 @@
             }
         },
         "172": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Tube_13",
@@ -12334,7 +12378,7 @@
             }
         },
         "294": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Kitchen_F",
@@ -12378,7 +12422,7 @@
             }
         },
         "173": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_15",
@@ -12422,7 +12466,7 @@
             }
         },
         "174": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Oil_Tank_13",
@@ -12466,7 +12510,7 @@
             }
         },
         "175": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_13__1",
@@ -12510,7 +12554,7 @@
             }
         },
         "176": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_14__1",
@@ -12554,7 +12598,7 @@
             }
         },
         "177": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door_13__1",
@@ -12598,7 +12642,7 @@
             }
         },
         "298": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "belt",
@@ -12642,7 +12686,7 @@
             }
         },
         "178": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle_13__1",
@@ -12686,7 +12730,7 @@
             }
         },
         "179": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Plate_13__1",
@@ -12730,7 +12774,7 @@
             }
         },
         "308": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Wall Light04",
@@ -12777,7 +12821,7 @@
             }
         },
         "180": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Engraving_13__1",
@@ -12821,7 +12865,7 @@
             }
         },
         "181": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Tube_13__1",
@@ -12865,7 +12909,7 @@
             }
         },
         "302": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Wall Light02",
@@ -12912,7 +12956,7 @@
             }
         },
         "182": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Extrude_14",
@@ -12956,7 +13000,7 @@
             }
         },
         "183": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_13__2",
@@ -13000,7 +13044,7 @@
             }
         },
         "296": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Wall Light01",
@@ -13049,7 +13093,7 @@
             }
         },
         "184": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_14__2",
@@ -13093,7 +13137,7 @@
             }
         },
         "185": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "ninja_star_0_2",
@@ -13137,7 +13181,7 @@
             }
         },
         "306": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "body",
@@ -13181,7 +13225,7 @@
             }
         },
         "186": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door_13__2",
@@ -13225,7 +13269,7 @@
             }
         },
         "187": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle_13__2",
@@ -13269,7 +13313,7 @@
             }
         },
         "316": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Stove",
@@ -13319,7 +13363,7 @@
             }
         },
         "188": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "BasementWall",
@@ -13412,7 +13456,7 @@
             }
         },
         "189": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Plate_13__2",
@@ -13456,7 +13500,7 @@
             }
         },
         "310": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "belt",
@@ -13500,7 +13544,7 @@
             }
         },
         "190": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Engraving_13__2",
@@ -13544,7 +13588,7 @@
             }
         },
         "191": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Tube_13__2",
@@ -13588,7 +13632,7 @@
             }
         },
         "304": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "belt",
@@ -13632,7 +13676,7 @@
             }
         },
         "192": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Extrude_15",
@@ -13676,7 +13720,7 @@
             }
         },
         "193": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Divider01",
@@ -13769,7 +13813,7 @@
             }
         },
         "378": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Cup_Stripes04",
@@ -13816,7 +13860,7 @@
             }
         },
         "194": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Vent_INKitchen_01",
@@ -13909,7 +13953,7 @@
             }
         },
         "195": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_9_2",
@@ -14002,7 +14046,7 @@
             }
         },
         "324": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Torus",
@@ -14046,7 +14090,7 @@
             }
         },
         "196": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Above_Vent_Wall",
@@ -14139,7 +14183,7 @@
             }
         },
         "197": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_7_2",
@@ -14232,7 +14276,7 @@
             }
         },
         "382": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "HourGlass01",
@@ -14280,7 +14324,7 @@
             }
         },
         "198": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_5_2",
@@ -14373,7 +14417,7 @@
             }
         },
         "199": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_22",
@@ -14466,7 +14510,7 @@
             }
         },
         "376": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Cup_Stripes02",
@@ -14513,7 +14557,7 @@
             }
         },
         "200": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "L_Wall_4",
@@ -14606,7 +14650,7 @@
             }
         },
         "201": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INstudy_DoorWall01",
@@ -14699,7 +14743,7 @@
             }
         },
         "322": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Body_2",
@@ -14743,7 +14787,7 @@
             }
         },
         "202": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INstudy_DoorWall03",
@@ -14836,7 +14880,7 @@
             }
         },
         "203": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INstudy_DoorWall04",
@@ -14929,7 +14973,7 @@
             }
         },
         "332": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "blue",
@@ -14973,7 +15017,7 @@
             }
         },
         "204": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INstudy_DoorWall05",
@@ -15066,7 +15110,7 @@
             }
         },
         "205": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INstudy_DoorWall06",
@@ -15159,7 +15203,7 @@
             }
         },
         "326": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Base",
@@ -15203,7 +15247,7 @@
             }
         },
         "206": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "study_DoorWall01",
@@ -15247,7 +15291,7 @@
             }
         },
         "207": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "study_DoorWall02",
@@ -15291,7 +15335,7 @@
             }
         },
         "320": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Grate",
@@ -15335,7 +15379,7 @@
             }
         },
         "208": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_4_2",
@@ -15428,7 +15472,7 @@
             }
         },
         "209": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_6_2",
@@ -15521,7 +15565,7 @@
             }
         },
         "330": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Base",
@@ -15565,7 +15609,7 @@
             }
         },
         "210": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_8_2",
@@ -15658,7 +15702,7 @@
             }
         },
         "211": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "FirePit_BackWall",
@@ -15702,7 +15746,7 @@
             }
         },
         "340": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "blue",
@@ -15746,7 +15790,7 @@
             }
         },
         "212": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "ninja_star_1",
@@ -15839,7 +15883,7 @@
             }
         },
         "213": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Btwn",
@@ -15883,7 +15927,7 @@
             }
         },
         "334": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "red",
@@ -15927,7 +15971,7 @@
             }
         },
         "214": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INKitchen",
@@ -16020,7 +16064,7 @@
             }
         },
         "215": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Btwn__1",
@@ -16113,7 +16157,7 @@
             }
         },
         "328": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Handle",
@@ -16157,7 +16201,7 @@
             }
         },
         "216": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INKitchen__1",
@@ -16201,7 +16245,7 @@
             }
         },
         "217": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "ninja_star",
@@ -16294,7 +16338,7 @@
             }
         },
         "338": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Inner_Ring",
@@ -16338,7 +16382,7 @@
             }
         },
         "218": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "OUTDining_01",
@@ -16431,7 +16475,7 @@
             }
         },
         "219": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "ninja_star_2__1",
@@ -16475,7 +16519,7 @@
             }
         },
         "348": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Door",
@@ -16519,7 +16563,7 @@
             }
         },
         "220": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INToilet_doorwall_2__2",
@@ -16612,7 +16656,7 @@
             }
         },
         "221": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "LivKit_L",
@@ -16656,7 +16700,7 @@
             }
         },
         "342": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "green",
@@ -16700,7 +16744,7 @@
             }
         },
         "222": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "LivKit_L__2",
@@ -16793,7 +16837,7 @@
             }
         },
         "223": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "ninja_star_4",
@@ -16886,7 +16930,7 @@
             }
         },
         "336": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Yellow",
@@ -16930,7 +16974,7 @@
             }
         },
         "224": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Dinning_4__1",
@@ -16974,7 +17018,7 @@
             }
         },
         "225": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Liv_DoorWall_02",
@@ -17067,7 +17111,7 @@
             }
         },
         "282": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_27",
@@ -17111,7 +17155,7 @@
             }
         },
         "226": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Liv_DoorWall_02__1",
@@ -17204,7 +17248,7 @@
             }
         },
         "356": {
-            "ArchetypeID": "11000000000000",
+            "ArchetypeID": "110000000000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Decoration",
@@ -17253,7 +17297,7 @@
             }
         },
         "227": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Back_L",
@@ -17297,7 +17341,7 @@
             }
         },
         "228": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "OUTDining_02",
@@ -17390,7 +17434,7 @@
             }
         },
         "286": {
-            "ArchetypeID": "11001010000000",
+            "ArchetypeID": "110010100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "playerCameraObject",
@@ -17446,7 +17490,7 @@
             }
         },
         "229": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_23",
@@ -17539,7 +17583,7 @@
             }
         },
         "230": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Livving",
@@ -17632,7 +17676,7 @@
             }
         },
         "231": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "DiDoorL_compOpp__1",
@@ -17676,7 +17720,7 @@
             }
         },
         "280": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Right_Wall",
@@ -17769,7 +17813,7 @@
             }
         },
         "232": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "L_SquareCorner",
@@ -17862,7 +17906,7 @@
             }
         },
         "233": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "L_SquareCorner__1",
@@ -17906,7 +17950,7 @@
             }
         },
         "354": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Body__2",
@@ -17950,7 +17994,7 @@
             }
         },
         "234": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Back",
@@ -18043,7 +18087,7 @@
             }
         },
         "364": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Book_Generator____NitroMan",
@@ -18087,7 +18131,7 @@
             }
         },
         "235": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Back__1",
@@ -18131,7 +18175,7 @@
             }
         },
         "236": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Btwn__2",
@@ -18175,7 +18219,7 @@
             }
         },
         "358": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Bookshelf01",
@@ -18222,7 +18266,7 @@
             }
         },
         "237": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Btwn__3",
@@ -18266,7 +18310,7 @@
             }
         },
         "238": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "above_fireplace",
@@ -18310,7 +18354,7 @@
             }
         },
         "239": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_8_3",
@@ -18403,7 +18447,7 @@
             }
         },
         "352": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Body__1",
@@ -18447,7 +18491,7 @@
             }
         },
         "240": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_5_3",
@@ -18540,7 +18584,7 @@
             }
         },
         "362": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Frame",
@@ -18584,7 +18628,7 @@
             }
         },
         "241": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_4_3",
@@ -18677,7 +18721,7 @@
             }
         },
         "242": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Thicker_wall",
@@ -18770,7 +18814,7 @@
             }
         },
         "372": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle_2",
@@ -18814,7 +18858,7 @@
             }
         },
         "243": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Thicker_wall__1",
@@ -18858,7 +18902,7 @@
             }
         },
         "244": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Liv_DoorWall_01",
@@ -18951,7 +18995,7 @@
             }
         },
         "366": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Book_Generator____NitroMan",
@@ -18995,7 +19039,7 @@
             }
         },
         "245": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Liv_DoorWall_01__1",
@@ -19088,7 +19132,7 @@
             }
         },
         "246": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_3_2",
@@ -19181,7 +19225,7 @@
             }
         },
         "360": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Bookshelf03",
@@ -19228,7 +19272,7 @@
             }
         },
         "247": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INBedroom_2",
@@ -19321,7 +19365,7 @@
             }
         },
         "248": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INBasementWall",
@@ -19414,7 +19458,7 @@
             }
         },
         "370": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Handle",
@@ -19458,7 +19502,7 @@
             }
         },
         "249": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Bedroom_2",
@@ -19551,7 +19595,7 @@
             }
         },
         "250": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Paint_wall",
@@ -19644,7 +19688,7 @@
             }
         },
         "251": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_2_2",
@@ -19737,7 +19781,7 @@
             }
         },
         "380": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Clock_L",
@@ -19788,7 +19832,7 @@
             }
         },
         "252": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Bedroom_1",
@@ -19881,7 +19925,7 @@
             }
         },
         "374": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Body",
@@ -19925,7 +19969,7 @@
             }
         },
         "253": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Bedroom",
@@ -20018,7 +20062,7 @@
             }
         },
         "254": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "OutsideToilet_01",
@@ -20062,7 +20106,7 @@
             }
         },
         "368": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Book_Generator____NitroMan",
@@ -20106,7 +20150,7 @@
             }
         },
         "255": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Grating_Corri_4",
@@ -20150,7 +20194,7 @@
             }
         },
         "257": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "OutsideToilet_01__2",
@@ -20243,7 +20287,7 @@
             }
         },
         "259": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "OutsideToilet_02__1",
@@ -20287,7 +20331,7 @@
             }
         },
         "261": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INToilet_doorwall_1",
@@ -20380,7 +20424,7 @@
             }
         },
         "263": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INToilet_doorwall_1__2",
@@ -20473,7 +20517,7 @@
             }
         },
         "265": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "INToilet_doorwall_2__1",
@@ -20566,7 +20610,7 @@
             }
         },
         "267": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_2_3__1",
@@ -20610,7 +20654,7 @@
             }
         },
         "269": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Toilet_Back_Wall",
@@ -20703,7 +20747,7 @@
             }
         },
         "271": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "One_Window",
@@ -20747,7 +20791,7 @@
             }
         },
         "273": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_6_3",
@@ -20840,7 +20884,7 @@
             }
         },
         "275": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Cube_24",
@@ -20884,7 +20928,7 @@
             }
         },
         "277": {
-            "ArchetypeID": "11010011000000",
+            "ArchetypeID": "110100110000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "L_StudyWall_1",
@@ -20977,7 +21021,7 @@
             }
         },
         "279": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Grating_Corri_2",
@@ -21021,7 +21065,7 @@
             }
         },
         "281": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Right_Wall__1",
@@ -21065,7 +21109,7 @@
             }
         },
         "283": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Grating_Corri__1",
@@ -21109,7 +21153,7 @@
             }
         },
         "285": {
-            "ArchetypeID": "11000011100000",
+            "ArchetypeID": "110000111000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Player",
@@ -21186,7 +21230,7 @@
             }
         },
         "287": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Mansion Floor",
@@ -21235,7 +21279,7 @@
             }
         },
         "293": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Main_F",
@@ -21279,7 +21323,7 @@
             }
         },
         "295": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Gallery_F",
@@ -21323,7 +21367,7 @@
             }
         },
         "297": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "body",
@@ -21367,7 +21411,7 @@
             }
         },
         "299": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "body",
@@ -21411,7 +21455,7 @@
             }
         },
         "301": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "New Entity",
@@ -21455,7 +21499,7 @@
             }
         },
         "303": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "body",
@@ -21499,7 +21543,7 @@
             }
         },
         "305": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Wall Light03",
@@ -21546,7 +21590,7 @@
             }
         },
         "307": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "belt",
@@ -21590,7 +21634,7 @@
             }
         },
         "309": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "body",
@@ -21634,7 +21678,7 @@
             }
         },
         "311": {
-            "ArchetypeID": "11000000000000",
+            "ArchetypeID": "110000000000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Lighting",
@@ -21665,7 +21709,7 @@
             }
         },
         "313": {
-            "ArchetypeID": "11000000000000",
+            "ArchetypeID": "110000000000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Main Wall Light",
@@ -21699,7 +21743,7 @@
             }
         },
         "315": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Fridge",
@@ -21746,7 +21790,7 @@
             }
         },
         "317": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Counter",
@@ -21800,7 +21844,7 @@
             }
         },
         "319": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Dryer",
@@ -21849,7 +21893,7 @@
             }
         },
         "321": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "WashMac",
@@ -21901,7 +21945,7 @@
             }
         },
         "323": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Handles_2",
@@ -21945,7 +21989,7 @@
             }
         },
         "325": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Back",
@@ -21989,7 +22033,7 @@
             }
         },
         "327": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Rail",
@@ -22033,7 +22077,7 @@
             }
         },
         "329": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "CounterTop",
@@ -22077,7 +22121,7 @@
             }
         },
         "331": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Base__1",
@@ -22121,7 +22165,7 @@
             }
         },
         "333": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "OvenDoor",
@@ -22165,7 +22209,7 @@
             }
         },
         "335": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Green",
@@ -22209,7 +22253,7 @@
             }
         },
         "337": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Tap",
@@ -22253,7 +22297,7 @@
             }
         },
         "339": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Outer_Ring",
@@ -22297,7 +22341,7 @@
             }
         },
         "341": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Body",
@@ -22341,7 +22385,7 @@
             }
         },
         "343": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "red",
@@ -22385,7 +22429,7 @@
             }
         },
         "344": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Knob01",
@@ -22429,7 +22473,7 @@
             }
         },
         "345": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Knob02",
@@ -22473,7 +22517,7 @@
             }
         },
         "346": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Door",
@@ -22517,7 +22561,7 @@
             }
         },
         "347": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Body",
@@ -22561,7 +22605,7 @@
             }
         },
         "349": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Body",
@@ -22605,7 +22649,7 @@
             }
         },
         "350": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Window",
@@ -22649,7 +22693,7 @@
             }
         },
         "351": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Knob01",
@@ -22693,7 +22737,7 @@
             }
         },
         "353": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Knob02",
@@ -22737,7 +22781,7 @@
             }
         },
         "355": {
-            "ArchetypeID": "11000000000000",
+            "ArchetypeID": "110000000000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Living Objects",
@@ -22773,7 +22817,7 @@
             }
         },
         "357": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Painting_2",
@@ -22820,7 +22864,7 @@
             }
         },
         "359": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Bookshelf02",
@@ -22867,7 +22911,7 @@
             }
         },
         "361": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "LivingRoom_Closet",
@@ -22917,7 +22961,7 @@
             }
         },
         "363": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Art",
@@ -22961,7 +23005,7 @@
             }
         },
         "365": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Shelf",
@@ -23005,7 +23049,7 @@
             }
         },
         "367": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Shelf",
@@ -23049,7 +23093,7 @@
             }
         },
         "369": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Shelf",
@@ -23093,7 +23137,7 @@
             }
         },
         "371": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door",
@@ -23137,7 +23181,7 @@
             }
         },
         "373": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Door_2",
@@ -23181,7 +23225,7 @@
             }
         },
         "375": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Cup_Stripes01",
@@ -23228,7 +23272,7 @@
             }
         },
         "377": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Cup_Stripes03",
@@ -23275,7 +23319,7 @@
             }
         },
         "379": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "TeaPot",
@@ -23322,7 +23366,7 @@
             }
         },
         "381": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Wall Slaves",
@@ -23390,7 +23434,7 @@
             }
         },
         "383": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "HourGlass02",
@@ -23438,7 +23482,7 @@
             }
         },
         "384": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "HourGlass03",
@@ -23486,7 +23530,7 @@
             }
         },
         "386": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "deco",
@@ -23533,7 +23577,7 @@
             }
         },
         "388": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Sofa_Armchair",
@@ -23582,7 +23626,7 @@
             }
         },
         "390": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Clock_S",
@@ -23631,7 +23675,7 @@
             }
         },
         "392": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Long_table01",
@@ -23678,7 +23722,7 @@
             }
         },
         "394": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "cup",
@@ -23722,7 +23766,7 @@
             }
         },
         "396": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "cup",
@@ -23766,7 +23810,7 @@
             }
         },
         "398": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "cup",
@@ -23810,7 +23854,7 @@
             }
         },
         "399": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Plate",
@@ -23854,7 +23898,7 @@
             }
         },
         "400": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "cup",
@@ -23898,7 +23942,7 @@
             }
         },
         "402": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Body",
@@ -23942,7 +23986,7 @@
             }
         },
         "404": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Pole",
@@ -23986,7 +24030,7 @@
             }
         },
         "406": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Long_Hand",
@@ -24030,7 +24074,7 @@
             }
         },
         "408": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Clock_Face",
@@ -24074,7 +24118,7 @@
             }
         },
         "410": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "shelf_2",
@@ -24118,7 +24162,7 @@
             }
         },
         "412": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Eye",
@@ -24162,7 +24206,7 @@
             }
         },
         "414": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Body",
@@ -24206,7 +24250,7 @@
             }
         },
         "416": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Beak_2",
@@ -24250,7 +24294,7 @@
             }
         },
         "417": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "body",
@@ -24294,7 +24338,7 @@
             }
         },
         "418": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "shelf",
@@ -24338,7 +24382,7 @@
             }
         },
         "420": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Body_2",
@@ -24382,7 +24426,7 @@
             }
         },
         "421": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Eye_3",
@@ -24426,7 +24470,7 @@
             }
         },
         "422": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Eye_3__1",
@@ -24470,7 +24514,7 @@
             }
         },
         "423": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Beak_4",
@@ -24514,7 +24558,7 @@
             }
         },
         "424": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Body_3",
@@ -24558,7 +24602,7 @@
             }
         },
         "426": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Cube_1",
@@ -24602,7 +24646,7 @@
             }
         },
         "428": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "frame",
@@ -24646,7 +24690,7 @@
             }
         },
         "430": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Cube_2",
@@ -24690,7 +24734,7 @@
             }
         },
         "432": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "shelf_1",
@@ -24734,7 +24778,7 @@
             }
         },
         "434": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Stand",
@@ -24778,7 +24822,7 @@
             }
         },
         "436": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Glass",
@@ -24822,7 +24866,7 @@
             }
         },
         "438": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Bases",
@@ -24866,7 +24910,7 @@
             }
         },
         "440": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Stand",
@@ -24910,7 +24954,7 @@
             }
         },
         "442": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Base",
@@ -24954,7 +24998,7 @@
             }
         },
         "444": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "censor",
@@ -24998,7 +25042,7 @@
             }
         },
         "446": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "top",
@@ -25042,10 +25086,10 @@
             }
         },
         "448": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
-                "Name": "",
+                "Name": "table",
                 "Tag": "",
                 "IsActive": true,
                 "HierarchyParent": 387,
@@ -25086,7 +25130,7 @@
             }
         },
         "450": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "arm_outer",
@@ -25130,7 +25174,7 @@
             }
         },
         "452": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "seat",
@@ -25174,7 +25218,7 @@
             }
         },
         "454": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "arm_outer",
@@ -25218,7 +25262,7 @@
             }
         },
         "456": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "seat",
@@ -25262,7 +25306,7 @@
             }
         },
         "458": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "body",
@@ -25306,7 +25350,7 @@
             }
         },
         "460": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "clock_face",
@@ -25350,7 +25394,7 @@
             }
         },
         "462": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "Legs",
@@ -25394,7 +25438,7 @@
             }
         },
         "464": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "flaz",
@@ -25438,7 +25482,7 @@
             }
         },
         "466": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "below",
@@ -25482,7 +25526,7 @@
             }
         },
         "468": {
-            "ArchetypeID": "11000010000000",
+            "ArchetypeID": "110000100000000",
             "Enabled": false,
             "Name Tag": {
                 "Name": "below",
