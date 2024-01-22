@@ -5,9 +5,9 @@ public class InventoryScript : Script
     public GameObject InventoryObject;
     public View_Object _ViewObjectScript;
 
-    public List<string> noteObjsInInventory;
-    public List<string> itemObjsInInventory;
-    public List<string> paintingObjsInInventory;
+    public List<GameObject> noteObjsInInventory;
+    public List<GameObject> itemObjsInInventory;
+    public List<GameObject> paintingObjsInInventory;
 
     public GameObject noteBttnGrp;
     public GameObject itemBttnGrp;
@@ -18,20 +18,6 @@ public class InventoryScript : Script
     public List<string> paintingsObjImg;
 
     public string storedObjName;
-
-    //item images
-    //public GameObject Item1;  
-    //public GameObject Item2;
-    //public GameObject Item3;
-    //public GameObject Item4;
-    //public GameObject Item5;
-    //public GameObject Item6;   
-    //public GameObject Item7;
-    //public GameObject Item8;
-    //public GameObject Item9;
-    //public GameObject Item10;
-    //public GameObject Item11;
-    //public GameObject Item12;
 
     //boxes
     public GameObject Box1;  
@@ -46,6 +32,11 @@ public class InventoryScript : Script
     public GameObject Box10;
     public GameObject Box11;
     public GameObject Box12;
+
+    //Items
+    //public Painting_Script paintings;
+    //public Note_Script notes;
+    //public Item_Script items;
 
     //buttons
     public GameObject ItemsTab;
@@ -64,6 +55,12 @@ public class InventoryScript : Script
     public bool isInit { get; set; } = false;
     public override void Awake()
     {
+        
+    }
+
+    public override void Start()
+    {
+        initObjects();
     }
 
     public override void Update()
@@ -75,7 +72,7 @@ public class InventoryScript : Script
         {
             Console.WriteLine("Initialising");
             isInit = true;
-            initObjects();
+            initObjects(); //Can shift these into Start()
         }
 
         if(Input.GetKeyDown(Keycode.I))
@@ -158,7 +155,7 @@ public class InventoryScript : Script
         
     }
 
-    public void populateBoxes(List<string> ItemList)
+    public void populateBoxes(List<GameObject> ItemList)
     {
         Console.WriteLine("Populating Boxes\n");
         List<GameObject> BoxList = new List<GameObject>
@@ -179,13 +176,13 @@ public class InventoryScript : Script
         
         for(int i = 0; i < 12; ++i)
         {
-            Console.WriteLine(ItemList[i]);
+            Console.WriteLine(ItemList[i].GetComponent<NameTagComponent>().GetName());
         }
 
         for(int i = 0; i < 12; ++i)
         {
             Console.WriteLine("Populating box: " + i);
-            BoxList[i].GetComponent<UISpriteComponent>().SetTextureName(ItemList[i]);
+            BoxList[i].GetComponent<UISpriteComponent>().SetTextureName(ItemList[i].GetComponent<NameTagComponent>().GetName());
         }
     }
 
@@ -236,7 +233,7 @@ public class InventoryScript : Script
         NotesTab        = GameObjectScriptFind("NotesTab");
         PaintingsTab    = GameObjectScriptFind("PaintingsTab");
 
-        itemObjsInInventory = new List<string>
+        itemObjsInInventory = new List<GameObject>
         {
             "Notes2.dds",
             "Notes4.dds",

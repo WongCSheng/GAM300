@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ScriptAPI;
+using System;
 
-namespace ManagedScripts.Items
+public class Note_Script : Script
 {
-    internal class Note_Script
-    {
-    }
+    public GameObject Notes1, Notes2, Notes3, Notes4,
+        Notes5, Notes6, Notes7, Notes8;
+
+
+    [SerializeField] private bool collided;
 }

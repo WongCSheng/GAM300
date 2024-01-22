@@ -3,40 +3,39 @@ using System;
 
 public class Painting_Script : Script
 {
+    [Header("Paintings")]
+    
     //public Material _PaintingMaterial;
     //public GameObject _OpenPaintingTrigger;
+
+    [SerializeField]
     public GameObject painting1, painting2, painting3, painting4,
         painting5, painting6, painting7, painting8;
+
     //public Animator _PaintingAnimator;
+
     public bool opened;
+
     //public Flashlight_Script _FlashlightScript;
     //private GraphicComponent _color;
+
     [SerializeField] private bool collided;
 
     //public InventoryScript _inventory;
 
     [Header("AudioStuff")]
-    //public AudioSource playerVOSource;
-    public string[] voClip;
-    //public Text subtitles;
-    //public Image subtitlesBG;
-    bool playedAudio;
+    public AudioSource AudioPlayer;
+    public AudioComponent[] voClip = new AudioComponent[2];
 
     public float timer;
-    public bool receiptFound = false;
-    public bool paintingTaken = false;
 
     override public void Awake()
     {
-        voClip = new string[2];
-        voClip[0] = "pc_shinelightbeforereceipt";
-        voClip[1] = "pc_shinelightafterreceipt";
+        voClip[0].setFilePath("pc_stealpainting1");
+        voClip[1].setFilePath("pc_shinelightafterreceipt"); //This one should be items VO
         //_color.a = 1;
         timer = 1.0f;
         Console.WriteLine("Painting script");
-        paintingTaken = false;
-
-        Console.WriteLine("Painting Script Awake");
     }
 
     public override void Start()
@@ -44,7 +43,6 @@ public class Painting_Script : Script
         painting1.GetComponent<NameTagComponent>().SetTag("Painting");
         painting1.GetComponent<NameTagComponent>().SetName("p01");
         painting1.SetActive(painting1.GetEntityID(), true);
-        Console.WriteLine("Painting Script Start");
 
         //painting2.GetComponent<NameTagComponent>().SetTag("Painting");
         //painting2.GetComponent<NameTagComponent>().SetName("p02");
@@ -71,6 +69,15 @@ public class Painting_Script : Script
     // Update is called once per frame
     override public void Update()
     {
+        if(Input.GetMouseButtonDown(Keycode.M1) && interact(gameObject, collided))
+        {
+            if(gameObject.GetComponent<NameTagComponent>().GetName() == "p01")
+            {
+                painting1.SetActive(painting1.GetEntityID(), false);
+                //AudioPlayer.Play(voClip[0]);
+            }
+        }
+        
         //if (collided == true && _color.getColourAlpha() > 0.5f)
         //{
             //_color = _PaintingMaterial.color;
@@ -165,6 +172,16 @@ public class Painting_Script : Script
             //    }
             //}
         //}
+    }
+
+    public bool interact(GameObject go, bool set)
+    {
+        if (Input.GetKey(Keycode.E))
+        {
+            go.SetActive(go.GetEntityID(), set);
+        }
+
+        return false;
     }
 
     //private void OnTriggerEnter(Collider other)
