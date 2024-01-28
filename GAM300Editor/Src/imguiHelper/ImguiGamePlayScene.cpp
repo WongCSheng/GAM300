@@ -20,6 +20,8 @@ void TDS::GamePlayScene::init()
 }
 void TDS::GamePlayScene::update()
 {
+	//std::cout << "windowpos: " << ImGui::GetWindowPos().x << " " << ImGui::GetWindowPos().y << '\n';
+	//std::cout << "windowsize: " << ImGui::GetWindowSize().x << " " << ImGui::GetWindowSize().y << '\n';
 	isFocus = ImGui::IsWindowFocused() && ImGui::IsItemVisible();
 	if (ImGui::BeginMenuBar())
 	{
@@ -38,6 +40,7 @@ void TDS::GamePlayScene::update()
 
 			window_size = ImGui::GetWindowSize();
 			window_pos = ImGui::GetWindowPos();
+			
 			Input::mousePosition globalMousePos = Input::getMousePosition();
 
 			if (Input::getExitCursor() && !GraphicsManager::getInstance().IsViewingFrom2D())
@@ -55,10 +58,11 @@ void TDS::GamePlayScene::update()
 			}
 			else
 			{
+				std::cout << "here\n";
 				ImGuiIO& cursor_input = ImGui::GetIO();
 				cursor_input.WantSetMousePos = false;
 				show_cursor = 1;
-
+				
 				float normalizedLocalMouseX = ((globalMousePos.x - window_pos.x) / (window_size.x * 0.5f)) - 1.f;
 				float normalizedLocalMouseY = ((window_pos.y + window_size.y - globalMousePos.y) / (window_size.y * 0.5f)) - 1.f;
 				Vec2 localMousePos = { normalizedLocalMouseX, normalizedLocalMouseY };
@@ -88,6 +92,13 @@ void TDS::GamePlayScene::update()
 		ImGui::EndMenuBar();
 	}
 	ImVec2 vSize = ImGui::GetContentRegionAvail();
+
+	Input::mousePosition globalMousePos = Input::getMousePosition();
+	float normalizedLocalMouseX = ((globalMousePos.x - ImGui::GetWindowPos().x) / (ImGui::GetWindowSize().x * 0.5f)) - 1.f;
+	float normalizedLocalMouseY = ((ImGui::GetWindowPos().y + ImGui::GetWindowSize().y - globalMousePos.y) / (ImGui::GetWindowSize().y * 0.5f)) - 1.f;
+	Vec2 localMousePos = { normalizedLocalMouseX, normalizedLocalMouseY };
+	Input::setUIMousePos(localMousePos);
+	//std::cout << "Local X : " << localMousePos.x << " " << "Local Y : " << localMousePos.y << '\n';
 
 	ImGui::Image((ImTextureID)m_GamePlayDesc, vSize);
 }

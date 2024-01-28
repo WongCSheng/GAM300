@@ -167,6 +167,8 @@ namespace ScriptAPI
 		static bool GetMouseButtonDown(uint32_t button);
 		static float GetLocalMousePosX();
 		static float GetLocalMousePoxY();
+		static float GetUIMousePosX();
+		static float GetUIMousePosY();
 		static float GetMousePositionDifferenceX();
 		static float GetMousePositionDifferenceY();
 		static void KeyRelease(uint32_t keycode);

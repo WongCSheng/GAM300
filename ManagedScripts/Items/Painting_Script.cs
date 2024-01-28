@@ -3,25 +3,20 @@ using System;
 
 public class Painting_Script : Script
 {
-    [Header("Paintings")]
-    
+    private GameObject playerObject;
+
     //public Material _PaintingMaterial;
     //public GameObject _OpenPaintingTrigger;
 
     [SerializeField]
-    public GameObject painting1, painting2, painting3, painting4,
-        painting5, painting6, painting7, painting8;
+    public string Painting_Name;
+    public string Inventory_Texture_Name;
+    public bool opened;
+    private bool collided;
 
     //public Animator _PaintingAnimator;
-
-    public bool opened;
-
     //public Flashlight_Script _FlashlightScript;
     //private GraphicComponent _color;
-
-    [SerializeField] private bool collided;
-
-    //public InventoryScript _inventory;
 
     [Header("AudioStuff")]
     public AudioSource AudioPlayer;
@@ -40,55 +35,33 @@ public class Painting_Script : Script
 
     public override void Start()
     {
-        painting1.GetComponent<NameTagComponent>().SetTag("Painting");
-        painting1.GetComponent<NameTagComponent>().SetName("p01");
-        painting1.SetActive(painting1.GetEntityID(), true);
-
-        //painting2.GetComponent<NameTagComponent>().SetTag("Painting");
-        //painting2.GetComponent<NameTagComponent>().SetName("p02");
-
-        //painting3.GetComponent<NameTagComponent>().SetTag("Painting");
-        //painting3.GetComponent<NameTagComponent>().SetName("p03");
-
-        //painting4.GetComponent<NameTagComponent>().SetTag("Painting");
-        //painting4.GetComponent<NameTagComponent>().SetName("p04");
-
-        //painting5.GetComponent<NameTagComponent>().SetTag("Painting");
-        //painting5.GetComponent<NameTagComponent>().SetName("p05");
-
-        //painting6.GetComponent<NameTagComponent>().SetTag("Painting");
-        //painting6.GetComponent<NameTagComponent>().SetName("p06");
-
-        //painting7.GetComponent<NameTagComponent>().SetTag("Painting");
-        //painting7.GetComponent<NameTagComponent>().SetName("p07");
-
-        //painting8.GetComponent<NameTagComponent>().SetTag("Painting");
-        //painting8.GetComponent<NameTagComponent>().SetName("p08");
+        playerObject = GameObjectScriptFind("Player");
+        //painting1.GetComponent<NameTagComponent>().SetTag("Painting");
+        //painting1.GetComponent<NameTagComponent>().SetName("p01");
     }
 
     // Update is called once per frame
     override public void Update()
     {
-        if(Input.GetMouseButtonDown(Keycode.M1) && interact(gameObject, collided))
+        if (Input.GetKeyDown(Keycode.E) && isWithinRange()) // Maybe add 1 more condition to check if its within player's view
         {
-            if(gameObject.GetComponent<NameTagComponent>().GetName() == "p01")
-            {
-                painting1.SetActive(painting1.GetEntityID(), false);
-                //AudioPlayer.Play(voClip[0]);
-            }
+            Console.WriteLine("Picked up painting");
+            InventoryScript.addPaintingIntoInventory(Inventory_Texture_Name);
+            gameObject.SetActive(false);
         }
-        
+        //Console.WriteLine("paint script");
+
         //if (collided == true && _color.getColourAlpha() > 0.5f)
         //{
-            //_color = _PaintingMaterial.color;
-            //_color.SetColourAlpha(_color.getColourAlpha() - 0.2f * Time.deltaTime);
-            //_PaintingMaterial.color = _color;
+        //_color = _PaintingMaterial.color;
+        //_color.SetColourAlpha(_color.getColourAlpha() - 0.2f * Time.deltaTime);
+        //_PaintingMaterial.color = _color;
         //}
         //else if (collided == false && _color.getColourAlpha() < 1f)
         //{
-            //_color = _PaintingMaterial.color;
-            //_color.SetColourAlpha(_color.getColourAlpha() + 0.5f * Time.deltaTime);
-            //_PaintingMaterial.color = _color;
+        //_color = _PaintingMaterial.color;
+        //_color.SetColourAlpha(_color.getColourAlpha() + 0.5f * Time.deltaTime);
+        //_PaintingMaterial.color = _color;
         //}
 
         //if (!_FlashlightScript.activateLight)
@@ -127,63 +100,61 @@ public class Painting_Script : Script
 
         //if (_color.getColourAlpha() <= 0.6f)
         //{
-            //_OpenPaintingTrigger.SetActive(_OpenPaintingTrigger.GetEntityID(), true);
+        //_OpenPaintingTrigger.SetActive(_OpenPaintingTrigger.GetEntityID(), true);
 
-            //checks if player has receipt, if so play a specific VO, else play another VO
-            //for (int x = 0; x < _inventory.noteObjsInInventory.Count; x++)
-            //{
-            //    if (_inventory.noteObjsInInventory[x] != "Reciept")
-            //    {
-            //        if (!playedAudio)
-            //        {
-            //            //playerVOSource.clip = voClip[0];
-            //            //playerVOSource.Play();
-            //            //subtitles.enabled = true;
-            //            //subtitlesBG.enabled = true;
-            //            //subtitles.text = "Martin (Internal): \"Something�s behind this painting...\"";
-            //            //playedAudio = true;
-            //        }
+        //checks if player has receipt, if so play a specific VO, else play another VO
+        //for (int x = 0; x < _inventory.noteObjsInInventory.Count; x++)
+        //{
+        //    if (_inventory.noteObjsInInventory[x] != "Reciept")
+        //    {
+        //        if (!playedAudio)
+        //        {
+        //            //playerVOSource.clip = voClip[0];
+        //            //playerVOSource.Play();
+        //            //subtitles.enabled = true;
+        //            //subtitlesBG.enabled = true;
+        //            //subtitles.text = "Martin (Internal): \"Something�s behind this painting...\"";
+        //            //playedAudio = true;
+        //        }
 
-            //        //if (!playerVOSource.isPlaying && playedAudio)
-            //        //{
-            //        //    subtitles.enabled = false;
-            //        //    subtitlesBG.enabled = false;
-            //        //    break;
-            //        //}
-            //    }
-            //    else if (_inventory.noteObjsInInventory[x] == "Reciept")
-            //    {
-            //        if (!playedAudio)
-            //        {
-            //            //playerVOSource.clip = voClip[1];
-            //            //playerVOSource.Play();
-            //            //subtitles.enabled = true;
-            //            //subtitlesBG.enabled = true;
-            //            //subtitles.text = "Martin (Internal): \"Looks like the receipt was right.\"";
-            //            //playedAudio = true;
-            //        }
+        //        //if (!playerVOSource.isPlaying && playedAudio)
+        //        //{
+        //        //    subtitles.enabled = false;
+        //        //    subtitlesBG.enabled = false;
+        //        //    break;
+        //        //}
+        //    }
+        //    else if (_inventory.noteObjsInInventory[x] == "Reciept")
+        //    {
+        //        if (!playedAudio)
+        //        {
+        //            //playerVOSource.clip = voClip[1];
+        //            //playerVOSource.Play();
+        //            //subtitles.enabled = true;
+        //            //subtitlesBG.enabled = true;
+        //            //subtitles.text = "Martin (Internal): \"Looks like the receipt was right.\"";
+        //            //playedAudio = true;
+        //        }
 
-            //        //if (!playerVOSource.isPlaying && playedAudio)
-            //        //{
-            //        //    subtitles.enabled = false;
-            //        //    subtitlesBG.enabled = false;
-            //        //    break;
-            //        //}
-            //    }
-            //}
+        //        //if (!playerVOSource.isPlaying && playedAudio)
+        //        //{
+        //        //    subtitles.enabled = false;
+        //        //    subtitlesBG.enabled = false;
+        //        //    break;
+        //        //}
+        //    }
+        //}
         //}
     }
 
-    public bool interact(GameObject go, bool set)
+    public bool isWithinRange()
     {
-        if (Input.GetKey(Keycode.E))
-        {
-            go.SetActive(go.GetEntityID(), set);
-        }
-
-        return false;
+        Vector3 itemPos = gameObject.transform.GetPosition();
+        Vector3 playerPos = playerObject.transform.GetPosition();
+        float distance = Vector3.Distance(itemPos, playerPos);
+        Console.WriteLine(distance);
+        return distance < 5.0;
     }
-
     //private void OnTriggerEnter(Collider other)
     //{
     //    if (other.gameObject.tag == "Player's Light")

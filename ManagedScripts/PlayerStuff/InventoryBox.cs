@@ -4,12 +4,10 @@ using static System.Net.Mime.MediaTypeNames;
 
 public class InventoryBox : Script
 {
+    [SerializeField]
+    public int BoxNumber;
     public string storedObjName;
-    public View_Object myViewObjScript;
-    public InventoryScript myInventoryScript;
-    public GameObject notesGrp;
-    public GameObject itemsGrp;
-    public GameObject paintingsGrp;
+
     //public Sprite emptyBox;
 
     public override void Awake()
@@ -17,9 +15,13 @@ public class InventoryBox : Script
         //GetComponent<Button>().onClick.AddListener(AssignViewObjectString);
     }
 
+    public override void Start()
+    {
+    }
+
     public override void Update()
     {
-        
+        DisplayItem();
         // if (storedObjName != "")
         // {
         //     if (gameObject.GetComponent<NameTagComponent>().GetTag() == "Note" && notesGrp.activeInHierarchy(notesGrp.GetEntityID()))
@@ -74,9 +76,25 @@ public class InventoryBox : Script
         // }
     }
 
+    public void DisplayItem()
+    {
+        if(InventoryScript.currentTab == "Items")
+        {
+            gameObject.GetComponent<UISpriteComponent>().SetTextureName(InventoryScript.itemObjsInInventory[BoxNumber]);
+        }
+        else if (InventoryScript.currentTab == "Paintings")
+        {
+            gameObject.GetComponent<UISpriteComponent>().SetTextureName(InventoryScript.paintingObjsInInventory[BoxNumber]);
+        }
+        else if (InventoryScript.currentTab == "Notes")
+        {
+            gameObject.GetComponent<UISpriteComponent>().SetTextureName(InventoryScript.noteObjsInInventory[BoxNumber]);
+        }
+    }
+
     public void AssignViewObjectString()
     {
-        myViewObjScript.examineObject = storedObjName;
+        //myViewObjScript.examineObject = storedObjName;
     }
 
     //public void UseObject()

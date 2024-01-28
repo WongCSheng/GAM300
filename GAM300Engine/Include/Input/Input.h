@@ -241,11 +241,16 @@ namespace TDS
 		static float getLocalMousePosX();
 		static float getLocalMousePosY();
 
+		static void setUIMousePos(Vec2 mousePos);
+		static float getUIMousePosX();
+		static float getUIMousePosY();
+
 		static void centerandhidemouse(HWND hwnd);
 
 	private:
 		static bool exit_cursor;
 		static Vec2 local_MousePos;
+		static Vec2 ui_MousePos;
 
 	}; //end of Input class
 

@@ -124,6 +124,16 @@ namespace ScriptAPI
 		return TDS::Input::getLocalMousePosY();
 	}
 
+	float Input::GetUIMousePosX()
+	{
+		return TDS::Input::getUIMousePosX();
+	}
+
+	float Input::GetUIMousePosY()
+	{
+		return TDS::Input::getUIMousePosY();
+	}
+
 	void Input::InputUpdate()
 	{
 		mousePositionX = TDS::Input::getMousePosition().x;
@@ -131,11 +141,11 @@ namespace ScriptAPI
 		int width = TDS::GetScreenWidth();
 		int height = TDS::GetScreenHeight();
 		if (mousePositionX > 0.75f*width || mousePositionX < 0.25f*width) {
-			CenterMouseX();
+			//CenterMouseX();
 		}
 		if (mousePositionY > 0.9f * height || mousePositionY < 0.1f * height)
 		{
-			CenterMouseY();
+			//CenterMouseY();
 		}
 		//std::cout << mousePositionX << std::endl;
 	}

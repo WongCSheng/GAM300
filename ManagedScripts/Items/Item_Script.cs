@@ -3,21 +3,38 @@ using System;
 
 public class Item_Script : Script
 {
-    public GameObject item1, item2, item3, item4,
-        item5, item6, item7, item8;
+    private GameObject playerObject;
 
-    public void Awake()
+    [SerializeField]
+    public string Item_Name;
+    public string Inventory_Texture_Name;
+
+    public override void Awake()
     {
 
     }
 
-    public void Startup()
+    public override void Start()
     {
-
+        playerObject = GameObjectScriptFind("Player");
     }
 
-    public void Update()
+    public override void Update()
     {
+        if (Input.GetKeyDown(Keycode.E) && isWithinRange()) // Maybe add 1 more condition to check if its within player's view
+        {
+            Console.WriteLine("Picked up item");
+            InventoryScript.addItemIntoInventory(Inventory_Texture_Name);
+            gameObject.SetActive(false);
+        }
+    }
 
+    public bool isWithinRange()
+    {
+        Vector3 itemPos = gameObject.transform.GetPosition();
+        Vector3 playerPos = playerObject.transform.GetPosition();
+        float distance = Vector3.Distance(itemPos, playerPos);
+        Console.WriteLine(distance);
+        return distance < 5.0;
     }
 }
