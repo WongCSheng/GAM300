@@ -87,8 +87,8 @@ public class InventoryScript : Script
     public void checkMouseInput()
     {
         //Console.WriteLine("Checking Mouse Input\n");
-        if (Input.GetMouseButtonDown(Keycode.M1))
-        {
+        //if (Input.GetMouseButtonDown(Keycode.M1))
+        //{
             if(withinButton(ItemsTab)) // Slightly off in y-axis
             {
                 Console.WriteLine("Collide Items\n");
@@ -104,7 +104,7 @@ public class InventoryScript : Script
                 Console.WriteLine("Collide Paintings\n");
                 currentTab = "Paintings";
             }
-        }
+        //}
     }
 
     public void initObjects()
@@ -213,8 +213,9 @@ public class InventoryScript : Script
         float maxX = ObjectPos.X + ObjectScale.X * 0.5f;
         float minY = ObjectPos.Y - ObjectScale.Y * 0.5f;
         float maxY = ObjectPos.Y + ObjectScale.Y * 0.5f;
-        //Console.WriteLine("MouseX: " + mouseX + " MinX: " + minX + " MaxX: " + maxX + "\n");
-        //Console.WriteLine("MouseY: " + mouseY + " MinY: " + minY + " MaxY: " + maxY + "\n");
+        Console.WriteLine("MouseX: " + mouseX + " MinX: " + minX + " MaxX: " + maxX);
+        
+        Console.WriteLine("MouseY: " + mouseY + " MinY: " + minY + " MaxY: " + maxY);
         if (mouseX >= minX && mouseX <= maxX && mouseY >= minY && mouseY <= maxY)
             return true;
         else

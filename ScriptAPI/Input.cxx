@@ -314,7 +314,7 @@ namespace ScriptAPI
 		return TDS::InputSystem::GetInstance()->getLocalMousePosX();
 	}
 
-	float InputSystem::GetLocalMousePoxY()
+	float InputSystem::GetLocalMousePosY()
 	{
 		return TDS::InputSystem::GetInstance()->getLocalMousePosY();
 	}
