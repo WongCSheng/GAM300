@@ -26,13 +26,13 @@
             "8": 32
         },
         "110000000000000": {
-            "0": 1224,
-            "1": 3600
+            "0": 816,
+            "1": 2400
         },
         "110000000000100": {
-            "0": 2176,
-            "1": 6400,
-            "12": 5760
+            "0": 2992,
+            "1": 8800,
+            "12": 7920
         }
     },
     "Entity Data": {
@@ -2053,7 +2053,7 @@
             }
         },
         "487": {
-            "ArchetypeID": "110000000000000",
+            "ArchetypeID": "110000000000100",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Painting Test",
@@ -2065,19 +2065,53 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
+                    "x": -0.30000001192092896,
+                    "y": 0.75,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.05999999865889549,
+                    "y": 0.05999999865889549,
                     "z": 1.0
                 },
                 "Rotation": {
                     "x": 0.0,
-                    "y": 0.0,
+                    "y": -0.0,
                     "z": 0.0
+                }
+            },
+            "UI Sprite": {
+                "Texture": "",
+                "EnableSprite": true,
+                "LayerID": 2,
+                "is Font": true,
+                "message": "Paintings",
+                "Font Texture": "Font1.dds",
+                "ForeGroundColour": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                },
+                "Sprite Color": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "BackGroundColour": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "BoundingBoxMin": {
+                    "x": -0.5,
+                    "y": -0.5
+                },
+                "BoundingBoxMax": {
+                    "x": 0.5,
+                    "y": 0.5
                 }
             }
         },
@@ -7251,7 +7285,7 @@
             }
         },
         "489": {
-            "ArchetypeID": "110000000000000",
+            "ArchetypeID": "110000000000100",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Note Test",
@@ -7263,19 +7297,53 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
+                    "x": -0.8700000047683716,
+                    "y": 0.75,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.05999999865889549,
+                    "y": 0.05999999865889549,
                     "z": 1.0
                 },
                 "Rotation": {
                     "x": 0.0,
                     "y": 0.0,
                     "z": 0.0
+                }
+            },
+            "UI Sprite": {
+                "Texture": "",
+                "EnableSprite": true,
+                "LayerID": 2,
+                "is Font": true,
+                "message": "Notes",
+                "Font Texture": "Font1.dds",
+                "ForeGroundColour": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                },
+                "Sprite Color": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "BackGroundColour": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "BoundingBoxMin": {
+                    "x": -0.5,
+                    "y": -0.5
+                },
+                "BoundingBoxMax": {
+                    "x": 0.5,
+                    "y": 0.5
                 }
             }
         },
@@ -7829,6 +7897,69 @@
                     "w": 1.0
                 },
                 "Used In 2D": false
+            }
+        },
+        "491": {
+            "ArchetypeID": "110000000000100",
+            "Enabled": true,
+            "Name Tag": {
+                "Name": "NoteFont",
+                "Tag": "",
+                "IsActive": true,
+                "HierarchyParent": 470,
+                "HierarchyIndex": 16,
+                "HierarchyChildren": []
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.8700000047683716,
+                    "y": 0.7300000190734863,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.06000000238418579,
+                    "y": 0.10000002384185791,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            },
+            "UI Sprite": {
+                "Texture": "",
+                "EnableSprite": true,
+                "LayerID": 3,
+                "is Font": true,
+                "message": "Notes",
+                "Font Texture": "Font1.dds",
+                "ForeGroundColour": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                },
+                "Sprite Color": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "BackGroundColour": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "BoundingBoxMin": {
+                    "x": -2.369999885559082,
+                    "y": -1.25
+                },
+                "BoundingBoxMax": {
+                    "x": 0.6299999952316284,
+                    "y": 2.75
+                }
             }
         },
         "109": {
@@ -17563,8 +17694,8 @@
                     "z": 8.082494735717773
                 },
                 "Rotation": {
-                    "x": 0.3333408534526825,
-                    "y": -243.6875,
+                    "x": -11.200170516967773,
+                    "y": -109.22474670410156,
                     "z": 0.0
                 }
             },
@@ -17577,7 +17708,7 @@
                     "z": 0.0
                 },
                 "Speed": 1.0,
-                "FOV": 55.49705123901367,
+                "FOV": 36.12991714477539,
                 "MouseSensitivity": 0.10000000149011612
             },
             "Graphics Component": {
@@ -21192,7 +21323,7 @@
                 },
                 "Rotation": {
                     "x": 0.0,
-                    "y": -243.625,
+                    "y": -109.42474365234375,
                     "z": 0.0
                 }
             },
@@ -25607,7 +25738,10 @@
                     483,
                     484,
                     485,
-                    486
+                    486,
+                    490,
+                    491,
+                    492
                 ]
             },
             "Transform": {
@@ -26104,7 +26238,7 @@
             }
         },
         "488": {
-            "ArchetypeID": "110000000000000",
+            "ArchetypeID": "110000000000100",
             "Enabled": true,
             "Name Tag": {
                 "Name": "Item Test",
@@ -26116,19 +26250,179 @@
             },
             "Transform": {
                 "Position": {
-                    "x": 0.0,
-                    "y": 0.0,
+                    "x": -0.5799999833106995,
+                    "y": 0.75,
                     "z": 0.0
                 },
                 "Scale": {
-                    "x": 1.0,
-                    "y": 1.0,
+                    "x": 0.05999999865889549,
+                    "y": 0.05999999865889549,
                     "z": 1.0
                 },
                 "Rotation": {
                     "x": 0.0,
                     "y": 0.0,
                     "z": 0.0
+                }
+            },
+            "UI Sprite": {
+                "Texture": "",
+                "EnableSprite": true,
+                "LayerID": 2,
+                "is Font": true,
+                "message": "Items",
+                "Font Texture": "Font1.dds",
+                "ForeGroundColour": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                },
+                "Sprite Color": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "BackGroundColour": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "BoundingBoxMin": {
+                    "x": -0.5,
+                    "y": -0.5
+                },
+                "BoundingBoxMax": {
+                    "x": 0.5,
+                    "y": 0.5
+                }
+            }
+        },
+        "490": {
+            "ArchetypeID": "110000000000100",
+            "Enabled": true,
+            "Name Tag": {
+                "Name": "ItemFont",
+                "Tag": "",
+                "IsActive": true,
+                "HierarchyParent": 470,
+                "HierarchyIndex": 15,
+                "HierarchyChildren": []
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.5799999833106995,
+                    "y": 0.7300000190734863,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.06000000238418579,
+                    "y": 0.10000002384185791,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            },
+            "UI Sprite": {
+                "Texture": "",
+                "EnableSprite": true,
+                "LayerID": 3,
+                "is Font": true,
+                "message": "Items",
+                "Font Texture": "Font1.dds",
+                "ForeGroundColour": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                },
+                "Sprite Color": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "BackGroundColour": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "BoundingBoxMin": {
+                    "x": -0.5,
+                    "y": -0.5
+                },
+                "BoundingBoxMax": {
+                    "x": 0.5,
+                    "y": 0.5
+                }
+            }
+        },
+        "492": {
+            "ArchetypeID": "110000000000100",
+            "Enabled": true,
+            "Name Tag": {
+                "Name": "PaintingFont",
+                "Tag": "",
+                "IsActive": true,
+                "HierarchyParent": 470,
+                "HierarchyIndex": 17,
+                "HierarchyChildren": []
+            },
+            "Transform": {
+                "Position": {
+                    "x": -0.30000001192092896,
+                    "y": 0.7300000190734863,
+                    "z": 0.0
+                },
+                "Scale": {
+                    "x": 0.06000000238418579,
+                    "y": 0.10000002384185791,
+                    "z": 1.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            },
+            "UI Sprite": {
+                "Texture": "",
+                "EnableSprite": true,
+                "LayerID": 3,
+                "is Font": true,
+                "message": "Paintings",
+                "Font Texture": "Font1.dds",
+                "ForeGroundColour": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                },
+                "Sprite Color": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "BackGroundColour": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 1.0
+                },
+                "BoundingBoxMin": {
+                    "x": -0.33000001311302185,
+                    "y": 0.699999988079071
+                },
+                "BoundingBoxMax": {
+                    "x": -0.27000001072883606,
+                    "y": 0.800000011920929
                 }
             }
         }
@@ -26383,6 +26677,7 @@
         "106": {},
         "107": {},
         "108": {},
+        "491": {},
         "109": {},
         "110": {},
         "111": {},
@@ -26943,7 +27238,9 @@
                     "ScriptAPI.GameObject": 488
                 }
             }
-        }
+        },
+        "490": {},
+        "492": {}
     },
     "Active Archetype": {
         "387": "11000010000000",
@@ -27099,6 +27396,7 @@
         "106": "11000010000000",
         "107": "11000010000000",
         "108": "11000010000000",
+        "491": "110000000000100",
         "109": "11000010000000",
         "110": "11000010000000",
         "111": "11000010000000",
@@ -27428,6 +27726,8 @@
         "482": "11000000000010",
         "484": "11000000000010",
         "486": "11000000000010",
-        "488": "110000000000000"
+        "488": "110000000000000",
+        "490": "110000000000100",
+        "492": "110000000000100"
     }
 }
