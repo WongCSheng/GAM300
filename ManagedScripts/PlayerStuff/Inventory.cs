@@ -22,9 +22,7 @@ public class InventoryScript : Script
     public string storedObjName;
 
     //Items
-    //public Painting_Script paintings;
-    //public Note_Script notes;
-    //public Item_Script items;
+    static public List<GameObject> painting_container;
 
     //buttons
     public GameObject ItemsTab;
@@ -52,6 +50,7 @@ public class InventoryScript : Script
 
     public override void Start()
     {
+        //Console.WriteLine("Initialising");
         initObjects();
     }
 
