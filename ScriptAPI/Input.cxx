@@ -128,6 +128,16 @@ namespace ScriptAPI
 		//return TDS::Input::GetObjectPickPosY();
 	}
 
+	float Input::GetUIMousePosX()
+	{
+		return TDS::Input::getUIMousePosX();
+	}
+
+	float Input::GetUIMousePosY()
+	{
+		return TDS::Input::getUIMousePosY();
+	}
+
 	// float Input::GetPickedPosX()
 	// {
 	// 	return TDS::Input::GetObjectPickPosX();
