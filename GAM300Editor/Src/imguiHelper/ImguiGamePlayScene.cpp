@@ -91,7 +91,15 @@ void TDS::GamePlayScene::update()
 
 		ImGui::EndMenuBar();
 	}
-	ImVec2 vSize = ImGui::GetContentRegionAvail();
+	ImVec2 vSize /*= ImGui::GetContentRegionAvail()*/;
+	if (ImGui::GetContentRegionAvail().x < (ImGui::GetContentRegionAvail().y * (16.0f / 9.0f)))
+	{
+		vSize = ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().x * (9.0f / 16.0f)); //scale y
+	}
+	else
+	{
+		vSize = ImVec2(ImGui::GetContentRegionAvail().y * (16.0f / 9.0f), ImGui::GetContentRegionAvail().y); //scale x
+	}
 
 	Input::mousePosition globalMousePos = Input::getMousePosition();
 	float normalizedLocalMouseX = ((globalMousePos.x - ImGui::GetWindowPos().x) / (ImGui::GetWindowSize().x * 0.5f)) - 1.f;

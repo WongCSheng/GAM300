@@ -5,6 +5,7 @@
 #include <array>
 #include <sstream>
 #include <imgui/imgui.h>
+#include <Windows.h>
 
 #include "EditorApp.h"
 
@@ -34,6 +35,8 @@
 #include "Physics/PhysicsSystem.h"
 #include "Rendering/ObjectPicking.h"
 #include "Input/InputSystem.h"
+#include "Rendering/GridRenderer.h"
+#include "Tools/Pathfinder.h"
 
 bool isPlaying = false;
 bool startPlaying = false;
@@ -41,6 +44,7 @@ bool startPlaying = false;
 namespace TDS
 {
     bool SceneManager::isPlaying;
+    Pathfinder pathfinder{};
 
     Application::Application(HINSTANCE hinstance, int& nCmdShow, const wchar_t* classname, WNDPROC wndproc)
         :m_window(hinstance, nCmdShow, classname)
@@ -63,7 +67,9 @@ namespace TDS
         
         switch (uMsg)
         {
-
+        case WM_CREATE:
+            TDS::InputSystem::GetInstance()->setWindowCenter(GetSystemMetrics(SM_CXSCREEN) / 2, GetSystemMetrics(SM_CYSCREEN) / 2);
+            break;
         case WM_DESTROY:
             PostQuitMessage(0);
             break;
@@ -75,13 +81,6 @@ namespace TDS
             m_window.setHeight(HIWORD(lParam));
             m_window.WindowIsResizing(true);
             break;
-        case WM_LBUTTONDOWN:
-        case WM_LBUTTONUP:
-        case WM_RBUTTONDOWN:
-        case WM_RBUTTONUP:
-        case WM_MBUTTONDOWN:
-        case WM_MBUTTONUP:
-        case WM_XBUTTONDOWN:
         case WM_XBUTTONUP:
         {
             Input::processMouseInput(wParam, lParam);
@@ -92,13 +91,6 @@ namespace TDS
             Input::updateMousePosition(lParam);
         }break;
 
-        case WM_MOUSEWHEEL:
-        {
-            Input::processMouseScroll(wParam);
-        }break;
-
-        case WM_SYSKEYDOWN:
-        case WM_SYSKEYUP:
         case WM_KEYDOWN:
         {
             uint32_t VKcode = static_cast<uint32_t>(wParam);
@@ -124,6 +116,35 @@ namespace TDS
             Input::keystatus = Input::KeyStatus::RELEASED;
             Input::keystatus = Input::KeyStatus::IDLE;
         }break;
+
+            // Input System Stuff
+            case WM_INPUT: {
+                RAWINPUT rawInput;
+                UINT size = sizeof(RAWINPUT);
+
+                GetRawInputData((HRAWINPUT)lParam, RID_INPUT, &rawInput, &size, sizeof(RAWINPUTHEADER));
+
+                if (rawInput.header.dwType == RIM_TYPEMOUSE) {
+                    // Process mouse input
+                    TDS::InputSystem::GetInstance()->setRawMouseInput(rawInput.data.mouse.lLastX, rawInput.data.mouse.lLastY);
+                }
+
+                if (TDS::InputSystem::GetInstance()->getMouseLock())
+                {
+                    HWND activeWindow = GetForegroundWindow();
+                    if (activeWindow != nullptr) {
+                        RECT windowRect;
+                        if (GetWindowRect(activeWindow, &windowRect)) {
+                            TDS::InputSystem::GetInstance()->setWindowCenter((windowRect.left + windowRect.right) / 2, (windowRect.top + windowRect.bottom) / 2);
+                        }
+                    }
+                    TDS::InputSystem::GetInstance()->lockMouseCenter(hWnd);
+                }
+
+            }break;
+            case WM_MOUSEWHEEL: {
+                InputSystem::GetInstance()->processMouseScroll(wParam);
+            }break;
         }
     }
     void Application::SetWindowHandle(HWND hWnd)
@@ -140,7 +161,26 @@ namespace TDS
         GraphicsManager::getInstance().Init(&m_window);
         AssetManager::GetInstance()->PreloadAssets();
         skyboxrender.Init();
-        //InputSystem::get()->addListener(this);
+
+        //register the grid
+        for (size_t i = 0; i < pathfinder.GetGrid().size(); ++i)
+        {
+            for (size_t j = 0; j < pathfinder.GetGrid()[i].size(); ++j)
+            {
+                // do some RegisterEntity using pathfinder.GetGrid()[i][j].get();
+            }
+        }
+
+        // Raw Input for Mouse Movement
+        RAWINPUTDEVICE rid;
+        rid.usUsagePage = 0x01;  // Mouse
+        rid.usUsage = 0x02;      // Mouse
+        rid.dwFlags = 0;
+        rid.hwndTarget = NULL;
+
+        if (RegisterRawInputDevices(&rid, 1, sizeof(RAWINPUTDEVICE)) == FALSE) {
+            std::cout << "Mouse Failed to Register" << std::endl;
+        }
     }
 
     void Application::Update()
@@ -238,6 +278,11 @@ namespace TDS
             GraphicsManager::getInstance().getRenderPass().beginRenderPass(commandBuffer, &GraphicsManager::getInstance().getFrameBuffer());
             if (GraphicsManager::getInstance().IsViewingFrom2D() == false)
                 skyboxrender.RenderSkyBox(commandBuffer, frame);
+
+            //render grid
+            //gridrender.Render(commandBuffer, frame);
+            //gridrender.SetColour(0, 0, Color(1.0f, 0.0f, 0.0f, 1.0f));
+            pathfinder.DisplayPathAnimated(DeltaTime); //display path
            
             if (isPlaying)
             {
@@ -251,7 +296,7 @@ namespace TDS
                 executeFixedUpdate();
                 ecs.runSystems(1, DeltaTime); // Other systems
                 executeUpdate();
-                //executeLateUpdate();
+                executeLateUpdate();
             }
             else
             {
@@ -308,6 +353,8 @@ namespace TDS
         skyboxrender.ShutDown();
         GraphicsManager::getInstance().ShutDown();
         DDSConverter::Destroy();
+        //shutdown grid
+        //gridrender.ShutDown();
 
         PhysicsSystem::JPH_SystemShutdown();
     }
