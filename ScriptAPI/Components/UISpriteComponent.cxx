@@ -1,5 +1,6 @@
 #include "UISpriteComponent.hxx"
 #include "../TypeConversion.hxx"
+#include "../EngineInterface.hxx"
 #include "Timestep/Timestep.h"
 
 namespace ScriptAPI
@@ -119,10 +120,14 @@ namespace ScriptAPI
 	void UISpriteComponent::SetEntityID(TDS::EntityID ID)
 	{
 		entityID = ID;
+		transform = TransformComponent(ID);
+		gameObject = EngineInterface::GetGameObject(ID);
 	}
 	UISpriteComponent::UISpriteComponent(TDS::EntityID ID) : entityID(ID), transform(TransformComponent(ID))
 	{
+		gameObject = EngineInterface::GetGameObject(ID);
 	}
+
 	TDS::EntityID UISpriteComponent::GetEntityID()
 	{
 		return entityID;
@@ -130,6 +135,10 @@ namespace ScriptAPI
 
 	void UISpriteComponent::SetEnabled(bool enabled)
 	{
-		TDS::ecs.setEntityIsEnabled(GetEntityID(), enabled);
+		TDS::setComponentIsEnable("UI Sprite", GetEntityID(), enabled);
+	}
+	bool UISpriteComponent::GetEnabled()
+	{
+		return TDS::getComponentIsEnable("UI Sprite", GetEntityID());
 	}
 }
