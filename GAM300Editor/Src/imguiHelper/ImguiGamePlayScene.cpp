@@ -120,13 +120,6 @@ void TDS::GamePlayScene::update()
 		vSize = ImVec2(ImGui::GetContentRegionAvail().y * (16.0f / 9.0f), ImGui::GetContentRegionAvail().y); //scale x
 	}
 
-	Input::mousePosition globalMousePos = Input::getMousePosition();
-	float normalizedLocalMouseX = ((globalMousePos.x - ImGui::GetWindowPos().x) / (ImGui::GetWindowSize().x * 0.5f)) - 1.f;
-	float normalizedLocalMouseY = ((ImGui::GetWindowPos().y + ImGui::GetWindowSize().y - globalMousePos.y) / (ImGui::GetWindowSize().y * 0.5f)) - 1.f;
-	Vec2 localMousePos = { normalizedLocalMouseX, normalizedLocalMouseY };
-	Input::setUIMousePos(localMousePos);
-	//std::cout << "Local X : " << localMousePos.x << " " << "Local Y : " << localMousePos.y << '\n';
-
 	ImGui::Image((ImTextureID)m_GamePlayDesc, vSize);
 }
 
@@ -139,4 +132,3 @@ void TDS::GamePlayScene::Resize()
 
 	}
 }
-

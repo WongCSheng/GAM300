@@ -61,7 +61,7 @@ public class InventoryScript : Script
         if(Input.GetKeyDown(Keycode.I))
         {
             toggleInventory();
-            Input.KeyRelease(Keycode.I);
+            Input.GetKeyUp(Keycode.I);
         }
 
         if (InventoryIsOpen) // Inventory opened
@@ -207,8 +207,8 @@ public class InventoryScript : Script
     {
         Vector3 ObjectPos = obj.transform.GetPosition();
         Vector3 ObjectScale = obj.transform.GetScale();
-        float mouseX = Input.GetUIMousePosX();
-        float mouseY = Input.GetUIMousePosY();
+        float mouseX = Input.GetLocalMousePosX();
+        float mouseY = Input.GetLocalMousePosY();
         float minX = ObjectPos.X - ObjectScale.X * 0.5f;
         float maxX = ObjectPos.X + ObjectScale.X * 0.5f;
         float minY = ObjectPos.Y - ObjectScale.Y * 0.5f;
