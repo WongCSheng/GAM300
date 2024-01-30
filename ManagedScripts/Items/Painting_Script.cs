@@ -7,7 +7,7 @@ public class Painting_Script : Script
 
     [SerializeField]
     public string Painting_Name;
-    public string Inventory_Texture_Name;
+    public string Painting_Texture;
     public bool opened;
     private bool collided;
 
@@ -41,7 +41,7 @@ public class Painting_Script : Script
         if (Input.GetKeyDown(Keycode.E) && isWithinRange()) // Maybe add 1 more condition to check if its within player's view
         {
             Console.WriteLine("Picked up painting");
-            InventoryScript.addPaintingIntoInventory(Inventory_Texture_Name);
+            InventoryScript.addPaintingIntoInventory(Painting_Name, Painting_Texture);
             gameObject.SetActive(false);
         }
     }

@@ -7,7 +7,7 @@ public class Item_Script : Script
 
     [SerializeField]
     public string Item_Name;
-    public string Inventory_Texture_Name;
+    public string Item_Texture;
 
     public override void Awake()
     {
@@ -24,7 +24,7 @@ public class Item_Script : Script
         if (Input.GetKeyDown(Keycode.E) && isWithinRange()) // Maybe add 1 more condition to check if its within player's view
         {
             Console.WriteLine("Picked up item");
-            InventoryScript.addItemIntoInventory(Inventory_Texture_Name);
+            InventoryScript.addItemIntoInventory(Item_Name, Item_Texture);
             gameObject.SetActive(false);
         }
     }

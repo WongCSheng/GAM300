@@ -10,39 +10,19 @@ public class InventoryScript : Script
     public static List<string> paintingObjsInInventory;
     public static string currentTab;
 
+    public static List<string> notesObjsImg;
+    public static List<string> itemsObjsImg;
+    public static List<string> paintingsObjsImg;
+
+    public static bool InventoryIsOpen;
+
     //public Dictionary<string, string> ItemTexture;
-    public GameObject noteBttnGrp;
-    public GameObject itemBttnGrp;
-    public GameObject paintingBttnGrp;
-
-    public List<string> noteObjImg;
-    public List<string> itemObjImg;
-    public List<string> paintingsObjImg;
-
-    public string storedObjName;
-
-    //Items
-    static public List<GameObject> painting_container;
 
     //buttons
     public GameObject ItemsTab;
     public GameObject NotesTab;
     public GameObject PaintingsTab;
 
-    public GameObject ItemText;
-    public GameObject NotesText;
-    public GameObject PaintingsText;
-    public GameObject MouseClick;
-    public GameObject UseText;
-    public GameObject Ikey;
-    public GameObject CloseText;
-
-    private static int paintingsCount;
-    private static int notesCount;
-    private static int itemsCount;
-
-
-    public bool InventoryIsOpen { get; set;} = false;
     public override void Awake()
     {
         
@@ -60,20 +40,24 @@ public class InventoryScript : Script
 
         if(Input.GetKeyDown(Keycode.I))
         {
+            Console.WriteLine("I pressed");
             toggleInventory();
-            Input.GetKeyUp(Keycode.I);
         }
 
         if (InventoryIsOpen) // Inventory opened
         {
-            //Cursor.visible = true;
-            //Cursor.LockState = CursorLockMode.None;
+            // Unhide and Unlock cursor here
+
+            /* Commented for now because unhiding and unlocking cursor makes the game hang 
+            //Input.Lock(false);
+            //Input.HideMouse(true);  // For some reason visibility = hide ?
+            */
+
             checkMouseInput();
         }
         else    // Inventory closed
         {
-            //Cursor.visible = false;
-            //Cursor.LockState = CursorLockMode.Locked;
+            // Hide and Lock cursor here
         }
     }
 
@@ -87,8 +71,9 @@ public class InventoryScript : Script
     public void checkMouseInput()
     {
         //Console.WriteLine("Checking Mouse Input\n");
-        //if (Input.GetMouseButtonDown(Keycode.M1))
-        //{
+        if (Input.GetMouseButtonDown(Keycode.M1))
+        {
+            Console.WriteLine("Mouse clicked");
             if(withinButton(ItemsTab)) // Slightly off in y-axis
             {
                 Console.WriteLine("Collide Items\n");
@@ -104,29 +89,39 @@ public class InventoryScript : Script
                 Console.WriteLine("Collide Paintings\n");
                 currentTab = "Paintings";
             }
-        //}
+        }
     }
 
     public void initObjects()
     {
-        Console.WriteLine("Init objects\n");
+        Console.WriteLine("Init inventory objects\n");
         InventoryObject = GameObjectScriptFind("InventoryObject");
 
         ItemsTab        = GameObjectScriptFind("ItemsTab");
         NotesTab        = GameObjectScriptFind("NotesTab");
         PaintingsTab    = GameObjectScriptFind("PaintingsTab");
 
-        itemObjsInInventory = new List<string>
+        itemsObjsImg = new List<string>
         {
-            "Inventory Box Img.dds",            "Inventory Box Img.dds",
-            "Inventory Box Img.dds",            "Inventory Box Img.dds",
-            "Inventory Box Img.dds",            "Inventory Box Img.dds",
-            "Notes1.dds",            "Notes3.dds",
-            "Notes5.dds",            "Notes7.dds",
-            "Notes9.dds",            "Notes11.dds"
+            "Invnt Battery Img.dds",            "Inventory Box Img.dds",
+            "Invnt Battery Img.dds",            "Inventory Box Img.dds",
+            "Invnt Battery Img.dds",            "Inventory Box Img.dds",
+            "Invnt Battery Img.dds",            "Inventory Box Img.dds",
+            "Invnt Battery Img.dds",            "Inventory Box Img.dds",
+            "Invnt Battery Img.dds",            "Inventory Box Img.dds"
         };
 
-        noteObjsInInventory = new List<string>
+        itemObjsInInventory = new List<string>
+        {
+            "Battery",            "",
+            "Battery",            "",
+            "Battery",            "",
+            "Battery",            "",
+            "Battery",            "",
+            "Battery",            ""
+        };
+
+        notesObjsImg = new List<string>
         {
             "Inventory Box Img.dds",            "Inventory Box Img.dds",
             "Inventory Box Img.dds",            "Inventory Box Img.dds",
@@ -136,7 +131,17 @@ public class InventoryScript : Script
             "Notes11.dds",           "Notes12.dds"
         };
 
-        paintingObjsInInventory = new List<string>
+        noteObjsInInventory = new List<string>
+        {
+            "",           "",
+            "",           "",
+            "",           "",
+            "Note7",           "Note8",
+            "Note9",           "Note10",
+            "Note11",           "Note12"
+        };
+
+        paintingsObjsImg = new List<string>
         {
             "Inventory Box Img.dds",            "Inventory Box Img.dds",
             "Inventory Box Img.dds",            "Inventory Box Img.dds",
@@ -146,75 +151,72 @@ public class InventoryScript : Script
             "Inventory Box Img.dds",            "Inventory Box Img.dds"
         };
 
+        paintingObjsInInventory = new List<string>
+        {
+            "",            "",
+            "",            "",
+            "",            "",
+            "",            "",
+            "",            "",
+            "",            ""
+        };
+
         InventoryObject.SetActive(false);
         InventoryIsOpen = false;
         currentTab = "Items";
-        paintingsCount = 0;
-        itemsCount = 0;
-        notesCount = 0;
-
-        // ItemText        = GameObjectScriptFind("Item Text");
-        // NotesText       = GameObjectScriptFind("Notes Text");
-        // PaintingsText   = GameObjectScriptFind("Paintings Text");
-        // MouseClick      = GameObjectScriptFind("MouseClick");
-        // UseText         = GameObjectScriptFind("Use Text");
-        // Ikey            = GameObjectScriptFind("I Key");
-        // CloseText       = GameObjectScriptFind("Close Text");
     }
 
-    public static void addPaintingIntoInventory(string texture_name)
+    public static void addPaintingIntoInventory(string painting_name, string texture_name)
     {
-        Console.WriteLine("Adding painting " + texture_name + "\n");
-        paintingObjsInInventory[paintingsCount++] = texture_name;
-    }
-
-    public static void addNoteIntoInventory(string texture_name)
-    {
-        Console.WriteLine("Adding painting " + texture_name + "\n");
-        noteObjsInInventory[notesCount++] = texture_name;
-    }
-
-    public static void addItemIntoInventory(string texture_name)
-    {
-        Console.WriteLine("Adding painting " + texture_name + "\n");
-        itemObjsInInventory[itemsCount++] = texture_name;
-    }
-
-    // ************************************ Not used ********************************//
-    public void ExamineObj()
-    {
-        _ViewObjectScript.OnDisable();
-        _ViewObjectScript.isExaming = true;
-        InventoryObject.SetActive(false);
-    }
-
-    public void UseObject()
-    {
-        if (storedObjName == "Starting Battery" || storedObjName == "Toilet_Battery")
+        Console.WriteLine("Adding painting " + texture_name);
+        for (int i = 0; i < 12; ++i)
         {
-            for (int i = 0; i < itemObjsInInventory.Count; i++)
+            if (paintingObjsInInventory[i] == "" && paintingsObjsImg[i] == "Inventory Box Img.dds")
             {
-                if (itemObjsInInventory[i] == storedObjName)
-                {
-                    itemObjsInInventory[i] = "";
-                    storedObjName = "";
-                }
+                paintingObjsInInventory[i] = painting_name;
+                paintingsObjsImg[i] = texture_name;
             }
         }
     }
 
-    bool withinButton(GameObject obj) // Working but y-pos slightly off
+    public static void addNoteIntoInventory(string note_name, string texture_name)
+    {
+        Console.WriteLine("Adding note " + texture_name);
+        for (int i = 0; i < 12; ++i)
+        {
+            if (noteObjsInInventory[i] == "" && notesObjsImg[i] == "Inventory Box Img.dds")
+            {
+                noteObjsInInventory[i] = note_name;
+                notesObjsImg[i] = texture_name;
+            }
+        }
+    }
+
+    public static void addItemIntoInventory(string item_name, string texture_name)
+    {
+        Console.WriteLine("Adding item " + texture_name);
+        for(int i = 0; i < 12; ++i)
+        {
+            if (itemObjsInInventory[i] == "" && itemsObjsImg[i] == "Inventory Box Img.dds")
+            {
+                itemObjsInInventory[i] = item_name;
+                itemsObjsImg[i] = texture_name;
+            }
+        }
+    }
+    
+    bool withinButton(GameObject obj)
     {
         Vector3 ObjectPos = obj.transform.GetPosition();
         Vector3 ObjectScale = obj.transform.GetScale();
-        float mouseX = Input.GetLocalMousePosX();
-        float mouseY = Input.GetLocalMousePosY();
+        float mouseX = Input.GetGlobalMousePosX();       // Need to change to UI coords... was using GetUIMousePos previously before the Input system got changed
+        float mouseY = Input.GetGlobalMousePosY();       // Need to change to UI coords... was using GetUIMousePos previously before the Input system got changed
         float minX = ObjectPos.X - ObjectScale.X * 0.5f;
         float maxX = ObjectPos.X + ObjectScale.X * 0.5f;
         float minY = ObjectPos.Y - ObjectScale.Y * 0.5f;
         float maxY = ObjectPos.Y + ObjectScale.Y * 0.5f;
+
         Console.WriteLine("MouseX: " + mouseX + " MinX: " + minX + " MaxX: " + maxX);
-        
         Console.WriteLine("MouseY: " + mouseY + " MinY: " + minY + " MaxY: " + maxY);
         if (mouseX >= minX && mouseX <= maxX && mouseY >= minY && mouseY <= maxY)
             return true;
