@@ -36,9 +36,6 @@ namespace ScriptAPI
 
         void Loop(AudioComponent^ clip, bool set);
 
-        /*template<typename T>
-        T& operator=(float val);*/
-
         bool isLooping(AudioComponent^ clip);
         bool isMute(AudioComponent^ clip);
         bool is3D(AudioComponent^ clip);

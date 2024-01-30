@@ -7,14 +7,14 @@
 
 namespace TDS
 {
-	class AudioSource : public IComponent
+	class DLL_API AudioSource : public IComponent
 	{
 	public:
-		DLL_API AudioSource();
-		DLL_API ~AudioSource();
+		AudioSource();
+		~AudioSource();
 
-		DLL_API virtual bool Deserialize(const rapidjson::Value& obj);
-		DLL_API virtual bool Serialize(rapidjson::PrettyWriter<rapidjson::StringBuffer>* writer) const;
+		virtual bool Deserialize(const rapidjson::Value& obj);
+		virtual bool Serialize(rapidjson::PrettyWriter<rapidjson::StringBuffer>* writer) const;
 
 		void Play();
 		void Stop();

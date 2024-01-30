@@ -70,6 +70,7 @@ namespace TDS
         void AudioEngine::update()
         {
             ERRCHECK(studioSystem->update()); // also updates the low level system
+            ERRCHECK(lowLevelSystem->update());
         }
 
         void AudioEngine::loadSound(SoundInfo & soundInfo)
