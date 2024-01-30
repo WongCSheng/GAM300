@@ -160,4 +160,13 @@ namespace ScriptAPI
 	{
 		return entityID;
 	}
+
+	void BoxColliderComponent::SetEnabled(bool enabled)
+	{
+		TDS::setComponentIsEnable("Box Collider", GetEntityID(), enabled);
+	}
+	bool BoxColliderComponent::GetEnabled()
+	{
+		return TDS::getComponentIsEnable("Box Collider", GetEntityID());
+	}
 }

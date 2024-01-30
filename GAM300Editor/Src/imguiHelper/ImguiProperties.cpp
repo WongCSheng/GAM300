@@ -53,7 +53,7 @@ namespace TDS
 				ImGuiTreeNodeFlags_FramePadding |
 				ImGuiTreeNodeFlags_SpanAvailWidth |
 				ImGuiTreeNodeFlags_SpanFullWidth |
-				ImGuiTreeNodeFlags_Selected | 
+				ImGuiTreeNodeFlags_Selected |
 				ImGuiTreeNodeFlags_AllowOverlap;
 
 			// Component Display
@@ -88,14 +88,14 @@ namespace TDS
 					strcpy_s(temp, newValue.c_str());
 					ImGui::InputText(("##" + newValue).c_str(), temp, 100);
 
-					if (ImGui::IsItemDeactivatedAfterEdit())
+					if (ImGui::IsItemDeactivatedAfterEdit() && std::string(temp) != "")
 					{
 						nameTagComponent->SetName(std::string(temp));
 						sceneManagerInstance->updateName(selectedEntity, std::string(temp));
 					}
 
 					ImGui::PopItemWidth();
-					
+
 					//int parent = static_cast<int>(nameTagComponent->GetHierarchyParent());
 					//ImguiInput("", parent);
 					//int indexInParent = static_cast<int>(nameTagComponent->GetHierarchyIndex());
@@ -193,10 +193,10 @@ namespace TDS
 							{
 								ImguiComponentDisplay(componentName, componentBase);
 
-								if (nameTagComponent->GetHierarchyChildren().size() > 0 && 
+								if (nameTagComponent->GetHierarchyChildren().size() > 0 &&
 									(oldPosition != transformComponent->GetPosition() ||
-									oldScale != transformComponent->GetScale() ||
-									oldRotation != transformComponent->GetRotation()))
+										oldScale != transformComponent->GetScale() ||
+										oldRotation != transformComponent->GetRotation()))
 								{
 									EventHandler::postChildTransformationEvent(selectedEntity, oldPosition, oldScale, oldRotation);
 								}
@@ -337,7 +337,7 @@ namespace TDS
 								bool value = scriptValue.value == "False" ? false : true;
 								if (ImguiInput(scriptValue.name, value))
 								{
-									scriptValue.value = std::to_string(value);
+									scriptValue.value = value ? "True" : "False";
 									sceneManagerInstance->setScriptValue(selectedEntity, scriptName, scriptValue);
 									//sceneManagerInstance->setBool(selectedEntity, scriptName, scriptValue.name, value);
 								}
@@ -413,10 +413,10 @@ namespace TDS
 
 								int value = std::stoi(scriptValue.value);
 
-								if (value > TDS_MAX_KEYS) 
+								if (value > TDS_MAX_KEYS)
 								{
 									value -= TDS_MAX_KEYS;
-									value += 55; // cus shift
+									value += 55; // cus shift for mouse...
 								}
 
 								if (ImguiInput(scriptValue.name, KeyCodeTypeString, value))
@@ -473,7 +473,7 @@ namespace TDS
 							}
 							else if (scriptValue.type == "ScriptAPI.Vector3")
 							{
-								Vec3 value (scriptValue.vectorValueX, scriptValue.vectorValueY, scriptValue.vectorValueZ);
+								Vec3 value(scriptValue.vectorValueX, scriptValue.vectorValueY, scriptValue.vectorValueZ);
 								if (ImguiInput(scriptValue.name, value))
 								{
 									scriptValue.vectorValueX = value.x;
@@ -493,74 +493,60 @@ namespace TDS
 
 								// Game Object
 								ImGui::PushItemWidth(-ImGui::GetContentRegionAvail().x * 0.15f);
+								ImGui::BeginDisabled();
 
+								char temp[100] = "None";
+
+								ImGui::PushID(selectedEntity);
 								if (scriptValue.referenceEntityID) // there is a entity reference 
 								{
 									if (scriptValue.type == "ScriptAPI.GameObject")
 									{
-										ImGui::BeginDisabled();
-										char temp[100];
 										strcpy_s(temp, ecs.getComponent<NameTag>(scriptValue.referenceEntityID)->GetName().c_str());
-										ImGui::InputText("###", temp, 100, ImGuiInputTextFlags_ReadOnly);
-
-										if (ImGui::BeginDragDropTarget())
-										{
-											if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("draggedEntityProperty"))
-											{
-												// Changing game object
-												scriptValue.referenceEntityID = *(static_cast<EntityID*>(payload->Data));
-												sceneManagerInstance->setScriptValue(selectedEntity, scriptName, scriptValue);
-											}
-											ImGui::EndDragDropTarget();
-										}
-
-										ImGui::EndDisabled();
 									}
 									else
 									{
-										ImGui::BeginDisabled();
-										char temp[100];
 										strcpy_s(temp, (ecs.getComponent<NameTag>(scriptValue.referenceEntityID)->GetName() + " (" + scriptValue.type + ")").c_str());
-
-										ImGui::InputText("###", temp, 100, ImGuiInputTextFlags_ReadOnly);
-
-										if (ImGui::BeginDragDropTarget())
-										{
-											if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("draggedEntityProperty"))
-											{
-												// Changing either component / script
-												// Need to check if dragged entity has such component / script
-												EntityID payloadEntityID = *(static_cast<EntityID*>(payload->Data));
-
-												if (scriptValue.type.find("Component") != scriptValue.type.npos) // Component
-												{
-													if (payloadEntityID != selectedEntity && getComponentByName(scriptValue.type, payloadEntityID))
-													{
-														scriptValue.referenceEntityID = payloadEntityID;
-														sceneManagerInstance->setScriptValue(selectedEntity, scriptName, scriptValue);
-													}
-												}
-												else // Script
-												{
-													if (payloadEntityID != selectedEntity && sceneManagerInstance->hasScript(payloadEntityID, scriptValue.type))
-													{
-														scriptValue.referenceEntityID = payloadEntityID;
-														sceneManagerInstance->setScriptValue(selectedEntity, scriptName, scriptValue);
-													}
-												}
-											}
-											ImGui::EndDragDropTarget();
-										}
-										ImGui::EndDisabled();
 									}
 								}
-								else
+								ImGui::InputText("###", temp, 100, ImGuiInputTextFlags_ReadOnly);
+
+								if (ImGui::BeginDragDropTarget())
 								{
-									ImGui::BeginDisabled();
-									char temp[100] = "None";
-									ImGui::InputText("###", temp, 100, ImGuiInputTextFlags_ReadOnly);
-									ImGui::EndDisabled();
+									if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("draggedEntity"))
+									{
+										// Changing either component / script
+										// Need to check if dragged entity has such component / script
+										EntityID payloadEntityID = *(static_cast<EntityID*>(payload->Data));
+
+										if (scriptValue.type.find("GameObject") != scriptValue.type.npos)
+										{
+											// Changing game object
+											scriptValue.referenceEntityID = payloadEntityID;
+											sceneManagerInstance->setScriptValue(selectedEntity, scriptName, scriptValue);
+										}
+										else if (scriptValue.type.find("Component") != scriptValue.type.npos) // Component
+										{
+											if (/*payloadEntityID != selectedEntity &&*/ getComponentByName(scriptValue.type, payloadEntityID))
+											{
+												scriptValue.referenceEntityID = payloadEntityID;
+												sceneManagerInstance->setScriptValue(selectedEntity, scriptName, scriptValue);
+											}
+										}
+										else // Script
+										{
+											if (/*payloadEntityID != selectedEntity &&*/ sceneManagerInstance->hasScript(payloadEntityID, scriptValue.type))
+											{
+												scriptValue.referenceEntityID = payloadEntityID;
+												sceneManagerInstance->setScriptValue(selectedEntity, scriptName, scriptValue);
+											}
+										}
+									}
+									ImGui::EndDragDropTarget();
 								}
+
+								ImGui::PopID();
+								ImGui::EndDisabled();
 
 								ImGui::PushID(buttonID++);
 								ImGui::SameLine();
@@ -623,90 +609,90 @@ namespace TDS
 										}
 									}
 									// Components =====================================================================================
-									else 
-									if (scriptValue.type.find("Component") != scriptValue.type.npos)
-									{
-										ImGuiTextFilter componentFilter;
-										componentFilter.Draw("##gameObjectFilter");
-										ImGui::SameLine();
-										if (ImGui::Button("Clear", ImVec2(-FLT_MIN, 0)))
-										{
-											componentFilter.Clear();
-										}
-
-										if (componentFilter.InputBuf[0] == 0 && ImGui::Selectable("None", false, ImGuiSelectableFlags_SpanAllColumns))
-										{
-											scriptValue.referenceEntityID = 0;
-											sceneManagerInstance->setScriptValue(selectedEntity, scriptName, scriptValue);
-											ImGui::CloseCurrentPopup();
-										}
-
-										for (EntityID entityID : ecs.getEntities())
-										{
-											if (entityID == selectedEntity || getComponentByName(scriptValue.type, entityID) == nullptr)
-											{
-												continue;
-											}
-
-											std::string entityName = ecs.getComponent<NameTag>(entityID)->GetName();
-
-											if (!componentFilter.PassFilter(entityName.c_str()))
-											{
-												continue;
-											}
-
-											bool clicked = ImGui::Selectable(entityName.c_str(), entityID == selectedEntity, ImGuiSelectableFlags_SpanAllColumns);
-
-											if (clicked || (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left)))
-											{
-												scriptValue.referenceEntityID = entityID;
-												sceneManagerInstance->setScriptValue(selectedEntity, scriptName, scriptValue);
-												ImGui::CloseCurrentPopup();
-											}
-										}
-									}
-									// Script =========================================================================================
 									else
-									{
-										ImGuiTextFilter scriptFilter;
-										scriptFilter.Draw("##scriptFilter");
-										ImGui::SameLine();
-										if (ImGui::Button("Clear", ImVec2(-FLT_MIN, 0)))
+										if (scriptValue.type.find("Component") != scriptValue.type.npos)
 										{
-											scriptFilter.Clear();
-										}
-
-										if (scriptFilter.InputBuf[0] == 0 && ImGui::Selectable("None", false, ImGuiSelectableFlags_SpanAllColumns))
-										{
-											scriptValue.referenceEntityID = 0;
-											sceneManagerInstance->setScriptValue(selectedEntity, scriptName, scriptValue);
-											ImGui::CloseCurrentPopup();
-										}
-
-										for (EntityID entityID : ecs.getEntities())
-										{
-											if (entityID == selectedEntity || !sceneManagerInstance->hasScript(entityID, scriptValue.type))
+											ImGuiTextFilter componentFilter;
+											componentFilter.Draw("##gameObjectFilter");
+											ImGui::SameLine();
+											if (ImGui::Button("Clear", ImVec2(-FLT_MIN, 0)))
 											{
-												continue;
+												componentFilter.Clear();
 											}
 
-											std::string entityName = ecs.getComponent<NameTag>(entityID)->GetName();
-
-											if (!scriptFilter.PassFilter(entityName.c_str()))
+											if (componentFilter.InputBuf[0] == 0 && ImGui::Selectable("None", false, ImGuiSelectableFlags_SpanAllColumns))
 											{
-												continue;
-											}
-
-											bool clicked = ImGui::Selectable(entityName.c_str(), entityID == selectedEntity, ImGuiSelectableFlags_SpanAllColumns);
-
-											if (clicked || (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left)))
-											{
-												scriptValue.referenceEntityID = entityID;
+												scriptValue.referenceEntityID = 0;
 												sceneManagerInstance->setScriptValue(selectedEntity, scriptName, scriptValue);
 												ImGui::CloseCurrentPopup();
 											}
+
+											for (EntityID entityID : ecs.getEntities())
+											{
+												if (entityID == selectedEntity || getComponentByName(scriptValue.type, entityID) == nullptr)
+												{
+													continue;
+												}
+
+												std::string entityName = ecs.getComponent<NameTag>(entityID)->GetName();
+
+												if (!componentFilter.PassFilter(entityName.c_str()))
+												{
+													continue;
+												}
+
+												bool clicked = ImGui::Selectable(entityName.c_str(), entityID == selectedEntity, ImGuiSelectableFlags_SpanAllColumns);
+
+												if (clicked || (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left)))
+												{
+													scriptValue.referenceEntityID = entityID;
+													sceneManagerInstance->setScriptValue(selectedEntity, scriptName, scriptValue);
+													ImGui::CloseCurrentPopup();
+												}
+											}
 										}
-									}
+									// Script =========================================================================================
+										else
+										{
+											ImGuiTextFilter scriptFilter;
+											scriptFilter.Draw("##scriptFilter");
+											ImGui::SameLine();
+											if (ImGui::Button("Clear", ImVec2(-FLT_MIN, 0)))
+											{
+												scriptFilter.Clear();
+											}
+
+											if (scriptFilter.InputBuf[0] == 0 && ImGui::Selectable("None", false, ImGuiSelectableFlags_SpanAllColumns))
+											{
+												scriptValue.referenceEntityID = 0;
+												sceneManagerInstance->setScriptValue(selectedEntity, scriptName, scriptValue);
+												ImGui::CloseCurrentPopup();
+											}
+
+											for (EntityID entityID : ecs.getEntities())
+											{
+												if (entityID == selectedEntity || !sceneManagerInstance->hasScript(entityID, scriptValue.type))
+												{
+													continue;
+												}
+
+												std::string entityName = ecs.getComponent<NameTag>(entityID)->GetName();
+
+												if (!scriptFilter.PassFilter(entityName.c_str()))
+												{
+													continue;
+												}
+
+												bool clicked = ImGui::Selectable(entityName.c_str(), entityID == selectedEntity, ImGuiSelectableFlags_SpanAllColumns);
+
+												if (clicked || (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Left)))
+												{
+													scriptValue.referenceEntityID = entityID;
+													sceneManagerInstance->setScriptValue(selectedEntity, scriptName, scriptValue);
+													ImGui::CloseCurrentPopup();
+												}
+											}
+										}
 
 									ImGui::EndPopup();
 								}
@@ -749,7 +735,7 @@ namespace TDS
 				ImGui::SetNextWindowPos(ImVec2(ImGui::GetContentRegionAvail().x / 2 + ImGui::GetWindowPos().x + style.FramePadding.x * 2.0f, ImGui::GetWindowHeight()), ImGuiCond_Appearing, ImVec2(0.5f, 0.0f));
 			}
 			ImGui::SetNextWindowSize(ImVec2(addComponentWidth, addComponentHeight));
-			
+
 			// Add component popup
 			if (ImGui::BeginPopupContextItem("componentAddPopup"))
 			{
@@ -866,7 +852,7 @@ namespace TDS
 					bool entered = ImGui::InputText("##newScriptName", newScriptName, 400, ImGuiInputTextFlags_EnterReturnsTrue);
 					ImGui::PopItemWidth();
 
-					std::string newScriptNameString { newScriptName };
+					std::string newScriptNameString{ newScriptName };
 
 					// Check if such script exist alr
 					bool exist = false;
@@ -1003,13 +989,13 @@ namespace TDS
 
 								if (filesystempath.extension() != ".dds")
 								{
-									g->SetTextureName(assetbroswer.LoadAsset(finaltexture));
+									g->SetTextureName(assetbroswer.LoadAssetRevamped(finaltexture));
 								}
 								else
 								{
 									g->SetTextureName(finaltexture);
 								}
-								
+
 
 								std::wcout << " Path of dragged file is: " << path << std::endl;
 							}
@@ -1029,8 +1015,8 @@ namespace TDS
 								AssetBrowser assetbroswer;
 								assetbroswer.getFileNameFromPath(str.c_str(), nullptr, nullptr, &finalmodel, nullptr);
 								//g.m_TextureName = final;
-								g->SetModelName(assetbroswer.LoadAsset(finalmodel));
-								
+								g->SetModelName(assetbroswer.LoadAssetRevamped(finalmodel));
+
 								std::wcout << " Path of dragged file is: " << path << std::endl;
 							}
 							else
@@ -1070,10 +1056,10 @@ namespace TDS
 								}
 								else
 								{
-									ui->m_TextureName = Assetbrowser->LoadAsset(finaltexture);
+									ui->m_TextureName = Assetbrowser->LoadAssetRevamped(finaltexture);
 								}
 
-								
+
 								std::wcout << " Path of dragged file is: " << path << std::endl;
 							}
 							else
@@ -1086,7 +1072,7 @@ namespace TDS
 							if (filesystempath.extension() == ".ttf")
 							{
 								Assetbrowser->getFileNameFromPath(str.c_str(), nullptr, nullptr, &finalFont, nullptr);
-								ui->m_FontName = Assetbrowser->LoadAsset(finalFont);
+								ui->m_FontName = Assetbrowser->LoadAssetRevamped(finalFont);
 								std::wcout << " Path of dragged file is: " << path << std::endl;
 							}
 							else if (filesystempath.extension() == ".dds")
@@ -1144,6 +1130,13 @@ namespace TDS
 			}
 			else if (propertyName.get_type() == rttr::type::get<Vec3>())
 			{
+				if (propertyName.get_name().to_string() == "FakePosition"
+					|| propertyName.get_name().to_string() == "FakeRotation"
+					|| propertyName.get_name().to_string() == "FakeScale"
+					|| propertyName.get_name().to_string() == "OldPosition"
+					|| propertyName.get_name().to_string() == "OldScale"
+					|| propertyName.get_name().to_string() == "OldRotation") continue;
+
 				Vec3 newValue = propertyName.get_value(componentInstance).convert<Vec3>();
 				ImguiInput(propertyName.get_name().to_string(), newValue);
 				propertyName.set_value(componentInstance, newValue);
@@ -1255,7 +1248,7 @@ namespace TDS
 		ImGui::TableNextColumn();
 		float temp[2]{ Vec2Variable.x, Vec2Variable.y };
 		ImGui::InputFloat2(("##" + variableName).c_str(), temp/*, 0.05f*/);
-		
+
 		if (ImGui::IsItemDeactivatedAfterEdit())
 		{
 			Vec2Variable.x = temp[0];

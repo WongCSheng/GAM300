@@ -37,7 +37,11 @@ namespace ScriptAPI
 		virtual TDS::EntityID GetEntityID();
 		virtual void SetEntityID(TDS::EntityID ID);
 
+		virtual void SetEnabled(bool enabled);
+		virtual bool GetEnabled();
+
 		TransformComponent transform;
+		GameObject^ gameObject;
 		
 	internal:
 		UISpriteComponent(TDS::EntityID ID);

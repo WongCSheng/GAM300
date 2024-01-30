@@ -5,6 +5,7 @@
 #include <array>
 #include <sstream>
 #include <imgui/imgui.h>
+#include <Windows.h>
 
 #include "EditorApp.h"
 
@@ -33,6 +34,9 @@
 #include "imguiHelper/ImguiGamePlayScene.h"
 #include "Physics/PhysicsSystem.h"
 #include "Rendering/ObjectPicking.h"
+#include "Input/InputSystem.h"
+#include "Rendering/GridRenderer.h"
+#include "Tools/Pathfinder.h"
 
 bool isPlaying = false;
 bool startPlaying = false;
@@ -40,6 +44,7 @@ bool startPlaying = false;
 namespace TDS
 {
     bool SceneManager::isPlaying;
+    Pathfinder pathfinder{};
 
     Application::Application(HINSTANCE hinstance, int& nCmdShow, const wchar_t* classname, WNDPROC wndproc)
         :m_window(hinstance, nCmdShow, classname)
@@ -62,7 +67,9 @@ namespace TDS
         
         switch (uMsg)
         {
-
+        case WM_CREATE:
+            TDS::InputSystem::GetInstance()->setWindowCenter(GetSystemMetrics(SM_CXSCREEN) / 2, GetSystemMetrics(SM_CYSCREEN) / 2);
+            break;
         case WM_DESTROY:
             PostQuitMessage(0);
             break;
@@ -74,33 +81,16 @@ namespace TDS
             m_window.setHeight(HIWORD(lParam));
             m_window.WindowIsResizing(true);
             break;
-        case WM_LBUTTONDOWN:
-        case WM_LBUTTONUP:
-        case WM_RBUTTONDOWN:
-        case WM_RBUTTONUP:
-        case WM_MBUTTONDOWN:
-        case WM_MBUTTONUP:
-        case WM_XBUTTONDOWN:
-        {
-            Input::processMouseInput(wParam, lParam);
-        }break;
         case WM_XBUTTONUP:
         {
-            Input::processMouseInput(wParam, lParam);
+            //Input::processMouseInput(wParam, lParam);
         }break;
 
-        case WM_MOUSEMOVE:
+        /*case WM_MOUSEMOVE:
         {
             Input::updateMousePosition(lParam);
-        }break;
+        }break;*/
 
-        case WM_MOUSEWHEEL:
-        {
-            Input::processMouseScroll(wParam);
-        }break;
-
-        case WM_SYSKEYDOWN:
-        case WM_SYSKEYUP:
         case WM_KEYDOWN:
         {
             uint32_t VKcode = static_cast<uint32_t>(wParam);
@@ -114,23 +104,54 @@ namespace TDS
 
             bool wasDown = (lParam & (1 << 30)) != 0;
             bool isDown = (static_cast<unsigned int>(lParam) & (1 << 31)) == 0;
-            bool isPressed = 1;
-            bool isReleased = 0;
-
-            Input::processKeyboardInput(VKcode, isPressed, isReleased);
+            Input::processKeyboardInput(VKcode, wasDown, isDown);
         }break;
         case WM_KEYUP:
         {
             uint32_t VKcode = static_cast<uint32_t>(wParam);
             bool wasDown = (lParam & (1 << 30)) != 0;
             bool isDown = (static_cast<unsigned int>(lParam) & (1 << 31)) == 0;
-            bool isPressed = 0;
-            bool isReleased = 1;
 
-            Input::processKeyboardInput(VKcode, isPressed, isReleased);
+            Input::processKeyboardInput(VKcode, wasDown, isDown);
             Input::keystatus = Input::KeyStatus::RELEASED;
             Input::keystatus = Input::KeyStatus::IDLE;
         }break;
+
+            // Input System Stuff
+            case WM_INPUT: {
+                RAWINPUT rawInput;
+                UINT size = sizeof(RAWINPUT);
+
+                GetRawInputData((HRAWINPUT)lParam, RID_INPUT, &rawInput, &size, sizeof(RAWINPUTHEADER));
+
+                if (rawInput.header.dwType == RIM_TYPEMOUSE) {
+                    // Process mouse input
+                    TDS::InputSystem::GetInstance()->setRawMouseInput(rawInput.data.mouse.lLastX, rawInput.data.mouse.lLastY);
+                }
+
+                if (TDS::InputSystem::GetInstance()->getMouseLock())
+                {
+                    HWND activeWindow = GetForegroundWindow();
+                    if (activeWindow != nullptr) {
+                        RECT windowRect;
+                        if (GetWindowRect(activeWindow, &windowRect)) {
+                            TDS::InputSystem::GetInstance()->setWindowCenter((windowRect.left + windowRect.right) / 2, (windowRect.top + windowRect.bottom) / 2);
+                        }
+                    }
+                    TDS::InputSystem::GetInstance()->lockMouseCenter(hWnd);
+                }
+
+            }break;
+            case WM_MOUSEWHEEL: {
+                InputSystem::GetInstance()->processMouseScroll(wParam);
+            }break;
+            case WM_MOUSEMOVE:
+            {
+                POINT p;
+                GetCursorPos(&p);
+                ScreenToClient(GetActiveWindow(), &p);
+                InputSystem::GetInstance()->setLocalMousePos(p.x, p.y);
+            }break;
         }
     }
     void Application::SetWindowHandle(HWND hWnd)
@@ -147,12 +168,32 @@ namespace TDS
         GraphicsManager::getInstance().Init(&m_window);
         AssetManager::GetInstance()->PreloadAssets();
         skyboxrender.Init();
+
+        //register the grid
+        for (size_t i = 0; i < pathfinder.GetGrid().size(); ++i)
+        {
+            for (size_t j = 0; j < pathfinder.GetGrid()[i].size(); ++j)
+            {
+                // do some RegisterEntity using pathfinder.GetGrid()[i][j].get();
+            }
+        }
+
+        // Raw Input for Mouse Movement
+        RAWINPUTDEVICE rid;
+        rid.usUsagePage = 0x01;  // Mouse
+        rid.usUsage = 0x02;      // Mouse
+        rid.dwFlags = 0;
+        rid.hwndTarget = NULL;
+
+        if (RegisterRawInputDevices(&rid, 1, sizeof(RAWINPUTDEVICE)) == FALSE) {
+            std::cout << "Mouse Failed to Register" << std::endl;
+        }
     }
 
     void Application::Update()
     {
         DDSConverter::Init();
-
+        m_window.GetWindowPos();
         auto executeUpdate = GetFunctionPtr<void(*)(void)>
             (
                 "ScriptAPI",
@@ -199,6 +240,8 @@ namespace TDS
 
         while (m_window.processInputEvent())
         {
+            InputSystem::GetInstance()->update();
+
             TimeStep::CalculateDeltaTime();
             float DeltaTime = TimeStep::GetDeltaTime();
             std::shared_ptr<EditorScene> pScene = static_pointer_cast<EditorScene>(LevelEditorManager::GetInstance()->panels[SCENE]);
@@ -226,7 +269,7 @@ namespace TDS
             RendererSystem::lightPosX = lightx;
 
             Vec3 m_windowdimension{ static_cast<float>(m_window.getWidth()), static_cast<float>(m_window.getHeight()), 1.f };
-            if (GraphicsManager::getInstance().getFrameBuffer().getDimensions() != m_windowdimension && m_windowdimension.x >0 && m_windowdimension.y > 0)
+            if (GraphicsManager::getInstance().getFrameBuffer().getDimensions() != m_windowdimension && m_windowdimension.x > 0 && m_windowdimension.y > 0)
             {
                 GraphicsManager::getInstance().getFrameBuffer().resize(m_windowdimension, GraphicsManager::getInstance().getRenderPass().getRenderPass());
                 std::shared_ptr<EditorScene> pScene = static_pointer_cast<EditorScene>(LevelEditorManager::GetInstance()->panels[SCENE]);
@@ -242,6 +285,11 @@ namespace TDS
             GraphicsManager::getInstance().getRenderPass().beginRenderPass(commandBuffer, &GraphicsManager::getInstance().getFrameBuffer());
             if (GraphicsManager::getInstance().IsViewingFrom2D() == false)
                 skyboxrender.RenderSkyBox(commandBuffer, frame);
+
+            //render grid
+            //gridrender.Render(commandBuffer, frame);
+            //gridrender.SetColour(0, 0, Color(1.0f, 0.0f, 0.0f, 1.0f));
+            pathfinder.DisplayPathAnimated(DeltaTime); //display path
            
             if (isPlaying)
             {
@@ -250,12 +298,16 @@ namespace TDS
                     SceneManager::GetInstance()->isPlaying = true;
                     SceneManager::GetInstance()->loadScene(SceneManager::GetInstance()->getCurrentScene());
                     startPlaying = false;
+                    SceneManager::GetInstance()->start();
                 }
-                SceneManager::GetInstance()->start();
-                executeFixedUpdate();
-                ecs.runSystems(1, DeltaTime); // Other systems
-                executeUpdate();
-                //executeLateUpdate();
+
+                if (!InputSystem::GetInstance()->getCursorVisible())
+                {
+                    executeFixedUpdate();
+                    ecs.runSystems(1, DeltaTime); // Other systems
+                    executeUpdate();
+                    executeLateUpdate();
+                }
             }
             else
             {
@@ -275,7 +327,8 @@ namespace TDS
             // event handling systems 
             GraphicsManager::getInstance().getRenderPass().endRenderPass(commandBuffer);
 
-           GraphicsManager::getInstance().getObjectPicker().Update(commandBuffer, frame, Vec2( Input::getMousePosition().x, Input::getMousePosition().y ));
+            //GraphicsManager::getInstance().getObjectPicker().Update(commandBuffer, frame, Vec2( Input::getMousePosition().x, Input::getMousePosition().y ));
+            GraphicsManager::getInstance().getObjectPicker().Update(commandBuffer, frame, InputSystem::GetInstance()->getLocalMousePos());
             GraphicsManager::getInstance().GetSwapchainRenderer().BeginSwapChainRenderPass(commandBuffer);
 
             imguiHelper::Draw(commandBuffer);
@@ -293,8 +346,7 @@ namespace TDS
             }
 
             Input::scrollStop();
-            Input::InputUpdateLoop();
-            Input::InputUpdateMouseLoop();
+            TDS::InputSystem::GetInstance()->setRawMouseInput(0, 0);
         }
         stopScriptEngine();
       
@@ -313,6 +365,8 @@ namespace TDS
         skyboxrender.ShutDown();
         GraphicsManager::getInstance().ShutDown();
         DDSConverter::Destroy();
+        //shutdown grid
+        //gridrender.ShutDown();
 
         PhysicsSystem::JPH_SystemShutdown();
     }
@@ -828,6 +882,42 @@ namespace TDS
         }
         return "";
     }
+
+    //void Application::onKeyPressed(int key)
+    //{
+    //    if (key == 'W')
+    //    {
+    //        std::cout << "W is pressed!" << std::endl;
+    //    }
+    //    if (key == 'A')
+    //    {
+    //        std::cout << "A is pressed!" << std::endl;
+    //    }
+    //}
+
+    //void Application::onKeyDown(int key)
+    //{
+    //    if (key == 'W')
+    //    {
+    //        std::cout << "W is down!" << std::endl;
+    //    }
+    //    if (key == 'A')
+    //    {
+    //        std::cout << "A is down!" << std::endl;
+    //    }
+    //}
+
+    //void Application::onKeyUp(int key)
+    //{
+    //    if (key == 'W')
+    //    {
+    //        std::cout << "W is up!" << std::endl;
+    //    }
+    //    if (key == 'A')
+    //    {
+    //        std::cout << "A is up!" << std::endl;
+    //    }
+    //}
 
     bool Application::initImgui()
     {

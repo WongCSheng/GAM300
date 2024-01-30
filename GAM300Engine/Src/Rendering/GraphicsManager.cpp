@@ -16,6 +16,9 @@
 #include "vulkanTools/FrameBuffer.h"
 #include "Rendering/Renderer2D.h"
 #include "Rendering/FontRenderer.h"
+#include "Rendering/Revamped/DeferredController.h"
+
+#include "Rendering/GridRenderer.h"
 namespace TDS
 {
 	GraphicsManager::GraphicsManager()
@@ -91,6 +94,7 @@ namespace TDS
 		Renderer3D::Init();
 		Renderer2D::GetInstance()->Init();
 		FontRenderer::GetInstance()->Init();
+		
 		m_PointLightRenderer = std::make_unique<PointLightSystem>(*m_MainVkContext);
 		m_DebugRenderer = std::make_unique<DebugRenderer>(*m_MainVkContext);
 		m_ObjectPicking = std::make_shared<ObjectPick>(m_MainVkContext, size);
@@ -319,6 +323,10 @@ namespace TDS
 	std::shared_ptr<VulkanInstance> GraphicsManager::getVkInstancePtr()
 	{
 		return m_MainVkContext;
+	}
+	std::shared_ptr<DeferredController> GraphicsManager::GetDeferredController()
+	{
+		return m_DeferredController;
 	}
 	GraphicsManager& GraphicsManager::getInstance()
 	{

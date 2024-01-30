@@ -58,7 +58,11 @@ namespace ScriptAPI
 		virtual void SetEntityID(TDS::EntityID ID);
 		//void SetSoundInfoObject(SI* _si);
 
+		virtual void SetEnabled(bool enabled);
+		virtual bool GetEnabled();
+
 		TransformComponent transform;
+		GameObject^ gameObject;
 
 	internal:
 		AudioComponent(TDS::EntityID ID);

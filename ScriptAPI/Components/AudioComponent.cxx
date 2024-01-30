@@ -1,5 +1,6 @@
 #include "AudioComponent.hxx"
 #include "../TypeConversion.hxx"
+#include "../EngineInterface.hxx"
 
 namespace ScriptAPI
 {
@@ -16,7 +17,14 @@ namespace ScriptAPI
 	AudioComponent::AudioComponent(SI *soundInfo)
 	{
 		entityID = soundInfo->uniqueID;
+		gameObject = EngineInterface::GetGameObject(ID);
+	}
 
+	void AudioComponent::SetEntityID(TDS::EntityID id)
+	{
+		entityID = id;
+		transform = TransformComponent(id);
+		gameObject = EngineInterface::GetGameObject(id);
 	}
 
 	TDS::EntityID AudioComponent::GetEntityID()
@@ -190,9 +198,13 @@ namespace ScriptAPI
 		TDS::proxy_audio_system::Add_to_Queue(toStdString(str));
 	}
 
-	void AudioComponent::SetEntityID(TDS::EntityID id)
+	void AudioComponent::SetEnabled(bool enabled)
 	{
-		entityID = id;
+		TDS::setComponentIsEnable("Audio", GetEntityID(), enabled);
+	}
+	bool AudioComponent::GetEnabled()
+	{
+		return TDS::getComponentIsEnable("Audio", GetEntityID());
 	}
 
 	/*void AudioComponent::SetSoundInfoObject(SI* _soundInfo)

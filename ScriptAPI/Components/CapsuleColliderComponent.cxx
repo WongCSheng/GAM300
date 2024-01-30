@@ -218,4 +218,13 @@ namespace ScriptAPI
 	{
 		return entityID;
 	}
+
+	void CapsuleColliderComponent::SetEnabled(bool enabled)
+	{
+		TDS::setComponentIsEnable("Capsule Collider", GetEntityID(), enabled);
+	}
+	bool CapsuleColliderComponent::GetEnabled()
+	{
+		return TDS::getComponentIsEnable("Capsule Collider", GetEntityID());
+	}
 }

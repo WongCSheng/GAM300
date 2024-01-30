@@ -2,6 +2,7 @@
 #include "../Shared_Libs/Vector4.h"
 #include "../Shared_Libs/Matrix4.h"
 #include "../GameObject.hxx"
+#include "../EngineInterface.hxx"
 
 namespace ScriptAPI
 {
@@ -202,7 +203,9 @@ namespace ScriptAPI
 
 	// CONSTRUCTOR ===========================================================================
 	TransformComponent::TransformComponent(TDS::EntityID ID) : entityID (ID)
-	{ }
+	{
+		gameObject = EngineInterface::GetGameObject(ID);
+	}
 
 	TransformComponent::TransformComponent(TDS::EntityID ID, GameObject^ _gameObject) : entityID(ID), gameObject(_gameObject)
 	{ }
@@ -210,10 +213,20 @@ namespace ScriptAPI
 	void TransformComponent::SetEntityID(TDS::EntityID ID)
 	{
 		entityID = ID;
+		gameObject = EngineInterface::GetGameObject(ID);
 	}
 
 	TDS::EntityID TransformComponent::GetEntityID()
 	{
 		return entityID;
-	}	
+	}
+
+	void TransformComponent::SetEnabled(bool enabled)
+	{
+		TDS::setComponentIsEnable("Transform", GetEntityID(), enabled);
+	}
+	bool TransformComponent::GetEnabled()
+	{
+		return TDS::getComponentIsEnable("Transform", GetEntityID());
+	}
 }
