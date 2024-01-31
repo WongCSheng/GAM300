@@ -15,14 +15,14 @@ public class Door_Script : Script
     public bool locked = true;
     //public bool forcedLocked;
     //public bool chainedShut;
-    //public AudioClip[] _DoorSounds;
+    //public AudioComponent[] _DoorSounds;
     //public AudioSource _DoorAudioSource;
     //public bool collided;
 
     //[Header("VO Variables")]
    // public Text mySubtitles;
     //public string[] myVOTexts;
-    //public AudioClip[] forceLocked_VOLines;
+    //public AudioComponent[] forceLocked_VOLines;
     //public AudioSource voSource;
     //int forcelockedAudioCount = -1;
     //bool playForcedLockedAudio;
@@ -150,14 +150,14 @@ public class Door_Script : Script
     public bool locked = true;
     public bool forcedLocked;
     public bool chainedShut;
-    public AudioClip[] _DoorSounds;
+    public AudioComponent[] _DoorSounds;
     public AudioSource _DoorAudioSource;
     public bool collided;
 
     [Header("VO Variables")]
     //public Text mySubtitles;
     public string[] myVOTexts;
-    public AudioClip[] forceLocked_VOLines;
+    public AudioComponent[] forceLocked_VOLines;
     public AudioSource voSource;
     int forcelockedAudioCount = -1;
     bool playForcedLockedAudio;

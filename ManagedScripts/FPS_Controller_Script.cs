@@ -4,11 +4,10 @@ using System;
 public class FPS_Controller_Script : Script
 {
     public RigidBodyComponent rb;
-    public string startingVOstr;   //To be changed
     public AudioComponent startingVO;   //To be changed
-    public string[] footStepSoundEffects;
+    public AudioComponent[] footStepSoundEffects;
     private int currentFootStepPlaying;
-    AudioComponent audio;
+    AudioSource audioPlayer;
 
     #region Camera Movement Variables
     [Header("Camera Movement Variables")]
@@ -124,7 +123,7 @@ public class FPS_Controller_Script : Script
         rb = gameObject.GetComponent<RigidBodyComponent>();
         playerCamera = GameObjectScriptFind("playerCameraObject").GetComponent<CameraComponent>();
         startingVO = gameObject.GetComponent<AudioComponent>();
-        startingVOstr = "pc_lockpickstart";
+        startingVO.setFilePath("pc_lockpickstart");
         // Set internal variables
         playerCamera.SetFieldOfView(fov);
         originalScale = transform.GetScale();
@@ -136,15 +135,14 @@ public class FPS_Controller_Script : Script
             sprintCooldownReset = sprintCooldown;
         }
 
-        footStepSoundEffects = new string[5];
-        footStepSoundEffects[0] = "temp_step1";
-        footStepSoundEffects[1] = "temp_step2";
-        footStepSoundEffects[2] = "temp_step3";
-        footStepSoundEffects[3] = "temp_step4";
-        footStepSoundEffects[4] = "temp_step5";
+        footStepSoundEffects = new AudioComponent[5];
+        footStepSoundEffects[0].setFilePath("temp_step1");
+        footStepSoundEffects[1].setFilePath("temp_step2");
+        footStepSoundEffects[2].setFilePath("temp_step3");
+        footStepSoundEffects[3].setFilePath("temp_step4");
+        footStepSoundEffects[4].setFilePath("temp_step5");
 
         currentFootStepPlaying = 0;
-        audio = gameObject.GetComponent<AudioComponent>();
     }
     public override void Start()
     {
@@ -351,7 +349,7 @@ public class FPS_Controller_Script : Script
         {
             HeadBob();
         }
-        startingVO.play(startingVOstr);
+        audioPlayer.Play(startingVO);
 
     }
     public override void FixedUpdate()

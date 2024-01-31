@@ -3,7 +3,7 @@ using System;
 
 public class CutsceneSubtitle : Script
 {
-    AudioComponent[] AudioClips;
+    AudioComponent[] Audiofiles;
     AudioSource AudioPlayer;
     String[] Subtitles;
     //AudioSource audio;
@@ -42,23 +42,23 @@ public class CutsceneSubtitle : Script
 
         Subtitles[16] = "Father: You'll always be part of the family";
 
-        AudioClips[0] = "intro1_1";
-        AudioClips[1] = "intro1_2";
-        AudioClips[2] = "intro2_1";
-        AudioClips[3] = "intro2_2";
-        AudioClips[4] = "intro2_3";
-        AudioClips[5] = "intro3_1";
-        AudioClips[6] = "intro4_1";
-        AudioClips[7] = "intro4_2";
-        AudioClips[8] = "intro5_1";
-        AudioClips[9] = "intro5_2";
-        AudioClips[10] = "intro6_1";
-        AudioClips[11] = "intro6_2";
-        AudioClips[12] = "intro7_1";
-        AudioClips[13] = "intro8_1";
-        AudioClips[14] = "intro8_2";
-        AudioClips[15] = "intro9_1";
-        AudioClips[16] = "intro9_2";
+        Audiofiles[0].setFilePath("intro1_1");
+        Audiofiles[1].setFilePath("intro1_2");
+        Audiofiles[2].setFilePath("intro2_1");
+        Audiofiles[3].setFilePath("intro2_2");
+        Audiofiles[4].setFilePath("intro2_3");
+        Audiofiles[5].setFilePath("intro3_1");
+        Audiofiles[6].setFilePath("intro4_1");
+        Audiofiles[7].setFilePath("intro4_2");
+        Audiofiles[8].setFilePath("intro5_1");
+        Audiofiles[9].setFilePath("intro5_2");
+        Audiofiles[10].setFilePath("intro6_1");
+        Audiofiles[11].setFilePath("intro6_2");
+        Audiofiles[12].setFilePath("intro7_1");
+        Audiofiles[13].setFilePath("intro8_1");
+        Audiofiles[14].setFilePath("intro8_2");
+        Audiofiles[15].setFilePath("intro9_1");
+        Audiofiles[16].setFilePath("intro9_2");
 
         //foreach(String str in Audiofiles)
         //{
@@ -75,7 +75,7 @@ public class CutsceneSubtitle : Script
         UISpriteComponent Sprite = gameObject.GetComponent<UISpriteComponent>();
         if (Input.GetKeyDown(Keycode.SPACE))
         {
-            AudioPlayer.stop(AudioClips[counter]);
+            AudioPlayer.Stop(Audiofiles[counter]);
             GraphicsManagerWrapper.ToggleViewFrom2D(false);
             SceneLoader.LoadMainGame();
         }
@@ -93,20 +93,20 @@ public class CutsceneSubtitle : Script
                 if (next)
                 {
                     Sprite.SetFontMessage(Subtitles[counter]);
-                    AudioPlayer.play(AudioClips[counter]);
+                    AudioPlayer.Play(Audiofiles[counter]);
                     next = false;
                 }
-                else if (AudioPlayer.finished(AudioClips[counter]))
+                else if (AudioPlayer.hasFinished(Audiofiles[counter]))
                 {
                     if (next)
                     {
                         Sprite.setColourAlpha(1);
                         Sprite.SetFontMessage(Subtitles[counter]);
                         //audio.Play(Audiofiles[counter]);
-                        AudioPlayer.play(AudioClips[counter]);
+                        AudioPlayer.Play(Audiofiles[counter]);
                         next = false;
                     }
-                    else if (AudioPlayer.finished(AudioClips[counter]))
+                    else if (AudioPlayer.hasFinished(Audiofiles[counter]))
                     {
                         next = true;
                         ++counter;

@@ -15,21 +15,21 @@ public class Hiding : Script
     public CheckGameState myGameState;
     public GameObject closet;
     [Header("AudioStuff")]
-    public AudioSource AudioPlayer;
-    public AudioClip voClip = new AudioClip("pc_hideinclosetfirst");
-    public Text subtitles;
+    public AudioSource audioPlayer;
+    public AudioComponent voClip;
+    //public Text subtitles;
 
     bool playedAudio;
 
 
     public override void Awake()
     {
-        AudioPlayer = gameObject.GetComponent<AudioSource>();
+        //audioPlayer = gameObject.GetComponent<AudioSource>();
     }
 
     public override void Start()
     {
-        
+        voClip.setFilePath("pc_hideinclosetfirst");
     }
 
     public override void Update()
@@ -62,15 +62,15 @@ public class Hiding : Script
                     if (!playedAudio)
                     {
                         //voClip = ; //Sound Clip name for player
-                        AudioPlayer.Play(voClip);
-                        subtitles.enabled = true;
-                        subtitles.text = "Martin (Internal): \"Nothing inside, but I could hide in here in case someone shows up.\"";
+                        audioPlayer.Play(voClip);
+                        //subtitles.enabled = true;
+                        //subtitles.text = "Martin (Internal): \"Nothing inside, but I could hide in here in case someone shows up.\"";
                         playedAudio = true;
                     }
 
-                    if (!AudioPlayer.isPlaying() && playedAudio)
+                    if (!audioPlayer.isAnyPlaying() && playedAudio)
                     {
-                        subtitles.enabled = false;
+                        //subtitles.enabled = false;
                     }
                 }
 

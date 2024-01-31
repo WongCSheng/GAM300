@@ -7,7 +7,7 @@
 
 namespace TDS
 {
-	class DLL_API AudioSource : public IComponent
+	DLL_API class AudioSource : public IComponent
 	{
 	public:
 		AudioSource();

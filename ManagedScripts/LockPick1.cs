@@ -372,8 +372,8 @@ public class LockPick1 : Script
     public float maxAngle = 90;
     public float lockSpeed = 10;
     public bool unlocked;
-    public AudioClip[] lockSoundEffects;
-    public AudioClip[] rattleSoundEffects;
+    public AudioComponent[] lockSoundEffects;
+    public AudioComponent[] rattleSoundEffects;
     float delay = 0.4f;
     //public GameObject _NumOfTries;
     //public Text _AmtOfTries;

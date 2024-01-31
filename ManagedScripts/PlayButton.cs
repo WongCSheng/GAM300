@@ -3,8 +3,8 @@ using System;
 
 public class PlayButton : Script
 {
-    public AudioComponent bgm;
-    public string bgmName;
+    public AudioSource audioPlayer;
+    public AudioComponent bgmName;
 
     bool withinArea(float mouse, float min, float max)
     {
@@ -32,17 +32,16 @@ public class PlayButton : Script
     public override void Awake()
     {
         GraphicsManagerWrapper.ToggleViewFrom2D(true);
-        bgmName = "skyclad_sound_ambience_dark_loop_dynamic_tones_howling_moaning_mournful_eerie_105";
-        bgm = gameObject.GetComponent<AudioComponent>();
+        bgmName.setFilePath("skyclad_sound_ambience_dark_loop_dynamic_tones_howling_moaning_mournful_eerie_105");
     }
 
     public override void Update()
     {
-        bgm.play(bgmName);
+        audioPlayer.Play(bgmName);
         if (Input.GetMouseButtonDown(Keycode.M1) && withinButton(gameObject))
         {
             //GraphicsManagerWrapper.ToggleViewFrom2D(false);
-            bgm.stop(bgmName);
+            audioPlayer.Stop(bgmName);
             SceneLoader.LoadStartingCutscene();
         }
     }
