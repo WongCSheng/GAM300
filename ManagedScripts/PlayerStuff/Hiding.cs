@@ -74,7 +74,7 @@ public class Hiding : Script
                     }
                 }
 
-                //Input.KeyRelease(Keycode.E);
+                //Input.KeyRelease(Keycode.E);*/
             }
         }
         else if (hiding)
