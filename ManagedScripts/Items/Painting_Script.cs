@@ -16,7 +16,7 @@ public class Painting_Script : Script
     //private GraphicComponent _color;
 
     [Header("AudioStuff")]
-    public AudioSource AudioPlayer;
+    //public AudioSource AudioPlayer;
     public AudioComponent[] voClip = new AudioComponent[2];
 
     public float timer;

@@ -5,6 +5,7 @@ public class StartingCutscene : Script
 {
     String[] Textures;
     int counter;
+
     public override void Awake()
     {
         GraphicsManagerWrapper.ToggleViewFrom2D(true);

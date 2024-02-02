@@ -356,7 +356,7 @@ public class LockPick1 : Script
     //public Text mySubtitles;
     //public Image mySubtitlesBG;
 
-    public AudioSource myVOSource;
+    //public AudioSource myVOSource;
     public bool _TutorialCompleted;
 
     [Header("Lockpick Variables")]

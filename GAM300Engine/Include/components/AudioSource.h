@@ -7,7 +7,7 @@
 
 namespace TDS
 {
-	DLL_API class AudioSource : public IComponent
+	/*DLL_API class AudioSource : public IComponent
 	{
 	public:
 		AudioSource();
@@ -16,8 +16,8 @@ namespace TDS
 		virtual bool Deserialize(const rapidjson::Value& obj);
 		virtual bool Serialize(rapidjson::PrettyWriter<rapidjson::StringBuffer>* writer) const;
 
-		void Play();
-		void Stop();
+		void Play(SoundInfo* SI);
+		void Stop(SoundInfo* SI);
 
 		void Add(unsigned int ID, FMOD::Sound& clip);
 		void remove(unsigned int ID);
@@ -28,7 +28,7 @@ namespace TDS
 		Vec3 position;
 		float volume;
 		std::map<unsigned int, FMOD::Sound*> audioclips;
-	};
+	};*/
 }
 
 #endif

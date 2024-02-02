@@ -64,9 +64,9 @@ namespace ScriptAPI
 		TransformComponent transform;
 		GameObject^ gameObject;
 
+		AudioComponent(System::String^ pathing);
 	internal:
 		AudioComponent(TDS::EntityID ID);
-		AudioComponent(System::String^ pathing);
 		AudioComponent(SI *soundInfo);
 
 	private:

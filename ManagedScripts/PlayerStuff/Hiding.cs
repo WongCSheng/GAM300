@@ -15,7 +15,6 @@ public class Hiding : Script
     public CheckGameState myGameState;
     public GameObject closet;
     [Header("AudioStuff")]
-    public AudioSource audioPlayer;
     public AudioComponent voClip;
     //public Text subtitles;
 
@@ -29,7 +28,7 @@ public class Hiding : Script
 
     public override void Start()
     {
-        voClip.setFilePath("pc_hideinclosetfirst");
+        //voClip.setFilePath("pc_hideinclosetfirst");
     }
 
     public override void Update()

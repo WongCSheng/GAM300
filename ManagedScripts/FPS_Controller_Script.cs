@@ -6,8 +6,8 @@ public class FPS_Controller_Script : Script
     public RigidBodyComponent rb;
     public AudioComponent startingVO;   //To be changed
     public AudioComponent[] footStepSoundEffects;
-    private int currentFootStepPlaying;
     AudioSource audioPlayer;
+    private int currentFootStepPlaying;
 
     #region Camera Movement Variables
     [Header("Camera Movement Variables")]

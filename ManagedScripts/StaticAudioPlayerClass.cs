@@ -1,7 +1,7 @@
 ﻿using ScriptAPI;
 using System;
 
-public static class Player
-{
-    static AudioSource audioPlayer;
-}
+//static public class AudioPlayer
+//{
+//    static public AudioSource audioPlayer = new AudioSource();
+//}

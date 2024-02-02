@@ -12,17 +12,6 @@ namespace ScriptAPI
     public ref class AudioSource
     {
     public:
-        /*static ref struct volume
-        {
-            float value;
-        };
-        
-        static ref struct pitch
-        {
-            float value;
-        };*/
-
-    public:
         AudioSource();
         
         void Play(AudioComponent^ clip);
@@ -44,6 +33,18 @@ namespace ScriptAPI
         bool isPlaying(AudioComponent^ clip);
         bool hasFinished(AudioComponent^ clip);
 
+    internal:        
+        TDS::EntityID GetEntityID()
+        {
+            return entityID;
+        }
+        void SetEntityID(TDS::EntityID ID)
+        {
+            entityID = ID;
+        }
+
+    public:
+
         //Convert from AudioComponent to SoundInfo
         //TDS::SoundInfo* convertAtS(AudioComponent^ clip);
 
@@ -52,5 +53,7 @@ namespace ScriptAPI
         TDS::proxy_audio_system* proxy_audio;
         unsigned long wait;
         float deltatime;
+
+        TDS::EntityID entityID;
     };
 }
