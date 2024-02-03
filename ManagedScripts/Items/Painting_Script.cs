@@ -52,6 +52,6 @@ public class Painting_Script : Script
         Vector3 playerPos = playerObject.transform.GetPosition();
         float distance = Vector3.Distance(itemPos, playerPos);
         Console.WriteLine(distance);
-        return distance < 5.0;
+        return distance < 100.0;
     }
 }

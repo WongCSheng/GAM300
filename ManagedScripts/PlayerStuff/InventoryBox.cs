@@ -85,9 +85,7 @@ public class InventoryBox : Script
         {
             View_Object.ObjectName = storedObjName;
             View_Object.OnEnter = true;
-
             GameObjectScriptFind("ObjectViewer").SetActive(true);
-            GameObjectScriptFind("InventoryObject").SetActive(false);
         }    
     }
 

@@ -43,20 +43,14 @@ public class InventoryScript : Script
             Console.WriteLine("I pressed");
             toggleInventory();
         }
+        Input.Lock(!InventoryIsOpen);
+        Input.HideMouse(InventoryIsOpen);  // For some reason visibility = hide ?
 
         if (InventoryIsOpen) // Inventory opened
         {
-            // Unhide and Unlock cursor here
-            Input.Lock(false);
-            Input.HideMouse(true);  // For some reason visibility = hide ?
             checkMouseInput();
         }
-        else    // Inventory closed
-        {
-            // Hide and Lock cursor here
-            Input.Lock(true);
-            Input.HideMouse(false);  // For some reason visibility = hide ?
-        }
+        
     }
 
     public void toggleInventory()
@@ -141,7 +135,7 @@ public class InventoryScript : Script
 
         paintingsObjsImg = new List<string>
         {
-            "Inventory Box Img.dds",            "Inventory Box Img.dds",
+            "p01.dds",            "Inventory Box Img.dds",
             "Inventory Box Img.dds",            "Inventory Box Img.dds",
             "Inventory Box Img.dds",            "Inventory Box Img.dds",
             "Inventory Box Img.dds",            "Inventory Box Img.dds",
@@ -151,7 +145,7 @@ public class InventoryScript : Script
 
         paintingObjsInInventory = new List<string>
         {
-            "",            "",
+            "Painting_Living_Bin.bin",            "",
             "",            "",
             "",            "",
             "",            "",
