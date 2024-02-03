@@ -399,10 +399,6 @@ namespace TDS
         static bool CheckPause(std::string pathing); //to be changed
 
         static SoundInfo* find_sound_info(std::string str);
-        static void Add_to_Queue(std::string str);
-        static void Remove_from_Queue(std::string str);
-        static void Play_queue();
-        static void Clear_queue();
 
         static void setMute(std::string str, bool set);
         static void setLoop(std::string str, bool set, int count = 1);
@@ -416,13 +412,13 @@ namespace TDS
 
         static int totalNumClips;
 
-        static std::map<std::string, SoundInfo> music;
-        static std::map<std::string, SoundInfo> SFX;
-        static std::map<std::string, SoundInfo> background;
-        static std::map<std::string, SoundInfo> VO;
+        //static std::map<std::string, SoundInfo> music;
+        //static std::map<std::string, SoundInfo> SFX;
+        //static std::map<std::string, SoundInfo> background;
+        //static std::map<std::string, SoundInfo> VO;
         static std::map<std::string, SoundInfo> soundClips;
 
-        static std::map<std::string, SoundInfo*> all_sounds;
+        static std::map<std::string, SoundInfo> all_sounds;
         //static std::map<unsigned int, std::map<Vec3*, SOUND_STATE*>> sound_events;
     }; //end of proxy_audio_system
 } //end of TDS

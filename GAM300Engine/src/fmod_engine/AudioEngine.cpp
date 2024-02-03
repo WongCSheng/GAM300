@@ -534,13 +534,12 @@ namespace TDS
     AudioWerks::AudioEngine* proxy_audio_system::aud_instance = nullptr;
     int proxy_audio_system::totalNumClips{ 0 };
 
-    std::map<std::string, SoundInfo> proxy_audio_system::music;
-    std::map<std::string, SoundInfo> proxy_audio_system::SFX;
-    std::map<std::string, SoundInfo> proxy_audio_system::background;
-    std::map<std::string, SoundInfo> proxy_audio_system::VO;
-    std::map<std::string, std::pair<bool, SoundInfo*>> proxy_audio_system::Queue;
+    //std::map<std::string, SoundInfo> proxy_audio_system::music;
+    //std::map<std::string, SoundInfo> proxy_audio_system::SFX;
+    //std::map<std::string, SoundInfo> proxy_audio_system::background;
+    //std::map<std::string, SoundInfo> proxy_audio_system::VO;
+    std::map<std::string, SoundInfo> proxy_audio_system::all_sounds;
 
-    std::map<std::string, SoundInfo*> proxy_audio_system::all_sounds;
     //std::map<unsigned int, std::map<Vec3*, SOUND_STATE*>> sound_events{};
 
     void proxy_audio_system::audio_system_init()
@@ -548,12 +547,11 @@ namespace TDS
         aud_instance = AudioWerks::AudioEngine::get_audioengine_instance();
         totalNumClips = aud_instance->getSoundContainer().size();
 
-        music.clear();
-        SFX.clear();
-        background.clear();
-        VO.clear();
+        //music.clear();
+        //SFX.clear();
+        //background.clear();
+        //VO.clear();
         all_sounds.clear();
-        Queue.clear();
 
         load_all_audio_files();
     }
@@ -585,7 +583,18 @@ namespace TDS
 
         for (auto& str : all_files)
         {
-            if (str.string().find("/Music\\") != std::string::npos && str.string().find(".meta") == std::string::npos)
+            if (str.string().find(".meta") == std::string::npos)
+            {
+                SoundInfo temp(str.string());
+                size_t first = str.string().find_last_of('\\') + 1,
+                    last = str.string().find_last_of('.') - first;
+                std::string sound_name = str.string().substr(first, last);
+
+                all_sounds[sound_name] = temp;
+                aud_instance->loadSound(temp);
+            }
+            
+            /*if (str.string().find("/Music\\") != std::string::npos && str.string().find(".meta") == std::string::npos)
             {
                 SoundInfo temp(str.string());
                 size_t first = str.string().find_last_of('\\') + 1,
@@ -624,7 +633,7 @@ namespace TDS
 
                 VO[sound_name] = (temp);
                 aud_instance->loadSound(temp);
-            }
+            }*/
         }
     }
 
@@ -676,8 +685,15 @@ namespace TDS
     {
         SoundInfo temp(pathing);
 
-        soundClips[pathing] = temp;
-        aud_instance->loadSound(temp);
+        if (all_sounds.find(pathing) != all_sounds.end())
+        {
+            all_sounds[pathing] = temp;
+            aud_instance->loadSound(temp);
+        }
+        else
+        {
+
+        }
     }
 
     void proxy_audio_system::ScriptUnload(std::string pathing)
@@ -737,47 +753,6 @@ namespace TDS
         }
 
         return nullptr;
-    }
-
-    void proxy_audio_system::Add_to_Queue(std::string str)
-    {
-        Queue[str] = std::make_pair(false, find_sound_info(str));
-    }
-
-    void proxy_audio_system::Remove_from_Queue(std::string str)
-    {
-        Queue.erase(str);
-    }
-
-    void proxy_audio_system::Play_queue()
-    {
-        for (std::map<std::string, std::pair<bool, SoundInfo*>>::iterator it = Queue.begin(); it != Queue.end();)
-        {
-            if (it->second.second->whatState == SOUND_PLAYING)
-            {
-                aud_instance->soundFinished(*it->second.second);
-            }
-            else if (it->second.first)
-            {
-                Remove_from_Queue(it++->first);
-                if (Queue.size() == 0)
-                {
-                    break;
-                }
-                goto PLAY_THIS;
-            }
-            else
-            {
-                PLAY_THIS:
-                aud_instance->playSound(*it->second.second);
-                it->second.first = true;
-            }
-        }
-    }
-
-    void proxy_audio_system::Clear_queue()
-    {
-        Queue.clear();
     }
 
     void proxy_audio_system::setMute(std::string str, bool set)
