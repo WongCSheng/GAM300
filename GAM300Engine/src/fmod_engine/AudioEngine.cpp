@@ -274,9 +274,7 @@ namespace TDS
         {
             int channelnum{ 0 };
 
-            ERRCHECK(lowLevelSystem->getChannelsPlaying(&channelnum));
-
-            if (soundInfo.isPlaying() && (channelnum > 0 && channelnum <= MAX_AUDIO_CHANNELS))
+            if (lowLevelSystem->getChannelsPlaying(&channelnum) && channelnum > 0 && channelnum <= MAX_AUDIO_CHANNELS)
             {
                 return true;
             }
@@ -723,7 +721,7 @@ namespace TDS
 
     SoundInfo* proxy_audio_system::find_sound_info(std::string str)
     {
-        for (auto& temp : music)
+        /*for (auto& temp : music)
         {
             if (temp.first == str)
             {
@@ -752,7 +750,9 @@ namespace TDS
             }
         }
 
-        return nullptr;
+        return nullptr;*/
+
+        return (all_sounds.find(str) != all_sounds.end()) ? &all_sounds[str] : nullptr;
     }
 
     void proxy_audio_system::setMute(std::string str, bool set)
@@ -773,7 +773,7 @@ namespace TDS
 
     bool proxy_audio_system::checkifdone(SoundInfo& soundInfo)
     {
-        bool check{ false };
+        /*bool check{ false };
 
         for (auto& temp : background)
         {
@@ -814,7 +814,12 @@ namespace TDS
     
         DoNe:
 
-        return check;
+        return check;*/
+
+        if (aud_instance->getSoundContainer().count(soundInfo.uniqueID) > 0)
+        {
+            
+        }
     }
 
     bool proxy_audio_system::ScriptCheckAnyPlaying()
