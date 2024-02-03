@@ -23,11 +23,11 @@ public class Painting_Script : Script
 
     override public void Awake()
     {
-        voClip[0].setFilePath("pc_stealpainting1");
-        voClip[1].setFilePath("pc_shinelightafterreceipt"); //This one should be items VO
+        //voClip[0].setFilePath("pc_stealpainting1");
+        //voClip[1].setFilePath("pc_shinelightafterreceipt"); //This one should be items VO
         //_color.a = 1;
-        timer = 1.0f;
-        Console.WriteLine("Painting script");
+        //timer = 1.0f;
+        //Console.WriteLine("Painting script");
     }
 
     public override void Start()

@@ -30,7 +30,7 @@ public class InventoryScript : Script
 
     public override void Start()
     {
-        //Console.WriteLine("Initialising");
+        Console.WriteLine("Start Invenctory");
         initObjects();
     }
 
@@ -47,17 +47,15 @@ public class InventoryScript : Script
         if (InventoryIsOpen) // Inventory opened
         {
             // Unhide and Unlock cursor here
-
-            /* Commented for now because unhiding and unlocking cursor makes the game hang 
-            //Input.Lock(false);
-            //Input.HideMouse(true);  // For some reason visibility = hide ?
-            */
-
+            Input.Lock(false);
+            Input.HideMouse(true);  // For some reason visibility = hide ?
             checkMouseInput();
         }
         else    // Inventory closed
         {
             // Hide and Lock cursor here
+            Input.Lock(true);
+            Input.HideMouse(false);  // For some reason visibility = hide ?
         }
     }
 
@@ -73,7 +71,7 @@ public class InventoryScript : Script
         //Console.WriteLine("Checking Mouse Input\n");
         if (Input.GetMouseButtonDown(Keycode.M1))
         {
-            Console.WriteLine("Mouse clicked");
+            Console.WriteLine("Mouse clicked Inventory");
             if(withinButton(ItemsTab)) // Slightly off in y-axis
             {
                 Console.WriteLine("Collide Items\n");
@@ -175,6 +173,7 @@ public class InventoryScript : Script
             {
                 paintingObjsInInventory[i] = painting_name;
                 paintingsObjsImg[i] = texture_name;
+                return;
             }
         }
     }
@@ -188,6 +187,7 @@ public class InventoryScript : Script
             {
                 noteObjsInInventory[i] = note_name;
                 notesObjsImg[i] = texture_name;
+                return;
             }
         }
     }
@@ -201,6 +201,7 @@ public class InventoryScript : Script
             {
                 itemObjsInInventory[i] = item_name;
                 itemsObjsImg[i] = texture_name;
+                return;
             }
         }
     }
@@ -209,15 +210,15 @@ public class InventoryScript : Script
     {
         Vector3 ObjectPos = obj.transform.GetPosition();
         Vector3 ObjectScale = obj.transform.GetScale();
-        float mouseX = Input.GetGlobalMousePosX();       // Need to change to UI coords... was using GetUIMousePos previously before the Input system got changed
-        float mouseY = Input.GetGlobalMousePosY();       // Need to change to UI coords... was using GetUIMousePos previously before the Input system got changed
+        float mouseX = Input.GetUIMousePosX();       
+        float mouseY = Input.GetUIMousePosY();       
         float minX = ObjectPos.X - ObjectScale.X * 0.5f;
         float maxX = ObjectPos.X + ObjectScale.X * 0.5f;
         float minY = ObjectPos.Y - ObjectScale.Y * 0.5f;
         float maxY = ObjectPos.Y + ObjectScale.Y * 0.5f;
 
-        Console.WriteLine("MouseX: " + mouseX + " MinX: " + minX + " MaxX: " + maxX);
-        Console.WriteLine("MouseY: " + mouseY + " MinY: " + minY + " MaxY: " + maxY);
+        //Console.WriteLine("MouseX: " + mouseX + " MinX: " + minX + " MaxX: " + maxX);
+        //Console.WriteLine("MouseY: " + mouseY + " MinY: " + minY + " MaxY: " + maxY);
         if (mouseX >= minX && mouseX <= maxX && mouseY >= minY && mouseY <= maxY)
             return true;
         else

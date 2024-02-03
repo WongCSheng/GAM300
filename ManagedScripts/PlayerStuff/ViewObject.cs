@@ -66,9 +66,12 @@ public class View_Object : Script
 
     public void CheckKeyboardInput() // Need to test
     {
+        Console.WriteLine("Check Keyboard Input ViewObject");
         // Keyboard Controls
         if (Input.GetKey(Keycode.A))
         {
+            Console.WriteLine("A pressed");
+
             rotateValue += 1;
 
             if (target.gameObject.GetComponent<NameTagComponent>().GetTag() == "Painting")
@@ -83,6 +86,8 @@ public class View_Object : Script
         }
         else if (Input.GetKey(Keycode.D))
         {
+            Console.WriteLine("D pressed");
+
             rotateValue -= 1;
 
             if (target.gameObject.GetComponent<NameTagComponent>().GetTag() == "Painting")
@@ -97,6 +102,8 @@ public class View_Object : Script
 
         if (Input.GetKey(Keycode.S))
         {
+            Console.WriteLine("S pressed");
+
             if (target.GetPosition().Y > 0.4)
             {
                 root_y -= 0.01f;
@@ -105,6 +112,8 @@ public class View_Object : Script
         }
         else if (Input.GetKey(Keycode.W))
         {
+            Console.WriteLine("D pressed");
+
             if (target.GetPosition().Y < 3.7)
             {
                 root_y += 0.01f;
@@ -115,13 +124,18 @@ public class View_Object : Script
 
     public void CheckMouseInput()
     {
+        Console.WriteLine("Check Mouse Input ViewObject");
         // Mouse Controls
         if (Input.GetMouseButtonDown(Keycode.M1)) //left click to zoom
         {
+            Console.WriteLine("Left click pressed");
+
             isZoomed = !isZoomed;
         }
         if (Input.GetMouseButtonDown(Keycode.M2)) //right click to exit
         {
+            Console.WriteLine("Right click pressed");
+
             isExamining = false;
             isZoomed = false;
             ObjectViewer.SetActive(false);
