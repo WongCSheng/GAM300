@@ -40,8 +40,9 @@ namespace TDS
         position = set_this;
     }
 
-    void SoundInfo::setFilePath(std::string _path)
+    void SoundInfo::setFilePath(std::string _path)//, std::string _type)
     {
+        //filePath = "../assets/audioFiles/" + _type + "/" + _path; //pathing / append
         filePath = _path;
     }
 
@@ -115,6 +116,11 @@ namespace TDS
         const char* name = filePath.c_str();
 
         return name;
+    }
+
+    std::string SoundInfo::getFilePath()
+    {
+        return filePath;
     }
 
     /*int SoundInfo::getLoopCount()
@@ -231,6 +237,7 @@ namespace TDS
         position_events.clear();
         MSLength = _MSLength;
         sampleRate = _sampleRate;
+        loopCount = 0;
 
         size_t first = filePath.find_last_of('\\') + 1,
             last = filePath.find_last_of('.') - first;

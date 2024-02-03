@@ -420,7 +420,7 @@ namespace TDS
         static std::map<std::string, SoundInfo> SFX;
         static std::map<std::string, SoundInfo> background;
         static std::map<std::string, SoundInfo> VO;
-        static std::map<std::string, std::pair<bool, SoundInfo*>> Queue;
+        static std::map<std::string, SoundInfo> soundClips;
 
         static std::map<std::string, SoundInfo*> all_sounds;
         //static std::map<unsigned int, std::map<Vec3*, SOUND_STATE*>> sound_events;

@@ -35,10 +35,13 @@ namespace TDS
         class AudioEngine;
     }*/
 
-    DLL_API struct SoundInfo : public IComponent
+    struct SoundInfo : public IComponent
     {
-        unsigned int uniqueID = 0, MSLength, sampleRate;
+    private:
         std::string filePath;
+
+    public:
+        unsigned int uniqueID = 0, MSLength, sampleRate;
         bool isitLoop, isit3D, isitmuted;
         SOUND_STATE whatState;
         Vec3 position;
@@ -78,7 +81,7 @@ namespace TDS
         // convenience method to set the 3D coordinates of the sound.
         DLL_API  void set3DCoords(float x, float y, float z);
         DLL_API  void set3DCoords(Vec3 set_this);
-        DLL_API  void setFilePath(std::string _path);
+        DLL_API  void setFilePath(std::string _path);//, std::string _type);
         DLL_API  void setEvents(Vec3* place, SOUND_STATE& type);
 
         DLL_API  bool isLoaded();
@@ -108,7 +111,7 @@ namespace TDS
         //DLL_API  SOUND_STATE getState();
         //DLL_API  unsigned int getUniqueID();
         //DLL_API  unsigned int getMSLength();
-        //DLL_API  std::string getFilePath();
+        DLL_API  std::string getFilePath();
         DLL_API  const char* getFilePath_inChar();
         //DLL_API  int getLoopCount();
         DLL_API  float getX();

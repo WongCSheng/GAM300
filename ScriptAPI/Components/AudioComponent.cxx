@@ -235,7 +235,7 @@ namespace ScriptAPI
 	//file path
 	std::string AudioComponent::filePath::get()
 	{
-		return TDS::GetSoundInfo(entityID)->filePath;
+		return TDS::GetSoundInfo(entityID)->getFilePath();
 	}
 	void AudioComponent::filePath::set(std::string value)
 	{

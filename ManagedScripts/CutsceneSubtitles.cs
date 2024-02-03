@@ -4,7 +4,7 @@ using System;
 public class CutsceneSubtitle : Script
 {
     AudioComponent[] Audiofiles;
-    AudioComponent sampleAudio = new AudioComponent("intro1_1");
+    AudioComponent sampleAudio = new AudioComponent();
     AudioSource audioPlayer;
     String[] Subtitles;
     [SerializeField]
@@ -59,6 +59,8 @@ public class CutsceneSubtitle : Script
         //Audiofiles[14].setFilePath("intro8_2");
         //Audiofiles[15].setFilePath("intro9_1");
         //Audiofiles[16].setFilePath("intro9_2");
+
+        sampleAudio.setFilePath("intro1_1");
 
         //foreach(String str in Audiofiles)
         //{
