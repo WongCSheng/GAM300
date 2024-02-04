@@ -1102,8 +1102,7 @@ namespace TDS
 							if (filesystempath.extension() == ".flac" || filesystempath.extension() == ".wav" || filesystempath.extension() == ".mp3")
 							{
 								SoundInfo* si = reinterpret_cast<SoundInfo*>(componentBase);
-								//si->setFilePath(str);
-								si->filePath = str;
+								si->setFilePath(str);
 
 								AssetBrowser Assetbrowser;
 								Assetbrowser.getFileNameFromPath(str.c_str(), nullptr, nullptr, &str, nullptr);

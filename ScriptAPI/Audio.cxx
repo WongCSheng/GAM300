@@ -34,13 +34,11 @@ namespace ScriptAPI
 	void AudioSource::Load(AudioComponent^ pathing)
 	{
 		proxy_audio->ScriptLoad(pathing->getFilePath());
-		//clips->Add(pathing->GetEntityID(), pathing);
 	}
 
 	void AudioSource::Unload(AudioComponent^ clip)
 	{
 		proxy_audio->ScriptUnload(clip->getFilePath());
-		//clips->Remove(getAudio(pathing)->GetEntityID());
 	}
 
 	TDS::SoundInfo* AudioSource::getSound(StringP pathing)
@@ -85,12 +83,12 @@ namespace ScriptAPI
 
 	bool AudioSource::isPlaying(AudioComponent^ clip)
 	{
-		return clip->isPlaying();
+		return proxy_audio->CheckPlaying(clip->getFilePath());
 	}
 
 	bool AudioSource::hasFinished(AudioComponent^ clip)
 	{
-		return clip->finished();
+		return proxy_audio->checkifdone(clip->getFilePath());
 	}
 
 	/*TDS::SoundInfo* convertAtS(AudioComponent^ clip)

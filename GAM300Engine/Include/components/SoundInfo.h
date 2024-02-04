@@ -14,20 +14,11 @@ namespace TDS
 
     static unsigned int ID_Count{ 1 };
 
-    /*enum SOUND_STATE : uint16_t
-    {
-        SOUND_LOADED = 0,
-        SOUND_PLAYING,
-        SOUND_STOP,
-        SOUND_MUTED
-    };*/
-
     enum SOUND_STATE
     {
         SOUND_ERR = 0,
         SOUND_LOADED,
-        SOUND_PLAYING,
-        SOUND_PAUSE
+        OTHERS
     };
 
     /*namespace AudioWerks
@@ -47,7 +38,7 @@ namespace TDS
         Vec3 position;
         int loopCount;
         float volume, ReverbAmount;
-        std::map<Vec3*, SOUND_STATE*> position_events;
+        //std::map<Vec3*, SOUND_STATE*> position_events;
 
         /**
          * @brief Loading info from a file into SOUNDINFO.
@@ -82,32 +73,15 @@ namespace TDS
         DLL_API  void set3DCoords(float x, float y, float z);
         DLL_API  void set3DCoords(Vec3 set_this);
         DLL_API  void setFilePath(std::string _path);//, std::string _type);
-        DLL_API  void setEvents(Vec3* place, SOUND_STATE& type);
+        //DLL_API  void setEvents(Vec3* place, SOUND_STATE& type);
 
         DLL_API  bool isLoaded();
         DLL_API  bool is3D();
         DLL_API  bool isLoop();
         DLL_API  bool isMuted();
-        DLL_API  bool isPlaying();
-        DLL_API  bool isPaused();
-
-        /*bool isPlaying()
-        {
-            return (bool)(whatState & (1 << SOUND_PLAYING));
-        }
-
-        bool isPaused()
-        {
-            return (bool)(whatState ^ (1 << SOUND_PLAYING));
-        }
-
-        bool isMuted()
-        {
-            return (bool)(whatState & (1 << SOUND_MUTED));
-        }*/
 
         //DLL_API  Vec3 get3DCoords();
-        DLL_API  std::map<Vec3*, SOUND_STATE*> getEvents();
+        //DLL_API  std::map<Vec3*, SOUND_STATE*> getEvents();
         //DLL_API  SOUND_STATE getState();
         //DLL_API  unsigned int getUniqueID();
         //DLL_API  unsigned int getMSLength();
@@ -131,20 +105,7 @@ namespace TDS
             whatState |= (set << setting);
         }*/
 
-        //DLL_API  void setState(SOUND_STATE setting);
-        //DLL_API  void setUniqueID(unsigned int value);
-        //DLL_API  void setLoop(bool condition);
-        //DLL_API  void setLoopCount(int count);
-        //DLL_API  void set3D(bool condition);
-        //DLL_API  void setMute(bool condition);
-        //DLL_API  void setReverbAmount(float reverb);
-        //DLL_API  void setSamepleRate(unsigned int _samplerate);
-
-        //DLL_API  void play();
-        //DLL_API  void pause();
-        //DLL_API  void stop();
-
-        DLL_API  SoundInfo(std::string _filePath = "", bool _isLoop = false, bool _is3D = false, bool _muted = false,SOUND_STATE _theState = SOUND_ERR,
+        DLL_API  SoundInfo(std::string _filePath = "", bool _isLoop = false, bool _is3D = false, bool _muted = false, SOUND_STATE _theState = SOUND_ERR,
             float _x = 0.0f, float _y = 0.0f, float _z = 0.0f, int _loopcount = 0, float _volume = 1.f, float _reverbamount = 0.f,
             unsigned int _MSLength = 0, unsigned int _sampleRate = 0);
 
@@ -161,7 +122,7 @@ namespace TDS
             isitmuted = rhs.isitmuted;
             isitLoop = rhs.isitLoop;
             loopCount = rhs.loopCount;
-            whatState = rhs.whatState;
+            //whatState = rhs.whatState;
             position = rhs.position;
             volume = rhs.volume;
             ReverbAmount = rhs.ReverbAmount;

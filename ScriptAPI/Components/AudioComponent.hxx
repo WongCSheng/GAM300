@@ -19,10 +19,6 @@ namespace ScriptAPI
 		bool is3D();
 		bool isLoop();
 		bool isMuted();
-		bool isPlaying();
-		bool isPaused();
-		//Check if that sound file finished playing
-		bool finished();
 
 		Vector3 get3DCoords();
 		snd getState();
@@ -48,9 +44,6 @@ namespace ScriptAPI
 		void set3D(bool condition);
 		void setMute(bool condition);
 		//void tieWithSoundInfo(SI* _soundInfo);
-
-		//Add to a queue of sound to be played sequentially
-		void Queue(System::String^ str);
 
 		std::function<void(snd)>* pass_in_setState;
 

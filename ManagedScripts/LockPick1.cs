@@ -62,7 +62,7 @@ public class LockPick1 : Script
 
     private Vector3 originalPosition;
     private Vector3 originalRotation;
-    AudioComponent audio;
+    AudioSource audioPlayer;
     bool failed;
     bool passed;
     float timer;
@@ -70,20 +70,18 @@ public class LockPick1 : Script
     // Start is called before the first frame update
     override public void Awake()
     {
-        lockSoundEffects = new String[3];
-        lockSoundEffects[0] = "Lock Turning Audio";
-        lockSoundEffects[1] = "lockpick success";
-        lockSoundEffects[2] = "lockpick_failtryl";
+        lockSoundEffects = new AudioComponent[3];
+        lockSoundEffects[0].setFilePath("Lock Turning Audio");
+        lockSoundEffects[1].setFilePath("lockpick success");
+        lockSoundEffects[2].setFilePath("lockpick_failtryl");
 
-        rattleSoundEffects = new String[6];
-        rattleSoundEffects[0] = "temp_lockrattle1";
-        rattleSoundEffects[1] = "temp_lockrattle2";
-        rattleSoundEffects[2] = "temp_lockrattle3";
-        rattleSoundEffects[3] = "temp_lockrattle4";
-        rattleSoundEffects[4] = "temp_lockrattle5";
-        rattleSoundEffects[5] = "temp_lockrattle6";
-
-        audio = gameObject.GetComponent<AudioComponent>();
+        rattleSoundEffects = new AudioComponent[6];
+        rattleSoundEffects[0].setFilePath("temp_lockrattle1");
+        rattleSoundEffects[1].setFilePath("temp_lockrattle2");
+        rattleSoundEffects[2].setFilePath("temp_lockrattle3");
+        rattleSoundEffects[3].setFilePath("temp_lockrattle4");
+        rattleSoundEffects[4].setFilePath("temp_lockrattle5");
+        rattleSoundEffects[5].setFilePath("temp_lockrattle6");
 
         newLock();
         originalPosition = transform.GetPosition();
@@ -151,7 +149,7 @@ public class LockPick1 : Script
                 // NOTE: Audio
                 //GetComponent<AudioSource>().clip = lockSoundEffects[0];
                 //GetComponent<AudioSource>().Play();
-                audio.play(lockSoundEffects[0]);
+                audioPlayer.Play(lockSoundEffects[0]);
             }
             if (Input.GetKeyUp(Keycode.E))
             {
@@ -177,7 +175,7 @@ public class LockPick1 : Script
                     movePick = true;
                     keyPressTime = 0;
                     // NOTE: Audio
-                    audio.play(lockSoundEffects[1]);
+                    audioPlayer.Play(lockSoundEffects[1]);
                     newLock();
                     timer = 1.2f;
 
@@ -206,28 +204,28 @@ public class LockPick1 : Script
                     if (Input.GetKeyDown(Keycode.E) || Input.GetKey(Keycode.E))
                     {
                         // NOTE: Audio
-                        if (audio.finished(lockSoundEffects[0]))
+                        if (audioPlayer.hasFinished(lockSoundEffects[0]))
                         {
-                            audio.stop(lockSoundEffects[0]);
+                            audioPlayer.Stop(lockSoundEffects[0]);
                             delay -= Time.deltaTime;
 
                             if (delay <= 0)
                             {
                                 // Not sure if there is a better way to do this
-                                if (audio.finished(rattleSoundEffects[0]))
-                                    audio.stop(rattleSoundEffects[0]);
-                                if (audio.finished(rattleSoundEffects[1]))
-                                    audio.stop(rattleSoundEffects[1]);
-                                if (audio.finished(rattleSoundEffects[2]))
-                                    audio.stop(rattleSoundEffects[2]);
-                                if (audio.finished(rattleSoundEffects[3]))
-                                    audio.stop(rattleSoundEffects[3]);
-                                if (audio.finished(rattleSoundEffects[4]))
-                                    audio.stop(rattleSoundEffects[4]);
-                                if (audio.finished(rattleSoundEffects[5]))
-                                    audio.stop(rattleSoundEffects[5]);
+                                if (audioPlayer.hasFinished(rattleSoundEffects[0]))
+                                    audioPlayer.Stop(rattleSoundEffects[0]);
+                                if (audioPlayer.hasFinished(rattleSoundEffects[1]))
+                                    audioPlayer.Stop(rattleSoundEffects[1]);
+                                if (audioPlayer.hasFinished(rattleSoundEffects[2]))
+                                    audioPlayer.Stop(rattleSoundEffects[2]);
+                                if (audioPlayer.hasFinished(rattleSoundEffects[3]))
+                                    audioPlayer.Stop(rattleSoundEffects[3]);
+                                if (audioPlayer.hasFinished(rattleSoundEffects[4]))
+                                    audioPlayer.Stop(rattleSoundEffects[4]);
+                                if (audioPlayer.hasFinished(rattleSoundEffects[5]))
+                                    audioPlayer.Stop(rattleSoundEffects[5]);
 
-                                audio.play(rattleSoundEffects[(int)ScriptAPI.Random.Range(0, 5)]);
+                                audioPlayer.Play(rattleSoundEffects[(int)ScriptAPI.Random.Range(0, 5)]);
                                 delay = 0.4f;
                             }
                         }
@@ -242,7 +240,7 @@ public class LockPick1 : Script
                     if (numOfTries <= 0)
                     {
                         // NOTE: Audio
-                        audio.play(lockSoundEffects[2]);
+                        audioPlayer.Play(lockSoundEffects[2]);
                         movePick = false;
                         timer = 1.0f;
 
@@ -310,8 +308,8 @@ public class LockPick1 : Script
 
     public void newLock()
     {
-        audio.stop(lockSoundEffects[1]);
-        audio.stop(lockSoundEffects[2]);
+        audioPlayer.Stop(lockSoundEffects[1]);
+        audioPlayer.Stop(lockSoundEffects[2]);
         Input.Lock(false);
 
         failed = false;

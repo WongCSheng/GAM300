@@ -18,12 +18,9 @@ rttr::registration::class_<SoundInfo>("Audio")
 .method("set3DCoords", rttr::select_overload<void(float, float, float)>(&SoundInfo::set3DCoords))
 .method("set3DCoords", rttr::select_overload<void(Vec3)>(&SoundInfo::set3DCoords))
 .method("setFilePath", &SoundInfo::setFilePath)
-.method("setEvents", &SoundInfo::setEvents)
+//.method("setEvents", &SoundInfo::setEvents)
 .method("isLoaded", &SoundInfo::isLoaded)
 .method("is3D", &SoundInfo::is3D);
-//.method("play", &SoundInfo::play)
-//.method("pause", &SoundInfo::pause)
-//.method("stop", &SoundInfo::stop);
 }
 
 namespace TDS
@@ -46,10 +43,10 @@ namespace TDS
         filePath = _path;
     }
 
-    void SoundInfo::setEvents(Vec3* place, SOUND_STATE& type)
+    /*void SoundInfo::setEvents(Vec3* place, SOUND_STATE& type)
     {
         position_events[place] = &type;
-    }
+    }*/
 
     bool SoundInfo::isLoaded()
     {
@@ -71,25 +68,15 @@ namespace TDS
         return isitmuted;
     }
 
-    bool SoundInfo::isPlaying()
-    {
-        return (whatState == SOUND_PLAYING);
-    }
-
-    bool SoundInfo::isPaused()
-    {
-        return (whatState == SOUND_PAUSE);
-    }
-
     /*Vec3 SoundInfo::get3DCoords()
     {
         return position;
     }*/
 
-    std::map<Vec3*, SOUND_STATE*> SoundInfo::getEvents()
+    /*std::map<Vec3*, SOUND_STATE*> SoundInfo::getEvents()
     {
         return position_events;
-    }
+    }*/
 
     /*SOUND_STATE SoundInfo::getState()
     {
@@ -234,7 +221,7 @@ namespace TDS
         position.x = _x;
         position.y = _y;
         position.z = _z;
-        position_events.clear();
+        //position_events.clear();
         MSLength = _MSLength;
         sampleRate = _sampleRate;
         loopCount = 0;

@@ -102,19 +102,23 @@ namespace TDS
             /**
             * Plays a sound file using FMOD's low level audio system. If the sound file has not been
             * previously loaded using loadSoundFile(), a console message is displayed
-            *
-            * @param filename - relative path to file from project directory. (Can be .OGG, .WAV, .MP3,
-            *                 or any other FMOD-supported audio format)
             */
             DLL_API  int playSound(SoundInfo& soundInfo);
 
             /**
-            * Pause a sound file using FMOD's low level audio system.
-            *
-            * @param filename - relative path to file from project directory. (Can be .OGG, .WAV, .MP3,
-            *                 or any other FMOD-supported audio format)
+            * Check whether a sound file is playing
             */
-            DLL_API void pauseSound(SoundInfo& soundInfo);
+            DLL_API  bool checkPlaying(SoundInfo& soundInfo);
+
+            /**
+            * Pause a sound file using FMOD's low level audio system.
+            */
+            DLL_API  void pauseSound(SoundInfo& soundInfo);
+
+            /**
+            * Checks whether a sound file is paused
+            */
+            DLL_API  bool checkPause(SoundInfo& soundInfo);
 
             /**
              * Stops a looping sound if it's currently playing.
@@ -150,7 +154,7 @@ namespace TDS
             /**
              * Checks if a sound has finished playing.
              */
-            DLL_API  void soundFinished(SoundInfo& soudnInfo);
+            DLL_API  bool soundFinished(SoundInfo& soudnInfo);
 
             /**
              * Sets the position of the listener in the 3D scene.
@@ -348,14 +352,14 @@ namespace TDS
              * Key is the SoundInfo's uniqueKey field.
              * Value is the FMOD::Channel* the FMOD::Sound* is playing back on.
              */
-            std::map<unsigned int, FMOD::Channel*> loopsPlaying{};
+            std::map<unsigned int, FMOD::Channel*> channels{};
 
             /*
              * Map which stores the current playback channels of any playing sound
              * Key is the SoundInfo's uniqueKey field.
              * Value is the FMOD::Channel* the FMOD::Sound* is playing back on.
              */
-            std::map<unsigned int, FMOD::Channel*> normalPlaying{};
+            //std::map<unsigned int, FMOD::Channel*> normalPlaying{};
 
             /*
              * Map which stores the soundbanks loaded with loadFMODStudioBank()
@@ -404,19 +408,13 @@ namespace TDS
         static void setLoop(std::string str, bool set, int count = 1);
         static void set3D(std::string str, bool set);
 
-        static bool checkifdone(SoundInfo& soundInfo); //Need to rework to use callback to check if sound is finished playing
+        static bool checkifdone(std::string pathing); //Need to rework to use callback to check if sound is finished playing
         static bool ScriptCheckAnyPlaying();
 
     private:
         static AudioWerks::AudioEngine* aud_instance;
 
         static int totalNumClips;
-
-        //static std::map<std::string, SoundInfo> music;
-        //static std::map<std::string, SoundInfo> SFX;
-        //static std::map<std::string, SoundInfo> background;
-        //static std::map<std::string, SoundInfo> VO;
-        static std::map<std::string, SoundInfo> soundClips;
 
         static std::map<std::string, SoundInfo> all_sounds;
         //static std::map<unsigned int, std::map<Vec3*, SOUND_STATE*>> sound_events;

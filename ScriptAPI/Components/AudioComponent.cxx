@@ -62,32 +62,6 @@ namespace ScriptAPI
 		return isitMuted;
 	}
 
-	bool AudioComponent::isPlaying()
-	{
-		return (whatState == TDS::SOUND_PLAYING);
-	}
-
-	bool AudioComponent::isPaused()
-	{
-		return (whatState == TDS::SOUND_PAUSE);
-	}
-
-	bool AudioComponent::finished()
-	{
-		TDS::SoundInfo temp(filePath);
-		temp.whatState = whatState;
-		
-		if (TDS::proxy_audio_system::checkifdone(temp))
-		{
-			whatState = temp.whatState;
-			return true;
-		}
-		else
-		{
-			whatState = temp.whatState;
-		}
-	}
-
 	Vector3 AudioComponent::get3DCoords()
 	{
 		return pos;
@@ -193,11 +167,6 @@ namespace ScriptAPI
 		soundInfo = _soundInfo;
 	}*/
 
-	void AudioComponent::Queue(System::String^ str)
-	{
-		TDS::proxy_audio_system::Add_to_Queue(toStdString(str));
-	}
-
 	void AudioComponent::SetEnabled(bool enabled)
 	{
 		TDS::setComponentIsEnable("Audio", GetEntityID(), enabled);
@@ -239,7 +208,7 @@ namespace ScriptAPI
 	}
 	void AudioComponent::filePath::set(std::string value)
 	{
-		TDS::GetSoundInfo(entityID)->filePath = value;
+		TDS::GetSoundInfo(entityID)->setFilePath(value);
 	}
 
 	//loop count

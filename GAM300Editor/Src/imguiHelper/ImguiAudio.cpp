@@ -53,7 +53,7 @@ namespace TDS
 
 			if (playing)
 			{
-				for (SoundInfo& sort : music)
+				/*for (SoundInfo& sort : music)
 				{
 					if (sort.isPlaying())
 					{
@@ -80,7 +80,7 @@ namespace TDS
 					{
 						audeng->stopSound(sort);
 					}
-				}
+				}*/
 
 				playing = false;
 			}
@@ -163,7 +163,7 @@ namespace TDS
 
 		for (SoundInfo& temp : music)
 		{
-			if (temp.filePath.find(file) != std::string::npos && temp.filePath.find(".meta") == std::string::npos)
+			if (temp.getFilePath().find(file) != std::string::npos && temp.getFilePath().find(".meta") == std::string::npos)
 			{
 				this_one = &temp;
 				goto FOUND;
@@ -171,7 +171,7 @@ namespace TDS
 		}
 		for (SoundInfo& temp : background)
 		{
-			if (temp.filePath.find(file) != std::string::npos && temp.filePath.find(".meta") == std::string::npos)
+			if (temp.getFilePath().find(file) != std::string::npos && temp.getFilePath().find(".meta") == std::string::npos)
 			{
 				this_one = &temp;
 				goto FOUND;
@@ -179,7 +179,7 @@ namespace TDS
 		}
 		for (SoundInfo& temp : SFX)
 		{
-			if (temp.filePath.find(file) != std::string::npos && temp.filePath.find(".meta") == std::string::npos)
+			if (temp.getFilePath().find(file) != std::string::npos && temp.getFilePath().find(".meta") == std::string::npos)
 			{
 				this_one = &temp;
 				goto FOUND;
@@ -187,7 +187,7 @@ namespace TDS
 		}
 		for (SoundInfo& temp : VO)
 		{
-			if (temp.filePath.find(file) != std::string::npos && temp.filePath.find(".meta") == std::string::npos)
+			if (temp.getFilePath().find(file) != std::string::npos && temp.getFilePath().find(".meta") == std::string::npos)
 			{
 				this_one = &temp;
 				goto FOUND;
