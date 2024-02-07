@@ -5,7 +5,7 @@ RTTR_REGISTRATION
 {
     using namespace TDS;
 
-rttr::registration::class_<SoundInfo>("Audio")
+rttr::registration::class_<SoundInfo>("AudioComponent")
 .property("File path", &SoundInfo::filePath)
 .property("Loop", &SoundInfo::isitLoop)
 .property("3D", &SoundInfo::isit3D)
@@ -14,6 +14,7 @@ rttr::registration::class_<SoundInfo>("Audio")
 .property("volume", &SoundInfo::volume)
 .property("Reverb", &SoundInfo::ReverbAmount)
 .property("MS Length", &SoundInfo::MSLength)
+.property("FilePath", &SoundInfo::filePath)
 
 .method("set3DCoords", rttr::select_overload<void(float, float, float)>(&SoundInfo::set3DCoords))
 .method("set3DCoords", rttr::select_overload<void(Vec3)>(&SoundInfo::set3DCoords))

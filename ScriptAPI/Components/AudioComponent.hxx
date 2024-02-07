@@ -56,11 +56,11 @@ namespace ScriptAPI
 
 		TransformComponent transform;
 		GameObject^ gameObject;
+		SI* soundInfo;
 
 		AudioComponent(System::String^ pathing);
 	internal:
 		AudioComponent(TDS::EntityID ID);
-		AudioComponent(SI *soundInfo);
 
 	private:
 		property unsigned int uniqueID
@@ -118,11 +118,6 @@ namespace ScriptAPI
 			float get();
 			void set(float value);
 		}
-		/*property SI* soundInfo
-		{
-			SI* get();
-			void set(SI* si);
-		}*/
 
 		TDS::EntityID entityID;
 	};

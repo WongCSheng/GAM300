@@ -4,7 +4,7 @@ using System;
 public class CutsceneSubtitle : Script
 {
     AudioComponent[] Audiofiles;
-    AudioComponent sampleAudio = new AudioComponent();
+    AudioComponent sampleAudio;
     AudioSource audioPlayer;
     String[] Subtitles;
     [SerializeField]
@@ -14,6 +14,8 @@ public class CutsceneSubtitle : Script
     public override void Awake()
     {
         Audiofiles = new AudioComponent[17];
+        sampleAudio = new AudioComponent();
+
         Subtitles = new String[17];
         GraphicsManagerWrapper.ToggleViewFrom2D(true);
         Subtitles[0] = "Father: My Son, if you are reading this, then I am dead,";
@@ -61,11 +63,14 @@ public class CutsceneSubtitle : Script
         //Audiofiles[16].setFilePath("intro9_2");
 
         sampleAudio.setFilePath("intro1_1");
+        audioPlayer.Load(sampleAudio);
 
-        //foreach(String str in Audiofiles)
+        //foreach(AudioComponent ac in Audiofiles)
         //{
-        //    audio.add_clips(str);
+        //    audioPlayer.Load(ac);
         //}
+
+        Console.WriteLine("Cutscene Awake\n");
 
         counter = 0;
         next = true;
