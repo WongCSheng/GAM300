@@ -45,7 +45,4 @@ namespace TDS
 		if (m_VulkanAllocator)
 			vmaDestroyAllocator(m_VulkanAllocator);
 	}
-
-
-
 }

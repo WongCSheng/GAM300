@@ -131,90 +131,24 @@ namespace TDS
         return position[2]; //!!!!!!!To be replaced when vec container is used
     }
 
-    /*float SoundInfo::getReverbAmount()
-    {
-        return ReverbAmount;
-    }
-
     float SoundInfo::getVolume()
     {
         return volume;
-    }*/
+    }
 
     /**
     * Parameter takes in Volume values (0 - 100)
     */
-    //void SoundInfo::setVolume(float vol)
-    //{
-    //    /*volume = 20.0f * log10f(vol);
+    void SoundInfo::setVolume(float vol)
+    {
+        /*volume = 20.0f * log10f(vol);
 
-    //    if (volume > 1.f)
-    //    {
-    //        volume = 1.f;
-    //    }*/
-    //    volume = (vol > 1.f) ? 1.f : vol;
-    //}
-
-    //void SoundInfo::setMSLength(unsigned int len)
-    //{
-    //    MSLength = len;
-    //}
-
-    //void SoundInfo::setState(SOUND_STATE setting)
-    //{
-    //    whatState = setting;
-    //}
-
-    //void SoundInfo::setUniqueID(unsigned int value)
-    //{
-    //    uniqueID = value;
-    //}
-
-    //void SoundInfo::setLoop(bool condition)
-    //{
-    //    isitLoop = condition;
-    //}
-    //
-    //void SoundInfo::setLoopCount(int count)
-    //{
-    //    loopCount = count;
-    //}
-
-    //void SoundInfo::set3D(bool condition)
-    //{
-    //    isit3D = condition;
-    //}
-
-    //void SoundInfo::setMute(bool condition)
-    //{
-    //    isitmuted = condition;
-    //}
-
-    //void SoundInfo::setReverbAmount(float reverb)
-    //{
-    //    ReverbAmount = reverb;
-    //}
-
-    //void SoundInfo::setSamepleRate(unsigned int _samplerate)
-    //{
-    //    sampleRate = _samplerate;
-    //}
-
-    //void SoundInfo::play()
-    //{
-    //    AudioWerks::AudioEngine* audeng = AudioWerks::AudioEngine::get_audioengine_instance();
-    //    audeng->playSound(*this);
-    //}
-    //void SoundInfo::pause()
-    //{
-    //    AudioWerks::AudioEngine* audeng = AudioWerks::AudioEngine::get_audioengine_instance();
-    //    audeng->pauseSound(*this);
-    //}
-    //void SoundInfo::stop()
-    //{
-    //    AudioWerks::AudioEngine* audeng = AudioWerks::AudioEngine::get_audioengine_instance();
-    //    audeng->stopSound(*this);
-    //}
+        if (volume > 1.f)
+        {
+            volume = 1.f;
+        }*/
+        volume = (vol > 1.f) ? 1.f : vol;
+    }
 
     SoundInfo::SoundInfo(std::string _filePath, bool _isLoop, bool _is3D, bool _muted, SOUND_STATE _theState, float _x, float _y, float _z, int _loopcount, float _volume, float _reverbamount, unsigned int _MSLength, unsigned int _sampleRate)
         : filePath(_filePath), isitLoop(_isLoop), isit3D(_is3D), isitmuted(_muted), whatState(_theState), volume(_volume), ReverbAmount(_reverbamount)

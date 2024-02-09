@@ -15,6 +15,11 @@ namespace ScriptAPI
 		filePath = toStdString(pathing);
 	}
 
+	AudioComponent::AudioComponent(SI* si)
+	{
+		soundInfo = si;
+	}
+
 	void AudioComponent::SetEntityID(TDS::EntityID id)
 	{
 		entityID = id;
@@ -30,13 +35,11 @@ namespace ScriptAPI
 	void AudioComponent::set3DCoords(float x, float y, float z)
 	{
 		pos = Vector3(x, y, z);
-		soundInfo->set3DCoords(x, y, z);
 	}
 
 	void AudioComponent::set3DCoords(Vector3 in_pos)
 	{
 		pos = in_pos;
-		soundInfo->set3DCoords(TDS::Vec3(in_pos.X, in_pos.Y, in_pos.Z));
 	}
 
 	bool AudioComponent::isLoaded()
@@ -92,7 +95,6 @@ namespace ScriptAPI
 	void AudioComponent::setFilePath(System::String^ str_path)
 	{
 		filePath = toStdString(str_path);
-		soundInfo->setFilePath(toStdString(str_path));
 	}
 
 	int AudioComponent::getLoopCount()
@@ -128,43 +130,36 @@ namespace ScriptAPI
 	void AudioComponent::setVolume(float vol)
 	{
 		volume = vol;
-		soundInfo->volume = vol;
 	}
 
 	void AudioComponent::setMSLength(unsigned int len)
 	{
 		MSLength = len;
-		soundInfo->MSLength = len;
 	}
 
 	void AudioComponent::setState(snd setting)
 	{
 		whatState = setting;
-		soundInfo->whatState = setting;
 	}
 
 	void AudioComponent::setLoop(bool condition)
 	{
 		isitLoop = condition;
-		soundInfo->isitLoop = condition;
 	}
 
 	void AudioComponent::setLoopCount(int count)
 	{
 		loopCount = count;
-		soundInfo->loopCount = count;
 	}
 
 	void AudioComponent::set3D(bool condition)
 	{
 		isit3D = condition;
-		soundInfo->isit3D = condition;
 	}
 
 	void AudioComponent::setMute(bool condition)
 	{
 		isitMuted = condition;
-		soundInfo->isitmuted = condition;
 	}
 
 	/*void AudioComponent::tieWithSoundInfo(SI* _soundInfo)
@@ -279,11 +274,11 @@ namespace ScriptAPI
 	//volume
 	float AudioComponent::volume::get()
 	{
-		return TDS::GetSoundInfo(entityID)->volume;
+		return TDS::GetSoundInfo(entityID)->getVolume();
 	}
 	void AudioComponent::volume::set(float value)
 	{
-		TDS::GetSoundInfo(entityID)->volume = value;
+		TDS::GetSoundInfo(entityID)->setVolume(value);
 	}
 
 	//Reverb

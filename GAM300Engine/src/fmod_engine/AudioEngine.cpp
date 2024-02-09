@@ -142,7 +142,7 @@ namespace TDS
                             set3dChannelPosition(soundInfo, channel);
 
                         //std::cout << "Playing sound at volume " << soundInfo.getVolume() << '\n';
-                        channel->setVolume(soundInfo.volume);
+                        channel->setVolume(soundInfo.getVolume());
 
                         channels.insert({ soundInfo.uniqueID, channel });
 
@@ -229,7 +229,7 @@ namespace TDS
                 if (fadeSampleLength <= 64) // 64 samples is default volume fade out
                     ERRCHECK(channel->setVolume(newVolume));
                 else {
-                    bool fadeUp = newVolume > soundInfo.volume;
+                    bool fadeUp = newVolume > soundInfo.getVolume();
                     // get current audio clock time
                     unsigned long long parentclock = 0;
                     ERRCHECK(channel->getDSPClock(NULL, &parentclock));
@@ -238,12 +238,12 @@ namespace TDS
 
                     if (fadeUp) ERRCHECK(channel->setVolume(newVolume));
 
-                    ERRCHECK(channel->addFadePoint(parentclock, soundInfo.volume));
+                    ERRCHECK(channel->addFadePoint(parentclock, soundInfo.getVolume()));
                     ERRCHECK(channel->addFadePoint(parentclock + fadeSampleLength, targetFadeVol));
                     std::cout << "Current DSP Clock: " << parentclock << ", fade length in samples  = " << fadeSampleLength << "\n";
                 }
                 std::cout << "Updating with new soundinfo vol \n";
-                soundInfo.volume = newVolume; // update the SoundInfo's volume
+                soundInfo.setVolume(newVolume); // update the SoundInfo's volume
             }
             else
                 std::cout << "AudioEngine: Can't update sound loop volume! (It isn't playing or might not be loaded)\n";

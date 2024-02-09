@@ -61,6 +61,7 @@ namespace ScriptAPI
 		AudioComponent(System::String^ pathing);
 	internal:
 		AudioComponent(TDS::EntityID ID);
+		AudioComponent(SI* si);
 
 	private:
 		property unsigned int uniqueID

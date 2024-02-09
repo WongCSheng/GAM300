@@ -30,6 +30,7 @@ namespace TDS
     {
     private:
         std::string filePath;
+        float volume;
 
     public:
         unsigned int uniqueID = 0, MSLength, sampleRate;
@@ -37,7 +38,7 @@ namespace TDS
         SOUND_STATE whatState;
         Vec3 position;
         int loopCount;
-        float volume, ReverbAmount;
+        float ReverbAmount;
         //std::map<Vec3*, SOUND_STATE*> position_events;
 
         /**
@@ -80,30 +81,18 @@ namespace TDS
         DLL_API  bool isLoop();
         DLL_API  bool isMuted();
 
-        //DLL_API  Vec3 get3DCoords();
         //DLL_API  std::map<Vec3*, SOUND_STATE*> getEvents();
-        //DLL_API  SOUND_STATE getState();
-        //DLL_API  unsigned int getUniqueID();
-        //DLL_API  unsigned int getMSLength();
         DLL_API  std::string getFilePath();
         DLL_API  const char* getFilePath_inChar();
-        //DLL_API  int getLoopCount();
         DLL_API  float getX();
         DLL_API  float getY();
         DLL_API  float getZ();
-        //DLL_API  float getReverbAmount();
-        //DLL_API  float getVolume();
+        DLL_API  float getVolume();
 
         /**
         * Parameter takes in Volume values (0 - 100)
         */
-        //DLL_API  void setVolume(float vol);
-        //DLL_API  void setMSLength(unsigned int len);
-
-        /*void setState(SOUND_STATE setting, bool set)
-        {
-            whatState |= (set << setting);
-        }*/
+        DLL_API  void setVolume(float vol);
 
         DLL_API  SoundInfo(std::string _filePath = "", bool _isLoop = false, bool _is3D = false, bool _muted = false, SOUND_STATE _theState = SOUND_ERR,
             float _x = 0.0f, float _y = 0.0f, float _z = 0.0f, int _loopcount = 0, float _volume = 1.f, float _reverbamount = 0.f,
