@@ -15,6 +15,7 @@ public class CutsceneSubtitle : Script
 {
     String[] Audiofiles;
     String[] Subtitles;
+    ClosetAudio test;
     [SerializeField]
     public static int counter;
     public static bool next = true;
@@ -67,25 +68,26 @@ public class CutsceneSubtitle : Script
         Audiofiles[15] = "intro9_1";
         Audiofiles[16] = "intro9_2";
 
+        test = GameObjectScriptFind("ClosetAudio").GetComponent<ClosetAudio>();
+
         counter = 0;
         next = true;
-
     }
 
     public override void Update()
     {
         UISpriteComponent Sprite = gameObject.GetComponent<UISpriteComponent>();
-        AudioComponent audio = gameObject.GetComponent<AudioComponent>();
+        //AudioComponent audio = gameObject.GetComponent<AudioComponent>();
         if (Input.GetKeyDown(Keycode.SPACE))
         {
-            audio.stop(Audiofiles[counter]);
+            //audio.stop(Audiofiles[counter]);
+            test.stop_audio(counter);
+            gameObject.GetComponent<ClosetAudio>().stop_audio(counter);
             GraphicsManagerWrapper.ToggleViewFrom2D(false);
             SceneLoader.LoadMainGame();
         }
         else
         {
-            audio.playQueue();
-
             if (counter > 16)//cutscene over
             {
                 GraphicsManagerWrapper.ToggleViewFrom2D(false);
@@ -96,10 +98,11 @@ public class CutsceneSubtitle : Script
                 if (next)
                 {
                     Sprite.SetFontMessage(Subtitles[counter]);
-                    audio.play(Audiofiles[counter]);
+                    //audio.play(Audiofiles[counter]);
+                    test.Play_Cutscene_Audio(counter);
                     next = false;
                 }
-                else if (audio.finished(Audiofiles[counter]))
+                else if (test.finished_audio(counter))//audio.finished(Audiofiles[counter]))
                 {
                     next = true;
                     ++counter;

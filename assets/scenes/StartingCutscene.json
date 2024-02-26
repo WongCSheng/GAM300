@@ -86,7 +86,7 @@
                 }
             },
             "UI Sprite": {
-                "Texture": "Scene01.dds",
+                "Texture": "Draft Journal Image.dds",
                 "EnableSprite": true,
                 "LayerID": 0,
                 "is Font": false,
@@ -102,7 +102,7 @@
                     "x": 0.10000000149011612,
                     "y": 0.10000000149011612,
                     "z": 0.10000000149011612,
-                    "w": 1.0
+                    "w": 0.8475091457366943
                 },
                 "BackGroundColour": {
                     "x": 0.0,
@@ -203,7 +203,7 @@
                 "EnableSprite": true,
                 "LayerID": 1,
                 "is Font": true,
-                "message": "Father: So imagine my surprise when I discovered their history",
+                "message": "Father: My Son, if you are reading this, then I am dead,",
                 "Font Texture": "Roboto-Medium.dds",
                 "ForeGroundColour": {
                     "x": 0.0,
@@ -243,6 +243,11 @@
             }
         },
         "2": {
+            "ClosetAudio": {
+                "gameObject": {
+                    "ScriptAPI.GameObject": 2
+                }
+            },
             "CutsceneSubtitle": {
                 "gameObject": {
                     "ScriptAPI.GameObject": 2

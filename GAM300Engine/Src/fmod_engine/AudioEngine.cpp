@@ -70,8 +70,6 @@ namespace TDS
         void AudioEngine::update()
         {
             ERRCHECK(studioSystem->update()); // also updates the low level system
-
-            
         }
 
         bool AudioEngine::anySoundPlaying()
