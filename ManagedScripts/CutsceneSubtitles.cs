@@ -14,7 +14,8 @@ public class CutsceneSubtitle : Script
     public override void Awake()
     {
         Audiofiles = new AudioComponent[17];
-        sampleAudio = new AudioComponent();
+        sampleAudio = gameObject.GetComponent<AudioComponent>();
+        audioPlayer = new AudioSource();
 
         Subtitles = new String[17];
         GraphicsManagerWrapper.ToggleViewFrom2D(true);
