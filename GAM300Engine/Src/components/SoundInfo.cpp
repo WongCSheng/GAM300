@@ -7,9 +7,9 @@ RTTR_REGISTRATION
 
 rttr::registration::class_<SoundInfo>("Audio")
 .property("File path", &SoundInfo::filePath)
-.property("Loop", &SoundInfo::isitLoop)
-.property("3D", &SoundInfo::isit3D)
-.property("Muted", &SoundInfo::isitmuted)
+.property("Loop", &SoundInfo::isLoop)
+.property("3D", &SoundInfo::is3D)
+.property("Muted", &SoundInfo::isMuted)
 .property("Position", &SoundInfo::position)
 .property("volume", &SoundInfo::volume)
 .property("Reverb", &SoundInfo::ReverbAmount)
@@ -54,21 +54,6 @@ namespace TDS
     bool SoundInfo::isLoaded()
     {
         return (whatState == SOUND_LOADED);
-    }
-
-    bool SoundInfo::is3D()
-    {
-        return isit3D;
-    }
-
-    bool SoundInfo::isLoop()
-    {
-        return isitLoop;
-    }
-
-    bool SoundInfo::isMuted()
-    {
-        return isitmuted;
     }
 
     bool SoundInfo::isPlaying()
@@ -168,17 +153,17 @@ namespace TDS
 
     void SoundInfo::setLoop(bool condition)
     {
-        isitLoop = condition;
+        isLoop = condition;
     }
 
     void SoundInfo::set3D(bool condition)
     {
-        isit3D = condition;
+        is3D = condition;
     }
 
     void SoundInfo::setMute(bool condition)
     {
-        isitmuted = condition;
+        isMuted = condition;
     }
 
     void SoundInfo::setReverbAmount(float reverb)
@@ -203,7 +188,7 @@ namespace TDS
     }
 
     SoundInfo::SoundInfo(std::string _filePath, bool _isLoop, bool _is3D, bool _muted, SOUND_STATE _theState, float _x, float _y, float _z, float _volume, float _reverbamount)
-        : filePath(_filePath), isitLoop(_isLoop), isit3D(_is3D), isitmuted(_muted), whatState(_theState), volume(_volume), ReverbAmount(_reverbamount)
+        : filePath(_filePath), isLoop(_isLoop), is3D(_is3D), isMuted(_muted), whatState(_theState), volume(_volume), ReverbAmount(_reverbamount)
     {
         position.x = _x;
         position.y = _y;

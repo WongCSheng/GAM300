@@ -39,7 +39,7 @@ namespace TDS
     {
         unsigned int uniqueID, MSLength;
         std::string filePath;
-        bool isitLoop, isit3D, isitmuted;
+        bool isLoop, is3D, isMuted;
         SOUND_STATE whatState;
         Vec3 position;
         float volume, ReverbAmount;
@@ -84,12 +84,6 @@ namespace TDS
         DLL_API  void setEvents(Vec3* place, SOUND_STATE& type);
 
         DLL_API  bool isLoaded();
-
-        DLL_API  bool is3D();
-
-        DLL_API  bool isLoop();
-
-        DLL_API  bool isMuted();
 
         DLL_API  bool isPlaying();
 
@@ -169,9 +163,9 @@ namespace TDS
             uniqueID = rhs.uniqueID;
             MSLength = rhs.MSLength;
             filePath = rhs.filePath;
-            isitLoop = rhs.isitLoop;
-            isit3D = rhs.isit3D;
-            isitmuted = rhs.isitmuted;
+            isLoop = rhs.isLoop;
+            is3D = rhs.is3D;
+            ismuted = rhs.ismuted;
             whatState = rhs.whatState;
             position = rhs.position;
             volume = rhs.volume;

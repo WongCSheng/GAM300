@@ -103,8 +103,8 @@ namespace TDS
             if (!soundLoaded(soundInfo)) {
                 //::cout << "Audio Engine: Loading Sound from file " << soundInfo.getFilePath() << '\n';
                 FMOD::Sound* sound;
-                ERRCHECK(lowLevelSystem->createSound(soundInfo.getFilePath_inChar(), soundInfo.is3D() ? FMOD_3D : FMOD_2D, 0, &sound));
-                ERRCHECK(sound->setMode(soundInfo.isLoop() ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF));
+                ERRCHECK(lowLevelSystem->createSound(soundInfo.getFilePath_inChar(), soundInfo.is3D ? FMOD_3D : FMOD_2D, 0, &sound));
+                ERRCHECK(sound->setMode(soundInfo.isLoop ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF));
                 ERRCHECK(sound->set3DMinMaxDistance(0.5f * DISTANCEFACTOR, 5000.0f * DISTANCEFACTOR));
                 sounds.insert({ soundInfo.getUniqueID(), sound });
                 unsigned int msLength = 0;
@@ -129,13 +129,13 @@ namespace TDS
                         ERRCHECK(lowLevelSystem->playSound(sounds[soundInfo.getUniqueID()], 0, true /* start paused */, &channel));
                         soundInfo.setState(SOUND_PLAYING);
 
-                        if (soundInfo.is3D())
+                        if (soundInfo.is3D)
                             set3dChannelPosition(soundInfo, channel);
 
                         //std::cout << "Playing sound at volume " << soundInfo.getVolume() << '\n';
                         channel->setVolume(soundInfo.getVolume());
 
-                        if (soundInfo.isLoop()) // add to channel map of sounds currently playing, to stop later
+                        if (soundInfo.isLoop) // add to channel map of sounds currently playing, to stop later
                         {
                             loopsPlaying[soundInfo.getUniqueID()] = channel;
                         }
@@ -152,7 +152,7 @@ namespace TDS
                     }
                     else
                     {
-                        if (soundInfo.isLoop())
+                        if (soundInfo.isLoop)
                         {
                             ERRCHECK(loopsPlaying[soundInfo.getUniqueID()]->setPaused(false));
                             soundInfo.setState(SOUND_PLAYING);
@@ -204,7 +204,7 @@ namespace TDS
         {
             if (soundInfo.isPlaying())
             {
-                if (soundInfo.isLoop())
+                if (soundInfo.isLoop)
                 {
                     ERRCHECK(loopsPlaying[soundInfo.getUniqueID()]->setPaused(true));
                 }
@@ -249,7 +249,7 @@ namespace TDS
         {
             if (soundIsPlaying(soundInfo))
             {
-                if(soundInfo.isLoop())
+                if(soundInfo.isLoop)
                 {
                     ERRCHECK(loopsPlaying[soundInfo.getUniqueID()]->stop());
                     //loopsPlaying.erase(soundInfo.getUniqueID());
@@ -291,6 +291,50 @@ namespace TDS
                 {
                     ch.second->stop();
                 }
+            }
+        }
+
+        void AudioEngine::FadeOutSound(unsigned int duration, SoundInfo& soundInfo)
+        {
+            unsigned long long DSPClock{ 0 };
+            int rate{ 0 };
+            ERRCHECK(lowLevelSystem->getSoftwareFormat(&rate, 0, 0));
+            
+            if (soundInfo.isLoop)
+            {
+                ERRCHECK(loopsPlaying[soundInfo.uniqueID]->getDSPClock(0, &DSPClock));
+                ERRCHECK(loopsPlaying[soundInfo.uniqueID]->addFadePoint(DSPClock, soundInfo.volume));
+                ERRCHECK(loopsPlaying[soundInfo.uniqueID]->addFadePoint(DSPClock + (rate * duration), 0.f));
+                ERRCHECK(loopsPlaying[soundInfo.uniqueID]->setDelay(0, DSPClock + (rate * duration), true));
+            }
+            else
+            {
+                ERRCHECK(normalPlaying[soundInfo.uniqueID]->getDSPClock(0, &DSPClock));
+                ERRCHECK(normalPlaying[soundInfo.uniqueID]->addFadePoint(DSPClock, soundInfo.volume));
+                ERRCHECK(normalPlaying[soundInfo.uniqueID]->addFadePoint(DSPClock + (rate * duration), 0.f));
+                ERRCHECK(normalPlaying[soundInfo.uniqueID]->setDelay(0, DSPClock + (rate * duration), true));
+            }
+        }
+
+        void AudioEngine::FadeInSound(unsigned int duration, SoundInfo& soundInfo)
+        {
+            pauseSound(soundInfo);
+
+            unsigned long long DSPClock{ 0 };
+            int rate{ 0 };
+            ERRCHECK(lowLevelSystem->getSoftwareFormat(&rate, 0, 0));
+
+            if (soundInfo.isLoop)
+            {
+                ERRCHECK(loopsPlaying[soundInfo.uniqueID]->getDSPClock(0, &DSPClock));
+                ERRCHECK(loopsPlaying[soundInfo.uniqueID]->addFadePoint(DSPClock, 0.f));
+                ERRCHECK(loopsPlaying[soundInfo.uniqueID]->addFadePoint(DSPClock + (rate * duration), soundInfo.volume));
+            }
+            else
+            {
+                ERRCHECK(normalPlaying[soundInfo.uniqueID]->getDSPClock(0, &DSPClock));
+                ERRCHECK(normalPlaying[soundInfo.uniqueID]->addFadePoint(DSPClock, 0.f));
+                ERRCHECK(normalPlaying[soundInfo.uniqueID]->addFadePoint(DSPClock + (rate * duration), soundInfo.volume));
             }
         }
 
@@ -351,7 +395,7 @@ namespace TDS
         {
             bool check{ false };
 
-            if (soundInfo.isLoop())
+            if (soundInfo.isLoop)
             {
                 loopsPlaying[soundInfo.getUniqueID()]->getPaused(&check);
             }
@@ -372,7 +416,7 @@ namespace TDS
         {
             bool check{ false };
 
-            if (soundInfo.isLoop())
+            if (soundInfo.isLoop)
             {
                 loopsPlaying[soundInfo.getUniqueID()]->isPlaying(&check);
             }
@@ -477,7 +521,7 @@ namespace TDS
         {
             if (soundInfo.isPlaying())
             {
-                if (soundInfo.isLoop())
+                if (soundInfo.isLoop)
                 {
                     ERRCHECK(loopsPlaying[soundInfo.getUniqueID()]->setMute(true));
                 }
@@ -492,9 +536,9 @@ namespace TDS
 
         void AudioEngine::unmute(SoundInfo& soundInfo)
         {
-            if (soundInfo.isMuted())
+            if (soundInfo.isMuted)
             {
-                if (soundInfo.isLoop())
+                if (soundInfo.isLoop)
                 {
                     ERRCHECK(loopsPlaying[soundInfo.getUniqueID()]->setMute(false));
                 }

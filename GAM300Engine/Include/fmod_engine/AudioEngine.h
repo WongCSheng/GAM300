@@ -138,6 +138,16 @@ namespace TDS
             DLL_API  void stopAllSound();
 
             /**
+            * Fades out sound to a stop
+            */
+            DLL_API  void FadeOutSound(unsigned int duration, SoundInfo& soundInfo);
+
+            /**
+            * Fade in sound
+            */
+            DLL_API  void FadeInSound(unsigned int duration, SoundInfo& soundInfo);
+
+            /**
              * Method that updates the volume of a soundloop that is playing. This can be used to create audio 'fades'
              * where the volume ramps up or down to the provided new volume
              * @param fadeSampleLength the length in samples of the intended volume sample. If less than 64 samples, the default
