@@ -159,11 +159,11 @@ public class FPS_Controller_Script : Script
     {
 
         #region Setting Cursor & Crosshair
-        if (lockCursor)
-        {
-            Input.Lock(lockCursor);
-            Input.HideMouse(lockCursor);
-        }
+        //if (lockCursor)
+        //{
+        //    Input.Lock(lockCursor);
+        //    Input.HideMouse(lockCursor);
+        //}
         #endregion
 
         #region Setting Sprint Bar
@@ -435,11 +435,11 @@ public class FPS_Controller_Script : Script
         //}
         #endregion
 
-        //if (audio.finished(backgroundMusic[0]))
-        //{
-        //    audio.play(backgroundMusic[0]);
-        //    //audio.setVolume(0.5f);
-        //}
+        if (audio.finished(backgroundMusic[0]))
+        {
+            audio.play(backgroundMusic[0]);
+            //audio.setVolume(0.5f);
+        }
     }
 
     public override void LateUpdate()

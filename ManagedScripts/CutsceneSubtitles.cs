@@ -14,13 +14,17 @@ using System;
 public class CutsceneSubtitle : Script
 {
     String[] Audiofiles;
+    String[] BGMfile;
     String[] Subtitles;
     ClosetAudio test;
     [SerializeField]
     public static int counter;
     public static bool next = true;
+    private static bool skip = false;
     public override void Awake()
     {
+        BGMfile = new String[1];
+        BGMfile[0] = "cutscene_music_and_sfx_only";
         Audiofiles = new String[17];
         Subtitles = new String[17];
         GraphicsManagerWrapper.ToggleViewFrom2D(true);
@@ -77,21 +81,39 @@ public class CutsceneSubtitle : Script
     public override void Update()
     {
         UISpriteComponent Sprite = gameObject.GetComponent<UISpriteComponent>();
-        //AudioComponent audio = gameObject.GetComponent<AudioComponent>();
+        AudioComponent audio = gameObject.GetComponent<AudioComponent>();
+        if (counter > 1 && counter < 5)
+        {
+            Vector4 white = new Vector4(255.0f, 255.0f, 255.0f, 1.0f);
+            Sprite.SetFontColour(white);
+            Sprite.SetFontBackgroundColor(white);
+        }
+        if (counter >= 5)
+        {
+            Vector4 black = new Vector4(0.0f, 0.0f, 0.0f, 1.0f);
+            Sprite.SetFontColour(black);
+            Sprite.SetFontBackgroundColor(black);
+
+        }
+
         if (Input.GetKeyDown(Keycode.SPACE))
         {
-            //audio.stop(Audiofiles[counter]);
-            test.stop_audio(counter);
-            gameObject.GetComponent<ClosetAudio>().stop_audio(counter);
-            GraphicsManagerWrapper.ToggleViewFrom2D(false);
-            SceneLoader.LoadMainGame();
+            audio.stop(Audiofiles[counter]);
+            skip = true;
+            counter++;
+            //Console.WriteLine("Counter: " + counter);
         }
+
         else
         {
+            audio.play(BGMfile[0]);
+            audio.playQueue();
+
             if (counter > 16)//cutscene over
             {
+                audio.stop(BGMfile[0]);
                 GraphicsManagerWrapper.ToggleViewFrom2D(false);
-                SceneLoader.LoadMainGame();
+                SceneLoader.LoadMainGame();              
             }
             else
             {
@@ -105,7 +127,11 @@ public class CutsceneSubtitle : Script
                 else if (test.finished_audio(counter))//audio.finished(Audiofiles[counter]))
                 {
                     next = true;
-                    ++counter;
+                    if(!skip)
+                    {
+                        ++counter;
+                    }
+                    skip = false;   
                 }
             }
         }
