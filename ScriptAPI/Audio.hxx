@@ -22,6 +22,8 @@ namespace ScriptAPI
         TDS::SoundInfo* getSound(StringP pathing);
         AudioComponent^ getAudio(StringP pathing);
         unsigned int getUniqueID(StringP pathing);
+        static void Stop();
+        static void StopAll();
 
         void Loop(AudioComponent^ clip, bool set);
 

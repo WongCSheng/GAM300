@@ -20,6 +20,7 @@ namespace TDS
 	std::unique_ptr<JPH::PhysicsSystem>			PhysicsSystem::m_pSystem;
 	std::unique_ptr<JPH::TempAllocatorImpl>		PhysicsSystem::m_pTempAllocator;
 	std::unique_ptr<JPH::JobSystemThreadPool>	PhysicsSystem::m_pJobSystem;
+	std::unique_ptr<JPH::BodyManager>           PhysicsSystem::m_pBodyManager;
 	std::vector<JoltBodyID>					    PhysicsSystem::m_pBodyIDVector;
 	std::unordered_map<uint32_t, EntityID>		PhysicsSystem::m_pBodyIDMap;
 	MyContactListener*							PhysicsSystem::contact_listener;
@@ -146,6 +147,19 @@ namespace TDS
 				using namespace JoltToTDS;
 				EActivation mode = EActivation::Activate;
 				//pBodies->SetPosition(ToBodyID(_rigidbody[i]), ToVec3(_transform[i].GetPosition()), mode); // only uncomment for debugging in editor
+				if (GetBoxCollider(entities[i])) // Temporary will be remove with animation system
+				{
+					BoxCollider* vBox = GetBoxCollider(entities[i]);
+					auto* pBody = m_pSystem->GetBodyLockInterfaceNoLock().TryGetBody(ToBodyID(_rigidbody[i]));
+					if (vBox->GetIsTrigger())
+					{
+						pBody->SetIsSensor(true);
+					}
+					else
+					{
+						pBody->SetIsSensor(false);
+					}
+				}
 
 			}
 			
@@ -281,7 +295,7 @@ namespace TDS
 		else if (GetCapsuleCollider(_entityID))
 		{
 			CapsuleCollider* vCapsule = GetCapsuleCollider(_entityID);
-			JPH::CapsuleShapeSettings s_capsuleSettings(vCapsule->GetHeight()*2.f, vCapsule->GetRadius()*2.f);
+			JPH::CapsuleShapeSettings s_capsuleSettings(vCapsule->GetHeight(), vCapsule->GetRadius());
 			JPH::ShapeSettings::ShapeResult result = s_capsuleSettings.Create();
 			JPH::ShapeRefC capsuleShape = result.Get();
 			JPH::BodyCreationSettings b_capsuleSetting
@@ -294,12 +308,11 @@ namespace TDS
 			);
 			b_capsuleSetting.mFriction = _rigidbody->GetFriction();
 			b_capsuleSetting.mRestitution = _rigidbody->GetRestitution();
-			b_capsuleSetting.mGravityFactor = _rigidbody->GetGravityFactor();
+			b_capsuleSetting.mGravityFactor = (_rigidbody->GetUseGravity()) ? _rigidbody->GetGravityFactor() : 0.0f;
 			b_capsuleSetting.mLinearDamping = _rigidbody->GetLinearDamping();
 			b_capsuleSetting.mAngularDamping = _rigidbody->GetAngularDamping();
-			b_capsuleSetting.mLinearVelocity = JoltToTDS::ToVec3(_rigidbody->GetLinearVel());
-			b_capsuleSetting.mAngularVelocity = JoltToTDS::ToVec3(_rigidbody->GetAngularVel());
-			b_capsuleSetting.mIsSensor = vCapsule->GetIsTrigger();
+			b_capsuleSetting.mAllowSleeping = false;
+			//b_capsuleSetting.mIsSensor = b_capsuleSetting->GetIsTrigger();
 			
 			JPH::BodyID capsuleID = m_pSystem->GetBodyInterface().CreateAndAddBody(b_capsuleSetting, JPH::EActivation::Activate);
 			

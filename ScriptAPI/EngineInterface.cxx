@@ -165,7 +165,7 @@ namespace ScriptAPI
     {
         for each (auto i in TDS::ecs.getEntities())
         {
-            if (scripts->ContainsKey(i) && TDS::ecs.getEntityIsEnabled(i))
+            if (scripts->ContainsKey(i))
             {
                 for each (NameScriptPair ^ script in scripts[i])
                 {
@@ -494,6 +494,11 @@ namespace ScriptAPI
                 continue;
             }
 
+            if (field->GetCustomAttributes(DontSerializeFieldAttribute::typeid, true)->Length > 0)
+            {
+                continue;
+            }
+
             if (field->GetCustomAttributes(SerializeFieldAttribute::typeid, true)->Length > 0 || field->IsPublic) // Either SerializedField or public variables
             {
                 newScriptValue = Serialization::GetValue(obj, field);
@@ -630,6 +635,11 @@ namespace ScriptAPI
     }
     Script^ EngineInterface::GetScriptReference(TDS::EntityID entityId, System::String^ script)
     {
+        //for each (NameScriptPair ^ script in scripts[entityId])
+        //{
+        //    Console::WriteLine(script->Key);
+        //}
+        //Console::WriteLine("Thats all");
         return (entityId > 0 ? scripts[entityId][script] : nullptr);
     }
 

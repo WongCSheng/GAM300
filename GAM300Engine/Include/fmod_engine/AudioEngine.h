@@ -24,6 +24,7 @@
 #include "dotnet/ImportExport.h"
 
 #include "ecs/ecs.h"
+#include "components/components.h"
 
 namespace TDS
 {
@@ -87,6 +88,11 @@ namespace TDS
             DLL_API  void update();
 
             /**
+            * Checks if any sound is playing
+            */
+            DLL_API  bool anySoundPlaying();
+
+            /**
              * Loads a sound from disk using provided settings
              * Prepares for later playback with playSound()
              * Only reads the audio file and loads into the audio engine
@@ -106,12 +112,20 @@ namespace TDS
             DLL_API  int playSound(SoundInfo& soundInfo);
 
             /**
+            * Plays all sound in paused state
+            */
+            DLL_API  void playAllPaused();
+            
+            /**
             * Check whether a sound file is playing
             */
             DLL_API  bool checkPlaying(SoundInfo& soundInfo);
 
             /**
             * Pause a sound file using FMOD's low level audio system.
+            *
+            * @param filename - relative path to file from project directory. (Can be .OGG, .WAV, .MP3,
+            *                 or any other FMOD-supported audio format)
             */
             DLL_API  void pauseSound(SoundInfo& soundInfo);
 
@@ -121,9 +135,19 @@ namespace TDS
             DLL_API  bool checkPause(SoundInfo& soundInfo);
 
             /**
-             * Stops a looping sound if it's currently playing.
+            * Pause all sounds
+            */
+            DLL_API  void pauseAllSound();
+
+            /**
+             * Stops a sound if it's currently playing.
              */
             DLL_API  void stopSound(SoundInfo& soundInfo);
+
+            /**
+            * Stops all sound
+            */
+            DLL_API  void stopAllSound();
 
             /**
              * Method that updates the volume of a soundloop that is playing. This can be used to create audio 'fades'
@@ -139,12 +163,17 @@ namespace TDS
             * The SoundInfo object's position coordinates will be used for the new sound position, so
             * SoundInfo::set3DCoords(x,y,z) should be called before this method to set the new desired location.
             */
-            DLL_API  void update3DSoundPosition(SoundInfo soundInfo);
+            DLL_API  void update3DSoundPosition(SoundInfo& soundInfo);
 
             /**
              * Checks if a sound is playing.
              */
-            DLL_API  bool soundIsPlaying(SoundInfo soundInfo);
+            DLL_API  bool soundIsPlaying(SoundInfo& soundInfo);
+
+            /**
+            * Checks if a sound is paused
+            */
+            DLL_API  bool soundIsPaused(SoundInfo& soundInfo);
 
             /**
              * Checks through all channel if any sound is playing.
@@ -382,7 +411,7 @@ namespace TDS
     {
     public:
         static void audio_system_init();
-        static void audio_system_update(const float dt, const std::vector<EntityID>& entities, SoundInfo* soundInfo);
+        static void audio_system_update(const float dt, const std::vector<EntityID>& entities, Transform* soundInfo);
 
         //static void audio_event_play(SoundInfo& soundInfo);
         static void audio_event_init(SoundInfo* container);
@@ -401,6 +430,10 @@ namespace TDS
 
         static bool CheckPlaying(std::string pathing); //to be changed
         static bool CheckPause(std::string pathing); //to be changed
+        static void ScriptPlayAllPaused();
+        static void ScriptPauseAll();
+        static void ScriptStopAll();
+        static bool ScriptAnySoundPlaying();
 
         static SoundInfo* find_sound_info(std::string str);
 
@@ -415,8 +448,11 @@ namespace TDS
         static AudioWerks::AudioEngine* aud_instance;
 
         static int totalNumClips;
+        static bool Q_state;
+        static SoundInfo Q_name;
 
-        static std::map<std::string, SoundInfo> all_sounds;
+        static std::map<std::string, SoundInfo> allSounds;
+        static std::map<std::string, std::pair<bool, SoundInfo*>> Queue;
         //static std::map<unsigned int, std::map<Vec3*, SOUND_STATE*>> sound_events;
     }; //end of proxy_audio_system
 } //end of TDS

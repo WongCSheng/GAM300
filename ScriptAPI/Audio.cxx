@@ -30,13 +30,18 @@ namespace ScriptAPI
 	{
 		proxy_audio->ScriptStop(clip->getFilePath());
 	}
+	
+	void AudioSource::StopAll()
+	{
+		audio_engine->stopAllSound();
+	}
 
 	void AudioSource::Load(AudioComponent^ pathing)
 	{
 		proxy_audio->ScriptLoad(pathing->getFilePath());
 	}
 
-	void AudioSource::Unload(AudioComponent^ clip)
+	/*void AudioSource::Unload(AudioComponent^ clip)
 	{
 		proxy_audio->ScriptUnload(clip->getFilePath());
 	}

@@ -1,4 +1,15 @@
+/*!*************************************************************************
+****
+\file Hiding.cs
+\author Elton Teo Zhe Wei
+\par DP email: e.teo@digipen.edu
+\par Course: csd3450
+\date 12-12-2023
+\brief  Gameplay script for player hiding from the monster
+****************************************************************************
+***/
 using System;
+using System.Reflection.Emit;
 using ScriptAPI;
 
 public class Hiding : Script
@@ -9,89 +20,139 @@ public class Hiding : Script
     public Vector3 nonHidingPos;
     public float _RotationAngle;
     public GameObject player;
-    public GhostMovement enemyPathfinding;
-    public Flashlight_Script _flashlight;
+    public GameObject enemyPathfinding;
+    public GameObject _flashlight;
     public GameObject _InteractUI;
-    public CheckGameState myGameState;
+    //public CheckGameState myGameState;
     public GameObject closet;
     [Header("AudioStuff")]
-    public AudioComponent voClip;
-    //public Text subtitles;
+    //public AudioSource playerVOSource;
+    public AudioComponent audioPlayer;
+    String[] voClips;
+    public String[] subtitles;
+    int counter;
+    GameObject textmachine;
 
-    bool playedAudio;
+    private float timer = 1.0f;
 
+    public float turnSpeed = 0.01f;
+
+    public int numOfPaintingsTook = 0;
 
     public override void Awake()
     {
-        //audioPlayer = gameObject.GetComponent<AudioSource>();
+        numOfPaintingsTook = 0;
+
+        counter = 0;
+        audioPlayer = gameObject.GetComponent<AudioComponent>();
+        voClips = new string[3];
+        voClips[0] = "pc_hideinclosetfirst";
+        voClips[1] = "pc_wanderingcloset";
+        voClips[2] = "pc_monstergoesaway2";
+        subtitles = new String[2];
+        subtitles[0] = "Nothing inside";
+        subtitles[1] = "But I could hide in here in case someone shows up";
     }
 
     public override void Start()
     {
-        //voClip.setFilePath("pc_hideinclosetfirst");
+        //_flashlight = player.GetComponent<Flashlight_Script>();
+        hidingPos = closet.transform.GetPosition();
+        _RotationAngle = 180.0f;
+
+        timer = 0.7f;
     }
 
     public override void Update()
     {
-        nonHidingPos = new Vector3(2257,250,-111);
-        _flashlight = player.GetComponent<Flashlight_Script>();
-        hidingPos = closet.transform.GetPosition();
-        _RotationAngle = 180;
-        if (interactable && closet.GetComponent<RigidBodyComponent>().IsSensorActivated())
+        
+        if (interactable && gameObject.GetComponent<RigidBodyComponent>().IsRayHit())
         {
+            _InteractUI.SetActive(true);
+
+            //textmachine.SetActive(false);
+            UISpriteComponent Sprite = GameObjectScriptFind("VOSubtitles").GetComponent<UISpriteComponent>();
+            if(timer <= 0.0f)
+            {
+                counter = 1;
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+            }
+            Sprite.SetFontMessage(subtitles[counter]);
+
+            audioPlayer.play(voClips[0]);
+
             if (Input.GetKeyDown(Keycode.E) && hiding == false)
             {
-                Console.WriteLine("Here");
-                //_InteractUI.SetActive(_InteractUI.GetEntityID(), false);
                 hiding = true;
                 interactable = false;
-                player.transform.SetPosition(hidingPos);
-                Vector3 vec3 = new Vector3(0, _RotationAngle, 0);
-                player.transform.SetRotation(vec3);
+                nonHidingPos = player.transform.GetPosition();
+                //player.transform.SetPosition(closet.transform.GetPosition());
+                counter = 1;
+
+                Vector3 rotation = new Vector3(0, 0, 0);
+                //player.transform.SetRotation(rotation);
+
+                Quaternion quat = new Quaternion(rotation);
+                Vector3 newPosition = new Vector3(closet.transform.GetPosition().X, player.transform.GetPosition().Y, closet.transform.GetPosition().Z);
+                player.GetComponent<RigidBodyComponent>().SetPositionRotationAndVelocity(newPosition, new Vector4(quat.X, quat.Y, quat.Z, quat.W), new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+
+                player.transform.SetRotation(new Vector3(0, -_RotationAngle, 0));
+
                 player.GetComponent<FPS_Controller_Script>().playerCanMove = false;
                 player.GetComponent<FPS_Controller_Script>().enableHeadBob = false;
-                _flashlight.activateLight = false;
-                _flashlight.is_Enabled = false;
-
-
-                /*if (gameObject.GetComponent<NameTagComponent>().GetName() == "Bedroom_Body" && myGameState._CurrentState == GameState.Gameplay)
+                if (player.GetComponent<Flashlight_Script>().flashAudio.finished(player.GetComponent<Flashlight_Script>().flashAudiostr[0]) && player.GetComponent<Flashlight_Script>().activateLight)
                 {
-                    if (!playedAudio)
-                    {
-                        //voClip = ; //Sound Clip name for player
-                        audioPlayer.Play(voClip);
-                        //subtitles.enabled = true;
-                        //subtitles.text = "Martin (Internal): \"Nothing inside, but I could hide in here in case someone shows up.\"";
-                        playedAudio = true;
-                    }
-
-                    if (!audioPlayer.isAnyPlaying() && playedAudio)
-                    {
-                        //subtitles.enabled = false;
-                    }
+                    player.GetComponent<Flashlight_Script>().flashAudio.play(player.GetComponent<Flashlight_Script>().flashAudiostr[1]);
                 }
+                player.GetComponent<Flashlight_Script>().activateLight = false;
+                _flashlight.SetActive(false);
 
-                //Input.KeyRelease(Keycode.E);*/
+                if (enemyPathfinding.GetComponent<GhostMovement>().hideEventDone == false && numOfPaintingsTook == 1)
+                {
+                    if (enemyPathfinding.GetComponent<GhostMovement>().hideEvent == false)
+                    {
+                        enemyPathfinding.transform.SetPosition(new Vector3(1790.0f, enemyPathfinding.transform.GetPosition().Y, -750.0f));
+                        enemyPathfinding.GetComponent<GhostMovement>().hideEvent = true;
+                    }
+                    enemyPathfinding.GetComponent<GhostMovement>().isChasingPlayer = false;
+                    enemyPathfinding.GetComponent<GhostMovement>().playSound = false;
+                }
             }
         }
         else if (hiding)
         {
+            _InteractUI.SetActive(false);
+
             if (Input.GetKeyDown(Keycode.E))
             {
-                Console.WriteLine("There");
+                //Console.WriteLine("There");
                 hiding = false;
-                interactable = false;
-                player.transform.SetPosition(nonHidingPos);
+                interactable = true;
+                //player.transform.SetPosition(nonHidingPos);
+
+                Vector3 rotation = player.transform.GetRotation();
+                Quaternion quat = new Quaternion(rotation);
+                player.GetComponent<RigidBodyComponent>().SetPositionRotationAndVelocity(nonHidingPos, new Vector4(quat.X, quat.Y, quat.Z, quat.W), new Vector3(1, 1, 1).Normalize(), new Vector3(1, 1, 1).Normalize());
+
+                // add if monster is finished
                 player.GetComponent<FPS_Controller_Script>().playerCanMove = true;
                 player.GetComponent<FPS_Controller_Script>().enableHeadBob = true;
-                _flashlight.is_Enabled = true;
+                _flashlight.SetActive(true);
+                audioPlayer.play(voClips[2]);
                 //Input.KeyRelease(Keycode.E);
             }
+        }
+        else
+        {
+            _InteractUI.SetActive(false);
         }
         
     }
 
-    private void OnTriggerEnter(GameObject other)
+    /*private void OnTriggerEnter(GameObject other)
     {
         if (other.GetComponent<NameTagComponent>().GetName() == "Enemy" && hiding == true)
         {
@@ -105,5 +166,5 @@ public class Hiding : Script
                 //Play Attack Player Animation
             }
         }
-    }
+    }*/
 }

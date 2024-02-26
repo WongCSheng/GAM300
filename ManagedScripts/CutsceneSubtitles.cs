@@ -1,22 +1,30 @@
-﻿using ScriptAPI;
+﻿/*!*************************************************************************
+****
+\file CutsceneSubtitles.cs
+\author Thea Sea
+\par DP email: thea.sea@digipen.edu
+\par Course: csd3450
+\date 24-11-2023
+\brief  Script for subtitles
+****************************************************************************
+***/
+using ScriptAPI;
 using System;
 
 public class CutsceneSubtitle : Script
 {
-    AudioComponent[] Audiofiles;
-    AudioComponent sampleAudio;
-    AudioSource audioPlayer;
+    String[] Audiofiles;
+    String[] BGMfile;
     String[] Subtitles;
     [SerializeField]
     public static int counter;
     public static bool next = true;
-    bool test = false;
+    private static bool skip = false;
     public override void Awake()
     {
-        Audiofiles = new AudioComponent[17];
-        sampleAudio = gameObject.GetComponent<AudioComponent>();
-        audioPlayer = new AudioSource();
-
+        BGMfile = new String[1];
+        BGMfile[0] = "cutscene_music_and_sfx_only";
+        Audiofiles = new String[17];
         Subtitles = new String[17];
         GraphicsManagerWrapper.ToggleViewFrom2D(true);
         Subtitles[0] = "Father: My Son, if you are reading this, then I am dead,";
@@ -45,79 +53,82 @@ public class CutsceneSubtitle : Script
 
         Subtitles[16] = "Father: You'll always be part of the family";
 
-        //Audiofiles[0].setFilePath("intro1_1");
-        //Audiofiles[1].setFilePath("intro1_2");
-        //Audiofiles[2].setFilePath("intro2_1");
-        //Audiofiles[3].setFilePath("intro2_2");
-        //Audiofiles[4].setFilePath("intro2_3");
-        //Audiofiles[5].setFilePath("intro3_1");
-        //Audiofiles[6].setFilePath("intro4_1");
-        //Audiofiles[7].setFilePath("intro4_2");
-        //Audiofiles[8].setFilePath("intro5_1");
-        //Audiofiles[9].setFilePath("intro5_2");
-        //Audiofiles[10].setFilePath("intro6_1");
-        //Audiofiles[11].setFilePath("intro6_2");
-        //Audiofiles[12].setFilePath("intro7_1");
-        //Audiofiles[13].setFilePath("intro8_1");
-        //Audiofiles[14].setFilePath("intro8_2");
-        //Audiofiles[15].setFilePath("intro9_1");
-        //Audiofiles[16].setFilePath("intro9_2");
-
-        sampleAudio.setFilePath("intro1_1");
-        audioPlayer.Load(sampleAudio);
-
-        //foreach(AudioComponent ac in Audiofiles)
-        //{
-        //    audioPlayer.Load(ac);
-        //}
-
-        Console.WriteLine("Cutscene Awake\n");
+        Audiofiles[0] = "intro1_1";
+        Audiofiles[1] = "intro1_2";
+        Audiofiles[2] = "intro2_1";
+        Audiofiles[3] = "intro2_2";
+        Audiofiles[4] = "intro2_3";
+        Audiofiles[5] = "intro3_1";
+        Audiofiles[6] = "intro4_1";
+        Audiofiles[7] = "intro4_2";
+        Audiofiles[8] = "intro5_1";
+        Audiofiles[9] = "intro5_2";
+        Audiofiles[10] = "intro6_1";
+        Audiofiles[11] = "intro6_2";
+        Audiofiles[12] = "intro7_1";
+        Audiofiles[13] = "intro8_1";
+        Audiofiles[14] = "intro8_2";
+        Audiofiles[15] = "intro9_1";
+        Audiofiles[16] = "intro9_2";
 
         counter = 0;
         next = true;
+
     }
 
     public override void Update()
     {
         UISpriteComponent Sprite = gameObject.GetComponent<UISpriteComponent>();
+        AudioComponent audio = gameObject.GetComponent<AudioComponent>();
+        if (counter > 1 && counter < 5)
+        {
+            Vector4 white = new Vector4(255.0f, 255.0f, 255.0f, 1.0f);
+            Sprite.SetFontColour(white);
+            Sprite.SetFontBackgroundColor(white);
+        }
+        if (counter >= 5)
+        {
+            Vector4 black = new Vector4(0.0f, 0.0f, 0.0f, 1.0f);
+            Sprite.SetFontColour(black);
+            Sprite.SetFontBackgroundColor(black);
+
+        }
+
         if (Input.GetKeyDown(Keycode.SPACE))
         {
-            //audioPlayer.Stop(Audiofiles[counter]);
-            audioPlayer.Stop(sampleAudio);
-            GraphicsManagerWrapper.ToggleViewFrom2D(false);
-            SceneLoader.LoadMainGame();
+            audio.stop(Audiofiles[counter]);
+            skip = true;
+            counter++;
+            //Console.WriteLine("Counter: " + counter);
         }
+
         else
         {
+            audio.play(BGMfile[0]);
+            audio.playQueue();
+
             if (counter > 16)//cutscene over
             {
+                audio.stop(BGMfile[0]);
                 GraphicsManagerWrapper.ToggleViewFrom2D(false);
-                SceneLoader.LoadMainGame();
+                SceneLoader.LoadMainGame();              
             }
             else
             {
                 if (next)
                 {
                     Sprite.SetFontMessage(Subtitles[counter]);
-                    //audioPlayer.Play(Audiofiles[counter]);
-                    audioPlayer.Play(sampleAudio);
+                    audio.play(Audiofiles[counter]);
                     next = false;
                 }
-                else if (test/*audioPlayer.hasFinished(Audiofiles[counter])*/)
+                else if (audio.finished(Audiofiles[counter]))
                 {
-                    if (next)
+                    next = true;
+                    if(!skip)
                     {
-                        Sprite.setColourAlpha(1);
-                        Sprite.SetFontMessage(Subtitles[counter]);
-                        //audio.Play(Audiofiles[counter]);
-                        //audioPlayer.Play(Audiofiles[counter]);
-                        next = false;
-                    }
-                    else if (test/*audioPlayer.hasFinished(Audiofiles[counter])*/)
-                    {
-                        next = true;
                         ++counter;
                     }
+                    skip = false;   
                 }
             }
         }

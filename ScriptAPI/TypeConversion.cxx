@@ -25,6 +25,6 @@ namespace ScriptAPI
     std::string toStdString(System::String^ str)
     {
         msclr::interop::marshal_context context;
-        return context.marshal_as<std::string>(str);
+         return context.marshal_as<std::string>(str);
     }
 }

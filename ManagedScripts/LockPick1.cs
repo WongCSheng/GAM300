@@ -1,9 +1,21 @@
-﻿using System;
+﻿/*!*************************************************************************
+****
+\file LockPick1.cs
+\author Go Ruo Yan
+\par DP email: ruoyan.go@digipen.edu
+\par Course: csd3450
+\date 12-11-2023
+\brief  Script lock picking gameplay
+****************************************************************************
+***/
+using System;
 using System.ComponentModel.DataAnnotations;
 using ScriptAPI;
 
 public class LockPick1 : Script
 {
+    public GameBlackboard? gameBlackboard;
+
     float toDegree(float radians)
     {
         return radians * (180 / 3.1415926535897931f);
@@ -13,8 +25,6 @@ public class LockPick1 : Script
         return degree * (3.1415926535897931f / 180);
     }
 
-    // NEW
-
     //[Header("Tutorial UI Variables")]
     //public Image _TutorialImage;
     //public Sprite[] _TutorialImgSprites;
@@ -23,8 +33,13 @@ public class LockPick1 : Script
 
     //public Text mySubtitles;
     //public Image mySubtitlesBG;
+    String[] Subtitles;
+    [SerializeField]
+    public static int counter;
 
-    //public AudioSource myVOSource;
+    public AudioSource myVOSource;
+    public string startingVOstr;
+    public string[] endVOstr;
     public bool _TutorialCompleted;
 
     [Header("Lockpick Variables")]
@@ -34,17 +49,20 @@ public class LockPick1 : Script
     public CameraComponent playerCam;
     public TransformComponent innerLock;
     public TransformComponent pickPosition;
-    public FPS_Controller_Script playerController;
-    //public GameObject lockObject;
+    public GameObject playerController;
+    public GameObject lockGroup;
     public string difficultyLvl;
     public float maxAngle = 90;
     public float lockSpeed = 10;
     public bool unlocked;
-    public AudioComponent[] lockSoundEffects;
-    public AudioComponent[] rattleSoundEffects;
+    //public AudioClip[] lockSoundEffects;
+    //public AudioClip[] rattleSoundEffects;
+    public String[] lockSoundEffects;
+    public String[] rattleSoundEffects;
+    public static String[] playerGuideVO;
     float delay = 0.4f;
-    //public GameObject _NumOfTries;
-    //public Text _AmtOfTries;
+    public GameObject _NumOfTries;
+    public UISpriteComponent _AmtOfTries;
 
     [Range(1, 25)]
     public float lockRange = 10;
@@ -60,273 +78,368 @@ public class LockPick1 : Script
     private bool displayTutorial;
     [SerializeField] bool played;
 
-    private Vector3 originalPosition;
+    private Vector3 originalPosition = new Vector3(0.0f, 350.0f, 1500.0f);
     private Vector3 originalRotation;
-    AudioSource audioPlayer;
-    bool failed;
-    bool passed;
+    public static AudioComponent audio;
+    public static bool failed;
+    public static bool passed;
     float timer;
+    
+    public int doorIndex;
+    public GameObject doorText;
+    public GameObject monster;
+    public GameObject doorStates;
+    public GameObject popupUI;
 
     // Start is called before the first frame update
     override public void Awake()
     {
-        lockSoundEffects = new AudioComponent[3];
-        lockSoundEffects[0].setFilePath("Lock Turning Audio");
-        lockSoundEffects[1].setFilePath("lockpick success");
-        lockSoundEffects[2].setFilePath("lockpick_failtryl");
+        lockSoundEffects = new String[3];
+        lockSoundEffects[0] = "lockpick_turn";
+        lockSoundEffects[1] = "lockpick success";
+        lockSoundEffects[2] = "lockpick_failtry";
 
-        rattleSoundEffects = new AudioComponent[6];
-        rattleSoundEffects[0].setFilePath("temp_lockrattle1");
-        rattleSoundEffects[1].setFilePath("temp_lockrattle2");
-        rattleSoundEffects[2].setFilePath("temp_lockrattle3");
-        rattleSoundEffects[3].setFilePath("temp_lockrattle4");
-        rattleSoundEffects[4].setFilePath("temp_lockrattle5");
-        rattleSoundEffects[5].setFilePath("temp_lockrattle6");
+        rattleSoundEffects = new String[6];
+        rattleSoundEffects[0] = "lockpick_move1";
+        rattleSoundEffects[1] = "lockpick_move2";
+        rattleSoundEffects[2] = "lockpick_move3";
+        rattleSoundEffects[3] = "lockpick_move4";
+        rattleSoundEffects[4] = "lockpick_move5";
+        rattleSoundEffects[5] = "lockpick_move6";
+
+        playerGuideVO = new String[7];
+        playerGuideVO[0] = "pc_lockpickstart";
+        playerGuideVO[1] = "pc_lockpicksuccess1";
+        playerGuideVO[2] = "pc_lockpicksuccess2";
+        playerGuideVO[3] = "pc_lockpickfail";
+        playerGuideVO[4] = "";
+        playerGuideVO[5] = "";
+        playerGuideVO[6] = "";
+
+        Subtitles = new String[7];
+        Subtitles[0] = "Martin (Internal): Hopefully, I won\'t forget how to do this.";
+        Subtitles[1] = "Martin (Internal): Alright, looks like I\'m in.";
+        Subtitles[2] = "Martin (Internal): No turning back now.";
+        Subtitles[3] = "Martin (Internal): That was too loud... I better not screw up again.";
+        Subtitles[4] = "";
+        Subtitles[5] = "Move [mouse] to adjust pick";
+        Subtitles[6] = "Press [E] to turn lock";
+
+        counter = 0;
+        audio = gameObject.GetComponent<AudioComponent>();
+        // GameplaySubtitles.counter = 5; //no effect on set gameplay subtitles to be empty 
 
         newLock();
-        originalPosition = transform.GetPosition();
-        originalRotation = transform.GetRotation();
+    }
+
+    public override void Start()
+    {
+        //audio.play(startingVOstr);
+        movePick = true;
     }
 
     // Update is called once per frame
     override public void Update()
     {
-        Input.Lock(false);
+        //Input.Lock(false);
+        doorText.SetActive(false);
 
-        if (!_TutorialCompleted)
+        if (Input.GetKeyDown(Keycode.ESC))
         {
-            // NOTE: Audio
-            //if (!myVOSource.isPlaying() && !played)
-            //{
-            //    myVOSource.Play();
-            //    mySubtitlesBG.enabled = true;
-            //    mySubtitles.text = "Martin (Internal): Hopefully, I won’t forget how to do this.";
-            //    played = true;
-
-            //}
-            //else if (!myVOSource.isPlaying() && played)
-            //{
-            //    mySubtitles.text = "";
-            //    mySubtitlesBG.enabled = false;
-            //    _NumOfTries.SetActive(true);
-            //    movePick = true;
-            //    _TutorialCompleted = true;
-            //}
+            playerController.SetActive(true);
+            gameBlackboard.gameState = GameBlackboard.GameState.InGame;
+            //Input.Lock(true);
+            //    playerCam.SetEnabled(true);
+            //    Door_UI.SetActive(false);
+            lockGroup.SetActive(false);
+            GraphicsManagerWrapper.ToggleViewFrom2D(false);
+            doorStates.SetActive(true);
+            popupUI.GetComponent<PopupUI>().lockpickDisplayed = false;
         }
-        else
+
+        //if (!_TutorialCompleted)
+        //{
+        //    // NOTE: Audio
+        //    //if (!myVOSource.isPlaying() && !played)
+        //    //{
+        //    //    myVOSource.Play();
+        //    //    mySubtitlesBG.enabled = true;
+        //    //    mySubtitles.text = "Martin (Internal): Hopefully, I won’t forget how to do this.";
+        //    //    played = true;
+
+        //    //}
+        //    //else if (!myVOSource.isPlaying() && played)
+        //    //{
+        //    //    mySubtitles.text = "";
+        //    //    mySubtitlesBG.enabled = false;
+        //    //    _NumOfTries.SetActive(true);
+        //    //    movePick = true;
+        //    //    _TutorialCompleted = true;
+        //    //}
+        //}
+        //else
+        //{
+        //_NumOfTries.SetActive(true);
+
+        //subtitles
+        UISpriteComponent Sprite = GameObjectScriptFind("VOSubtitles").GetComponent<UISpriteComponent>();
+        UISpriteComponent ClosedSub = GameObjectScriptFind("Subtitles").GetComponent<UISpriteComponent>();
+        //UISpriteComponent Sprite = gameObject.GetComponent<UISpriteComponent>();
+
+        if (counter < 5)
+            audio.play(playerGuideVO[counter]);
+        if(audio.finished(playerGuideVO[0]))
+            counter = 6;
+        // if (audio.finished(playerGuideVO[counter]))
+        // {
+        //     audio.stop(playerGuideVO[counter]);
+        // }
+
+        #region Move Pick
+        if (movePick)
         {
-            //_NumOfTries.SetActive(true);
+            
+            //Vector3 dir = Input.mousePosition - cam.WorldToScreenPoint(transform.position);
+            Vector3 dir = Input.GetLocalMousePos() - new Vector3(Screen.width / 2, Screen.height / 2, 0);  //cam.WorldToScreenPoint(transform.GetPosition());
 
-            #region Move Pick
-            if (movePick)
+            //eulerAngle = Vector3.Angle(dir, Vector3.Up());
+            eulerAngle = Vector3.Angle(dir, Vector3.Down());
+
+            Vector3 cross = Vector3.Cross(Vector3.Up(), dir);
+            if (cross.Z < 0) { eulerAngle = -eulerAngle; }
+            eulerAngle = Mathf.Clamp(eulerAngle, toRadians(-maxAngle), toRadians(maxAngle));
+
+            Quaternion rotateTo = Quaternion.AngleAxis(eulerAngle, Vector3.Forward());
+            //transform.SetRotation(Quaternion.EulerAngle(rotateTo));
+
+            Vector3 originalRotation = transform.GetRotation();
+            transform.SetRotation(new Vector3(originalRotation.X, originalRotation.Y, -eulerAngle));
+
+            Vector2 newPosition = new Vector2(originalPosition.X * Mathf.Cos(-eulerAngle) - originalPosition.Y * Mathf.Sin(-eulerAngle),
+                                                originalPosition.X * Mathf.Sin(-eulerAngle) + originalPosition.Y * Mathf.Cos(-eulerAngle));
+            transform.SetPosition(new Vector3(newPosition.X, newPosition.Y, originalPosition.Z));
+        }
+        
+        if (!failed && Input.GetKeyDown(Keycode.E)) //lock turns
+        {
+            originalRotation = transform.GetRotation();
+            movePick = false;
+            keyPressTime = 1;
+            audio.play(lockSoundEffects[0]); //lock turning sound
+
+        }
+        if (Input.GetKey(Keycode.E))
+        {
+            counter = 5; //"Move [mouse] to adjust pick";
+
+        }
+        if (Input.GetKeyUp(Keycode.E)) //lock not turning
+        {
+            movePick = true;
+            keyPressTime = 0;
+            deduct = true;
+            if (audio.finished(playerGuideVO[0]))
             {
-                //Vector3 dir = Input.mousePosition - cam.WorldToScreenPoint(transform.position);
-                Vector3 dir = Input.GetLocalMousePos() - new Vector3(Screen.width / 2, Screen.height / 2, 0); // cam.WorldToScreenPoint(transform.GetPosition());
+            audio.stop(playerGuideVO[0]);
+                //;
+                //wait for "Hopefully I won't forget how to 
+                //do this".. to finish playing before showing ui instructions
+                counter = 6; //"Press [E] to turn lock";
+            } 
+        }
+        #endregion
 
-                //eulerAngle = Vector3.Angle(dir, Vector3.Up());
-                eulerAngle = Vector3.Angle(dir, Vector3.Down());
+        #region Check if pick is at correct position
+        float eulerAngleDegree = toDegree(eulerAngle);
+        percentage = Mathf.Round(100 - Mathf.Abs(((eulerAngleDegree - unlockAngle) / 100) * 100));
+        float maxRotation = (percentage / 100) * maxAngle;
+        float lockRotation = maxRotation * keyPressTime;
+        float lockLerp = Mathf.LerpAngle(toDegree(innerLock.GetRotation().Z), lockRotation, Time.deltaTime * lockSpeed);
+        innerLock.SetRotation(new Vector3(0, 0, toRadians(lockLerp)));
 
-                Vector3 cross = Vector3.Cross(Vector3.Up(), dir);
-                if (cross.Z < 0) { eulerAngle = -eulerAngle; }
-                eulerAngle = Mathf.Clamp(eulerAngle, toRadians(-maxAngle), toRadians(maxAngle));
-
-                Quaternion rotateTo = Quaternion.AngleAxis(eulerAngle, Vector3.Forward());
-                //transform.SetRotation(Quaternion.EulerAngle(rotateTo));
-
-                Vector3 originalRotation = transform.GetRotation();
-                transform.SetRotation(new Vector3(originalRotation.X, originalRotation.Y, eulerAngle));
-
-                Vector2 newPosition = new Vector2(originalPosition.X * Mathf.Cos(eulerAngle) - originalPosition.Y * Mathf.Sin(eulerAngle),
-                                                  originalPosition.X * Mathf.Sin(eulerAngle) + originalPosition.Y * Mathf.Cos(eulerAngle));
-                transform.SetPosition(new Vector3(newPosition.X, newPosition.Y, originalPosition.Z));
-            }
-
-            if (Input.GetKeyDown(Keycode.E))
+        if (!movePick && (lockLerp >= maxRotation - 1))
+        {
+            if (eulerAngleDegree < unlockRange.Y && eulerAngleDegree > unlockRange.X)
             {
-                originalRotation = transform.GetRotation();
-                movePick = false;
-                keyPressTime = 1;
-                // NOTE: Audio
-                //GetComponent<AudioSource>().clip = lockSoundEffects[0];
-                //GetComponent<AudioSource>().Play();
-                audioPlayer.Play(lockSoundEffects[0]);
-            }
-            if (Input.GetKeyUp(Keycode.E))
-            {
+                audio.stop(lockSoundEffects[0]);
                 movePick = true;
                 keyPressTime = 0;
-                deduct = true;
+                // NOTE: Audio
+                audio.play(lockSoundEffects[1]);
+                timer = 1.2f;
+                passed = true;
+                
             }
-            #endregion
-
-            #region Check if pick is at correct position
-            float eulerAngleDegree = toDegree(eulerAngle);
-            percentage = Mathf.Round(100 - Mathf.Abs(((eulerAngleDegree - unlockAngle) / 100) * 100));
-            float maxRotation = (percentage / 100) * maxAngle;
-            float lockRotation = maxRotation * keyPressTime;
-            float lockLerp = Mathf.LerpAngle(toDegree(innerLock.GetRotation().Z), lockRotation, Time.deltaTime * lockSpeed);
-            innerLock.SetRotation(new Vector3(0, 0, toRadians(lockLerp)));
-
-            if (!movePick && (lockLerp >= maxRotation - 1))
+            else
             {
-                if (eulerAngleDegree < unlockRange.Y && eulerAngleDegree > unlockRange.X)
+                //float randomRotation = ScriptAPI.Random.insideUnitCircle.x;
+                float randomRotation = ScriptAPI.Random.Range(-1,1); // NOTE: Not sure if insideUnitCircle keeps changing or is a fixed Vector2 that is reset on Start
+                transform.SetRotationZ(originalRotation.Z + (float)(randomRotation / 180.0 * Math.PI));
+
+                if (Input.GetKeyDown(Keycode.E) || Input.GetKey(Keycode.E))
                 {
-                    Console.WriteLine("hmm");
-                    movePick = true;
-                    keyPressTime = 0;
                     // NOTE: Audio
-                    audioPlayer.Play(lockSoundEffects[1]);
-                    newLock();
-                    timer = 1.2f;
-
-                    //GetComponent<AudioSource>().clip = lockSoundEffects[1];
-                    //GetComponent<AudioSource>().Play();
-
-                    //StartCoroutine(StartDelay());
-                    //IEnumerator StartDelay()
-                    //{
-                    //    yield return new WaitForSeconds(1.2f);
-                    //    playerController.SetEnabled(true);
-                    //    playerController.lockCursor = true;
-                    //    playerCam.SetEnabled(true);
-                    //    Door_UI.SetActive(false);
-                    //    unlocked = true;
-                    //    _NumOfTries.SetActive(false);
-                    //    lockObject.SetActive(false);
-                    //}
-                }
-                else
-                {
-                    //float randomRotation = ScriptAPI.Random.insideUnitCircle.x;
-                    float randomRotation = ScriptAPI.Random.Range(-1,1); // NOTE: Not sure if insideUnitCircle keeps changing or is a fixed Vector2 that is reset on Start
-                    transform.SetRotationZ(originalRotation.Z + (float)(randomRotation / 180.0 * Math.PI));
-
-                    if (Input.GetKeyDown(Keycode.E) || Input.GetKey(Keycode.E))
+                    // as of 19 Feb meeting, rattling sounds are now used to 
+                    //hint to the player on how close their pick is to the correct position
+                    // TO DO: set more frequent rattling audios to play when 
+                    //lock pick passes when (eulerAngleDegree < unlockRange.Y && eulerAngleDegree > unlockRange.X)
+                    if (audio.finished(lockSoundEffects[0]))
                     {
-                        // NOTE: Audio
-                        if (audioPlayer.hasFinished(lockSoundEffects[0]))
+                        audio.stop(lockSoundEffects[0]);
+                        delay -= Time.deltaTime;
+
+                        if (delay <= 0)
                         {
-                            audioPlayer.Stop(lockSoundEffects[0]);
-                            delay -= Time.deltaTime;
+                            // Not sure if there is a better way to do this
+                            if (audio.finished(rattleSoundEffects[0]))
+                                audio.stop(rattleSoundEffects[0]);
+                            if (audio.finished(rattleSoundEffects[1]))
+                                audio.stop(rattleSoundEffects[1]);
+                            if (audio.finished(rattleSoundEffects[2]))
+                                audio.stop(rattleSoundEffects[2]);
+                            if (audio.finished(rattleSoundEffects[3]))
+                                audio.stop(rattleSoundEffects[3]);
+                            if (audio.finished(rattleSoundEffects[4]))
+                                audio.stop(rattleSoundEffects[4]);
+                            if (audio.finished(rattleSoundEffects[5]))
+                                audio.stop(rattleSoundEffects[5]);
 
-                            if (delay <= 0)
-                            {
-                                // Not sure if there is a better way to do this
-                                if (audioPlayer.hasFinished(rattleSoundEffects[0]))
-                                    audioPlayer.Stop(rattleSoundEffects[0]);
-                                if (audioPlayer.hasFinished(rattleSoundEffects[1]))
-                                    audioPlayer.Stop(rattleSoundEffects[1]);
-                                if (audioPlayer.hasFinished(rattleSoundEffects[2]))
-                                    audioPlayer.Stop(rattleSoundEffects[2]);
-                                if (audioPlayer.hasFinished(rattleSoundEffects[3]))
-                                    audioPlayer.Stop(rattleSoundEffects[3]);
-                                if (audioPlayer.hasFinished(rattleSoundEffects[4]))
-                                    audioPlayer.Stop(rattleSoundEffects[4]);
-                                if (audioPlayer.hasFinished(rattleSoundEffects[5]))
-                                    audioPlayer.Stop(rattleSoundEffects[5]);
-
-                                audioPlayer.Play(rattleSoundEffects[(int)ScriptAPI.Random.Range(0, 5)]);
-                                delay = 0.4f;
-                            }
+                            audio.play(rattleSoundEffects[(int)ScriptAPI.Random.Range(0, 5)]);
+                            delay = 0.4f;
                         }
                     }
-
-                    if (deduct == true)
-                    {
-                        numOfTries -= 1;
-                        deduct = false;
-                    }
-
-                    if (numOfTries <= 0)
-                    {
-                        // NOTE: Audio
-                        audioPlayer.Play(lockSoundEffects[2]);
-                        movePick = false;
-                        timer = 1.0f;
-
-                        //StartCoroutine(Deactivate());
-
-                        //IEnumerator Deactivate()
-                        //{
-                        //    yield return new WaitForSeconds(1f);
-
-                        //    _NumOfTries.SetActive(false);
-                        //    playerController.SetEnabled(true);
-                        //    playerController.lockCursor = true;
-                        //    playerCam.SetEnabled(true);
-                        //    Door_UI.SetActive(false);
-                        //    lockObject.SetActive(false);
-                        //}
-                    }
                 }
-            }
-            #endregion
 
-            //_AmtOfTries.text = numOfTries.ToString();
-
-            //if (numOfTries <= 1)
-            //{
-            //    _AmtOfTries.color = Color.red;
-            //}
-
-            if (passed)
-            {
-                if (timer <= 0)
+                if (deduct == true)
                 {
-                    //    playerController.SetEnabled(true);
-                    //    playerController.lockCursor = true;
-                    //    playerCam.SetEnabled(true);
-                    //    Door_UI.SetActive(false);
-                    unlocked = true;
-                    //    _NumOfTries.SetActive(false);
-                    //    lockObject.SetActive(false);
+                    numOfTries -= 1;
+                    deduct = false;
                 }
-                else
-                {
-                    timer -= Time.deltaTime;
-                }
-            }
 
-            if (failed)
-            {
-                if (timer <= 0)
+                if (numOfTries <= 0)
                 {
-                    //    _NumOfTries.SetActive(false);
-                    //    playerController.SetEnabled(true);
-                    //    playerController.lockCursor = true;
-                    //    playerCam.SetEnabled(true);
-                    //    Door_UI.SetActive(false);
-                    //    lockObject.SetActive(false);
-                }
-                else
-                {
-                    timer -= Time.deltaTime;
+                    // NOTE: Audio
+                    audio.play(lockSoundEffects[2]);
+                    movePick = false;
+                    timer = 1.0f;
+                    failed = true;
                 }
             }
         }
+        #endregion
+
+        _AmtOfTries.SetFontMessage("Number of tries left: " + numOfTries.ToString());
+
+        if (numOfTries <= 1)
+        {
+            _AmtOfTries.SetFontColour(new Vector4(1.0f, 0.0f, 0.0f, 1.0f)); // red
+        }
+
+        if (passed)
+        {
+            counter = 1;
+            if (timer <= 0 && audio.finished(playerGuideVO[1]))
+            {
+                playerController.SetActive(true);
+                Vector3 rotation = playerController.transform.GetRotation();
+                Quaternion quat = new Quaternion(rotation);
+                Vector3 rotationToVector = new Vector3(-Mathf.Sin(toRadians(rotation.Y)), 0.0f, Mathf.Cos(toRadians(rotation.Y))) * 200;
+                playerController.GetComponent<RigidBodyComponent>().SetPositionRotationAndVelocity(playerController.transform.GetPosition() + rotationToVector, new Vector4(quat.X, quat.Y, quat.Z, quat.W), new Vector3(1, 1, 1).Normalize(), new Vector3(1, 1, 1).Normalize());
+
+                gameBlackboard.gameState = GameBlackboard.GameState.InGame;
+                //Input.Lock(true);
+                //    playerCam.SetEnabled(true);
+                //    Door_UI.SetActive(false);
+                unlocked = true;
+                doorStates.SetActive(true);
+                doorStates.GetComponent<DoorState>().Doors[doorIndex] = DoorState.State.Unlocked;
+                lockGroup.SetActive(false);
+                GraphicsManagerWrapper.ToggleViewFrom2D(false);
+                popupUI.GetComponent<PopupUI>().lockpickDisplayed = false;
+                
+                //no turning back now
+                //ClosedSub.SetFontMessage(Subtitles[1]); no effect
+                counter = 2;
+                audio.play(playerGuideVO[2]);
+                GameplaySubtitles.counter = 7;
+                // if (audio.finished(playerGuideVO[2]))
+                // {
+                //     GameplaySubtitles.counter = 5; //no effect
+                // }
+            
+
+                // if (audio.finished(playerGuideVO[1])) //also no effect, doont do this
+                // {
+                //     audio.stop(playerGuideVO[1]);
+                //     counter = 2;
+                //     audio.play(playerGuideVO[2]);
+
+                // }
+                
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+            }           
+        }
+
+        if (failed)
+        {
+            counter = 3;
+            if (timer <= 0 && audio.finished(playerGuideVO[3]))
+            {
+                audio.stop(playerGuideVO[3]);
+                playerController.SetActive(true);
+                gameBlackboard.gameState = GameBlackboard.GameState.InGame;
+                //Input.Lock(true);
+                //    playerCam.SetEnabled(true);
+                //    Door_UI.SetActive(false);
+                lockGroup.SetActive(false);
+                GraphicsManagerWrapper.ToggleViewFrom2D(false);
+                doorStates.SetActive(true);
+                popupUI.GetComponent<PopupUI>().lockpickDisplayed = false;
+
+                if (doorIndex != 0)
+                {
+                    monster.GetComponent<GhostMovement>().AlertMonster();
+                }
+                counter = 5; //move mouse to adjust pick
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+            }
+        }
+        
+        Sprite.SetFontMessage(Subtitles[counter]); //update last
     }
 
     public void newLock()
     {
-        audioPlayer.Stop(lockSoundEffects[1]);
-        audioPlayer.Stop(lockSoundEffects[2]);
-        Input.Lock(false);
+        gameBlackboard.gameState = GameBlackboard.GameState.Lockpicking;
+        originalPosition = new Vector3(0.0f, 600.0f, 2500.0f);
+        originalRotation = transform.GetRotation();
+
+        audio.stop(lockSoundEffects[1]);
+        audio.stop(lockSoundEffects[2]);
+        popupUI.GetComponent<PopupUI>().lockpickDisplayed = true;
+        //Input.Lock(false);
 
         failed = false;
         passed = false;
 
         //Door_UI.SetActive(true);
-        //_AmtOfTries.color = Color.white;
+        _AmtOfTries.SetFontColour(new Vector4(1.0f, 1.0f, 1.0f, 1.0f)); // white
         keyPressTime = 0;
         unlocked = false;
         deduct = true;
         //playerController.SetEnabled(false);
         //playerCam.SetEnabled(false);
-        cam.transform.SetRotation(new Vector3(0, 0, 0));
+        //cam.transform.SetRotation(new Vector3(0, 0, 0));
         unlockAngle = ScriptAPI.Random.Range(-maxAngle + lockRange, maxAngle - lockRange);
         unlockRange = new Vector2(unlockAngle - lockRange, unlockAngle + lockRange);
 
-        numOfTries = 3;
+        numOfTries = 5;
         if (difficultyLvl == "Easy")
         {
             numOfTries = 10;
@@ -344,5 +457,6 @@ public class LockPick1 : Script
         {
             movePick = true;
         }
+        //start with subtitle press E to turn lock
     }
 }
