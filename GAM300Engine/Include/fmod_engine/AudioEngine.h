@@ -410,6 +410,8 @@ namespace TDS
         static void ScriptPauseAll();
         static void ScriptStopAll();
         static bool ScriptAnySoundPlaying();
+        static void ScriptFadeOut(unsigned int duration, std::string pathing);
+        static void ScriptFadeIn(unsigned int duration, std::string pathing);
 
         static SoundInfo* find_sound_info(std::string str);
         static void Add_to_Queue(std::string str = "");

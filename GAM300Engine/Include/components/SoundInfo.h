@@ -14,20 +14,10 @@ namespace TDS
 
     static unsigned int ID_Count{ 0 };
 
-    /*enum SOUND_STATE : uint16_t
-    {
-        SOUND_LOADED = 0,
-        SOUND_PLAYING,
-        SOUND_STOP,
-        SOUND_MUTED
-    };*/
-
     enum SOUND_STATE
     {
         SOUND_ERR = 0,
         SOUND_LOADED,
-        SOUND_PLAYING,
-        SOUND_PAUSE
     };
 
     namespace AudioWerls
@@ -43,7 +33,6 @@ namespace TDS
         SOUND_STATE whatState;
         Vec3 position;
         float volume, ReverbAmount;
-        std::map<Vec3*, SOUND_STATE*> position_events;
 
         /**
          * @brief Loading info from a file into SOUNDINFO.
@@ -54,8 +43,8 @@ namespace TDS
         //{
         //    position = { obj["PositionX"].GetFloat(), obj["PositionY"].GetFloat(), obj["PositionZ"].GetFloat() };
         //    filePath = { obj["file"].GetString() };
-        //    isitLoop = { obj["Loop"].GetBool() };
-        //    isit3D = { obj["3D"].GetBool() };
+        //    isLoop = { obj["Loop"].GetBool() };
+        //    is3D = { obj["3D"].GetBool() };
         //    
 
         //    return true; //Change this to return based of whether it's really successful or not
@@ -81,32 +70,9 @@ namespace TDS
 
         DLL_API  void setFilePath(std::string _path);
 
-        DLL_API  void setEvents(Vec3* place, SOUND_STATE& type);
-
         DLL_API  bool isLoaded();
 
-        DLL_API  bool isPlaying();
-
-        DLL_API  bool isPaused();
-
-        /*bool isPlaying()
-        {
-            return (bool)(whatState & (1 << SOUND_PLAYING));
-        }
-
-        bool isPaused()
-        {
-            return (bool)(whatState ^ (1 << SOUND_PLAYING));
-        }
-
-        bool isMuted()
-        {
-            return (bool)(whatState & (1 << SOUND_MUTED));
-        }*/
-
         DLL_API  Vec3 get3DCoords();
-
-        DLL_API  std::map<Vec3*, SOUND_STATE*> getEvents();
 
         DLL_API  SOUND_STATE getState();
 
@@ -135,25 +101,6 @@ namespace TDS
 
         DLL_API  void setMSLength(unsigned int len);
 
-        /*void setState(SOUND_STATE setting, bool set)
-        {
-            whatState |= (set << setting);
-        }*/
-
-        DLL_API  void setState(SOUND_STATE setting);
-
-        DLL_API  void setLoop(bool condition);
-
-        DLL_API  void set3D(bool condition);
-
-        DLL_API  void setMute(bool condition);
-
-        DLL_API  void setReverbAmount(float reverb);
-
-        DLL_API  void play();
-        DLL_API  void pause();
-        DLL_API  void stop();
-
         DLL_API  SoundInfo(std::string _filePath = "", bool _isLoop = false, bool _is3D = false, bool _muted = false, SOUND_STATE _theState = SOUND_ERR, float _x = 0.0f, float _y = 0.0f, float _z = 0.0f, float _volume = 1.f, float _reverbamount = 0.f);
 
         // TODO  implement sound instancing
@@ -165,7 +112,7 @@ namespace TDS
             filePath = rhs.filePath;
             isLoop = rhs.isLoop;
             is3D = rhs.is3D;
-            ismuted = rhs.ismuted;
+            isMuted = rhs.isMuted;
             whatState = rhs.whatState;
             position = rhs.position;
             volume = rhs.volume;

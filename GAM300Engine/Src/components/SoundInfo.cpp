@@ -18,12 +18,9 @@ rttr::registration::class_<SoundInfo>("Audio")
 .method("set3DCoords", rttr::select_overload<void(float, float, float)>(&SoundInfo::set3DCoords))
 .method("set3DCoords", rttr::select_overload<void(Vec3)>(&SoundInfo::set3DCoords))
 .method("setFilePath", &SoundInfo::setFilePath)
-.method("setEvents", &SoundInfo::setEvents)
 .method("isLoaded", &SoundInfo::isLoaded)
+.method("isMuted", &SoundInfo::isMuted)
 .method("is3D", &SoundInfo::is3D)
-.method("play", &SoundInfo::play)
-.method("pause", &SoundInfo::pause)
-.method("stop", &SoundInfo::stop)
 .method("isLoop", &SoundInfo::isLoop);
 }
 
@@ -46,34 +43,14 @@ namespace TDS
         filePath = _path;
     }
 
-    void SoundInfo::setEvents(Vec3* place, SOUND_STATE& type)
-    {
-        position_events[place] = &type;
-    }
-
     bool SoundInfo::isLoaded()
     {
         return (whatState == SOUND_LOADED);
     }
 
-    bool SoundInfo::isPlaying()
-    {
-        return (whatState == SOUND_PLAYING);
-    }
-
-    bool SoundInfo::isPaused()
-    {
-        return (whatState == SOUND_PAUSE);
-    }
-
     Vec3 SoundInfo::get3DCoords()
     {
         return position;
-    }
-
-    std::map<Vec3*, SOUND_STATE*> SoundInfo::getEvents()
-    {
-        return position_events;
     }
 
     SOUND_STATE SoundInfo::getState()
@@ -146,54 +123,12 @@ namespace TDS
         MSLength = len;
     }
 
-    void SoundInfo::setState(SOUND_STATE setting)
-    {
-        whatState = setting;
-    }
-
-    void SoundInfo::setLoop(bool condition)
-    {
-        isLoop = condition;
-    }
-
-    void SoundInfo::set3D(bool condition)
-    {
-        is3D = condition;
-    }
-
-    void SoundInfo::setMute(bool condition)
-    {
-        isMuted = condition;
-    }
-
-    void SoundInfo::setReverbAmount(float reverb)
-    {
-        ReverbAmount = reverb;
-    }
-
-    void SoundInfo::play()
-    {
-        AudioWerks::AudioEngine* audeng = AudioWerks::AudioEngine::get_audioengine_instance();
-        audeng->playSound(*this);
-    }
-    void SoundInfo::pause()
-    {
-        AudioWerks::AudioEngine* audeng = AudioWerks::AudioEngine::get_audioengine_instance();
-        audeng->pauseSound(*this);
-    }
-    void SoundInfo::stop()
-    {
-        AudioWerks::AudioEngine* audeng = AudioWerks::AudioEngine::get_audioengine_instance();
-        audeng->stopSound(*this);
-    }
-
     SoundInfo::SoundInfo(std::string _filePath, bool _isLoop, bool _is3D, bool _muted, SOUND_STATE _theState, float _x, float _y, float _z, float _volume, float _reverbamount)
         : filePath(_filePath), isLoop(_isLoop), is3D(_is3D), isMuted(_muted), whatState(_theState), volume(_volume), ReverbAmount(_reverbamount)
     {
         position.x = _x;
         position.y = _y;
         position.z = _z;
-        position_events.clear();
         MSLength = 0;
         uniqueID = ID_Count++; //Change UID to include time when added
     }
