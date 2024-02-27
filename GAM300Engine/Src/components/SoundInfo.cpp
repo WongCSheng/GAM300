@@ -5,23 +5,20 @@ RTTR_REGISTRATION
 {
     using namespace TDS;
 
-rttr::registration::class_<SoundInfo>("Audio")
-.property("File path", &SoundInfo::filePath)
-.property("Loop", &SoundInfo::isLoop)
-.property("3D", &SoundInfo::is3D)
-.property("Muted", &SoundInfo::isMuted)
-.property("Position", &SoundInfo::position)
-.property("volume", &SoundInfo::volume)
-.property("Reverb", &SoundInfo::ReverbAmount)
-.property("MS Length", &SoundInfo::MSLength)
+    rttr::registration::class_<SoundInfo>("Audio")
+        .property("File path", &SoundInfo::filePath)
+        .property("Loop", &SoundInfo::isLoop)
+        .property("3D", &SoundInfo::is3D)
+        .property("Muted", &SoundInfo::isMuted)
+        .property("Position", &SoundInfo::position)
+        .property("volume", &SoundInfo::volume)
+        .property("Reverb", &SoundInfo::ReverbAmount)
+        .property("MS Length", &SoundInfo::MSLength)
 
-.method("set3DCoords", rttr::select_overload<void(float, float, float)>(&SoundInfo::set3DCoords))
-.method("set3DCoords", rttr::select_overload<void(Vec3)>(&SoundInfo::set3DCoords))
-.method("setFilePath", &SoundInfo::setFilePath)
-.method("isLoaded", &SoundInfo::isLoaded)
-.method("isMuted", &SoundInfo::isMuted)
-.method("is3D", &SoundInfo::is3D)
-.method("isLoop", &SoundInfo::isLoop);
+        .method("set3DCoords", rttr::select_overload<void(float, float, float)>(&SoundInfo::set3DCoords))
+        .method("set3DCoords", rttr::select_overload<void(Vec3)>(&SoundInfo::set3DCoords))
+        .method("setFilePath", &SoundInfo::setFilePath)
+        .method("isLoaded", &SoundInfo::isLoaded);
 }
 
 namespace TDS
