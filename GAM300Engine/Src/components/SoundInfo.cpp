@@ -60,11 +60,6 @@ namespace TDS
         return uniqueID;
     }
 
-    unsigned int SoundInfo::getMSLength()
-    {
-        return MSLength;
-    }
-
     std::string SoundInfo::getFilePath()
     {
         return filePath;
@@ -113,11 +108,6 @@ namespace TDS
         {
             volume = 1.f;
         }
-    }
-
-    void SoundInfo::setMSLength(unsigned int len)
-    {
-        MSLength = len;
     }
 
     SoundInfo::SoundInfo(std::string _filePath, bool _isLoop, bool _is3D, bool _muted, SOUND_STATE _theState, float _x, float _y, float _z, float _volume, float _reverbamount)

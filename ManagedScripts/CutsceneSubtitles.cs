@@ -14,17 +14,15 @@ using System;
 public class CutsceneSubtitle : Script
 {
     String[] Audiofiles;
-    String[] BGMfile;
+    String BGMfile;
     String[] Subtitles;
-    ClosetAudio test;
     [SerializeField]
     public static int counter;
     public static bool next = true;
     private static bool skip = false;
     public override void Awake()
     {
-        BGMfile = new String[1];
-        BGMfile[0] = "cutscene_music_and_sfx_only";
+        BGMfile = "cutscene_music_and_sfx_only";
         Audiofiles = new String[17];
         Subtitles = new String[17];
         GraphicsManagerWrapper.ToggleViewFrom2D(true);
@@ -72,8 +70,6 @@ public class CutsceneSubtitle : Script
         Audiofiles[15] = "intro9_1";
         Audiofiles[16] = "intro9_2";
 
-        test = GameObjectScriptFind("ClosetAudio").GetComponent<ClosetAudio>();
-
         counter = 0;
         next = true;
     }
@@ -101,17 +97,16 @@ public class CutsceneSubtitle : Script
             audio.stop(Audiofiles[counter]);
             skip = true;
             counter++;
-            //Console.WriteLine("Counter: " + counter);
         }
 
         else
         {
-            audio.play(BGMfile[0]);
-            audio.playQueue();
+            audio.play(BGMfile);
+            //audio.playQueue();
 
             if (counter > 16)//cutscene over
             {
-                audio.stop(BGMfile[0]);
+                audio.stop(BGMfile);
                 GraphicsManagerWrapper.ToggleViewFrom2D(false);
                 SceneLoader.LoadMainGame();              
             }
@@ -120,18 +115,17 @@ public class CutsceneSubtitle : Script
                 if (next)
                 {
                     Sprite.SetFontMessage(Subtitles[counter]);
-                    //audio.play(Audiofiles[counter]);
-                    test.Play_Cutscene_Audio(counter);
+                    audio.play(Audiofiles[counter]);
                     next = false;
                 }
-                else if (test.finished_audio(counter))//audio.finished(Audiofiles[counter]))
+                else if (audio.finished(Audiofiles[counter]))
                 {
                     next = true;
-                    if(!skip)
+                    if (!skip)
                     {
                         ++counter;
                     }
-                    skip = false;   
+                    skip = false;
                 }
             }
         }

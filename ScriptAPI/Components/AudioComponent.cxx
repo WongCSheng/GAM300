@@ -214,11 +214,11 @@ namespace ScriptAPI
 	//MS Length
 	unsigned int AudioComponent::MSLength::get()
 	{
-		return TDS::GetSoundInfo(entityID)->getMSLength();
+		return TDS::GetSoundInfo(entityID)->MSLength;
 	}
 	void AudioComponent::MSLength::set(unsigned int value)
 	{
-		TDS::GetSoundInfo(entityID)->setMSLength(value);
+		TDS::GetSoundInfo(entityID)->MSLength = value;
 	}
 
 	//file path

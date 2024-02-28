@@ -17,7 +17,7 @@ namespace TDS
     enum SOUND_STATE
     {
         SOUND_ERR = 0,
-        SOUND_LOADED,
+        SOUND_LOADED
     };
 
     namespace AudioWerls
@@ -78,8 +78,6 @@ namespace TDS
 
         DLL_API  unsigned int getUniqueID();
 
-        DLL_API  unsigned int getMSLength();
-
         DLL_API  std::string getFilePath();
 
         DLL_API  const char* getFilePath_inChar();
@@ -98,8 +96,6 @@ namespace TDS
         * Parameter takes in Volume values (0 - 100)
         */
         DLL_API  void setVolume(float vol);
-
-        DLL_API  void setMSLength(unsigned int len);
 
         DLL_API  SoundInfo(std::string _filePath = "", bool _isLoop = false, bool _is3D = false, bool _muted = false, SOUND_STATE _theState = SOUND_ERR, float _x = 0.0f, float _y = 0.0f, float _z = 0.0f, float _volume = 1.f, float _reverbamount = 0.f);
 
