@@ -169,7 +169,7 @@ namespace TDS
                 }
                 else
                 {
-                    //std::cout << "Sound is already playing!" << std::endl;
+                    std::cout << "Sound is already playing!" << std::endl;
                 }
             }
             else

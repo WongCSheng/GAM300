@@ -190,10 +190,6 @@ public class LockPick1 : Script
             audio.play(playerGuideVO[counter]);
         if(audio.finished(playerGuideVO[0]))
             counter = 6;
-        // if (audio.finished(playerGuideVO[counter]))
-        // {
-        //     audio.stop(playerGuideVO[counter]);
-        // }
 
         #region Move Pick
         if (movePick)
@@ -240,7 +236,6 @@ public class LockPick1 : Script
             deduct = true;
             if (audio.finished(playerGuideVO[0]))
             {
-            audio.stop(playerGuideVO[0]);
                 //;
                 //wait for "Hopefully I won't forget how to 
                 //do this".. to finish playing before showing ui instructions
@@ -285,24 +280,23 @@ public class LockPick1 : Script
                     //lock pick passes when (eulerAngleDegree < unlockRange.Y && eulerAngleDegree > unlockRange.X)
                     if (audio.finished(lockSoundEffects[0]))
                     {
-                        audio.stop(lockSoundEffects[0]);
                         delay -= Time.deltaTime;
 
                         if (delay <= 0)
                         {
                             // Not sure if there is a better way to do this
-                            if (audio.finished(rattleSoundEffects[0]))
-                                audio.stop(rattleSoundEffects[0]);
-                            if (audio.finished(rattleSoundEffects[1]))
-                                audio.stop(rattleSoundEffects[1]);
-                            if (audio.finished(rattleSoundEffects[2]))
-                                audio.stop(rattleSoundEffects[2]);
-                            if (audio.finished(rattleSoundEffects[3]))
-                                audio.stop(rattleSoundEffects[3]);
-                            if (audio.finished(rattleSoundEffects[4]))
-                                audio.stop(rattleSoundEffects[4]);
-                            if (audio.finished(rattleSoundEffects[5]))
-                                audio.stop(rattleSoundEffects[5]);
+                            //if (audio.finished(rattleSoundEffects[0]))
+                            //    audio.stop(rattleSoundEffects[0]);
+                            //if (audio.finished(rattleSoundEffects[1]))
+                            //    audio.stop(rattleSoundEffects[1]);
+                            //if (audio.finished(rattleSoundEffects[2]))
+                            //    audio.stop(rattleSoundEffects[2]);
+                            //if (audio.finished(rattleSoundEffects[3]))
+                            //    audio.stop(rattleSoundEffects[3]);
+                            //if (audio.finished(rattleSoundEffects[4]))
+                            //    audio.stop(rattleSoundEffects[4]);
+                            //if (audio.finished(rattleSoundEffects[5]))
+                            //    audio.stop(rattleSoundEffects[5]);
 
                             audio.play(rattleSoundEffects[(int)ScriptAPI.Random.Range(0, 5)]);
                             delay = 0.4f;
@@ -388,7 +382,7 @@ public class LockPick1 : Script
             counter = 3;
             if (timer <= 0 && audio.finished(playerGuideVO[3]))
             {
-                audio.stop(playerGuideVO[3]);
+                //audio.stop(playerGuideVO[3]);
                 playerController.SetActive(true);
                 gameBlackboard.gameState = GameBlackboard.GameState.InGame;
                 //Input.Lock(true);

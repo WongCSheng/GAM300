@@ -21,6 +21,8 @@ namespace ScriptAPI
 		//Check if that sound file finished playing
 		bool finished(System::String^ str_path);
 		bool anyPlaying();
+		bool checkPlaying(System::String^ str_path);
+		bool checkPaused(System::String^ str_path);
 
 		Vector3 get3DCoords();
 		snd getState();
