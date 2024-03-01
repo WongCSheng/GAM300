@@ -108,7 +108,7 @@ public class CutsceneSubtitle : Script
             {
                 audio.FadeOut(2, BGMfile);
                 GraphicsManagerWrapper.ToggleViewFrom2D(false);
-                SceneLoader.LoadMainGame();              
+                SceneLoader.LoadMainGame();
             }
             else
             {
