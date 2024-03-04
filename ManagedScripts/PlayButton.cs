@@ -15,6 +15,7 @@ public class PlayButton : Script
 {
     public AudioComponent bgm;
     public AudioSource audioPlayer;
+    float temp_change;
     public string bgmName;
     private UISpriteComponent sprite;
     bool withinArea(float mouse, float min, float max)
@@ -34,14 +35,30 @@ public class PlayButton : Script
         sprite = gameObject.GetComponent<UISpriteComponent>();
     }
 
+    public override void Start()
+    {
+        temp_change = 50f;
+    }
+
     public override void Update()
     {
         if (bgm.finished(bgmName))
         {
             bgm.play(bgmName);
             //AudioSource.Play(bgmName);
-            Console.WriteLine("Mainmenu Update()");
         }
+
+        if(Input.GetKeyDown(Keycode.V))
+        {
+            temp_change += 5f;
+            bgm.setMasterVol(temp_change);
+        }
+        else if(Input.GetKeyDown(Keycode.B))
+        {
+            temp_change -= 5f;
+            bgm.setMasterVol(temp_change);
+        }
+        Console.WriteLine(temp_change);
 
         if (Input.GetMouseButtonDown(Keycode.M1) && sprite.IsMouseCollided())
         {

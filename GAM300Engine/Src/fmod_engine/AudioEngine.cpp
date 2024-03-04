@@ -275,20 +275,9 @@ namespace TDS
 
         void AudioEngine::SetGlobalVolume(float vol)
         {
-            /*if (vol > 100)
-            {
-                vol = 100;
-            }
-            else if (vol < 0)
-            {
-                vol = 0;
-            }*/
-            vol = 20.0f * log10f(vol / 100.f);
-
-            if ((vol / 100.f) > 1.f)
-            {
-                vol = 1.f;
-            }
+            vol /= 100.f;
+            vol = Mathf::Clamp(vol, 0.f, 1.f);
+            
             //std::cout << vol << std::endl;
             
             mastergroup->setPaused(true);
@@ -306,21 +295,9 @@ namespace TDS
 
         void AudioEngine::SetChannelGroupVolume(char tag, float vol)
         {
-            /*if (vol > 100)
-            {
-                vol = 100;
-            }
-            else if (vol < 0)
-            {
-                vol = 0;
-            }*/
-            vol = 20.0f * log10f(vol);
+            vol /= 100.f;
+            vol = Mathf::Clamp(vol, 0.f, 1.f);
 
-            if ((vol) > 1.f)
-            {
-                vol = 1.f;
-            }
-            std::cout << vol << std::endl;
             switch (tag)
             {
                 case 'S':
