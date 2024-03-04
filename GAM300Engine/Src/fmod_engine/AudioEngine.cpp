@@ -311,13 +311,16 @@ namespace TDS
         }
 
 
-        void AudioEngine::update3DSoundPosition(SoundInfo& soundInfo)
+        void AudioEngine::update3DSoundPosition(Vec3 pos, SoundInfo& soundInfo)
         {
             if (checkPlaying(soundInfo) && soundInfo.is3D)
+            {
+                soundInfo.position = pos;
                 set3dChannelPosition(soundInfo, channels[soundInfo.getUniqueID()]);
+                ERRCHECK(sounds[soundInfo.getUniqueID()]->setMode(FMOD_3D));
+            }
             else
                 std::cout << "Audio Engine: Can't update sound position!\n";
-
         }
 
         bool AudioEngine::checkPlaying(SoundInfo& soundInfo)
@@ -733,6 +736,25 @@ namespace TDS
         {
             aud_instance->FadeInSound(duration, allSounds[pathing]);
         }
+    }
+
+    void proxy_audio_system::ScriptSetPosition(Vec3 pos, std::string pathing)
+    {
+        SoundInfo* temp = find_sound_info(pathing);
+
+        if (temp->is3D != true)
+        {
+            temp->is3D = true;
+        }
+
+        aud_instance->update3DSoundPosition(pos, *temp);
+    }
+
+    void proxy_audio_system::ScriptSetListenerPos(Vec3 pos, Vec3 for_vec, Vec3 up_vec)
+    {
+        aud_instance->set3DListenerPosition(pos.x, pos.y, pos.z,
+            for_vec.x, for_vec.y, for_vec.z,
+            up_vec.x, up_vec.y, up_vec.z);
     }
 
     SoundInfo* proxy_audio_system::find_sound_info(std::string str)

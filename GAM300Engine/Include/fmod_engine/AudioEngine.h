@@ -143,6 +143,16 @@ namespace TDS
             DLL_API  void stopAllSound();
 
             /**
+             * Set global volume
+             */
+            DLL_API  void SetVolume(float vol);
+
+            /**
+             * Set specific sound volume
+             */
+            DLL_API  void SetSoundVolume(float vol, SoundInfo& soundInfo);
+
+            /**
             * Fades out sound to a stop
             */
             DLL_API  void FadeOutSound(unsigned int duration, SoundInfo& soundInfo);
@@ -166,7 +176,7 @@ namespace TDS
             * The SoundInfo object's position coordinates will be used for the new sound position, so
             * SoundInfo::set3DCoords(x,y,z) should be called before this method to set the new desired location.
             */
-            DLL_API  void update3DSoundPosition(SoundInfo& soundInfo);
+            DLL_API  void update3DSoundPosition(Vec3 pos, SoundInfo& soundInfo);
 
             /**
              * Checks if a sound is playing.
@@ -426,6 +436,8 @@ namespace TDS
         static bool ScriptAnySoundPlaying();
         static void ScriptFadeOut(unsigned int duration, std::string pathing);
         static void ScriptFadeIn(unsigned int duration, std::string pathing);
+        static void ScriptSetPosition(Vec3 pos, std::string pathing);
+        static void ScriptSetListenerPos(Vec3 pos, Vec3 for_vec, Vec3 up_vec);
 
         static SoundInfo* find_sound_info(std::string str);
         static void Add_to_Queue(std::string str = "");
