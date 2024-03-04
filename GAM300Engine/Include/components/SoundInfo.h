@@ -39,29 +39,29 @@ namespace TDS
          * @param obj
          * @return true when success.
         */
-        //virtual bool Deserialize(const rapidjson::Value& obj)
-        //{
-        //    position = { obj["PositionX"].GetFloat(), obj["PositionY"].GetFloat(), obj["PositionZ"].GetFloat() };
-        //    filePath = { obj["file"].GetString() };
-        //    isLoop = { obj["Loop"].GetBool() };
-        //    is3D = { obj["3D"].GetBool() };
-        //    
+        virtual bool Deserialize(const rapidjson::Value& obj)
+        {
+            position = { obj["PositionX"].GetFloat(), obj["PositionY"].GetFloat(), obj["PositionZ"].GetFloat() };
+            filePath = { obj["file"].GetString() };
+            isLoop = { obj["Loop"].GetBool() };
+            is3D = { obj["3D"].GetBool() };
+            
 
-        //    return true; //Change this to return based of whether it's really successful or not
-        //}
+            return true; //Change this to return based of whether it's really successful or not
+        }
 
-        ///**
-        // * @brief Storing info from SOUNDINFO into a file
-        // * @param writer 
-        // * @return true when success.
-        //*/
-        //virtual bool Serialize(rapidjson::PrettyWriter<rapidjson::StringBuffer>* writer) const
-        //{
-        //    writer->Key("PositionX");
-        //    writer->Double(static_cast<float>(position[0]));
+        /**
+         * @brief Storing info from SOUNDINFO into a file
+         * @param writer 
+         * @return true when success.
+        */
+        virtual bool Serialize(rapidjson::PrettyWriter<rapidjson::StringBuffer>* writer) const
+        {
+            writer->Key("PositionX");
+            writer->Double(static_cast<float>(position[0]));
 
-        //    return true; //Change this to return based of whether it's really successful or not
-        //}
+            return true; //Change this to return based of whether it's really successful or not
+        }
 
         // convenience method to set the 3D coordinates of the sound.
         DLL_API  void set3DCoords(float x, float y, float z);

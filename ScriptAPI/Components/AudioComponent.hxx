@@ -38,8 +38,14 @@ namespace ScriptAPI
 		float getZ();
 		float getReverbAmount();
 		float getVolume();
+		float getMasterVol();
+		float getBGMVol();
+		float getSFXVol();
 
 		void setVolume(float vol);
+		void setMasterVol(float vol);
+		void setBGMVol(float vol);
+		void setSFXVol(float vol);
 		void setMSLength(unsigned int len);
 		void setState(snd setting);
 		void setLoop(bool condition);

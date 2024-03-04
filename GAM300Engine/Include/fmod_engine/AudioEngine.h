@@ -144,8 +144,27 @@ namespace TDS
 
             /**
              * Set global volume
+             * Range 0 - 100
              */
-            DLL_API  void SetVolume(float vol);
+            DLL_API  void SetGlobalVolume(float vol);
+
+            /**
+             * Get global volume
+             * Range of 0 - 100
+            */
+            DLL_API  float getGlobalVolume();
+
+            /**
+             * Set channelgroup volume
+             * Range 0 - 100
+             */
+            DLL_API  void SetChannelGroupVolume(char tag, float vol);
+
+            /**
+             * Get channelgroup volume
+             * Range of 0 - 100
+            */
+            DLL_API  float getChannelGroupVolume(char tag);
 
             /**
              * Set specific sound volume
@@ -356,8 +375,14 @@ namespace TDS
             // Listener upwards vector, initialized to default value
             FMOD_VECTOR up = { 0.0f, 1.0f, 0.0f };
 
-            // Main group for low level system which all sounds go though
+            // Main group for low level system which all sounds go through
             FMOD::ChannelGroup* mastergroup = 0;
+
+            // SFX group for low level system which all SFX go through
+            FMOD::ChannelGroup* SFX = 0;
+
+            // BGM group for low level system which all BGM go through
+            FMOD::ChannelGroup* BGM = 0;
 
             // Low-level system reverb TODO add multi-reverb support
             FMOD::Reverb3D* reverb;
@@ -444,6 +469,14 @@ namespace TDS
         static void Remove_from_Queue(std::string str);
         static void Play_queue();
         static void Clear_queue();
+
+        static float getMasterVolume();
+        static float getBGMVolume();
+        static float getSFXVolume();
+
+        static void SetMasterVolume(float vol);
+        static void SetBGMVolume(float vol);
+        static void SetSFXVolume(float vol);
 
         static bool checkifdone(std::string str);
 

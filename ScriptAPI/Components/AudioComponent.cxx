@@ -134,10 +134,40 @@ namespace ScriptAPI
 	{
 		return volume;
 	}
+	
+	float AudioComponent::getMasterVol()
+	{
+		return TDS::proxy_audio_system::getMasterVolume();
+	}
+
+	float AudioComponent::getBGMVol()
+	{
+		return TDS::proxy_audio_system::getBGMVolume();
+	}
+
+	float AudioComponent::getSFXVol()
+	{
+		return TDS::proxy_audio_system::getSFXVolume();
+	}
 
 	void AudioComponent::setVolume(float vol)
 	{
 		volume = vol;
+	}
+
+	void AudioComponent::setMasterVol(float vol)
+	{
+		TDS::proxy_audio_system::SetMasterVolume(vol);
+	}
+
+	void AudioComponent::setBGMVol(float vol)
+	{
+		TDS::proxy_audio_system::SetBGMVolume(vol);
+	}
+
+	void AudioComponent::setSFXVol(float vol)
+	{
+		TDS::proxy_audio_system::SetSFXVolume(vol);
 	}
 
 	void AudioComponent::setMSLength(unsigned int len)
