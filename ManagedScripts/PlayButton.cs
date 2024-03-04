@@ -14,6 +14,7 @@ using System;
 public class PlayButton : Script
 {
     public AudioComponent bgm;
+    float temp_change;
     public AudioSource audioPlayer;
     public string bgmName;
     private UISpriteComponent sprite;
@@ -30,7 +31,13 @@ public class PlayButton : Script
         GraphicsManagerWrapper.ToggleViewFrom2D(true);
         bgmName = "Horror_Menu_Finale_Finale";
         bgm = gameObject.GetComponent<AudioComponent>();
+        audioPlayer = new AudioSource();
         sprite = gameObject.GetComponent<UISpriteComponent>();
+    }
+
+    public override void Start()
+    {
+        temp_change = 50.0f;
     }
 
     public override void Update()
@@ -38,7 +45,20 @@ public class PlayButton : Script
         if (bgm.finished(bgmName))
         {
             bgm.play(bgmName);
+            //AudioSource.Play(bgmName);
             Console.WriteLine("Mainmenu Update()");
+        }
+
+        if(Input.GetKeyDown(Keycode.V))
+        {
+            temp_change -= 5f;
+            bgm.setBGMVol(temp_change);
+        }
+
+        if(Input.GetKeyDown(Keycode.B))
+        {
+            temp_change += 5f;
+            bgm.setBGMVol(temp_change);
         }
 
         if (Input.GetMouseButtonDown(Keycode.M1) && sprite.IsMouseCollided())
