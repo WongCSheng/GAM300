@@ -422,8 +422,8 @@ namespace TDS
                 ERRCHECK(sounds[soundInfo.getUniqueID()]->setMode(FMOD_3D));
                 set3dChannelPosition(soundInfo, channels[soundInfo.getUniqueID()]);
             }
-            else
-                std::cout << "Audio Engine: Can't update sound position!\n";
+            /*else
+                std::cout << "Audio Engine: Can't update sound position!\n";*/
         }
 
         bool AudioEngine::checkPlaying(SoundInfo& soundInfo)
@@ -636,9 +636,9 @@ namespace TDS
 
         void ERRCHECK_fn(FMOD_RESULT result, const char* file, int line)
         {
-            (void)file;//TODO
-            if (result != FMOD_OK)
-                std::cout << "FMOD ERROR: AudioEngine.cpp [Line " << line << "] " << result << "  - " << FMOD_ErrorString(result) << '\n';
+            //(void)file;//TODO
+            //if (result != FMOD_OK)
+            //    std::cout << "FMOD ERROR: AudioEngine.cpp [Line " << line << "] " << result << "  - " << FMOD_ErrorString(result) << '\n';
         }
 
         void AudioEngine::printEventInfo(FMOD::Studio::EventDescription * eventDescription)
