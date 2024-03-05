@@ -340,7 +340,7 @@ namespace TDS
                     //std::cout << "No channelgroup chosen" << std::endl;
                 }
             }
-
+            
             return vol * 100.f;
         }
 

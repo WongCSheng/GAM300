@@ -35,19 +35,23 @@ public class PlayButton : Script
         sprite = gameObject.GetComponent<UISpriteComponent>();
     }
 
+    public override void Start()
+    {
+    }
+
     public override void Update()
     {
         if (bgm.finished(bgmName))
         {
             //bgm.play(bgmName);
         }
-
+        
         if (Input.GetMouseButtonDown(Keycode.M1) && sprite.IsMouseCollided())
         {
             fading = true;
             bgm.FadeOut(3, bgmName);
-            //GraphicsManagerWrapper.ToggleViewFrom2D(false);
         }
+
         if (fading == true)
         {
             float alpha = blackScreen.GetComponent<UISpriteComponent>().getColourAlpha();
