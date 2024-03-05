@@ -466,18 +466,20 @@ namespace TDS
             ERRCHECK(lowLevelSystem->set3DListenerAttributes(0, &listenerpos, 0, &forward, &up));
         }
 
-        void AudioEngine::get3DListenerCharacteristics(Vec3& pos, Vec3& velocity, Vec3& forward, Vec3& Up)
+        void AudioEngine::get3DListenerCharacteristics(float& posX, float& posY, float& posZ,
+            float& velX, float& velY, float& velZ, float& forX, float& forY, float& forZ,
+            float& upX, float& upY, float& upZ)
         {
-            FMOD_VECTOR fpos{pos.x, pos.y, pos.z},
-                fvel{velocity.x, velocity.y, velocity.z},
-                ffor{forward.x, forward.y, forward.z},
-                fup{ Up.x, Up.y, Up.z };
+            FMOD_VECTOR fpos{posX, posY, posZ},
+                fvel{velX, velY, velZ},
+                ffor{forX, forY, forZ},
+                fup{ upX, upY, upZ };
             ERRCHECK(lowLevelSystem->get3DListenerAttributes(1, &fpos, &fvel, &ffor, &fup));
 
-            pos = { fpos.x, fpos.y, fpos.z };
-            velocity = { fvel.x, fvel.y, fvel.z };
-            forward = { ffor.x, ffor.y, ffor.z };
-            Up = { fup.x, fup.y, fup.z };
+            posX = fpos.x; posY = fpos.y; posZ = fpos.z;
+            velX = fvel.x; velY = fvel.y; velZ = fvel.z;
+            forX = ffor.x; forY = ffor.y; forZ = ffor.z;
+            upX = fup.x; upY = fup.y; upZ = fup.z;
         }
 
         unsigned int AudioEngine::getSoundLengthInMS(SoundInfo soundInfo)

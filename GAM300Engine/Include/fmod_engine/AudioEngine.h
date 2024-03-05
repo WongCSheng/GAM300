@@ -234,7 +234,9 @@ namespace TDS
              * @param forward - forward angle character is looking in
              * @param up - up vector that is perpendicular to forward vector 
             */
-            DLL_API  void get3DListenerCharacteristics(Vec3& pos, Vec3 &velocity, Vec3 &forward, Vec3 &Up);
+            DLL_API  void get3DListenerCharacteristics(float& posX, float& posY, float& posZ,
+                float& velX, float& velY, float& velZ, float& forX, float& forY, float& forZ,
+                float& upX, float& upY, float& upZ);
 
             /**
             * Utility method that returns the length of a SoundInfo's audio file in milliseconds

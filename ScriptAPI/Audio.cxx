@@ -106,12 +106,13 @@ namespace ScriptAPI
 
 	void AudioSource::GetListener(Vector3& pos, Vector3& velocity, Vector3& forward, Vector3& up)
 	{
-		TDS::Vec3 tpos, tvel, tfor, tup;
-		audio_engine->get3DListenerCharacteristics(tpos, tvel, tfor, tup);
+		float posX, posY, posZ, velX, velY, velZ,
+			forX, forY, forZ, upX, upY, upZ;
+		audio_engine->get3DListenerCharacteristics(posX, posY, posZ, velX, velY, velZ, forX, forY, forZ, upX, upY, upZ);
 
-		pos = Vector3(tpos.x, tpos.y, tpos.z);
-		velocity = Vector3(tvel.x, tvel.y, tvel.z);
-		forward = Vector3(tfor.x, tfor.y, tfor.z);
-		up = Vector3(tup.x, tup.y, tup.z);
+		pos = Vector3(posX, posY, posZ);
+		velocity = Vector3(velX, velY, velZ);
+		forward = Vector3(forX, forY, forZ);
+		up = Vector3(upX, upY, upZ);
 	}
 }
