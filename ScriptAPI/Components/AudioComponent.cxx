@@ -333,7 +333,7 @@ namespace ScriptAPI
 	}
 	void AudioComponent::volume::set(float value)
 	{
-		TDS::GetSoundInfo(entityID)->setVolume(value);
+		TDS::GetSoundInfo(entityID)->setVol(value);
 	}
 
 	//Reverb

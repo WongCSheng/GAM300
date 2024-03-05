@@ -278,8 +278,6 @@ namespace TDS
             vol /= 100.f;
             vol = Mathf::Clamp(vol, 0.f, 1.f);
             
-            //std::cout << vol << std::endl;
-            
             mastergroup->setPaused(true);
             mastergroup->setVolume(vol);
             mastergroup->setPaused(false);
@@ -335,18 +333,20 @@ namespace TDS
                 case 'B':
                 {
                     BGM->getVolume(&vol);
+                    break;
                 }
                 default:
                 {
                     //std::cout << "No channelgroup chosen" << std::endl;
                 }
             }
-            return vol;
+
+            return vol * 100.f;
         }
 
         void AudioEngine::SetSoundVolume(float vol, SoundInfo& soundInfo)
         {
-            soundInfo.setVolume(vol);
+            soundInfo.setVol(vol);
 
             channels[soundInfo.getUniqueID()]->setPaused(true);
             channels[soundInfo.getUniqueID()]->setVolume(vol);
@@ -407,7 +407,7 @@ namespace TDS
                     //std::cout << "Current DSP Clock: " << parentclock << ", fade length in samples  = " << fadeSampleLength << "\n";
                 }
                 //std::cout << "Updating with new soundinfo vol \n";
-                soundInfo.setVolume(newVolume); // update the SoundInfo's volume
+                soundInfo.setVol(newVolume); // update the SoundInfo's volume
             }
             else
                 std::cout << "AudioEngine: Can't update sound loop volume! (It isn't playing or might not be loaded)\n";
@@ -464,6 +464,20 @@ namespace TDS
             forward = { forwardX, forwardY, forwardZ };
             up = { upX,      upY,      upZ };
             ERRCHECK(lowLevelSystem->set3DListenerAttributes(0, &listenerpos, 0, &forward, &up));
+        }
+
+        void AudioEngine::get3DListenerCharacteristics(Vec3& pos, Vec3& velocity, Vec3& forward, Vec3& Up)
+        {
+            FMOD_VECTOR fpos{pos.x, pos.y, pos.z},
+                fvel{velocity.x, velocity.y, velocity.z},
+                ffor{forward.x, forward.y, forward.z},
+                fup{ Up.x, Up.y, Up.z };
+            ERRCHECK(lowLevelSystem->get3DListenerAttributes(1, &fpos, &fvel, &ffor, &fup));
+
+            pos = { fpos.x, fpos.y, fpos.z };
+            velocity = { fvel.x, fvel.y, fvel.z };
+            forward = { ffor.x, ffor.y, ffor.z };
+            Up = { fup.x, fup.y, fup.z };
         }
 
         unsigned int AudioEngine::getSoundLengthInMS(SoundInfo soundInfo)
@@ -621,7 +635,9 @@ namespace TDS
         {
             FMOD_VECTOR position = { soundInfo.getX() * DISTANCEFACTOR, soundInfo.getY() * DISTANCEFACTOR, soundInfo.getZ() * DISTANCEFACTOR };
             FMOD_VECTOR velocity = { 0.0f, 0.0f, 0.0f }; // TODO Add dopplar (velocity) support
+            ERRCHECK(channel->setPaused(true));
             ERRCHECK(channel->set3DAttributes(&position, &velocity));
+            ERRCHECK(channel->setPaused(false));
         }
 
         void AudioEngine::initReverb()

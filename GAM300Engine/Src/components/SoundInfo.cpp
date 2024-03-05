@@ -102,7 +102,7 @@ namespace TDS
     /**
     * Parameter takes in Volume values (0 - 100)
     */
-    void SoundInfo::setVolume(float vol)
+    void SoundInfo::setVol(float vol)
     {
         /*volume = 20.0f * log10f(vol);
 

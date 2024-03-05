@@ -6,7 +6,6 @@ using System.Security.Cryptography;
 public class FPS_Controller_Script : Script
 {
     public RigidBodyComponent rb;
-    public AudioComponent startingVO;   //To be changed
     public string[] footStepSoundEffects;
     String[] backgroundMusic;
     private int currentFootStepPlaying;
@@ -127,7 +126,6 @@ public class FPS_Controller_Script : Script
     {
         rb = gameObject.GetComponent<RigidBodyComponent>();
         //playerCamera = GameObjectScriptFind("playerCameraObject").GetComponent<CameraComponent>();
-        startingVO = gameObject.GetComponent<AudioComponent>();
         // Set internal variables
         playerCamera.SetFieldOfView(fov);
         originalScale = transform.GetScale();
@@ -299,7 +297,6 @@ public class FPS_Controller_Script : Script
         {
             HeadBob();
         }
-
     }
     public override void FixedUpdate()
     {

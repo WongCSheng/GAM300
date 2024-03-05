@@ -39,8 +39,10 @@ namespace ScriptAPI
         /*float get_pitch();
         void set_pitch(float set);*/
 
-        void SetListenerPos(Vector3 pos, System::String^ name);
+        void SetListenerPos(Vector3 pos, Vector3 forward, Vector3 Up);
         void SetSoundPos(Vector3 pos, System::String^ name);
+
+        void GetListener(Vector3& pos, Vector3& velocity, Vector3& forward, Vector3& up);
 
         //template<typename T>
         //T& operator=(float val);
