@@ -43,7 +43,7 @@ public class PlayButton : Script
     {
         if (bgm.finished(bgmName))
         {
-            //bgm.play(bgmName);
+            bgm.play(bgmName);
         }
         
         if (Input.GetMouseButtonDown(Keycode.M1) && sprite.IsMouseCollided())

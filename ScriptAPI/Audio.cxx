@@ -37,6 +37,11 @@ namespace ScriptAPI
 		audio_engine->playSound(temp);
 	}
 
+	void AudioSource::Play(AudioComponent^ clip)
+	{
+
+	}
+
 	void AudioSource::Pause(System::String^ clip)
 	{
 		TDS::SoundInfo temp(toStdString(clip));
@@ -114,5 +119,15 @@ namespace ScriptAPI
 		velocity = Vector3(velX, velY, velZ);
 		forward = Vector3(forX, forY, forZ);
 		up = Vector3(upX, upY, upZ);
+	}
+
+	/**
+	* Create a SoundInfo with AudioComponent
+	*/
+	TDS::SoundInfo convertAudioComp(AudioComponent^ ac)
+	{
+		TDS::SoundInfo temp;
+		
+		return temp;
 	}
 }

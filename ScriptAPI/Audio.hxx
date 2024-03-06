@@ -28,6 +28,7 @@ namespace ScriptAPI
         
         static void Play(System::String^ clip, unsigned int delay);
         static void Play(System::String^ clip);
+        static void Play(AudioComponent^ clip);
         static void Pause(System::String^ clip);
         static void Stop(System::String^ clip);
         static void StopAll();
@@ -52,4 +53,6 @@ namespace ScriptAPI
         static unsigned long wait;
         static float deltatime;
     };
+
+    TDS::SoundInfo convertAudioComp(AudioComponent^ ac);
 }
