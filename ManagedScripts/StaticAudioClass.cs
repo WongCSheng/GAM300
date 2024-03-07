@@ -2,12 +2,15 @@
 using System;
 using System.Collections.Generic;
 
-public static class AudioClass
+public sealed class AudioClass
 {
-    //private static AudioSource audioPlayer = new AudioSource();
-
-    //public static AudioSource getAudioPlayer()
-    //{
-    //    return audioPlayer;
-    //}
+    private AudioClass() { }
+    private static readonly Lazy<AudioClass> lazy = new Lazy<AudioClass>(() => new AudioClass());
+     public static AudioClass Instance
+    {
+        get
+        {
+            return lazy.Value;
+        }
+    }
 }

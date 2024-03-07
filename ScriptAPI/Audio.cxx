@@ -20,15 +20,15 @@ namespace ScriptAPI
 		clips->Add(toSystemString(clip.getFilePath()), clip);
 	}
 	
-	void AudioSource::Play(System::String^ clip, unsigned int delay)
-	{		
-		/*msclr::interop::marshal_context context;
-		TDS::SoundInfo temp = context.marshal_as<TDS::SoundInfo>(clip);*/
+	//void AudioSource::Play(System::String^ clip, unsigned int delay)
+	//{		
+	//	/*msclr::interop::marshal_context context;
+	//	TDS::SoundInfo temp = context.marshal_as<TDS::SoundInfo>(clip);*/
 
-		TDS::SoundInfo temp(toStdString(clip));
+	//	TDS::SoundInfo temp(toStdString(clip));
 
-		audio_engine->FadeInSound(delay, temp);
-	}
+	//	audio_engine->FadeInSound(delay, temp);
+	//}
 
 	void AudioSource::Play(System::String^ clip)
 	{
@@ -37,10 +37,10 @@ namespace ScriptAPI
 		audio_engine->playSound(temp);
 	}
 
-	void AudioSource::Play(AudioComponent^ clip)
+	/*void AudioSource::Play(AudioComponent^ clip)
 	{
 
-	}
+	}*/
 
 	void AudioSource::Pause(System::String^ clip)
 	{
@@ -93,12 +93,6 @@ namespace ScriptAPI
 
 	}*/
 
-	//template<typename T>
-	//T& AudioSource::operator=(float val)
-	//{
-	//	value = val;
-	//}
-
 	void AudioSource::SetListenerPos(Vector3 pos, Vector3 forward, Vector3 Up)
 	{
 		audio_engine->set3DListenerPosition(pos.X, pos.Y, pos.Z, forward.X, forward.Y, forward.Z, Up.X, Up.Y, Up.Z);
@@ -124,10 +118,10 @@ namespace ScriptAPI
 	/**
 	* Create a SoundInfo with AudioComponent
 	*/
-	TDS::SoundInfo convertAudioComp(AudioComponent^ ac)
+	/*TDS::SoundInfo convertAudioComp(AudioComponent^ ac)
 	{
 		TDS::SoundInfo temp;
 		
 		return temp;
-	}
+	}*/
 }
