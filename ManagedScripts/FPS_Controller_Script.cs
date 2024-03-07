@@ -125,7 +125,7 @@ public class FPS_Controller_Script : Script
     public override void Awake()
     {
         rb = gameObject.GetComponent<RigidBodyComponent>();
-        //playerCamera = GameObjectScriptFind("playerCameraObject").GetComponent<CameraComponent>();
+        playerCamera = GameObjectScriptFind("playerCameraObject").GetComponent<CameraComponent>();
         // Set internal variables
         playerCamera.SetFieldOfView(fov);
         originalScale = transform.GetScale();
