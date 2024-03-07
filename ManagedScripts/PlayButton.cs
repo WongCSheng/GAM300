@@ -14,7 +14,6 @@ using System;
 public class PlayButton : Script
 {
     public AudioComponent bgm;
-    AudioClass ac = AudioClass.Instance; //Get instance class. Under testing
     public string bgmName;
     private UISpriteComponent sprite;
     public GameObject blackScreen;
@@ -44,7 +43,7 @@ public class PlayButton : Script
     {
         if (bgm.finished(bgmName))
         {
-            //bgm.play(bgmName);
+            bgm.play(bgmName);
             
         }
         

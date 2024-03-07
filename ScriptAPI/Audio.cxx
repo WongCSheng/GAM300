@@ -103,7 +103,7 @@ namespace ScriptAPI
 		audio_engine->update3DSoundPosition(pos.toVec3(), *audio_engine->findSound(toStdString(name)));
 	}
 
-	void AudioSource::GetListener(Vector3& pos, Vector3& velocity, Vector3& forward, Vector3& up)
+	/*void AudioSource::GetListener(Vector3& pos, Vector3& velocity, Vector3& forward, Vector3& up)
 	{
 		float posX, posY, posZ, velX, velY, velZ,
 			forX, forY, forZ, upX, upY, upZ;
@@ -113,7 +113,7 @@ namespace ScriptAPI
 		velocity = Vector3(velX, velY, velZ);
 		forward = Vector3(forX, forY, forZ);
 		up = Vector3(upX, upY, upZ);
-	}
+	}*/
 
 	/**
 	* Create a SoundInfo with AudioComponent

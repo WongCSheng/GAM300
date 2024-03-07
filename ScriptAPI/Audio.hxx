@@ -15,9 +15,9 @@ namespace ScriptAPI
 
             static void AddClips(AudioComponent clip);
         
-            static void Play(System::String^ clip, unsigned int delay);
+            //static void Play(System::String^ clip, unsigned int delay);
             static void Play(System::String^ clip);
-            static void Play(AudioComponent^ clip);
+            //static void Play(AudioComponent^ clip);
             static void Pause(System::String^ clip);
             static void Stop(System::String^ clip);
             static void StopAll();
@@ -32,7 +32,7 @@ namespace ScriptAPI
             static void SetListenerPos(Vector3 pos, Vector3 forward, Vector3 Up);
             static void SetSoundPos(Vector3 pos, System::String^ name);
 
-            static void GetListener(Vector3& pos, Vector3& velocity, Vector3& forward, Vector3& up);
+            //static void GetListener(Vector3& pos, Vector3& velocity, Vector3& forward, Vector3& up);
 
             static System::Collections::SortedList^ clips;
             static TDS::AudioWerks::AudioEngine* audio_engine;
