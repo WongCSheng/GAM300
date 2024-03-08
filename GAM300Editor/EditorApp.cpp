@@ -325,6 +325,7 @@ namespace TDS
                     startPlaying = false;
                     SceneManager::GetInstance()->awake();
                     SceneManager::GetInstance()->start();
+                    proxy_audio_system::ScriptPlayAllPaused();
                 }
 
                 if (!gamePaused)
