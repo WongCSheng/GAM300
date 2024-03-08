@@ -214,10 +214,7 @@ namespace TDS
         {
             if (checkPlaying(soundInfo))
             {
-                if (soundInfo.isLoop)
-                {
-                    ERRCHECK(channels[soundInfo.getUniqueID()]->setPaused(true));
-                }
+                ERRCHECK(channels[soundInfo.getUniqueID()]->setPaused(true));
             }
             else
             {
@@ -428,11 +425,12 @@ namespace TDS
 
         bool AudioEngine::checkPlaying(SoundInfo& soundInfo)
         {
-            bool check{ false };
+            bool playing{ false }, pause{ false };
 
-            channels[soundInfo.getUniqueID()]->isPlaying(&check);
+            channels[soundInfo.getUniqueID()]->isPlaying(&playing);
+            channels[soundInfo.getUniqueID()]->getPaused(&pause);
 
-            return check;
+            return (playing ^ pause);
         }
 
         bool AudioEngine::checkPaused(SoundInfo& soundInfo)

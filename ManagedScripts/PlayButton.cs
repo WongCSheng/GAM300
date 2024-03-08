@@ -49,6 +49,7 @@ public class PlayButton : Script
             
         }
         
+        
         if (Input.GetMouseButtonDown(Keycode.M1) && sprite.IsMouseCollided())
         {
             fading = true;

@@ -92,8 +92,8 @@ public class FPS_Controller_Script : Script
     #endregion
 
     #region Crouch
-    public bool enableCrouch = true;
-    public bool holdToCrouch = true;
+    public bool enableCrouch;
+    public bool holdToCrouch;
     public uint crouchKey = Keycode.CTRL;
     public float crouchHeight = .75f;
     public float speedReduction = .5f;
@@ -193,6 +193,8 @@ public class FPS_Controller_Script : Script
         }
         #endregion
 
+        enableCrouch = true;
+        holdToCrouch = false;
     }
     public override void Update()
     {
@@ -274,9 +276,7 @@ public class FPS_Controller_Script : Script
                 if (isCrouched) StandUp();
                 else Crouch();
 
-
                 isCrouched = !isCrouched;
-                //Console.WriteLine(isCrouched);
             }
 
             //else if (Input.GetKeyDown(crouchKey) && holdToCrouch)
@@ -572,7 +572,6 @@ public class FPS_Controller_Script : Script
             new Vector4 (quat.X, quat.Y, quat.Z, quat.W), new Vector3(0, 0, 0), new Vector3(0, 0, 0));
 
         if (speedReduction != 0) walkSpeed *= speedReduction;
-
     }
 
     private void StandUp()
