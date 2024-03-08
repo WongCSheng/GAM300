@@ -333,8 +333,6 @@ namespace TDS
                     ecs.runSystems(1, DeltaTime);
                     executeUpdate();
                     executeLateUpdate();
-                    std::cout << "Mouse Hidden: " << TDS::InputSystem::GetInstance()->getCursorVisible() << std::endl;
-                    std::cout << "Mouse Locked:" << TDS::InputSystem::GetInstance()->getMouseLock() << std::endl;
                 }
             }
             else
