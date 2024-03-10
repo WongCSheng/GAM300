@@ -12,12 +12,13 @@ public class TempEndScene : Script
     {
         //audio = new AudioComponent();
         audio = gameObject.GetComponent<AudioComponent>();
-        audio.play(monsterSFX); audio.FadeOut(4, monsterSFX);
+        audio.play(monsterSFX);
+        audio.FadeOut(3, monsterSFX);
         audio.FadeIn(7, runningSFX);
     }
     public override void Start()
     {
-        
+
     }
     public override void Update()
     {

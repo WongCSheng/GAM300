@@ -372,15 +372,17 @@ namespace TDS
 
         void AudioEngine::FadeInSound(unsigned int duration, SoundInfo& soundInfo)
         {
-            pauseSound(soundInfo);
-
+            playSound(soundInfo);
+            
             unsigned long long DSPClock{ 0 };
             int rate{ 0 };
             ERRCHECK(lowLevelSystem->getSoftwareFormat(&rate, 0, 0));
 
+            ERRCHECK(channels[soundInfo.uniqueID]->setPaused(true));
             ERRCHECK(channels[soundInfo.uniqueID]->getDSPClock(0, &DSPClock));
             ERRCHECK(channels[soundInfo.uniqueID]->addFadePoint(DSPClock, 0.f));
             ERRCHECK(channels[soundInfo.uniqueID]->addFadePoint(DSPClock + (rate * duration), soundInfo.volume));
+            ERRCHECK(channels[soundInfo.uniqueID]->setPaused(false));
         }
 
         void AudioEngine::updateSoundLoopVolume(SoundInfo & soundInfo, float newVolume, unsigned int fadeSampleLength)
