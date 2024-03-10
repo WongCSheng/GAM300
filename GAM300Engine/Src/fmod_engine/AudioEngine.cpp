@@ -604,6 +604,11 @@ namespace TDS
             return sounds;
         }
 
+        int AudioEngine::GetAmountOfChannelsPlaying()
+        {
+            return channels.size();
+        }
+
         std::map<std::string, FMOD::Studio::Bank*> AudioEngine::getBankContainer()
         {
             return soundBanks;
