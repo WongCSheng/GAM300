@@ -7,24 +7,37 @@ public class EventBathroomSink : Script
     public bool doOnce = true;
     public GameObject? bathroomLights;
     public GameObject? bathroomCurtains;
+    public GameObject? player;
+    public GameObject? monster;
+    public GameObject? lastMonsterLocation;
+    public GameObject? playerFlashlight;
 
     private bool flicker = false;
     public float flickerTimer = 0.0f;
     public float flickerSpeed = 1.0f;
     public bool flickerBool = true;
 
+    public float ghostTimer = 1.0f;
+
     public float flickerOffTimer = 1.0f;
     public bool showerEvent = false;
 
-    public float showerCuratinMoveSpeed = 100.0f;
+    public bool playerWorks = false;
+
+    public Vector3 lastPlayerRot = new Vector3();
+
+    public float showerCuratinMoveSpeed = 300.0f;
+    public AudioComponent audio;
 
     public override void Update()
     {
+        audio = gameObject.GetComponent<AudioComponent>();
         if (!battery.ActiveInHierarchy() && doOnce)
         {
-            // Check for Battery pick up, play audio
+            audio.play("pick up item_metal");
             // Martin (Internal): At least this will help.
             flicker = true;
+            lastPlayerRot = player.transform.GetRotation();
         }
 
 
@@ -43,8 +56,27 @@ public class EventBathroomSink : Script
             }
         }
         if (showerEvent && !flicker) { 
-            // Shower Curtain noise
-            // Water stops running noise
+            if (player.transform.GetRotation().Y >= lastPlayerRot.Y + 120 || player.transform.GetRotation().Y <= lastPlayerRot.Y - 120)
+            {
+                monster.GetComponent<AnimatedComponent>().SetEnabled(true);
+                monster.SetActive(true);
+                audio.play("smallscare2");
+                if (player.transform.GetRotation().Y >= lastPlayerRot.Y + 150 || player.transform.GetRotation().Y <= lastPlayerRot.Y - 150)
+                {
+                    ghostTimer -= Time.deltaTime;
+                    if (ghostTimer <= 0.7f)
+                    {
+                        playerFlashlight.SetActive(false);
+                        player.GetComponent<Flashlight_Script>().activateLight = false;
+                        audio.play("flashlight off");
+                    }
+                    if (ghostTimer <= 0.0f )
+                    {
+                        monster.SetActive(false);
+                        showerEvent = false;
+                    }
+                }
+            }
         }
     }
 
@@ -64,6 +96,7 @@ public class EventBathroomSink : Script
 
     void MoveShowerCurtain()
     {
+        audio.play("showerpull");
         bathroomCurtains.transform.SetPositionX(bathroomCurtains.transform.GetPosition().X + (showerCuratinMoveSpeed * Time.deltaTime));
     }
 }
