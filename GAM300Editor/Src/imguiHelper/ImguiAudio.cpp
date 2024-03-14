@@ -140,26 +140,6 @@ namespace TDS
 
 	void AudioImgui::update()
 	{
-		//if (appear)
-		//{
-		//	ImGui::Text("Controls: ");
-		//	ImGui::SameLine();
-
-		//	if (ImGui::Selectable("Play Song"))
-		//	{
-		//		if (ImGui::ArrowButton("Play", ImGuiDir_Right))
-		//		{
-		//			/*SoundInfo selected{};
-		//			selected = ImGui::IsItemClicked();
-
-		//			audeng->playSound();*/
-		//		}
-		//	}
-
-		//	ImGui::Columns(3);
-		//	ImGui::SliderFloat("Playback", &bar, 16, 512);
-		//}
-
 		int AmountOfSound = (int)audeng->GetAmountOfChannelsPlaying();
 
 		ImGui::Text("INFORMATION");
@@ -175,15 +155,19 @@ namespace TDS
 		ImGui::TableSetupColumn("Position Z");
 		ImGui::TableSetupColumn("State");
 
+		
+
 		// Add data to the table
 		for (int row = 0; row < AmountOfSound; ++row)
 		{
+			
+			
 			ImGui::TableNextRow();
 
 			for (int col = 0; col < 7; ++col)
 			{
 				ImGui::TableNextColumn();
-				ImGui::Text("test %d", col);
+				ImGui::Text("%c", col);
 			}
 		}
 

@@ -316,6 +316,11 @@ namespace TDS
             DLL_API  std::map<unsigned int, FMOD::Sound*> getSoundContainer();
 
             /**
+             * Get container of channels and the sound name together
+             */
+            DLL_API  std::map<std::string, SoundInfo> getChannelInfoContainer();
+
+            /**
              * Get the amount of channels that's playing
             */
             DLL_API  int GetAmountOfChannelsPlaying();
@@ -339,6 +344,11 @@ namespace TDS
              * Find the SoundInfo by name
              */
             DLL_API  SoundInfo* findSound(std::string name);
+
+            /**
+             * Find the SoundInfo by unique ID
+             */
+            DLL_API  SoundInfo* findSound(unsigned int ID);
 
             // The audio sampling rate of the audio engine
             DLL_API  static const int AUDIO_SAMPLE_RATE = 44100;

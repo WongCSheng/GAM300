@@ -606,6 +606,18 @@ namespace TDS
             return sounds;
         }
 
+        std::map<std::string, SoundInfo> AudioEngine::getChannelInfoContainer()
+        {
+            std::map<std::string, SoundInfo> temp;
+
+            for (auto& it : channels)
+            {
+                temp[findSound(it.first)->getFilePath()] = *findSound(it.first);
+            }
+
+            return temp;
+        }
+
         int AudioEngine::GetAmountOfChannelsPlaying()
         {
             return channels.size();
@@ -629,6 +641,19 @@ namespace TDS
         SoundInfo* AudioEngine::findSound(std::string name)
         {
             return SoundInfo_Container[name];
+        }
+
+        SoundInfo* AudioEngine::findSound(unsigned int ID)
+        {
+            for (auto& it : SoundInfo_Container)
+            {
+                if (it.second->uniqueID == ID)
+                {
+                    return it.second;
+                }
+            }
+
+            return nullptr;
         }
 
         //// Private definitions 
