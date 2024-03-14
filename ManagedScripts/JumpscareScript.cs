@@ -27,7 +27,7 @@ public class JumpscareScript : Script
     public override void Update()
     {
         switch (jumpscareSequenceIndex)
-        {
+        {            
             // 1. calculating rotations
             case 0:
 
@@ -65,6 +65,8 @@ public class JumpscareScript : Script
 
                 if (player.transform.GetRotation().Y >= yRotation - 3 && player.transform.GetRotation().Y <= yRotation + 3)
                 {
+                    gameObject.GetComponent<AudioComponent>().stopAll();
+
                     gameObject.GetComponent<AudioComponent>().play("mon_death");
                     ++jumpscareSequenceIndex;
                 }
