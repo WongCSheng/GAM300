@@ -141,6 +141,7 @@ namespace TDS
 	void AudioImgui::update()
 	{
 		int AmountOfSound = (int)audeng->GetAmountOfChannelsPlaying();
+		std::cout << "Amount of channels: " << AmountOfSound << '\n';
 
 		ImGui::Text("INFORMATION");
 		// Begin the table with two columns
@@ -154,7 +155,6 @@ namespace TDS
 		ImGui::TableSetupColumn("Position Y");
 		ImGui::TableSetupColumn("Position Z");
 		ImGui::TableSetupColumn("State");
-
 		
 
 		// Add data to the table

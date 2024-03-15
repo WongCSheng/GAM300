@@ -159,8 +159,7 @@ namespace TDS
                         }
 
                         // start play in 'paused' state
-                        ERRCHECK(lowLevelSystem->playSound(sounds[soundInfo.getUniqueID()], 0, true /* start paused */, &channel));
-                        ERRCHECK(channel->setChannelGroup(sort_channel));
+                        ERRCHECK(lowLevelSystem->playSound(sounds[soundInfo.getUniqueID()], sort_channel, true /* start paused */, &channel));
 
                         if (soundInfo.is3D)
                             set3dChannelPosition(soundInfo, channel);
@@ -453,6 +452,7 @@ namespace TDS
             if (!check)
             {
                 soundInfo.whatState = SOUND_LOADED;
+                channels.erase(soundInfo.uniqueID);
             }
 
             return !check;
