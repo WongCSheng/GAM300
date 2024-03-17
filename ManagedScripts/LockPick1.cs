@@ -210,7 +210,7 @@ public class LockPick1 : Script
 
         if (counter < 5 && next_VO && playOnce)
         {            
-            audio.play(playerGuideVO[counter]);
+            audio.Queue(playerGuideVO[counter]);
             next_VO = false;
         }
         if (audio.finished(playerGuideVO[0]))
@@ -644,7 +644,7 @@ public class LockPick1 : Script
                 if (doorIndex == 0)
                 {
                     counter = 2;
-                    audio.play(playerGuideVO[2]); //aite looks like im in
+                    audio.Queue(playerGuideVO[2]); //aite looks like im in
                     next_VO = true;
                     GameplaySubtitles.counter = 7;
                     Flashlight_Script.batteryLife = 49;

@@ -438,11 +438,7 @@ public class FPS_Controller_Script : Script
         #endregion
         if (!LockPick1.enteredHouse)
         {
-            if (audio.finished(backgroundMusic[0]))
-            {
-                audio.play(backgroundMusic[0]);
-                //audio.setVolume(0.5f);
-            }
+            audio.play(backgroundMusic[0]);
         }
         else
         {

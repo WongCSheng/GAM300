@@ -411,6 +411,7 @@ public class GhostMovement : Script
     {
         AudioComponent audio = gameObject.GetComponent<AudioComponent>();
         walkingSoundCounter = 0;
+        audio.set3DCoords(transform.GetPosition(), walkingSounds[walkingSoundCounter]);
         audio.play(walkingSounds[walkingSoundCounter]);
         Vector3 temp = new Vector3(1000, 1000, 0);
         //audio.set3DCoords(temp/*transform.GetPosition()*/ , walkingSounds[walkingSoundCounter]);
@@ -432,7 +433,6 @@ public class GhostMovement : Script
                     audio.play("pc_afterscare_heartbeat");
                     return false;
                 }
-
 
                 audio.set3DCoords(transform.GetPosition(), walkingSounds[walkingSoundCounter]);
                 audio.play(walkingSounds[walkingSoundCounter]);

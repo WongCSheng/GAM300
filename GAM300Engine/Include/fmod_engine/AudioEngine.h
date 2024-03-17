@@ -402,7 +402,7 @@ namespace TDS
             static const unsigned int MAX_AUDIO_CHANNELS = 1024;
 
             // Units per meter.  I.e feet would = 3.28.  centimeters would = 100.
-            const float DISTANCEFACTOR = 100.0f;
+            const float DISTANCEFACTOR = 150.0f;
 
             // Listener head position, initialized to default value
             FMOD_VECTOR listenerpos = { 0.0f, 0.0f, -1.0f * DISTANCEFACTOR };
