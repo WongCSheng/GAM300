@@ -410,7 +410,7 @@ public class GhostMovement : Script
         walkingSoundCounter = 0;
         audio.play(walkingSounds[walkingSoundCounter]);
         Vector3 temp = new Vector3(1000, 1000, 0);
-        audio.set3DCoords(temp/*transform.GetPosition()*/ , walkingSounds[walkingSoundCounter]);
+        //audio.set3DCoords(temp/*transform.GetPosition()*/ , walkingSounds[walkingSoundCounter]);
         currentEvent = GhostEvent.PlayingWalkingSound;
     }
     public bool PlayMonsterWalkingSound()
@@ -510,6 +510,7 @@ public class GhostMovement : Script
     {
         if (startEvent) // Initialize variables (teleporting monster to starting position etc)
         {
+            
             eventStep = -1;
             //Console.WriteLine("initialized bedroom hiding event");
 
@@ -527,7 +528,7 @@ public class GhostMovement : Script
         switch (eventStep)
         {
             case -1:
-
+                
                 if (bedroomMonsterAppearTimer <= 0.0f)
                 {
                     transform.SetPosition(new Vector3(1790.0f, transform.GetPosition().Y, -750.0f));
@@ -736,6 +737,7 @@ public class GhostMovement : Script
             {
                 startEvent = false;
                 gameObject.GetComponent<AudioComponent>().play("pc_movethissilently");
+                GameplaySubtitles.counter = 46;
             }
 
             previousEvent = GhostEvent.DiningRoomEvent;
