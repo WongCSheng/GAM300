@@ -241,8 +241,6 @@ namespace ScriptAPI
 			return Vector3(0.f, 0.f, 0.f);
 		}
 
-		std::cout << "CameraComponent Test" << std::endl;
-
 		return Vector3(TDS::GetCameraComponent(entityID)->getForwardVector());
 	}
 	void CameraComponent::setForwardVector(float angle)

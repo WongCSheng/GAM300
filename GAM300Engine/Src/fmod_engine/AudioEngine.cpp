@@ -12,6 +12,7 @@
 #include <fmod/fmod_errors.h>
 #include <iostream>
 #include <fmod_engine/AudioEngine.h>
+#include "../camera/camerasystem/CameraSystem.h"
 
 namespace TDS
 {
@@ -473,7 +474,7 @@ namespace TDS
             listenerpos = { posX,     posY,     posZ };
             forward = { forwardX, forwardY, forwardZ };
             up = { upX,      upY,      upZ };
-            //std::cout << "Player Vector Engine Side: " << forward.x << ", " << forward.y << ", " << forward.z << std::endl;
+
             ERRCHECK(lowLevelSystem->set3DListenerAttributes(0, &listenerpos, 0, &forward, &up));
         }
 
@@ -754,6 +755,7 @@ namespace TDS
     void proxy_audio_system::audio_system_update(const float dt, const std::vector<EntityID>& entities, Transform* soundInfo)
     {
         aud_instance->update();
+        Play_queue();
     }
 
     void proxy_audio_system::audio_event_init(SoundInfo* container)
@@ -763,7 +765,6 @@ namespace TDS
 
     void proxy_audio_system::audio_event_update()
     {
-        
     }
 
     void proxy_audio_system::load_all_audio_files()
@@ -957,23 +958,19 @@ namespace TDS
     }
 
     void proxy_audio_system::Play_queue()
-    {        
-        /*Q_state = true;
-
-        if (Queue.begin()->second.first)
+    {       
+        if(!Queue.empty())
         {
-            aud_instance->playSound(*Queue.begin()->second.second);
-            Q_name = *Queue.begin()->second.second;
-            Queue.extract(Queue.begin()->first);
+            if (Queue.begin()->second.first)
+            {
+                Queue.begin()->second.first = false;
+                aud_instance->playSound(*Queue.begin()->second.second);
+            }
+            else if (checkifdone(Queue.begin()->first))
+            {
+                Queue.erase(Queue.begin()->first);
+            }
         }
-        if (aud_instance->checkPlaying(Q_name))
-        {
-            Q_name = Queue.begin()->first;
-        }
-        if (Queue.empty())
-        {
-            Q_state = false;
-        }*/
     }
 
     void proxy_audio_system::Clear_queue()

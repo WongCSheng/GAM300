@@ -28,6 +28,7 @@ public class GhostMovement : Script
 
     public String[] walkingSounds;
     public String voiceClips;
+    static public Vector3 GhostTransformPosition;
 
     #endregion
 
@@ -162,6 +163,7 @@ public class GhostMovement : Script
         monsterAlert[6] = "mon_alerted7";
 
         voiceClips = "pc_monstergoesaway1";
+        GhostTransformPosition = new Vector3();
 
         speed = 3.0f;
         soundSpeed = 1.0f;
@@ -193,6 +195,7 @@ public class GhostMovement : Script
 
         Vector2 ghostPosition = new Vector2(transform.GetPosition().X, transform.GetPosition().Z);
         Vector2 playerPosition = new Vector2(player.transform.GetPosition().X, player.transform.GetPosition().Z);
+        GhostTransformPosition = transform.GetPosition();
 
         if (!diningCheckpoint && !diningRoomEventDone && 
             !livingRoomHidingGameObject.GetComponent<Hiding>().hiding &&
@@ -253,7 +256,7 @@ public class GhostMovement : Script
                 // If touches, loses
                 if (Vector2.Distance(ghostPosition, playerPosition) <= 40.0f)
                 {
-                    QueueJumpscare();
+                    playJumpscare();
                     return;
                 }
                 else
@@ -369,7 +372,7 @@ public class GhostMovement : Script
                 break;
         }
     }
-    public void QueueJumpscare()
+    public void playJumpscare()
     {
         GraphicsManagerWrapper.ToggleViewFrom2D(false);
 
@@ -973,7 +976,7 @@ public class GhostMovement : Script
                 // If touches, loses
                 if (Vector2.Distance(ghostPosition, playerPosition) <= 40.0f)
                 {
-                    QueueJumpscare(); // For presentation
+                    playJumpscare(); // For presentation
                     return;
                 }
                 else
