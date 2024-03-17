@@ -389,9 +389,11 @@ public class GameplaySubtitles : Script
             if (audio.finished("misc_leave"))
             {
                 audio.play("pc_scream");
+                audio.set3DCoords(transform.GetPosition(), "painting_dropin");
                 audio.play("painting_dropin"); //scream and drop painting into fire same time 
                 GameplaySubtitles.counter = 8;
             }
+            audio.set3DCoords(transform.GetPosition(), "painting_burning");
             audio.play("painting_burning");
         }
 

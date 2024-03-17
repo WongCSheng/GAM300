@@ -140,8 +140,9 @@ namespace TDS
 
 	void AudioImgui::update()
 	{
-		int AmountOfSound = (int)audeng->GetAmountOfChannelsPlaying();
-		std::cout << "Amount of channels: " << AmountOfSound << '\n';
+		//int AmountOfSound = (int)audeng->GetAmountOfChannelsPlaying();
+		Vec3 playerPos, playerVel, playerForward, playerUp, ghostPos, ghostVel, ghostForward, ghostUp;
+		audeng->get3DListenerCharacteristics(playerPos, playerVel, playerForward, playerUp);
 
 		ImGui::Text("INFORMATION");
 		// Begin the table with two columns
@@ -155,10 +156,55 @@ namespace TDS
 		ImGui::TableSetupColumn("Position Y");
 		ImGui::TableSetupColumn("Position Z");
 		ImGui::TableSetupColumn("State");
-		
+
+		ImGui::Text("Name");
+		ImGui::TableNextColumn();
+		ImGui::Text("3D");
+		ImGui::TableNextColumn();
+		ImGui::Text("Loop");
+		ImGui::TableNextColumn();
+		ImGui::Text("Position X");
+		ImGui::TableNextColumn();
+		ImGui::Text("Position Y");
+		ImGui::TableNextColumn();
+		ImGui::Text("Position Z");
+		ImGui::TableNextColumn();
+		ImGui::Text("State");
+		ImGui::TableNextRow();
+
+		ImGui::Text("Player: ");
+		ImGui::TableNextColumn();
+		ImGui::Text("Yes");
+		ImGui::TableNextColumn();
+		ImGui::Text("No");
+		ImGui::TableNextColumn();
+		ImGui::Text("%f", playerPos.x);
+		ImGui::TableNextColumn();
+		ImGui::Text("%f", playerPos.y);
+		ImGui::TableNextColumn();
+		ImGui::Text("%f", playerPos.z);
+		ImGui::TableNextColumn();
+		ImGui::Text("Active");
+		ImGui::TableNextRow();
+
+		audeng->get3DListenerCharacteristics(ghostPos, ghostVel, ghostForward, ghostUp);
+		ImGui::Text("Ghost: ");
+		ImGui::TableNextColumn();
+		ImGui::Text("Yes");
+		ImGui::TableNextColumn();
+		ImGui::Text("No");
+		ImGui::TableNextColumn();
+		ImGui::Text("%f", ghostPos.x);
+		ImGui::TableNextColumn();
+		ImGui::Text("%f", ghostPos.y);
+		ImGui::TableNextColumn();
+		ImGui::Text("%f", ghostPos.z);
+		ImGui::TableNextColumn();
+		ImGui::Text("Active");
+		ImGui::TableNextRow();
 
 		// Add data to the table
-		for (int row = 0; row < AmountOfSound; ++row)
+		/*for (int row = 0; row < AmountOfSound; ++row)
 		{
 			
 			
@@ -169,11 +215,9 @@ namespace TDS
 				ImGui::TableNextColumn();
 				ImGui::Text("%c", col);
 			}
-		}
+		}*/
 
 		// End the table
 		ImGui::EndTable();
-
-		audeng->update();
 	}
 }

@@ -14,6 +14,7 @@ namespace ScriptAPI
 		void set3DCoords(float x, float y, float z, System::String^ name);
 		void set3DCoords(Vector3 in_pos, System::String^ name);
 		void setPlayerCoords(Vector3 in_pos, Vector3 in_for, Vector3 in_up);
+		//void getPlayerCoords(Vector3& out_pos, Vector3& out_for, Vector3& out_up);
 
 		bool isLoaded();
 		bool isit3D();

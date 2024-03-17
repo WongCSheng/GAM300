@@ -296,8 +296,8 @@ public class GhostMovement : Script
                 }
                 AudioComponent audio = gameObject.GetComponent<AudioComponent>();
                 int ran_num = RandomNumberGenerator.GetInt32(7);
-                audio.play(monsterAlert[ran_num]);
                 audio.set3DCoords(transform.GetPosition(), monsterAlert[ran_num]);
+                audio.play(monsterAlert[ran_num]);
 
                 break;
 
@@ -430,8 +430,10 @@ public class GhostMovement : Script
                     return false;
                 }
 
-                audio.play(walkingSounds[walkingSoundCounter]);
+
                 audio.set3DCoords(transform.GetPosition(), walkingSounds[walkingSoundCounter]);
+                audio.play(walkingSounds[walkingSoundCounter]);
+                Console.WriteLine("Monster position: " + transform.GetPosition().X + ", " + transform.GetPosition().Y + ", " + transform.GetPosition().Z);
                 playSoundTimer = soundSpeed - walkingSoundCounter * 0.05f;
                 //if (!triggerBedroomHideEvent)
                 //{

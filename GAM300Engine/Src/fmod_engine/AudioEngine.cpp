@@ -39,7 +39,7 @@ namespace TDS
             ERRCHECK(lowLevelSystem->init(MAX_AUDIO_CHANNELS, FMOD_INIT_NORMAL | FMOD_INIT_3D_RIGHTHANDED, 0));
             ERRCHECK(FMOD::Studio::System::create(&studioSystem));
             ERRCHECK(studioSystem->getCoreSystem(&lowLevelSystem));
-            ERRCHECK(lowLevelSystem->setSoftwareFormat(AUDIO_SAMPLE_RATE, FMOD_SPEAKERMODE_STEREO, 0));
+            ERRCHECK(lowLevelSystem->setSoftwareFormat(AUDIO_SAMPLE_RATE, FMOD_SPEAKERMODE_5POINT1, 0));
             ERRCHECK(lowLevelSystem->set3DSettings(1.0, DISTANCEFACTOR, 0.5f));
             ERRCHECK(lowLevelSystem->set3DNumListeners(1));
             ERRCHECK(studioSystem->initialize(MAX_AUDIO_CHANNELS, FMOD_STUDIO_INIT_NORMAL, FMOD_INIT_NORMAL, 0));
@@ -414,14 +414,24 @@ namespace TDS
 
         void AudioEngine::update3DSoundPosition(Vec3 pos, SoundInfo& soundInfo)
         {
-            if (checkPlaying(soundInfo) && soundInfo.is3D)
+            if (checkPlaying(soundInfo))
             {
+                soundInfo.is3D = true;
                 soundInfo.position = pos;
-                ERRCHECK(sounds[soundInfo.getUniqueID()]->setMode(FMOD_3D));
-                set3dChannelPosition(soundInfo, channels[soundInfo.getUniqueID()]);
+
+                channels[soundInfo.uniqueID]->stop();
             }
-            /*else
-                std::cout << "Audio Engine: Can't update sound position!\n";*/
+
+            sounds[soundInfo.uniqueID]->release();
+            channels.erase(soundInfo.uniqueID);
+            sounds.erase(soundInfo.uniqueID);
+            size_t first = soundInfo.getFilePath().find_last_of('\\') + 1,
+                last = soundInfo.getFilePath().find_last_of('.') - first;
+            std::string sound_name = soundInfo.getFilePath().substr(first, last);
+            SoundInfo_Container.erase(soundInfo.filePath);
+
+            loadSound(soundInfo);
+            playSound(soundInfo);
         }
 
         bool AudioEngine::checkPlaying(SoundInfo& soundInfo)
@@ -463,6 +473,7 @@ namespace TDS
             listenerpos = { posX,     posY,     posZ };
             forward = { forwardX, forwardY, forwardZ };
             up = { upX,      upY,      upZ };
+            //std::cout << "Player Vector Engine Side: " << forward.x << ", " << forward.y << ", " << forward.z << std::endl;
             ERRCHECK(lowLevelSystem->set3DListenerAttributes(0, &listenerpos, 0, &forward, &up));
         }
 
@@ -474,12 +485,26 @@ namespace TDS
                 fvel{velX, velY, velZ},
                 ffor{forX, forY, forZ},
                 fup{ upX, upY, upZ };
-            ERRCHECK(lowLevelSystem->get3DListenerAttributes(1, &fpos, &fvel, &ffor, &fup));
+            ERRCHECK(lowLevelSystem->get3DListenerAttributes(0, &fpos, &fvel, &ffor, &fup));
 
             posX = fpos.x; posY = fpos.y; posZ = fpos.z;
             velX = fvel.x; velY = fvel.y; velZ = fvel.z;
             forX = ffor.x; forY = ffor.y; forZ = ffor.z;
             upX = fup.x; upY = fup.y; upZ = fup.z;
+        }
+
+        void AudioEngine::get3DListenerCharacteristics(Vec3& pos, Vec3& vel, Vec3& forward, Vec3& upVec)
+        {
+            FMOD_VECTOR fpos{ pos.x, pos.y, pos.z },
+                fvel{ vel.x, vel.y, vel.z },
+                ffor{ forward.x, forward.y, forward.z },
+                fup{ upVec.x, upVec.y, upVec.z };
+            ERRCHECK(lowLevelSystem->get3DListenerAttributes(0, &fpos, &fvel, &ffor, &fup));
+
+            pos.x = fpos.x; pos.y = fpos.y; pos.z = fpos.z;
+            vel.x = fvel.x; vel.y = fvel.y; vel.z = fvel.z;
+            forward.x = ffor.x; forward.y = ffor.y; forward.z = ffor.z;
+            upVec.x = fup.x; upVec.y = fup.y; upVec.z = fup.z;
         }
 
         unsigned int AudioEngine::getSoundLengthInMS(SoundInfo soundInfo)
@@ -684,9 +709,9 @@ namespace TDS
 
         void ERRCHECK_fn(FMOD_RESULT result, const char* file, int line)
         {
-            //(void)file;//TODO
-            //if (result != FMOD_OK)
-            //    std::cout << "FMOD ERROR: AudioEngine.cpp [Line " << line << "] " << result << "  - " << FMOD_ErrorString(result) << '\n';
+            (void)file;//TODO
+            if (result != FMOD_OK)
+                std::cout << "FMOD ERROR: AudioEngine.cpp [Line " << line << "] " << result << "  - " << FMOD_ErrorString(result) << '\n';
         }
 
         void AudioEngine::printEventInfo(FMOD::Studio::EventDescription * eventDescription)
@@ -902,7 +927,7 @@ namespace TDS
     }
 
     void proxy_audio_system::ScriptSetListenerPos(Vec3 pos, Vec3 for_vec, Vec3 up_vec)
-    {
+    {        
         aud_instance->set3DListenerPosition(pos.x, pos.y, pos.z,
             for_vec.x, for_vec.y, for_vec.z,
             up_vec.x, up_vec.y, up_vec.z);

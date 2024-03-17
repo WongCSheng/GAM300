@@ -229,14 +229,23 @@ namespace TDS
 
             /**
              * Get the values of the listener
-             * @param pos - position of the listener
-             * @param velocity - speed of the movement
-             * @param forward - forward angle character is looking in
-             * @param up - up vector that is perpendicular to forward vector 
+             * @param float pos - position of the listener
+             * @param float velocity - speed of the movement
+             * @param float forward - forward angle character is looking in
+             * @param float up - up vector that is perpendicular to forward vector 
             */
             DLL_API  void get3DListenerCharacteristics(float& posX, float& posY, float& posZ,
                 float& velX, float& velY, float& velZ, float& forX, float& forY, float& forZ,
                 float& upX, float& upY, float& upZ);
+
+            /**
+             * Get the values of the listener
+             * @param Vector pos - position of the listener
+             * @param Vector velocity - speed of the movement
+             * @param Vector forward - forward angle character is looking in
+             * @param Vector up - up vector that is perpendicular to forward vector
+            */
+            DLL_API  void get3DListenerCharacteristics(Vec3& pos, Vec3& vel, Vec3& forward, Vec3& upVec);
 
             /**
             * Utility method that returns the length of a SoundInfo's audio file in milliseconds
