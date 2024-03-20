@@ -51,6 +51,7 @@ public class GhostMovement : Script
     public bool startEvent;
     private int eventStep;
 
+
     #endregion
 
     #region Bedroom Hiding Event Variables
@@ -753,8 +754,6 @@ public class GhostMovement : Script
             if (player.transform.GetPosition().X <= 319.0f)
             {
                 startEvent = false;
-                gameObject.GetComponent<AudioComponent>().play("pc_movethissilently");
-                GameplaySubtitles.counter = 46;
             }
 
             previousEvent = GhostEvent.DiningRoomEvent;
@@ -825,6 +824,25 @@ public class GhostMovement : Script
         {
             currentEvent = GhostEvent.Nothing;
             diningRoomEventDone = true;
+
+            //the below doesnt work?
+            //AudioComponent audio = gameObject.GetComponent<AudioComponent>();
+            ////play kitchen ambience
+            //if (player.transform.GetPosition().X > -1073.0f)
+            //{
+            //    audio.play("kitchen_ambience");
+
+            //}
+            //else
+            //{
+            //    audio.stop("kitchen_ambience");
+            //}
+        }
+
+        // When player enters gallery
+        if (player.transform.GetPosition().X < -1073.0f)
+        {
+            
         }
     }
 
