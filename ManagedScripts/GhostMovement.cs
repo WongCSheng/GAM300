@@ -432,39 +432,37 @@ public class GhostMovement : Script
     {
         AudioComponent audio = gameObject.GetComponent<AudioComponent>();
 
-        if (audio.finished(walkingSounds[walkingSoundCounter]))
+        //Timer
+        if(playSoundTimer < 0)
         {
-            if(walkingSoundCounter >= 7)
-            {
-                walkingSoundCounter = 0;
-            }
-            
-            if (playSoundTimer < 0)
-            {
-                audio.stop(walkingSounds[walkingSoundCounter]);
-                ++walkingSoundCounter;
+            playSoundTimer = soundSpeed - walkingSoundCounter * 0.005f;
+        }
+        else
+        {
+            playSoundTimer -= Time.deltaTime;
+        }
 
-                //if (walkingSoundCounter == 7)  // finished
-                //{
-                //    audio.play("pc_afterscare_heartbeat");
-                //    return false;
-                //}
+        //Walking counter
+        if (walkingSoundCounter >= 7)
+        {
+            walkingSoundCounter = 0;
+        }
 
-                audio.set3DCoords(transform.GetPosition(), walkingSounds[walkingSoundCounter]);
-                Console.WriteLine("Monster position: " + transform.GetPosition().X + ", " + transform.GetPosition().Y + ", " + transform.GetPosition().Z);
-                audio.play(walkingSounds[walkingSoundCounter]);
-                playSoundTimer = soundSpeed - walkingSoundCounter * 0.005f;
-                //if (!triggerBedroomHideEvent)
-                //{
-                //    int ra = RandomNumberGenerator.GetInt32(8);
-                //    audio.play(monsterPatrol[ra]);
-                //    audio.set3DCoords(temp /*transform.GetPosition()*/, monsterPatrol[ra]);
-                //}
-            }
-            else
-            {
-                playSoundTimer -= Time.deltaTime;
-            }
+        //Basement or not
+        if (!false)
+        {
+            audio.set3DCoords(transform.GetPosition(), walkingSounds[walkingSoundCounter]);
+            audio.set3DCoords(transform.GetPosition(), monsterPatrol[walkingSoundCounter]);
+            Console.WriteLine("Monster position: " + transform.GetPosition().X + ", " + transform.GetPosition().Y + ", " + transform.GetPosition().Z);
+            audio.play(walkingSounds[walkingSoundCounter]);
+            audio.play(monsterPatrol[walkingSoundCounter++]);
+        }
+        else
+        {
+            audio.set3DCoords(transform.GetPosition(), walkingSounds[walkingSoundCounter]);
+            audio.set3DCoords(transform.GetPosition(), monsterPatrol[walkingSoundCounter]);
+            audio.play(walkingSounds[walkingSoundCounter]);
+            audio.play(monsterPatrol[walkingSoundCounter++]);
         }
 
         return true;
@@ -566,7 +564,9 @@ public class GhostMovement : Script
                 }
 
                 audio.play("pc_afterscare_breathing");
+                audio.setVolume(0.6f, "pc_afterscare_breating");
                 audio.play("pc_afterscare_heartbeat");
+                audio.setVolume(0.6f, "pc_afterscare_heartbeat");
                 break;
 
             case 1: // Moving to player / hiding closet
@@ -889,7 +889,9 @@ public class GhostMovement : Script
                 }
 
                 audio.play("pc_afterscare_breathing");
+                audio.setVolume(0.6f, "pc_afterscare_breating");
                 audio.play("pc_afterscare_heartbeat");
+                audio.setVolume(0.6f, "pc_afterscare_heartbeat");
                 break;
 
             case 1: // Walk into Study Room
@@ -933,7 +935,9 @@ public class GhostMovement : Script
                 }
 
                 audio.play("pc_afterscare_breathing");
+                audio.setVolume(0.6f, "pc_afterscare_breating");
                 audio.play("pc_afterscare_heartbeat");
+                audio.setVolume(0.6f, "pc_afterscare_heartbeat");
 
                 break;
 
