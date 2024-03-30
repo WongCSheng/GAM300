@@ -432,16 +432,6 @@ public class GhostMovement : Script
     {
         AudioComponent audio = gameObject.GetComponent<AudioComponent>();
 
-        //Timer
-        if(playSoundTimer < 0)
-        {
-            playSoundTimer = soundSpeed - walkingSoundCounter * 0.005f;
-        }
-        else
-        {
-            playSoundTimer -= Time.deltaTime;
-        }
-
         //Walking counter
         if (walkingSoundCounter >= 7)
         {
@@ -451,17 +441,33 @@ public class GhostMovement : Script
         //Basement or not
         if (!Door_Script.basementcheck)
         {
-            audio.set3DCoords(transform.GetPosition(), walkingSounds[walkingSoundCounter]);
-            audio.set3DCoords(transform.GetPosition(), monsterPatrol[walkingSoundCounter]);
-            audio.play(walkingSounds[walkingSoundCounter]);
-            audio.play(monsterPatrol[walkingSoundCounter++]);
+            if(playSoundTimer < 0)
+            {
+                audio.set3DCoords(transform.GetPosition(), walkingSounds[walkingSoundCounter]);
+                audio.set3DCoords(transform.GetPosition(), monsterPatrol[walkingSoundCounter]);
+                audio.play(walkingSounds[walkingSoundCounter]);
+                audio.play(monsterPatrol[walkingSoundCounter++]);
+                playSoundTimer = soundSpeed - walkingSoundCounter * 0.005f;
+            }
+            else
+            {
+                playSoundTimer -= Time.deltaTime;
+            }
         }
         else
         {
-            audio.set3DCoords(transform.GetPosition(), walkingSounds[walkingSoundCounter]);
-            audio.set3DCoords(transform.GetPosition(), monsterPatrol[walkingSoundCounter]);
-            audio.play(walkingSounds[walkingSoundCounter]);
-            audio.play(monsterPatrol[walkingSoundCounter++]);
+            if (playSoundTimer < 0)
+            {
+                audio.set3DCoords(transform.GetPosition(), walkingSounds[walkingSoundCounter]);
+                audio.set3DCoords(transform.GetPosition(), monsterPatrol[walkingSoundCounter]);
+                audio.play(walkingSounds[walkingSoundCounter]);
+                audio.play(monsterPatrol[walkingSoundCounter++]);
+                playSoundTimer = soundSpeed - walkingSoundCounter * 0.005f;
+            }
+            else
+            {
+                playSoundTimer -= Time.deltaTime;
+            }
         }
 
         return true;
