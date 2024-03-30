@@ -449,11 +449,10 @@ public class GhostMovement : Script
         }
 
         //Basement or not
-        if (!false)
+        if (!Door_Script.basementcheck)
         {
             audio.set3DCoords(transform.GetPosition(), walkingSounds[walkingSoundCounter]);
             audio.set3DCoords(transform.GetPosition(), monsterPatrol[walkingSoundCounter]);
-            Console.WriteLine("Monster position: " + transform.GetPosition().X + ", " + transform.GetPosition().Y + ", " + transform.GetPosition().Z);
             audio.play(walkingSounds[walkingSoundCounter]);
             audio.play(monsterPatrol[walkingSoundCounter++]);
         }
@@ -574,9 +573,9 @@ public class GhostMovement : Script
                 }
 
                 audio.play("pc_afterscare_breathing");
-                audio.setVolume(0.6f, "pc_afterscare_breating");
+                audio.setVolume(0.5f, "pc_afterscare_breathing");
                 audio.play("pc_afterscare_heartbeat");
-                audio.setVolume(0.6f, "pc_afterscare_heartbeat");
+                audio.setVolume(0.5f, "pc_afterscare_heartbeat");
                 break;
 
             case 1: // Moving to player / hiding closet
@@ -913,9 +912,9 @@ public class GhostMovement : Script
                 }
 
                 audio.play("pc_afterscare_breathing");
-                audio.setVolume(0.6f, "pc_afterscare_breating");
+                audio.setVolume(0.5f, "pc_afterscare_breathing");
                 audio.play("pc_afterscare_heartbeat");
-                audio.setVolume(0.6f, "pc_afterscare_heartbeat");
+                audio.setVolume(0.5f, "pc_afterscare_heartbeat");
                 break;
 
             case 1: // Walk into Study Room
@@ -959,9 +958,9 @@ public class GhostMovement : Script
                 }
 
                 audio.play("pc_afterscare_breathing");
-                audio.setVolume(0.6f, "pc_afterscare_breating");
+                audio.setVolume(0.5f, "pc_afterscare_breathing");
                 audio.play("pc_afterscare_heartbeat");
-                audio.setVolume(0.6f, "pc_afterscare_heartbeat");
+                audio.setVolume(0.5f, "pc_afterscare_heartbeat");
 
                 break;
 

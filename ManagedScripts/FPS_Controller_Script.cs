@@ -659,13 +659,13 @@ public class FPS_Controller_Script : Script
                 {
                     currentFootStepPlaying = (currentFootStepPlaying > 10 ? 0 : currentFootStepPlaying + 1);
                     audio.play(footStepSoundEffects[currentFootStepPlaying]);
-                    audioTimer = 0.5f;
+                    audioTimer = 1.0f;
                 }
                 else
                 {
                     currentFootStepPlaying = (currentFootStepPlaying > 7 ? 0 : currentFootStepPlaying + 1);
                     audio.play(crouchstepSound[currentFootStepPlaying]);
-                    audioTimer = 0.5f;
+                    audioTimer = 1.0f;
                 }
             }
             else
