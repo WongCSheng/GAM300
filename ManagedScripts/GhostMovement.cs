@@ -439,38 +439,34 @@ public class GhostMovement : Script
         }
 
         //Basement or not
-        if (!Door_Script.basementcheck)
+        if(playSoundTimer < 0)
         {
-            if(playSoundTimer < 0)
+            if (!Door_Script.basementcheck)
             {
-                audio.set3DCoords(transform.GetPosition(), walkingSounds[walkingSoundCounter]);
-                audio.set3DCoords(transform.GetPosition(), monsterPatrol[walkingSoundCounter]);
+                audio.set3DCoords(GhostTransformPosition, walkingSounds[walkingSoundCounter]);
+                audio.set3DCoords(GhostTransformPosition, monsterPatrol[walkingSoundCounter]);
+                //Console.WriteLine("Ghost position: " + GhostTransformPosition.X + ", " + GhostTransformPosition.Y + ", " + GhostTransformPosition.Z); ;
+                //Console.WriteLine("Player position: " + player.transform.GetPosition().X + ", " + player.transform.GetPosition().Y + ", " + player.transform.GetPosition().Z);
                 audio.play(walkingSounds[walkingSoundCounter]);
-                audio.play(monsterPatrol[walkingSoundCounter++]);
+                audio.play(monsterPatrol[walkingSoundCounter]);
+                walkingSoundCounter++;
                 playSoundTimer = soundSpeed - walkingSoundCounter * 0.005f;
             }
             else
             {
-                playSoundTimer -= Time.deltaTime;
-            }
-        }
-        else
-        {
-            if (playSoundTimer < 0)
-            {
-                audio.set3DCoords(transform.GetPosition(), walkingSounds[walkingSoundCounter]);
-                audio.set3DCoords(transform.GetPosition(), monsterPatrol[walkingSoundCounter]);
+                audio.set3DCoords(GhostTransformPosition, walkingSounds[walkingSoundCounter]);
+                audio.set3DCoords(GhostTransformPosition, monsterPatrol[walkingSoundCounter]);
                 audio.play(walkingSounds[walkingSoundCounter]);
-                audio.play(monsterPatrol[walkingSoundCounter++]);
+                audio.play(monsterPatrol[walkingSoundCounter]);
+                walkingSoundCounter++;
                 playSoundTimer = soundSpeed - walkingSoundCounter * 0.005f;
             }
-            else
-            {
-                playSoundTimer -= Time.deltaTime;
-            }
+        }        else
+        {
+            playSoundTimer -= Time.deltaTime;
         }
 
-        return true;
+return true;
     }
 
     public void AlertMonster()
@@ -502,6 +498,8 @@ public class GhostMovement : Script
     public bool MoveTo(Vector2 destination, float speed)
     {
         Vector2 ghostPosition = new Vector2(transform.GetPosition().X, transform.GetPosition().Z);
+        GhostTransformPosition.X = ghostPosition.X;
+        GhostTransformPosition.Z = ghostPosition.Y;
         float step = speed * Time.deltaTime * 60;
         Vector2 nextPosition = Vector2.MoveTowards(ghostPosition, destination, step);
         transform.SetPosition(new Vector3(nextPosition.X, transform.GetPosition().Y, nextPosition.Y));
