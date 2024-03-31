@@ -25,6 +25,7 @@ public class GhostMovement : Script
     public float soundSpeed;
     public int walkingSoundCounter = -1;
     public float playSoundTimer;
+    float MonsterWalkingTimer;
 
     public String[] walkingSounds;
     public String voiceClips;
@@ -165,6 +166,7 @@ public class GhostMovement : Script
 
         voiceClips = "pc_monstergoesaway1";
         GhostTransformPosition = new Vector3();
+        MonsterWalkingTimer = 0.0f;
 
         speed = 3.0f;
         soundSpeed = 1.0f;
@@ -438,8 +440,18 @@ public class GhostMovement : Script
             walkingSoundCounter = 0;
         }
 
+        //Timer
+        if(playSoundTimer < 0 && currentEvent == GhostEvent.PlayingWalkingSound)
+        {
+            playSoundTimer = soundSpeed - walkingSoundCounter * 0.005f;
+        }
+        else
+        {
+            MonsterWalkingTimer -= Time.deltaTime;
+        }
+
         //Basement or not
-        if(playSoundTimer < 0)
+        if (MonsterWalkingTimer < 0)
         {
             if (!Door_Script.basementcheck)
             {
@@ -450,7 +462,6 @@ public class GhostMovement : Script
                 audio.play(walkingSounds[walkingSoundCounter]);
                 audio.play(monsterPatrol[walkingSoundCounter]);
                 walkingSoundCounter++;
-                playSoundTimer = soundSpeed - walkingSoundCounter * 0.005f;
             }
             else
             {
@@ -459,14 +470,16 @@ public class GhostMovement : Script
                 audio.play(walkingSounds[walkingSoundCounter]);
                 audio.play(monsterPatrol[walkingSoundCounter]);
                 walkingSoundCounter++;
-                playSoundTimer = soundSpeed - walkingSoundCounter * 0.005f;
             }
-        }        else
+
+            MonsterWalkingTimer = 1.0f;
+        }
+        else
         {
-            playSoundTimer -= Time.deltaTime;
+            MonsterWalkingTimer -= Time.deltaTime;
         }
 
-return true;
+        return true;
     }
 
     public void AlertMonster()
@@ -538,6 +551,7 @@ return true;
             bedroomMonsterAppearTimer = 2.0f;
 
             previousEvent = GhostEvent.BedroomHidingEvent;
+            gameObject.GetComponent<AudioComponent>().set3DCoords(transform.GetPosition(), "door_rattle");
             gameObject.GetComponent<AudioComponent>().play("door_rattle");
         }
 
@@ -686,6 +700,8 @@ return true;
             livingRoomMonsterAppearTimer = 4.0f;
 
             previousEvent = GhostEvent.LivingRoomHidingEvent;
+            //Vector3 door_pos = new Vector3(938.0f, transform.GetPosition().Y, 17.0f);
+            //gameObject.GetComponent<AudioComponent>().set3DCoords(door_pos, "door_rattle");
             gameObject.GetComponent<AudioComponent>().play("door_rattle");
 
             //Console.WriteLine("initialized living room hiding event");
