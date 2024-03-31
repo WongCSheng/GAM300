@@ -558,7 +558,7 @@ public class GhostMovement : Script
             bedroomMonsterAppearTimer = 2.0f;
 
             previousEvent = GhostEvent.BedroomHidingEvent;
-            gameObject.GetComponent<AudioComponent>().set3DCoords(new Vector3(1800.0f, 108.0f, -667.0f), "door_rattle");
+            gameObject.GetComponent<AudioComponent>().set3DCoords(transform.GetPosition(), "door_rattle");
             gameObject.GetComponent<AudioComponent>().play("door_rattle");
         }
 
