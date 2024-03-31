@@ -155,7 +155,7 @@ public class GhostMovement : Script
         monsterPatrol[6] = "mon_patrol7";
         monsterPatrol[7] = "mon_patrol8";
 
-        monsterAlert = new string[7];
+        monsterAlert = new string[8];
         monsterAlert[0] = "mon_alerted1";
         monsterAlert[1] = "mon_alerted2";
         monsterAlert[2] = "mon_alerted3";
@@ -163,6 +163,7 @@ public class GhostMovement : Script
         monsterAlert[4] = "mon_alerted5";
         monsterAlert[5] = "mon_alerted6";
         monsterAlert[6] = "mon_alerted7";
+        monsterAlert[7] = "";
 
         voiceClips = "pc_monstergoesaway1";
         GhostTransformPosition = new Vector3();
@@ -453,25 +454,31 @@ public class GhostMovement : Script
         //Basement or not
         if (MonsterWalkingTimer < 0)
         {
+            if (currentEvent == GhostEvent.ChasingPlayer || currentEvent == GhostEvent.FinalChasingEvent)
+            {
+                audio.set3DCoords(GhostTransformPosition, monsterAlert[walkingSoundCounter]);
+                audio.play(monsterAlert[walkingSoundCounter]);
+            }
+            else
+            {
+                audio.set3DCoords(GhostTransformPosition, monsterPatrol[walkingSoundCounter]);
+                audio.play(monsterPatrol[walkingSoundCounter]);
+            }
+
             if (!Door_Script.basementcheck)
             {
                 audio.set3DCoords(GhostTransformPosition, walkingSounds[walkingSoundCounter]);
-                audio.set3DCoords(GhostTransformPosition, monsterPatrol[walkingSoundCounter]);
                 //Console.WriteLine("Ghost position: " + GhostTransformPosition.X + ", " + GhostTransformPosition.Y + ", " + GhostTransformPosition.Z); ;
                 //Console.WriteLine("Player position: " + player.transform.GetPosition().X + ", " + player.transform.GetPosition().Y + ", " + player.transform.GetPosition().Z);
                 audio.play(walkingSounds[walkingSoundCounter]);
-                audio.play(monsterPatrol[walkingSoundCounter]);
-                walkingSoundCounter++;
             }
             else
             {
                 audio.set3DCoords(GhostTransformPosition, walkingSounds[walkingSoundCounter]);
-                audio.set3DCoords(GhostTransformPosition, monsterPatrol[walkingSoundCounter]);
                 audio.play(walkingSounds[walkingSoundCounter]);
-                audio.play(monsterPatrol[walkingSoundCounter]);
-                walkingSoundCounter++;
             }
 
+            walkingSoundCounter++;
             MonsterWalkingTimer = 1.0f;
         }
         else
@@ -551,7 +558,7 @@ public class GhostMovement : Script
             bedroomMonsterAppearTimer = 2.0f;
 
             previousEvent = GhostEvent.BedroomHidingEvent;
-            //gameObject.GetComponent<AudioComponent>().set3DCoords(transform.GetPosition(), "door_rattle");
+            gameObject.GetComponent<AudioComponent>().set3DCoords(new Vector3(1800.0f, 108.0f, -667.0f), "door_rattle");
             gameObject.GetComponent<AudioComponent>().play("door_rattle");
         }
 
@@ -700,8 +707,7 @@ public class GhostMovement : Script
             livingRoomMonsterAppearTimer = 4.0f;
 
             previousEvent = GhostEvent.LivingRoomHidingEvent;
-            //Vector3 door_pos = new Vector3(938.0f, transform.GetPosition().Y, 17.0f);
-            //gameObject.GetComponent<AudioComponent>().set3DCoords(door_pos, "door_rattle");
+            gameObject.GetComponent<AudioComponent>().set3DCoords(new Vector3(920.0f, 102.0f, -47.5f), "door_rattle");
             gameObject.GetComponent<AudioComponent>().play("door_rattle");
 
             //Console.WriteLine("initialized living room hiding event");

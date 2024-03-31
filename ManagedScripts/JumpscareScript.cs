@@ -90,14 +90,15 @@ public class JumpscareScript : Script
                     player.GetComponent<FPS_Controller_Script>().playerCamera.transform.GetRotation().X >= 28 - 3 && player.GetComponent<FPS_Controller_Script>().playerCamera.transform.GetRotation().X <= 28 + 3))
                 {
                     gameObject.GetComponent<AudioComponent>().stopAll();
-                    gameObject.GetComponent<AudioComponent>().play("mon_death");
+                    gameObject.GetComponent<AudioComponent>().play("Caught by Monster_Hit");
+                    gameObject.GetComponent<AudioComponent>().play("Caught by Monster_VO");
                     originalPosition = transform.GetPosition();
                     ++jumpscareSequenceIndex;
                 }
                 timer -= Time.deltaTime;
 
                 //GraphicsManagerWrapper.ToggleViewFrom2D(false);
-                //gameObject.GetComponent<AudioComponent>().play("mon_death");
+                //gameObject.GetComponent<AudioComponent>().play("Caught by Monster_VO");
                 //++jumpscareSequenceIndex;
                 break;
 
@@ -109,7 +110,7 @@ public class JumpscareScript : Script
 
                 if (screamTimer <= 0.0f)
                 {
-                    gameObject.GetComponent<AudioComponent>().stop("mon_death");
+                    gameObject.GetComponent<AudioComponent>().stop("Caught by Monster_VO");
                     transform.SetPosition(originalPosition);
                     ++jumpscareSequenceIndex;
                 }

@@ -309,8 +309,14 @@ public class FPS_Controller_Script : Script
             HeadBob();
         }
 
-        Vector3 up_vector = Vector3.Normalize(Vector3.Cross(playerCamera.getRightVector(), playerCamera.getForwardVector()));
-        audio.setPlayerCoords(transform.GetPosition(), Vector3.Normalize(playerCamera.getForwardVector()), up_vector);
+        //Vector3 up_vector = Vector3.Normalize(Vector3.Cross(playerCamera.getRightVector(), playerCamera.getForwardVector()));
+        Vector3 up_vector = new Vector3(0, 1, 0);
+        Vector3 temp_pos = new Vector3(0.0f, 0.0f, 0.0f);
+        audio.setPlayerCoords(temp_pos/*transform.GetPosition()*/, new Vector3(1, 0, 0)/*Vector3.Normalize(playerCamera.getForwardVector())*/, up_vector);
+        if(Input.GetKeyDown(Keycode.T))
+        {
+            Console.WriteLine("Player pos: " + transform.GetPosition().X + ", " + transform.GetPosition().Y + ", " + transform.GetPosition().Z);
+        }
     }
     public override void FixedUpdate()
     {

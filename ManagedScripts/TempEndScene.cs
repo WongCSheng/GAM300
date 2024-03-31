@@ -7,7 +7,7 @@ public class TempEndScene : Script
     private bool once = true;
     private float incrementFading = Time.deltaTime / 5f;
     readonly string runningSFX = "end_grassrunning";
-    readonly string monsterSFX = "mon_death";
+    readonly string monsterSFX = "Caught by Monster_VO";
     AudioComponent audio;
     private float waitTimer;
     String[] sfxNames;
