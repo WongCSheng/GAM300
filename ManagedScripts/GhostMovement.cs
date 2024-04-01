@@ -27,6 +27,7 @@ public class GhostMovement : Script
     float MonsterWalkingTimer;
 
     public String[] walkingSounds;
+    String[] basementWalkingSounds;
     public String voiceClips;
     static public Vector3 GhostTransformPosition;
 
@@ -146,6 +147,16 @@ public class GhostMovement : Script
         walkingSounds[5] = "mon_woodstep6";
         walkingSounds[6] = "mon_woodstep7";
         walkingSounds[7] = "mon_woodstep8";
+
+        basementWalkingSounds = new string[8];
+        basementWalkingSounds[0] = "Monster_Footstep_Reverb_01";
+        basementWalkingSounds[1] = "Monster_Footstep_Reverb_02";
+        basementWalkingSounds[2] = "Monster_Footstep_Reverb_03";
+        basementWalkingSounds[3] = "Monster_Footstep_Reverb_04";
+        basementWalkingSounds[4] = "Monster_Footstep_Reverb_05";
+        basementWalkingSounds[5] = "Monster_Footstep_Reverb_06";
+        basementWalkingSounds[6] = "";
+        basementWalkingSounds[7] = "";
 
         monsterPatrol = new string[8];
         monsterPatrol[0] = "mon_patrol1";
@@ -496,8 +507,8 @@ public class GhostMovement : Script
             }
             else
             {
-                audio.set3DCoords(GhostTransformPosition, walkingSounds[walkingSoundCounter]);
-                audio.play(walkingSounds[walkingSoundCounter]);
+                audio.set3DCoords(GhostTransformPosition, basementWalkingSounds[walkingSoundCounter]);
+                audio.play(basementWalkingSounds[walkingSoundCounter]);
             }
 
             walkingSoundCounter++;
@@ -580,12 +591,10 @@ public class GhostMovement : Script
             bedroomMonsterAppearTimer = 2.0f;
 
             previousEvent = GhostEvent.BedroomHidingEvent;
-            gameObject.GetComponent<AudioComponent>().set3DCoords(transform.GetPosition(), "door_rattle");
+            gameObject.GetComponent<AudioComponent>().set3DCoords(new Vector3(1790.0f, transform.GetPosition().Y, -750.0f), "door_rattle");
             gameObject.GetComponent<AudioComponent>().play("door_rattle");
         }
 
-        Vector3 originalPosition = transform.GetPosition();
-        Vector2 ghostPosition = new Vector2(originalPosition.X, originalPosition.Z);
         AudioComponent audio = gameObject.GetComponent<AudioComponent>();
 
         switch (eventStep)
@@ -594,7 +603,6 @@ public class GhostMovement : Script
 
                 if (gameObject.GetComponent<AudioComponent>().finished("door_rattle"))
                 {
-                    gameObject.GetComponent<AudioComponent>().stop("door_rattle");
                     ++eventStep;
                 }
 
@@ -672,9 +680,6 @@ public class GhostMovement : Script
             //Console.WriteLine("initialized living dining room event");
         }
 
-        Vector2 ghostPosition = new Vector2(transform.GetPosition().X, transform.GetPosition().Z);
-        Vector2 nextPosition = new Vector2(0.0f, 0.0f);
-
         switch (eventStep)
         {
             case 0: // Stay for a while
@@ -741,7 +746,6 @@ public class GhostMovement : Script
 
                 if (gameObject.GetComponent<AudioComponent>().finished("door_rattle"))
                 {
-                    gameObject.GetComponent<AudioComponent>().stop("door_rattle");
                     ++eventStep;
                 }
 
