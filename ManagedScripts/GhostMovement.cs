@@ -9,7 +9,6 @@
 ****************************************************************************
 ***/
 using ScriptAPI;
-using System.Security.Cryptography;
 
 public class GhostMovement : Script
 {
@@ -132,6 +131,9 @@ public class GhostMovement : Script
     public bool livingRoomHideEventStarted;
 
     public GameObject jumpscareMonster;
+    public GameObject flashlight;
+
+    public float distance;
 
     public override void Awake()
     {
@@ -189,6 +191,7 @@ public class GhostMovement : Script
         checkpoint = GameObjectScriptFind("Checkpoint").GetComponent<Checkpoint>();
         jumpscareMonster = GameObjectScriptFind("jumpscareMonster");
         diningCheckpoint = false;
+        distance = 40.0f;
     }
     public override void Update()
     {
@@ -224,6 +227,7 @@ public class GhostMovement : Script
                     }
                 }
                 previousEvent = GhostEvent.Nothing;
+                distance = 40.0f;
 
                 break;
 
@@ -249,16 +253,17 @@ public class GhostMovement : Script
                 //    break;
                 //}
 
-                if (bedroomHidingGameObject.GetComponent<Hiding>().hiding || 
+                if ((bedroomHidingGameObject.GetComponent<Hiding>().hiding || 
                     galleryHidingGameObject.GetComponent<Hiding>().hiding ||
-                    livingRoomHidingGameObject.GetComponent<Hiding>().hiding) // NOTE: Will add in the other hiding boolean variables later
+                    livingRoomHidingGameObject.GetComponent<Hiding>().hiding) &&
+                    !flashlight.GetComponent<Flashlight_Script>().activateLight) // NOTE: Will add in the other hiding boolean variables later
                 {
                     currentEvent = previousEvent;
                     return;
                 }
 
                 // If touches, loses
-                if (Vector2.Distance(ghostPosition, playerPosition) <= 40.0f)
+                if (Vector2.Distance(ghostPosition, playerPosition) <= distance)
                 {
                     playJumpscare();
                     return;
@@ -271,6 +276,12 @@ public class GhostMovement : Script
                     //transform.SetPosition(new Vector3(nextPosition.X, originalPosition.Y, nextPosition.Y));
 
                     MoveTo(playerPosition, speed);
+                    //Vector2 nextFramePosition = Vector2.MoveTowards(new Vector2(transform.GetPosition().X, transform.GetPosition().Z), playerPosition, speed);
+                    //if (Vector2.Distance(nextFramePosition, playerPosition) <= 40.0f)
+                    //{
+                    //    playJumpscare();
+                    //    return;
+                    //}
                 }
                 playerMoved = true;
                 speed += 0.001f;
@@ -313,10 +324,11 @@ public class GhostMovement : Script
                 //Console.WriteLine(Vector3.Distance(player.transform.GetPosition(), transform.GetPosition()));
                 //if (gameObject.GetComponent<RigidBodyComponent>().IsRayHit()) // If player is in sight
                 if (Vector3.Distance(player.transform.GetPosition(), transform.GetPosition()) <= 700.0f &&
-                    !bedroomHidingGameObject.GetComponent<Hiding>().hiding) // If player is in range
+                    (!bedroomHidingGameObject.GetComponent<Hiding>().hiding || flashlight.GetComponent<Flashlight_Script>().activateLight)) // If player is in range
                 {
                     // NOTE: May want to add in "not hiding" condition
                     currentEvent = GhostEvent.ChasingPlayer;
+                    distance = 40.0f;
                     return;
                 }
 
@@ -339,11 +351,12 @@ public class GhostMovement : Script
                 //Console.WriteLine(Vector3.Distance(player.transform.GetPosition(), transform.GetPosition()));
                 //if (gameObject.GetComponent<RigidBodyComponent>().IsRayHit()) // If player is in sight
                 if (Vector3.Distance(player.transform.GetPosition(), transform.GetPosition()) <= 700.0f &&
-                    !livingRoomHidingGameObject.GetComponent<Hiding>().hiding &&
+                    (!livingRoomHidingGameObject.GetComponent<Hiding>().hiding || flashlight.GetComponent<Flashlight_Script>().activateLight) &&
                     eventStep < 3) // If player is in range
                 {
                     // NOTE: May want to add in "not hiding" condition
                     currentEvent = GhostEvent.ChasingPlayer;
+                    distance = 40.0f;
                     return;
                 }
 
@@ -366,10 +379,11 @@ public class GhostMovement : Script
                 //Console.WriteLine(Vector3.Distance(player.transform.GetPosition(), transform.GetPosition()));
                 //if (gameObject.GetComponent<RigidBodyComponent>().IsRayHit()) // If player is in sight
                 if (Vector3.Distance(player.transform.GetPosition(), transform.GetPosition()) <= 700.0f &&
-                    !galleryHidingGameObject.GetComponent<Hiding>().hiding) // If player is in range
+                    (!galleryHidingGameObject.GetComponent<Hiding>().hiding || flashlight.GetComponent<Flashlight_Script>().activateLight)) // If player is in range
                 {
                     // NOTE: May want to add in "not hiding" condition
                     currentEvent = GhostEvent.ChasingPlayer;
+                    distance = 40.0f;
                     return;
                 }
 
@@ -394,7 +408,11 @@ public class GhostMovement : Script
 
         // Jumpscare scene
         gameBlackboard.gameState = GameBlackboard.GameState.Jumpscare; // Locks everything else, play jumpscare
-        player.GetComponent<FPS_Controller_Script>().StandUp();
+
+        if (player.GetComponent<FPS_Controller_Script>().isCrouched)
+        {
+            player.GetComponent<FPS_Controller_Script>().StandUp();
+        }
         player.GetComponent<FPS_Controller_Script>().isCrouched = false;
 
         SetEnabled(false);
@@ -413,6 +431,10 @@ public class GhostMovement : Script
         jumpscareMonster.GetComponent<JumpscareScript>().SetEnabled(true);
         jumpscareMonster.GetComponent<JumpscareScript>().jumpscareSequenceIndex = 0;
         jumpscareMonster.GetComponent<JumpscareScript>().screamTimer = 2.5f;
+
+        bedroomHidingGameObject.GetComponent<Hiding>().hiding = false;
+        galleryHidingGameObject.GetComponent<Hiding>().hiding = false;
+        livingRoomHidingGameObject.GetComponent<Hiding>().hiding = false;
 
         gameObject.SetActive(false);
 
@@ -803,6 +825,8 @@ public class GhostMovement : Script
 
             if (player.transform.GetPosition().X <= 319.0f)
             {
+                gameObject.GetComponent<AudioComponent>().play("pc_movethissilently");
+                GameplaySubtitles.counter = 46;
                 startEvent = false;
             }
 
@@ -819,6 +843,7 @@ public class GhostMovement : Script
 
                 if (diningRoomTimer <= 0)
                 {
+                    gameObject.GetComponent<AudioComponent>().play("mon_alerted1");
                     ++eventStep;
                 }
                 diningRoomTimer -= Time.deltaTime;
@@ -832,6 +857,7 @@ public class GhostMovement : Script
                 // Finished turning
                 if (transform.GetRotation().Y <= 0.0f)
                 {
+                    gameObject.GetComponent<AudioComponent>().stop("mon_alerted1");
                     ++eventStep;
                     diningRoomTimer = 0.5f;
                     playerOriginalPosition = player.transform.GetPosition();
@@ -846,7 +872,8 @@ public class GhostMovement : Script
                     !player.GetComponent<FPS_Controller_Script>().isCrouched)
                 {
                     currentEvent = GhostEvent.ChasingPlayer;
-                    speed = 25.0f;
+                    speed = 15.0f;
+                    distance = 60.0f;
                 }
 
                 if (diningRoomTimer <= 0)
@@ -920,7 +947,7 @@ public class GhostMovement : Script
         }
         
 
-        if (!galleryHidingGameObject.GetComponent<Hiding>().hiding) // If player comes out of hiding, monster will chase player
+        if (!galleryHidingGameObject.GetComponent<Hiding>().hiding || flashlight.GetComponent<Flashlight_Script>().activateLight) // If player comes out of hiding, monster will chase player
         {
             previousEvent = GhostEvent.GalleryHidingEvent;
             currentEvent = GhostEvent.ChasingPlayer;
@@ -974,7 +1001,7 @@ public class GhostMovement : Script
                 break;
 
             case 4: // Walk to Family Painting
-                Console.Write("Pos:" + gameObject.transform.GetPosition().X + " " + gameObject.transform.GetPosition().Z);
+               
                 if (MoveTo(new Vector2(-3000, -666), 5.0f))
                 {
                     ++eventStep;
