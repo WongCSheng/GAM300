@@ -25,7 +25,6 @@ public class OptionsMasterVolume : Script
     public override void Awake()
     {
        // GraphicsManagerWrapper.ToggleViewFrom2D(true);
-        optionsSoundName = "basement_music";
         buttonSfxName = "button_press";
         buttonSfx = gameObject.GetComponent<AudioComponent>();
         masterVol = gameObject.GetComponent<AudioComponent>();

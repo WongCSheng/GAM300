@@ -459,10 +459,14 @@ public class FPS_Controller_Script : Script
         {
             if (audio.checkPlaying(backgroundMusic[0]))
             {
-                //audio.FadeOut(3, backgroundMusic[0]);
+                audio.stop(backgroundMusic[0]);
             }
             if (audio.finished(backgroundMusic[0]))
             {
+                if(!audio.isitLoop("ambientdrone1"))
+                {
+                    audio.setLoop(true, "ambientdrone1");
+                }
                 audio.play("ambientdrone1");
             }
         }

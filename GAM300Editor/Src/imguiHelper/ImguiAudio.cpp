@@ -141,7 +141,7 @@ namespace TDS
 	void AudioImgui::update()
 	{
 		//int AmountOfSound = (int)audeng->GetAmountOfChannelsPlaying();
-		Vec3 playerPos, playerVel, playerForward, playerUp, ghostPos, ghostVel, ghostForward, ghostUp;
+		Vec3 playerPos, playerVel, playerForward, playerUp;
 		audeng->get3DListenerCharacteristics(playerPos, playerVel, playerForward, playerUp);
 
 		ImGui::Text("INFORMATION");
@@ -187,18 +187,20 @@ namespace TDS
 		ImGui::Text("Active");
 		ImGui::TableNextRow();
 
-		audeng->get3DListenerCharacteristics(ghostPos, ghostVel, ghostForward, ghostUp);
+		Vec3 pos;
+		SoundInfo* temp = audeng->findSound("fireplace");
+		audeng->get3DSoundCoordinates(*temp, pos);
 		ImGui::Text("Ghost: ");
 		ImGui::TableNextColumn();
 		ImGui::Text("Yes");
 		ImGui::TableNextColumn();
 		ImGui::Text("No");
 		ImGui::TableNextColumn();
-		ImGui::Text("%f", ghostPos.x);
+		ImGui::Text("%f", pos.x);
 		ImGui::TableNextColumn();
-		ImGui::Text("%f", ghostPos.y);
+		ImGui::Text("%f", pos.y);
 		ImGui::TableNextColumn();
-		ImGui::Text("%f", ghostPos.z);
+		ImGui::Text("%f", pos.z);
 		ImGui::TableNextColumn();
 		ImGui::Text("Active");
 		ImGui::TableNextRow();

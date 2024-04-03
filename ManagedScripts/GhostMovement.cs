@@ -27,7 +27,6 @@ public class GhostMovement : Script
     float MonsterWalkingTimer;
 
     public String[] walkingSounds;
-    String[] basementWalkingSounds;
     public String voiceClips;
     static public Vector3 GhostTransformPosition;
 
@@ -139,24 +138,14 @@ public class GhostMovement : Script
     public override void Awake()
     {
         walkingSounds = new string[8];
-        walkingSounds[0] = "mon_woodstep1";
-        walkingSounds[1] = "mon_woodstep2";
-        walkingSounds[2] = "mon_woodstep3";
-        walkingSounds[3] = "mon_woodstep4";
-        walkingSounds[4] = "mon_woodstep5";
-        walkingSounds[5] = "mon_woodstep6";
-        walkingSounds[6] = "mon_woodstep7";
-        walkingSounds[7] = "mon_woodstep8";
-
-        basementWalkingSounds = new string[8];
-        basementWalkingSounds[0] = "Monster_Footstep_Reverb_01";
-        basementWalkingSounds[1] = "Monster_Footstep_Reverb_02";
-        basementWalkingSounds[2] = "Monster_Footstep_Reverb_03";
-        basementWalkingSounds[3] = "Monster_Footstep_Reverb_04";
-        basementWalkingSounds[4] = "Monster_Footstep_Reverb_05";
-        basementWalkingSounds[5] = "Monster_Footstep_Reverb_06";
-        basementWalkingSounds[6] = "";
-        basementWalkingSounds[7] = "";
+        walkingSounds[0] = "Monster_Footstep_Reverb_01";
+        walkingSounds[1] = "Monster_Footstep_Reverb_02";
+        walkingSounds[2] = "Monster_Footstep_Reverb_03";
+        walkingSounds[3] = "Monster_Footstep_Reverb_04";
+        walkingSounds[4] = "Monster_Footstep_Reverb_05";
+        walkingSounds[5] = "Monster_Footstep_Reverb_06";
+        walkingSounds[6] = "";
+        walkingSounds[7] = "";
 
         monsterPatrol = new string[8];
         monsterPatrol[0] = "mon_patrol1";
@@ -498,18 +487,10 @@ public class GhostMovement : Script
                 audio.play(monsterPatrol[walkingSoundCounter]);
             }
 
-            if (!Door_Script.basementcheck)
-            {
-                audio.set3DCoords(GhostTransformPosition, walkingSounds[walkingSoundCounter]);
-                //Console.WriteLine("Ghost position: " + GhostTransformPosition.X + ", " + GhostTransformPosition.Y + ", " + GhostTransformPosition.Z); ;
-                //Console.WriteLine("Player position: " + player.transform.GetPosition().X + ", " + player.transform.GetPosition().Y + ", " + player.transform.GetPosition().Z);
-                audio.play(walkingSounds[walkingSoundCounter]);
-            }
-            else
-            {
-                audio.set3DCoords(GhostTransformPosition, basementWalkingSounds[walkingSoundCounter]);
-                audio.play(basementWalkingSounds[walkingSoundCounter]);
-            }
+            audio.set3DCoords(GhostTransformPosition, walkingSounds[walkingSoundCounter]);
+            //Console.WriteLine("Ghost position: " + GhostTransformPosition.X + ", " + GhostTransformPosition.Y + ", " + GhostTransformPosition.Z); ;
+            //Console.WriteLine("Player position: " + player.transform.GetPosition().X + ", " + player.transform.GetPosition().Y + ", " + player.transform.GetPosition().Z);
+            audio.play(walkingSounds[walkingSoundCounter]);
 
             walkingSoundCounter++;
             MonsterWalkingTimer = 1.0f;

@@ -51,9 +51,9 @@ namespace ScriptAPI
 		return is3D;
 	}
 
-	bool AudioComponent::isitLoop()
+	bool AudioComponent::isitLoop(System::String^ pathing)
 	{
-		return isLoop;
+		return TDS::proxy_audio_system::ScriptGetLoop(toStdString(pathing));
 	}
 
 	bool AudioComponent::isitMuted()
@@ -182,9 +182,9 @@ namespace ScriptAPI
 		whatState = setting;
 	}
 
-	void AudioComponent::setLoop(bool condition)
+	void AudioComponent::setLoop(bool condition, System::String^ pathing)
 	{
-		isLoop = condition;
+		TDS::proxy_audio_system::ScriptSetLoop(condition, toStdString(pathing));
 	}
 
 	void AudioComponent::set3D(bool condition)

@@ -105,7 +105,8 @@ namespace TDS
                 size_t first = soundInfo.getFilePath().find_last_of('\\') + 1,
                     last = soundInfo.getFilePath().find_last_of('.') - first;
                 std::string sound_name = soundInfo.getFilePath().substr(first, last);
-                SoundInfo_Container.insert({ sound_name, &soundInfo });
+                SoundInfo* siTemp = new SoundInfo(soundInfo);
+                SoundInfo_Container.insert({ sound_name, siTemp });
 
                 unsigned int msLength = 0;
                 ERRCHECK(sounds[soundInfo.getUniqueID()]->getLength(&msLength, FMOD_TIMEUNIT_MS));
@@ -127,6 +128,7 @@ namespace TDS
                 size_t first = temp->getFilePath().find_last_of('\\') + 1,
                     last = temp->getFilePath().find_last_of('.') - first;
                 std::string sound_name = temp->getFilePath().substr(first, last);
+                delete SoundInfo_Container[sound_name];
                 SoundInfo_Container.erase(sound_name);
 
                 channels.erase(temp->uniqueID);
@@ -228,7 +230,10 @@ namespace TDS
 
             for (auto& ch : channels)
             {
-                ERRCHECK(ch.second->isPlaying(&check));
+                if(ch.second != nullptr)
+                {
+                    ERRCHECK(ch.second->isPlaying(&check));
+                }
 
                 if (check)
                 {
@@ -418,10 +423,10 @@ namespace TDS
             if (checkPlaying(soundInfo))
             {
                 soundInfo.is3D = true;
-                soundInfo.position = pos;
 
                 channels[soundInfo.uniqueID]->stop();
             }
+            soundInfo.position = pos;
 
             sounds[soundInfo.uniqueID]->release();
             channels.erase(soundInfo.uniqueID);
@@ -506,6 +511,17 @@ namespace TDS
             vel.x = fvel.x; vel.y = fvel.y; vel.z = fvel.z;
             forward.x = ffor.x; forward.y = ffor.y; forward.z = ffor.z;
             upVec.x = fup.x; upVec.y = fup.y; upVec.z = fup.z;
+        }
+
+        void AudioEngine::get3DSoundCoordinates(SoundInfo& soundInfo, Vec3& pos)
+        {
+            FMOD_VECTOR f_pos{}, f_vec{};
+            
+            ERRCHECK(channels[soundInfo.uniqueID]->get3DAttributes(&f_pos, &f_vec));
+
+            pos.x = f_pos.x;
+            pos.y = f_pos.y;
+            pos.z = f_pos.z;
         }
 
         unsigned int AudioEngine::getSoundLengthInMS(SoundInfo soundInfo)
@@ -627,6 +643,25 @@ namespace TDS
             return muted;
         }
 
+        void AudioEngine::setLoop(SoundInfo& soundInfo, bool set)
+        {
+            soundInfo.isLoop = set;
+
+            if(soundInfo.isLoop)
+            {
+                ERRCHECK(channels[soundInfo.uniqueID]->setMode(FMOD_LOOP_NORMAL));
+            }
+            else
+            {
+                ERRCHECK(channels[soundInfo.uniqueID]->setMode(FMOD_LOOP_OFF));
+            }
+        }
+
+        bool AudioEngine::GetLoop(SoundInfo& soundInfo)
+        {
+            return soundInfo.isLoop;
+        }
+
         std::map<unsigned int, FMOD::Sound*> AudioEngine::getSoundContainer()
         {
             return sounds;
@@ -666,7 +701,15 @@ namespace TDS
 
         SoundInfo* AudioEngine::findSound(std::string name)
         {
-            return SoundInfo_Container[name];
+            for (auto& it : SoundInfo_Container)
+            {
+                if (it.first == name)
+                {
+                    return it.second;
+                }
+            }
+
+            return nullptr;
         }
 
         SoundInfo* AudioEngine::findSound(unsigned int ID)
@@ -866,6 +909,11 @@ namespace TDS
         return aud_instance->findSound(pathing)->uniqueID;
     }
 
+    bool proxy_audio_system::ScriptGetLoop(std::string pathing)
+    {
+        return aud_instance->GetLoop(*find_sound_info(pathing));
+    }
+
     bool proxy_audio_system::CheckPlaying(std::string pathing)
     {
         return aud_instance->checkPlaying(*find_sound_info(pathing));
@@ -932,6 +980,11 @@ namespace TDS
         aud_instance->set3DListenerPosition(pos.x, pos.y, pos.z,
             for_vec.x, for_vec.y, for_vec.z,
             up_vec.x, up_vec.y, up_vec.z);
+    }
+
+    void proxy_audio_system::ScriptSetLoop(bool set, std::string pathing)
+    {
+        aud_instance->setLoop(*find_sound_info(pathing), set);
     }
 
     SoundInfo* proxy_audio_system::find_sound_info(std::string str)

@@ -108,6 +108,7 @@ public class Door_Script : Script
                         else if (fadeValue <= 0.0f && fadeIn == false && basementDoor == true)
                         {
                             audio.FadeOut(2, monsterChase);
+                            audio.play("basement_music");
                             Vector3 newPos = new Vector3(3450, -145, 340);
                             Vector3 rotation = playerGameObject.transform.GetRotation();
                             Quaternion quat = new Quaternion(rotation);

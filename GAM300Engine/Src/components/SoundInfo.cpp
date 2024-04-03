@@ -74,17 +74,17 @@ namespace TDS
 
     float SoundInfo::getX()
     {
-        return position[0]; //!!!!!!!To be replaced when vec container is used
+        return position.x; //!!!!!!!To be replaced when vec container is used
     }
 
     float SoundInfo::getY()
     {
-        return position[1]; //!!!!!!!To be replaced when vec container is used
+        return position.y; //!!!!!!!To be replaced when vec container is used
     }
 
     float SoundInfo::getZ()
     {
-        return position[2]; //!!!!!!!To be replaced when vec container is used
+        return position.z; //!!!!!!!To be replaced when vec container is used
     }
 
     float SoundInfo::getReverbAmount()
