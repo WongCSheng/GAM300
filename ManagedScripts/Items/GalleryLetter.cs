@@ -60,7 +60,6 @@ public class GalleryLetter : Script
 
                 // Trigger Note Event
                 clip.play("pc_moreinthebasement");
-                clip.set3DCoords(clip.getListenerPos(), "pc_moreinthebasement");
                 isNotePicked = true;
                 GameplaySubtitles.counter = 41;
 
@@ -71,5 +70,6 @@ public class GalleryLetter : Script
         {
             //_InteractUI.SetActive(false);
         }
+        clip.set3DCoords(clip.getListenerPos(), "pc_moreinthebasement");
     }
 }

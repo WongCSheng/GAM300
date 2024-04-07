@@ -372,7 +372,7 @@ public class GhostMovement : Script
 
             case GhostEvent.DiningRoomEvent:
 
-                PlayMonsterWalkingSound();
+                //PlayMonsterWalkingSound();
 
                 DiningRoomEvent();
 
@@ -645,7 +645,7 @@ public class GhostMovement : Script
 
                 break;
         }
-
+        audio.set3DCoords(audio.getListenerPos(), voiceClips);
     }
 
     public void LivingDiningRoomEvent()
@@ -816,7 +816,7 @@ public class GhostMovement : Script
 
     public void DiningRoomEvent()
     {
-        gameObject.GetComponent<AudioComponent>().set3DCoords(player.transform.GetPosition(), "pc pc_movethissilently");
+        gameObject.GetComponent<AudioComponent>().set3DCoords(player.transform.GetPosition(), "pc_movethissilently");
         if (startEvent) // Initialize variables
         {
             diningRoomTimer = ScriptAPI.Random.Range(1.0f, 3.0f);

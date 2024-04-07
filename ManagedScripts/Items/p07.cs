@@ -62,7 +62,6 @@ public class p07 : Script
             {
                
                 AudioPlayer.play("pc_shinelightafterreceipt"); // Looks like the receipt was right.
-                AudioPlayer.set3DCoords(AudioPlayer.getListenerPos(), "pc_shinelightafterreceipt");
                 GameplaySubtitles.counter = 40;
                 once = false;
 
@@ -71,7 +70,6 @@ public class p07 : Script
             else if (onceAgain && !Receipt.isNotePicked)
             {
                 AudioPlayer.play("pc_shinelightbeforereceipt"); // Looks like the receipt was right.
-                AudioPlayer.set3DCoords(AudioPlayer.getListenerPos(), "pc_shinelightbeforereceipt");
                 GameplaySubtitles.counter = 20;
                 onceAgain = false;
             }
