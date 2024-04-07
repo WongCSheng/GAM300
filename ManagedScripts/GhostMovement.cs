@@ -372,7 +372,7 @@ public class GhostMovement : Script
 
             case GhostEvent.DiningRoomEvent:
 
-                //PlayMonsterWalkingSound();
+                PlayMonsterWalkingSound();
 
                 DiningRoomEvent();
 
