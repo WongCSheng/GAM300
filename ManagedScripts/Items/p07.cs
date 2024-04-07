@@ -62,6 +62,7 @@ public class p07 : Script
             {
                
                 AudioPlayer.play("pc_shinelightafterreceipt"); // Looks like the receipt was right.
+                AudioPlayer.set3DCoords(AudioPlayer.getListenerPos(), "pc_shinelightafterreceipt");
                 GameplaySubtitles.counter = 40;
                 once = false;
 
@@ -70,6 +71,7 @@ public class p07 : Script
             else if (onceAgain && !Receipt.isNotePicked)
             {
                 AudioPlayer.play("pc_shinelightbeforereceipt"); // Looks like the receipt was right.
+                AudioPlayer.set3DCoords(AudioPlayer.getListenerPos(), "pc_shinelightbeforereceipt");
                 GameplaySubtitles.counter = 20;
                 onceAgain = false;
             }
@@ -91,6 +93,7 @@ public class p07 : Script
                 // Trigger Painting Event
                 AudioPlayer.play("gallery_movepainting");
                 AudioPlayer.play("pc_stealpainting1");
+                AudioPlayer.set3DCoords(AudioPlayer.getListenerPos(), "pc_stealpainting1");
                 GameplaySubtitles.counter = 13;
 
                 // hiding event 

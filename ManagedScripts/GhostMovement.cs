@@ -577,6 +577,7 @@ public class GhostMovement : Script
         Vector3 originalPosition = transform.GetPosition();
         Vector2 ghostPosition = new Vector2(originalPosition.X, originalPosition.Z);
         AudioComponent audio = gameObject.GetComponent<AudioComponent>();
+        audio.set3DCoords(gameObject.GetComponent<AudioComponent>().getListenerPos(), "pc hiding");
 
         switch (eventStep)
         {
@@ -815,6 +816,7 @@ public class GhostMovement : Script
 
     public void DiningRoomEvent()
     {
+        gameObject.GetComponent<AudioComponent>().set3DCoords(player.transform.GetPosition(), "pc pc_movethissilently");
         if (startEvent) // Initialize variables
         {
             diningRoomTimer = ScriptAPI.Random.Range(1.0f, 3.0f);
@@ -841,6 +843,7 @@ public class GhostMovement : Script
                 if (diningRoomTimer <= 0)
                 {
                     gameObject.GetComponent<AudioComponent>().play("mon_alerted1");
+                    gameObject.GetComponent<AudioComponent>().set3DCoords(transform.GetPosition(), "mon_alerted1");
                     ++eventStep;
                 }
                 diningRoomTimer -= Time.deltaTime;
@@ -964,6 +967,7 @@ public class GhostMovement : Script
                 }
 
                 audio.play("pc hiding");
+                audio.set3DCoords(audio.getListenerPos(), "pc hiding");
                 audio.setVolume(0.5f, "pc hiding");
                 audio.play("pc_afterscare_heartbeat");
                 audio.setVolume(0.5f, "pc_afterscare_heartbeat");
@@ -1006,10 +1010,12 @@ public class GhostMovement : Script
                     ++eventStep;
                     leftWingDoor.GetComponent<Door_Script>().forcedLocked = false;      // Unlock door
                     audio.play("pc_timetogetout");                                      // Player audio
+                    audio.set3DCoords(audio.getListenerPos(), "pc_timetogetout");
                     GameplaySubtitles.counter = 45;                                     // Subtitles
                 }
 
                 audio.play("pc hiding");
+                audio.set3DCoords(audio.getListenerPos(), "pc hiding");
                 audio.setVolume(0.5f, "pc hiding");
                 audio.play("pc_afterscare_heartbeat");
                 audio.setVolume(0.5f, "pc_afterscare_heartbeat");

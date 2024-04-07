@@ -53,6 +53,7 @@ public class Receipt : Script
                 gameObject.SetActive(false);
 
                 clip.play("pc_checkreceipt");
+                clip.set3DCoords(clip.getListenerPos(), "pc_checkreceipt");
                 GameplaySubtitles.counter = 14;
                 isNotePicked = true;
             }

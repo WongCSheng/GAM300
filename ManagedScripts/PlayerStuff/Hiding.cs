@@ -174,6 +174,7 @@ public class Hiding : Script
                     if (EventBedroomHiding.doOnce == false)
                     {
                         audioPlayer.play("pc_monstergoesaway2");
+                        audioPlayer.set3DCoords(audioPlayer.getListenerPos(), "pc_monstergoesaway2");
                         GameplaySubtitles.counter = 15;
                     }
                 }

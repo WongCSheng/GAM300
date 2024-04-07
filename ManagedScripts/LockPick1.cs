@@ -581,6 +581,7 @@ public class LockPick1 : Script
         }
 
         Sprite.SetFontMessage(Subtitles[counter]); //update last
+        audio.set3DCoords(audio.getListenerPos(), "pc_runningoutofjuice");
     }
 
     public void newLock()
