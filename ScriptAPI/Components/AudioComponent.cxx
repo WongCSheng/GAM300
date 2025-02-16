@@ -24,7 +24,6 @@ namespace ScriptAPI
 
 	void AudioComponent::set3DCoords(float x, float y, float z, System::String^ name)
 	{
-		//pos = Vector3(x, y, z);
 		TDS::proxy_audio_system::ScriptSetPosition(TDS::floatsToVec3(x, y, z), toStdString(name));
 	}
 
@@ -104,6 +103,11 @@ namespace ScriptAPI
 	std::string AudioComponent::getFilePath()
 	{
 		return filePath;
+	}
+
+	Vector3 AudioComponent::getListenerPos()
+	{
+		return Vector3(TDS::proxy_audio_system::getListenerPos());
 	}
 
 	void AudioComponent::setFilePath(System::String^ str_path)
@@ -288,14 +292,14 @@ namespace ScriptAPI
 	}
 
 	//loop
-	bool AudioComponent::isLoop::get()
+	/*bool AudioComponent::isLoop::get()
 	{
 		return TDS::GetSoundInfo(entityID)->isLoop;
 	}
 	void AudioComponent::isLoop::set(bool value)
 	{
 		TDS::GetSoundInfo(entityID)->isLoop = value;
-	}
+	}*/
 
 	//3D boolean
 	bool AudioComponent::is3D::get()

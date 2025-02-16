@@ -30,6 +30,7 @@ namespace ScriptAPI
 		unsigned int getUniqueID();
 		unsigned int getMSLength();
 		std::string getFilePath();
+		Vector3 getListenerPos();
 
 		void setFilePath(System::String^ str_path);
 
@@ -97,11 +98,11 @@ namespace ScriptAPI
 			std::string get();
 			void set(std::string value);
 		}
-		property bool isLoop
+		/*property bool isLoop
 		{
 			bool get();
 			void set(bool value);
-		}
+		}*/
 		property bool is3D
 		{
 			bool get();
